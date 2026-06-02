@@ -156,15 +156,20 @@
     scrollStep();
   }
 
-  if (location.hash) {
+  const scrollToHashTarget = () => {
+    if (!location.hash) return;
     const hashTarget = document.querySelector(location.hash);
     if (hashTarget) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          hashTarget.scrollIntoView({ block: 'start', behavior: 'auto' });
-        });
-      });
+      hashTarget.scrollIntoView({ block: 'start', behavior: 'auto' });
     }
-  }
+  };
+
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToHashTarget);
+    });
+  });
+
+  scrollToHashTarget();
 
 });
