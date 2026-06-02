@@ -252,6 +252,40 @@
     });
   }
 
+  const eligibilityModal = document.getElementById('eligibilityModal');
+  const confirmEligibilityButton = document.getElementById('confirmEligibilityButton');
+
+  const showEligibilityModal = () => {
+    if (eligibilityModal) {
+      eligibilityModal.classList.add('active');
+    }
+  };
+
+  const closeEligibilityModal = () => {
+    if (eligibilityModal) {
+      eligibilityModal.classList.remove('active');
+    }
+  };
+
+  if (openGiftButton) {
+    openGiftButton.addEventListener('click', () => {
+      if (!referralCompleted) {
+        if (referralStatusText) {
+          referralStatusText.innerText = 'Complete the referred ₹4,00,000 project and payment first to open the gift.';
+        }
+        return;
+      }
+      showEligibilityModal();
+    });
+  }
+
+  if (confirmEligibilityButton) {
+    confirmEligibilityButton.addEventListener('click', () => {
+      closeEligibilityModal();
+      openRewardModal();
+    });
+  }
+
   const closeModalBtn = document.getElementById('closeRewardModal');
   if (closeModalBtn) {
     closeModalBtn.addEventListener('click', closeRewardModal);
@@ -262,6 +296,15 @@
     modalOverlay.addEventListener('click', (event) => {
       if (event.target === modalOverlay) {
         closeRewardModal();
+      }
+    });
+  }
+
+  const eligibilityOverlay = document.getElementById('eligibilityModal');
+  if (eligibilityOverlay) {
+    eligibilityOverlay.addEventListener('click', (event) => {
+      if (event.target === eligibilityOverlay) {
+        closeEligibilityModal();
       }
     });
   }

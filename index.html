@@ -441,10 +441,7 @@
             <h3>Double Rewards Festive Special!</h3>
             <p>Refer and unlock more! Get special unlocked tiers for your 2nd and 3rd successful referral for Ajor Interior.</p>
           </div>
-          <div class="reward-status">
-            <strong>Referral status:</strong>
-            <span id="referralStatusText">Waiting for referred project ₹4,00,000 to be completed and paid.</span>
-          </div>
+         
           <button id="simulateCompletion" class="btn btn-secondary">Simulate Referral Completion</button>
         </div>
 
@@ -454,10 +451,24 @@
               <div class="box-lid"></div>
               <div class="box-body"></div>
               <div class="box-ribbon"></div>
-              <div class="box-tag">₹4L Project</div>
+            
             </div>
             <button id="openGiftButton" class="btn btn-primary" disabled>Open Gift</button>
           </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="eligibilityModal">
+        <div class="modal-box eligibility-box">
+          <h2>Referral Eligibility Check</h2>
+          <p>Please review these conditions before opening your gift:</p>
+          <ul class="eligibility-list">
+            <li>Referred customer has placed an order with Ajor Interior.</li>
+            <li>Referred customer has paid the first installment of the project.</li>
+            <li>Project value is at least ₹4,00,000 and maintained across all stages.</li>
+            <li>Referred customer is not already in the HomeLane database from any lead source.</li>
+          </ul>
+          <div class="eligibility-confirm-box" id="confirmEligibilityButton">Confirm and Open Gift</div>
         </div>
       </div>
 
