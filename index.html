@@ -431,17 +431,44 @@
       </div>
     </section>
 
-    <section class="referralBanner_wrapper__3o0ka referralBanner_wrapper-mob__yHadw">
-      <div class="referralBanner_container__3uoyH referralBanner_add-border__2M66p">
-        <div class="referralBanner_content-block__1s5m1 referralBanner_w100__SLXUj">
-          <p class="referralBanner_title__T3gb0 referralBanner_size__3yl5c referralBanner_mobilePaddingUpdate__XhDzz">Loved us? Now refer us!</p>
-          <p class="referralBanner_sub-title__1PfzB referralBanner_sub-title-sm__1rClL referralBanner_mobilePaddingUpdate__XhDzz">Refer and earn ₹ 10,000 every time your friends try Ajor Interior.</p>
-          <div class="referralBanner_refer-btn-block__qWuxw">
-            <a href="#" class="referralBanner_refer-btn__3a8Sq referralBanner_w100__SLXUj">Refer Now</a>
+    <section class="reward-section">
+      <div class="reward-container">
+        <div class="reward-content">
+          <p class="reward-eyebrow">Congratulations!</p>
+          <h2>Tap a compartment to reveal your reward!</h2>
+          <p>Your friends have smarter homes. Now, it's your turn! The more you refer, the grander the celebration.</p>
+          <div class="reward-highlight">
+            <h3>Double Rewards Festive Special!</h3>
+            <p>Refer and unlock more! Get special unlocked tiers for your 2nd and 3rd successful referral for Ajor Interior.</p>
           </div>
         </div>
-        <div class="referralBanner_svg-icon__2kFWI referralBanner_svg-icon-m__1tYzx">
-          <img src="images/refer image.png" alt="Refer and earn illustration" />
+
+        <div class="interactive-side">
+          <div class="chest-wrapper">
+            <div class="chest-header">🎁 Celebration Gift Box</div>
+            <button type="button" class="drawer drawer-tier1 active-pulse" data-tier="tier1">
+              <span>🗄️ Tier 1 Drawer</span>
+              <span>Tap to Reveal</span>
+            </button>
+            <button type="button" class="drawer drawer-tier2" data-tier="tier2">
+              <span>🗄️ Tier 2 Drawer</span>
+              <span>Tap to Reveal</span>
+            </button>
+            <div class="drawer locked">
+              <span>🗄️ Tier 3 Drawer</span>
+              <span>Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="rewardModal">
+        <div class="modal-box">
+          <div id="modalIcon" class="gift-icon-animation">🎁</div>
+          <h2 id="modalTitle">Reward Unlocked!</h2>
+          <p class="prize-value" id="modalPrize">₹1,000 Cashback</p>
+          <p id="modalDescription">This has been added directly to your registered wallet balance.</p>
+          <button class="close-btn" id="closeRewardModal">Awesome, Thanks!</button>
         </div>
       </div>
     </section>

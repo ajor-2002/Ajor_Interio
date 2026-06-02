@@ -155,4 +155,70 @@
 
     scrollStep();
   }
+
+  const rewards = {
+    tier1: {
+      icon: '💰',
+      title: 'Cashback Extravaganza!',
+      prize: '₹1,000 Cash Back',
+      desc: 'Congratulations! Your ₹1,000 instant cashback reward has been processed to your account.'
+    },
+    tier2: {
+      icon: '🏷️',
+      title: 'Exclusive Design Discount',
+      prize: '10% OFF Voucher',
+      desc: 'Enjoy an extra 10% discount valid on any upcoming Ajor Interior decor packages or modifications!'
+    }
+  };
+
+  let rewardRevealed = false;
+
+  const disableRewardDrawers = () => {
+    document.querySelectorAll('.drawer[data-tier]').forEach((drawer) => {
+      drawer.disabled = true;
+      drawer.classList.add('disabled');
+      drawer.classList.remove('active-pulse');
+    });
+  };
+
+  const openRewardModal = (tier) => {
+    if (rewardRevealed) return;
+    const reward = rewards[tier];
+    if (!reward) return;
+
+    rewardRevealed = true;
+    disableRewardDrawers();
+
+    document.getElementById('modalIcon').innerText = reward.icon;
+    document.getElementById('modalTitle').innerText = reward.title;
+    document.getElementById('modalPrize').innerText = reward.prize;
+    document.getElementById('modalDescription').innerText = reward.desc;
+    document.getElementById('rewardModal').classList.add('active');
+  };
+
+  const closeRewardModal = () => {
+    document.getElementById('rewardModal').classList.remove('active');
+  };
+
+  document.querySelectorAll('.drawer[data-tier]').forEach((drawer) => {
+    drawer.addEventListener('click', () => {
+      if (rewardRevealed) return;
+      const tier = drawer.getAttribute('data-tier');
+      openRewardModal(tier);
+    });
+  });
+
+  const closeModalBtn = document.getElementById('closeRewardModal');
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeRewardModal);
+  }
+
+  const modalOverlay = document.getElementById('rewardModal');
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (event) => {
+      if (event.target === modalOverlay) {
+        closeRewardModal();
+      }
+    });
+  }
 });
