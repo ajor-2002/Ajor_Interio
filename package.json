@@ -1,0 +1,16 @@
+{
+  "name": "ajor-interio",
+  "version": "1.0.0",
+  "description": "Static AJOR Doors & Interiors homepage with local dev server.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "serve": "npm run start"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0"
+  }
+}
