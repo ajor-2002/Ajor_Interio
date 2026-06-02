@@ -156,4 +156,15 @@
     scrollStep();
   }
 
+  if (location.hash) {
+    const hashTarget = document.querySelector(location.hash);
+    if (hashTarget) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          hashTarget.scrollIntoView({ block: 'start', behavior: 'auto' });
+        });
+      });
+    }
+  }
+
 });
