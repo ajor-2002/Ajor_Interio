@@ -1143,6 +1143,7 @@ img {
 
 .review-slider {
   overflow: hidden;
+  padding: 0 20px;
 }
 
 .review-track {
