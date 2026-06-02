@@ -162,32 +162,65 @@
       title: 'Cashback Extravaganza!',
       prize: '₹1,000 Cash Back',
       desc: 'Congratulations! Your ₹1,000 instant cashback reward has been processed to your account.'
-    },
-    tier2: {
-      icon: '🏷️',
-      title: 'Exclusive Design Discount',
-      prize: '10% OFF Voucher',
-      desc: 'Enjoy an extra 10% discount valid on any upcoming Ajor Interior decor packages or modifications!'
     }
   };
 
+  let referralCompleted = false;
   let rewardRevealed = false;
 
-  const disableRewardDrawers = () => {
-    document.querySelectorAll('.drawer[data-tier]').forEach((drawer) => {
-      drawer.disabled = true;
-      drawer.classList.add('disabled');
-      drawer.classList.remove('active-pulse');
-    });
+  const referralStatusText = document.getElementById('referralStatusText');
+  const openGiftButton = document.getElementById('openGiftButton');
+  const celebrateBox = document.getElementById('celebrationBox');
+  const simulateCompletion = document.getElementById('simulateCompletion');
+
+  const updateGiftState = () => {
+    if (!openGiftButton) return;
+
+    if (rewardRevealed) {
+      openGiftButton.disabled = true;
+      openGiftButton.classList.add('disabled');
+      openGiftButton.innerText = 'Gift Claimed';
+      if (referralStatusText) {
+        referralStatusText.innerText = 'Referral completed and reward claimed. Thank you for referring a ₹4,00,000 project!';
+      }
+      return;
+    }
+
+    if (referralCompleted) {
+      openGiftButton.disabled = false;
+      openGiftButton.classList.remove('disabled');
+      openGiftButton.innerText = 'Open Gift';
+      if (referralStatusText) {
+        referralStatusText.innerText = 'Referral completed: ₹4,00,000 project finished and paid. Open your gift now.';
+      }
+      if (celebrateBox) {
+        celebrateBox.classList.add('ready');
+      }
+    } else {
+      openGiftButton.disabled = true;
+      openGiftButton.classList.add('disabled');
+      openGiftButton.innerText = 'Open Gift';
+      if (referralStatusText) {
+        referralStatusText.innerText = 'Waiting for referred project ₹4,00,000 to be completed and paid.';
+      }
+      if (celebrateBox) {
+        celebrateBox.classList.remove('ready');
+      }
+    }
   };
 
-  const openRewardModal = (tier) => {
-    if (rewardRevealed) return;
-    const reward = rewards[tier];
+  const openRewardModal = () => {
+    if (!referralCompleted || rewardRevealed) return;
+
+    const reward = rewards.tier1;
     if (!reward) return;
 
     rewardRevealed = true;
-    disableRewardDrawers();
+    updateGiftState();
+
+    if (celebrateBox) {
+      celebrateBox.classList.add('opened');
+    }
 
     document.getElementById('modalIcon').innerText = reward.icon;
     document.getElementById('modalTitle').innerText = reward.title;
@@ -200,13 +233,24 @@
     document.getElementById('rewardModal').classList.remove('active');
   };
 
-  document.querySelectorAll('.drawer[data-tier]').forEach((drawer) => {
-    drawer.addEventListener('click', () => {
-      if (rewardRevealed) return;
-      const tier = drawer.getAttribute('data-tier');
-      openRewardModal(tier);
+  if (openGiftButton) {
+    openGiftButton.addEventListener('click', () => {
+      if (!referralCompleted) {
+        if (referralStatusText) {
+          referralStatusText.innerText = 'Complete the referred ₹4,00,000 project and payment first to open the gift.';
+        }
+        return;
+      }
+      openRewardModal();
     });
-  });
+  }
+
+  if (simulateCompletion) {
+    simulateCompletion.addEventListener('click', () => {
+      referralCompleted = true;
+      updateGiftState();
+    });
+  }
 
   const closeModalBtn = document.getElementById('closeRewardModal');
   if (closeModalBtn) {
@@ -221,4 +265,6 @@
       }
     });
   }
+
+  updateGiftState();
 });

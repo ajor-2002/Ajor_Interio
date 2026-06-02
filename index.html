@@ -435,29 +435,28 @@
       <div class="reward-container">
         <div class="reward-content">
           <p class="reward-eyebrow">Congratulations!</p>
-          <h2>Tap a compartment to reveal your reward!</h2>
+          <h2>Ready to claim your referral celebration?</h2>
           <p>Your friends have smarter homes. Now, it's your turn! The more you refer, the grander the celebration.</p>
           <div class="reward-highlight">
             <h3>Double Rewards Festive Special!</h3>
             <p>Refer and unlock more! Get special unlocked tiers for your 2nd and 3rd successful referral for Ajor Interior.</p>
           </div>
+          <div class="reward-status">
+            <strong>Referral status:</strong>
+            <span id="referralStatusText">Waiting for referred project ₹4,00,000 to be completed and paid.</span>
+          </div>
+          <button id="simulateCompletion" class="btn btn-secondary">Simulate Referral Completion</button>
         </div>
 
         <div class="interactive-side">
-          <div class="chest-wrapper">
-            <div class="chest-header">🎁 Celebration Gift Box</div>
-            <button type="button" class="drawer drawer-tier1 active-pulse" data-tier="tier1">
-              <span>🗄️ Tier 1 Drawer</span>
-              <span>Tap to Reveal</span>
-            </button>
-            <button type="button" class="drawer drawer-tier2" data-tier="tier2">
-              <span>🗄️ Tier 2 Drawer</span>
-              <span>Tap to Reveal</span>
-            </button>
-            <div class="drawer locked">
-              <span>🗄️ Tier 3 Drawer</span>
-              <span>Locked</span>
+          <div class="gift-stage">
+            <div class="celebration-box" id="celebrationBox">
+              <div class="box-lid"></div>
+              <div class="box-body"></div>
+              <div class="box-ribbon"></div>
+              <div class="box-tag">₹4L Project</div>
             </div>
+            <button id="openGiftButton" class="btn btn-primary" disabled>Open Gift</button>
           </div>
         </div>
       </div>
