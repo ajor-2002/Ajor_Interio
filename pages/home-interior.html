@@ -231,77 +231,7 @@
   </main>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const navToggle = document.querySelector('.nav-toggle');
-      const navList = document.querySelector('.nav-list');
-      const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
-
-      if (navToggle && navList) {
-        navToggle.addEventListener('click', function () {
-          navList.classList.toggle('open');
-          navToggle.classList.toggle('open');
-        });
-      }
-
-      dropdownButtons.forEach((button) => {
-        button.addEventListener('click', function () {
-          const item = this.closest('.nav-item');
-          const isOpen = item.classList.contains('open');
-          document.querySelectorAll('.nav-item.open').forEach((openItem) => {
-            openItem.classList.remove('open');
-          });
-          if (!isOpen) {
-            item.classList.add('open');
-          }
-        });
-      });
-
-      document.addEventListener('click', function (event) {
-        const isDropdown = event.target.closest('.nav-item');
-        if (!isDropdown) {
-          document.querySelectorAll('.nav-item.open').forEach((openItem) => {
-            openItem.classList.remove('open');
-          });
-        }
-      });
-
-      const sliderWrap = document.querySelector('.kitchen-showcase-wrap');
-      if (sliderWrap) {
-        const sliderTrack = sliderWrap.querySelector('.slider-track');
-        const prevButton = sliderWrap.querySelector('.slider-arrow.prev');
-        const nextButton = sliderWrap.querySelector('.slider-arrow.next');
-        const slides = sliderTrack ? sliderTrack.querySelectorAll('.offering-card') : [];
-        const visibleCount = 4;
-        const maxStartIndex = Math.max(0, slides.length - visibleCount);
-
-        const scrollToSlide = (index) => {
-          const slide = slides[index];
-          if (!slide) return;
-          sliderTrack.scrollTo({
-            left: slide.offsetLeft - 10,
-            behavior: 'smooth'
-          });
-        };
-
-        let currentIndex = 0;
-
-        prevButton?.addEventListener('click', () => {
-          currentIndex = currentIndex - visibleCount;
-          if (currentIndex < 0) {
-            currentIndex = maxStartIndex;
-          }
-          scrollToSlide(currentIndex);
-        });
-
-        nextButton?.addEventListener('click', () => {
-          currentIndex = currentIndex + visibleCount;
-          if (currentIndex > maxStartIndex) {
-            currentIndex = 0;
-          }
-          scrollToSlide(currentIndex);
-        });
-      }
-    });
+   
   </script>
 </body>
 
