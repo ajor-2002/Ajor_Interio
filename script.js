@@ -82,7 +82,7 @@
 
     startAutoCarousel({
       hoverTarget: sliderWrap,
-      scrollContainer: sliderTrack,
+      scrollContainer: sliderWrap,
       itemTrack: sliderTrack,
       speed: sliderWrap.classList.contains('kitchen-showcase-wrap') ? 0.55 : 0.45,
     });

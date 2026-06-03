@@ -672,11 +672,6 @@ img {
   height: 210px;
 }
 
-.kitchen-showcase-wrap .slider-track {
-  gap: 1rem;
-  overflow: hidden;
-}
-
 .estimate-section {
   padding: 4.5rem 0 6rem;
   background: #fff;
@@ -903,30 +898,27 @@ img {
   }
 }
 
-.offerings-wrap {
-  position: relative;
-  display: grid;
-  align-items: center;
-}
-
 .slider-wrap,
 .offerings-wrap {
   position: relative;
-  display: grid;
-  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.slider-wrap::-webkit-scrollbar,
+.offerings-wrap::-webkit-scrollbar {
+  display: none;
 }
 
 .slider-track {
   display: flex;
   gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  width: 100%;
+  flex-wrap: nowrap;
   padding: 0.5rem 0.25rem;
-}
-
-.slider-track::-webkit-scrollbar {
-  display: none;
 }
 
 .value-card {
