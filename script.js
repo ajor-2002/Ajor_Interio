@@ -101,6 +101,61 @@
     }
   }
 
+  document.querySelectorAll('.trusted-brands-section').forEach((section) => {
+    const track = section.querySelector('.trusted-brands-track');
+    const slides = Array.from(section.querySelectorAll('.trusted-brands-slide'));
+    const dots = Array.from(section.querySelectorAll('.trusted-brand-dots button'));
+    if (!track || slides.length < 2 || dots.length === 0) return;
+
+    let activeIndex = 0;
+    let rotateTimer = null;
+
+    const setSlide = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-active', slideIndex === activeIndex);
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === activeIndex;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+    };
+
+    const stopRotation = () => {
+      if (rotateTimer) {
+        clearInterval(rotateTimer);
+        rotateTimer = null;
+      }
+    };
+
+    const startRotation = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopRotation();
+      rotateTimer = setInterval(() => {
+        setSlide(activeIndex + 1);
+      }, 3000);
+    };
+
+    dots.forEach((dot, dotIndex) => {
+      dot.addEventListener('click', () => {
+        setSlide(dotIndex);
+        startRotation();
+      });
+    });
+
+    section.addEventListener('mouseenter', stopRotation);
+    section.addEventListener('mouseleave', startRotation);
+    section.addEventListener('focusin', stopRotation);
+    section.addEventListener('focusout', startRotation);
+
+    setSlide(0);
+    startRotation();
+  });
+
   const scrollToHashTarget = () => {
     if (!location.hash) return;
     const hashTarget = document.querySelector(location.hash);

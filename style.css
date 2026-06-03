@@ -3628,9 +3628,396 @@ img {
   background: #c81520;
 }
 
+.trusted-brands-section {
+  background: #fff;
+  padding: 64px 0 66px;
+}
+
+.trusted-brands-wrap {
+  width: min(100%, 1580px);
+  max-width: none;
+}
+
+.trusted-brands-wrap h2 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(28px, 2.3vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.trusted-brands-slider {
+  overflow: hidden;
+  margin: 54px auto 98px;
+  max-width: 1480px;
+}
+
+.trusted-brands-track {
+  display: flex;
+  transition: transform 0.55s ease;
+  will-change: transform;
+}
+
+.trusted-brands-slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(130px, 1fr));
+  align-items: center;
+  gap: 48px;
+}
+
+.trusted-brand {
+  justify-self: center;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.trusted-brand--marshalls {
+  flex-direction: column;
+  align-items: flex-start;
+  color: #e11d2e;
+  font-style: italic;
+}
+
+.trusted-brand--marshalls span {
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 28px;
+  letter-spacing: -2px;
+  text-transform: lowercase;
+}
+
+.trusted-brand--marshalls small {
+  margin-left: 38px;
+  color: #303030;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 11px;
+  letter-spacing: -0.02em;
+}
+
+.trusted-brand--elica {
+  color: #3d3d3f;
+  font-size: 46px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-transform: lowercase;
+}
+
+.trusted-brand--capella {
+  color: #363636;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+
+.trusted-brand--faber {
+  flex-direction: column;
+  color: #177445;
+}
+
+.trusted-brand--faber span {
+  font-size: 33px;
+  font-weight: 900;
+  line-height: 28px;
+  letter-spacing: 2px;
+}
+
+.trusted-brand--faber small {
+  color: #66736b;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 6px;
+}
+
+.trusted-brand--crompton {
+  position: relative;
+  width: 160px;
+  min-height: 44px;
+  justify-self: center;
+  background: #075991;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  clip-path: polygon(0 0, 100% 0, 83% 100%, 0 100%);
+}
+
+.trusted-brand--bosch {
+  gap: 12px;
+  color: #e02b2f;
+  font-size: 33px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.bosch-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #5b5b5b;
+  border-radius: 50%;
+  color: #5b5b5b;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.trusted-brand--hettich {
+  position: relative;
+  color: #1f1f1f;
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.trusted-brand--hettich::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -22px;
+  width: 30px;
+  height: 34px;
+  background: linear-gradient(135deg, #1b67b1 0 18%, #24a148 18% 36%, #f5c400 36% 54%, #f97316 54% 72%, #e11d48 72%);
+  transform: skewY(-24deg);
+}
+
+.trusted-brand--merino {
+  flex-direction: column;
+  color: #d71920;
+}
+
+.trusted-brand--merino span {
+  font-size: 32px;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 28px;
+  text-transform: lowercase;
+}
+
+.trusted-brand--merino small {
+  color: #3f3f46;
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.trusted-brand--rehau {
+  position: relative;
+  color: #020617;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.trusted-brand--rehau::before {
+  content: "";
+  width: 21px;
+  height: 21px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: conic-gradient(#e11d48 0 35%, #16a34a 35% 66%, #e5e7eb 66%);
+}
+
+.trusted-brand--saint {
+  color: #1455a4;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.trusted-brand--stylam {
+  min-height: 54px;
+  padding: 8px 14px;
+  border: 4px solid #f03227;
+  color: #fff;
+  background: #e83227;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.trusted-brand--kaff {
+  color: #737373;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.trusted-brand--decorwala {
+  color: #df2027;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.trusted-brand--artisan {
+  flex-direction: column;
+  color: #315f66;
+}
+
+.trusted-brand--artisan span {
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
+.trusted-brand--artisan small {
+  color: #637075;
+  font-size: 8px;
+  line-height: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.trusted-brand--nippon {
+  flex-direction: column;
+  color: #1554a1;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.trusted-brand--nippon span {
+  font-size: 20px;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.trusted-brand--nippon small {
+  color: #1d79c2;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.trusted-brand--urban {
+  position: relative;
+  color: #223545;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.trusted-brand--urban::before {
+  content: "";
+  width: 34px;
+  height: 26px;
+  margin-right: 12px;
+  border: 5px solid #f36f21;
+  border-right: 0;
+}
+
+.trusted-brand--spitze {
+  min-height: 52px;
+  padding: 7px 13px;
+  background: #e41f26;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.trusted-brand--fevicol {
+  color: #224b9b;
+  font-size: 31px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.trusted-brand--aristo,
+.trusted-brand--kaff {
+  color: #737373;
+}
+
+.trusted-brand--aristo {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.trusted-brand--hafele {
+  color: #1f2937;
+  font-size: 33px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.trusted-brand--greenply {
+  color: #16833b;
+  font-size: 33px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.trusted-brand--century {
+  color: #c21d2b;
+  font-size: 31px;
+  font-weight: 900;
+}
+
+.trusted-brand--asian {
+  color: #6d2f8d;
+  font-size: 29px;
+  font-weight: 900;
+}
+
+.trusted-brand--jaquar {
+  color: #111827;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.trusted-brand-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.trusted-brand-dots button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #b8b8b8;
+  cursor: pointer;
+}
+
+.trusted-brand-dots button.active {
+  background: #e71c24;
+}
+
 @media (max-width: 1100px) {
   .interior-estimate-cards {
     gap: 28px;
+  }
+
+  .trusted-brands-slide {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    gap: 34px 46px;
+  }
+
+  .trusted-brands-slider {
+    margin-bottom: 72px;
   }
 }
 
@@ -3652,6 +4039,47 @@ img {
 
   .interior-estimate-card img {
     height: 190px;
+  }
+
+  .trusted-brands-section {
+    padding: 48px 0 52px;
+  }
+
+  .trusted-brands-wrap h2 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .trusted-brands-slider {
+    margin: 38px 0 52px;
+  }
+
+  .trusted-brands-slide {
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
+    gap: 28px 22px;
+  }
+
+  .trusted-brand--marshalls span {
+    font-size: 31px;
+  }
+
+  .trusted-brand--elica {
+    font-size: 40px;
+  }
+
+  .trusted-brand--capella {
+    font-size: 24px;
+    letter-spacing: 8px;
+  }
+
+  .trusted-brand--bosch {
+    font-size: 29px;
+  }
+
+  .trusted-brand--stylam,
+  .trusted-brand--kaff,
+  .trusted-brand--aristo {
+    font-size: 30px;
   }
 }
 
@@ -3676,6 +4104,23 @@ img {
 
   .interior-estimate-btn {
     width: 100%;
+  }
+
+  .trusted-brands-wrap h2 {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .trusted-brand {
+    min-height: 66px;
+  }
+
+  .trusted-brand--crompton {
+    width: 145px;
+  }
+
+  .trusted-brands-slide {
+    gap: 22px 14px;
   }
 }
 
