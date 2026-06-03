@@ -156,6 +156,20 @@
     startRotation();
   });
 
+  const backToTopButton = document.querySelector('.back-to-top');
+  if (backToTopButton) {
+    const toggleBackToTop = () => {
+      backToTopButton.classList.toggle('is-visible', window.scrollY > 420);
+    };
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    toggleBackToTop();
+  }
+
   const scrollToHashTarget = () => {
     if (!location.hash) return;
     const hashTarget = document.querySelector(location.hash);
