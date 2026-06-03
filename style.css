@@ -617,8 +617,8 @@ img {
 .kitchen-showcase-head h3 {
   margin: 0;
   color: #222;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: bold;
   letter-spacing: 0;
   line-height: 19px;
   position: relative;
@@ -1027,9 +1027,9 @@ img {
   }
 
   .kitchen-showcase-head h3 {
-    font-size: 14px;
+    font-size: 30px;
     line-height: 19px;
-    font-weight: 500;
+    font-weight: bold;
     margin-left: 15px;
     padding-top: 0;
   }
