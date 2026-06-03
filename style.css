@@ -572,37 +572,31 @@ img {
 }
 
 .kitchen-showcase-section {
-  padding: 96px 0 0;
+  padding: 1rem 10px;
   background: #fff;
-}
-
-.kitchen-showcase-row-section {
-  padding-top: 0;
 }
 
 .kitchen-showcase-intro {
   max-width: 100%;
-  margin: 0 auto 42px;
+  margin: 0 auto 2rem;
   text-align: center;
 }
 
 .kitchen-showcase-intro h2 {
-  margin: 0 0 12px;
-  color: #222;
-  font-size: 32px;
-  font-weight: 500;
+  margin: 0;
+  color: #131313;
+  font-size: 20px;
+  font-weight: 700;
   letter-spacing: 0;
-  line-height: 38px;
+  line-height: 1.25;
 }
 
 .kitchen-showcase-intro p {
-  margin: 0 auto;
-  max-width: 980px;
+  margin: 1rem auto 0;
+  max-width: 760px;
   color: #4a4a4a;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 28px;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .kitchen-showcase-head {
@@ -610,41 +604,17 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0 64px 14px;
-  padding: 0;
+  margin-bottom: 2rem;
 }
 
 .kitchen-showcase-head h3 {
   margin: 0;
-  color: #4a4a4a;
-  font-size: 18px;
+  color: #131313;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 0;
-  line-height: 22px;
-  position: relative;
+  line-height: 1.25;
   text-align: left;
-}
-
-.kitchen-showcase-wrap {
-  margin: 0 64px 38px;
-  min-height: 180px;
-  padding: 0;
-}
-
-.kitchen-showcase-wrap .offering-card {
-  flex: 0 0 calc((100% - 108px) / 4);
-  min-width: calc((100% - 108px) / 4);
-  border-radius: 8px;
-}
-
-.kitchen-showcase-wrap .slider-track {
-  padding-bottom: 0;
-  gap: 36px;
-}
-
-.kitchen-showcase-wrap .offering-image {
-  height: 268px;
-  border-radius: 8px;
 }
 
 .estimate-section {
@@ -972,63 +942,40 @@ img {
 
 @media (max-width: 768px) {
   .kitchen-showcase-section {
-    padding-top: 64px;
-  }
-
-  .kitchen-showcase-row-section {
-    padding-top: 0;
+    padding: 1rem 10px;
   }
 
   .kitchen-showcase-intro {
-    margin-bottom: 32px;
-    padding: 0 7px;
+    margin-bottom: 1.25rem;
+    padding: 0;
   }
 
   .kitchen-showcase-intro h2 {
-    font-size: 28px;
-    line-height: 32px;
-    margin-bottom: 0;
-    padding: 0 20px;
+    font-size: 20px;
+    line-height: 1.25;
+    padding: 0;
   }
 
   .kitchen-showcase-intro p {
-    font-size: 16px;
-    line-height: 22px;
-    margin: 12px auto 32px;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1rem auto 0;
   }
 
   .kitchen-showcase-head {
     flex-direction: row;
     align-items: center;
-    margin: 0 0 12px;
-    padding: 0 15px;
+    margin-bottom: 1.25rem;
+    padding: 0;
   }
 
   .kitchen-showcase-head h3 {
-    color: #4a4a4a;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
+    color: #131313;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
     margin-left: 0;
     padding-top: 0;
-  }
-
-  .kitchen-showcase-wrap {
-    margin: 0 0 42px;
-    padding: 0 15px;
-  }
-
-  .kitchen-showcase-wrap .slider-track {
-    gap: 16px;
-  }
-
-  .kitchen-showcase-wrap .offering-card {
-    flex-basis: 82vw;
-    min-width: 82vw;
-  }
-
-  .kitchen-showcase-wrap .offering-image {
-    height: 220px;
   }
 }
 
