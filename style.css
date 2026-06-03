@@ -4006,6 +4006,56 @@ img {
   background: #e71c24;
 }
 
+.interior-faq-section {
+  background: #fafafa;
+  padding: 86px 0 96px;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.interior-faq-wrap {
+  width: min(100%, 1120px);
+}
+
+.interior-faq-header {
+  margin-bottom: 34px;
+  text-align: center;
+}
+
+.interior-faq-header h2 {
+  font-size: clamp(30px, 2.6vw, 46px);
+  font-weight: 500;
+  line-height: 1.16;
+}
+
+.interior-faq-list {
+  background: #fff;
+  border-radius: 18px;
+  padding: 0 34px;
+  box-shadow: 0 18px 50px rgba(17, 24, 39, 0.06);
+}
+
+.interior-faq-list .faq-item:first-child {
+  border-top: 0;
+}
+
+.interior-faq-list .faq-item:last-child {
+  border-bottom: 0;
+}
+
+.interior-faq-list .faq-item summary {
+  padding: 22px 0;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.interior-faq-list .faq-content {
+  max-width: 930px;
+  padding-bottom: 24px;
+  color: #3f3f46;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
 @media (max-width: 1100px) {
   .interior-estimate-cards {
     gap: 28px;
@@ -4081,6 +4131,24 @@ img {
   .trusted-brand--aristo {
     font-size: 30px;
   }
+
+  .interior-faq-section {
+    padding: 64px 0 72px;
+  }
+
+  .interior-faq-header {
+    margin-bottom: 26px;
+  }
+
+  .interior-faq-list {
+    padding: 0 20px;
+    border-radius: 14px;
+  }
+
+  .interior-faq-list .faq-item summary {
+    font-size: 16px;
+    line-height: 23px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -4121,6 +4189,15 @@ img {
 
   .trusted-brands-slide {
     gap: 22px 14px;
+  }
+
+  .interior-faq-list {
+    padding: 0 16px;
+  }
+
+  .interior-faq-list .faq-content {
+    font-size: 15px;
+    line-height: 1.65;
   }
 }
 
