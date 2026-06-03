@@ -3227,26 +3227,6 @@ img {
   font-size: 1.25rem;
 }
 
-.whatsapp-float {
-  position: fixed;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 60;
-  width: 62px;
-  height: 62px;
-  border-radius: 999px;
-  background: #25d366;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 14px 32px rgba(37, 211, 102, 0.28);
-}
-
-.whatsapp-float span {
-  font-size: 1.8rem;
-  line-height: 1;
-}
-
 .online-pill {
   position: fixed;
   right: 16px;
@@ -3315,12 +3295,6 @@ img {
     justify-content: space-between;
     min-height: 58px;
     padding-left: 1.25rem;
-  }
-
-  .whatsapp-float {
-    width: 56px;
-    height: 56px;
-    right: 12px;
   }
 
   .online-pill {
