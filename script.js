@@ -32,67 +32,84 @@
     }
   });
 
+  const startAutoCarousel = ({ hoverTarget, scrollContainer, itemTrack, interval = 3000 }) => {
+    const items = Array.from(itemTrack.children);
+    if (items.length < 2) return;
+
+    let paused = false;
+
+    const getStepDistance = () => {
+      const firstItem = items[0];
+      const itemStyles = window.getComputedStyle(itemTrack);
+      const gap = parseFloat(itemStyles.columnGap || itemStyles.gap || '0') || 0;
+      const itemWidth = firstItem.getBoundingClientRect().width + gap;
+      const visibleCount = Math.max(1, Math.floor((scrollContainer.clientWidth + gap) / itemWidth));
+      return itemWidth * visibleCount;
+    };
+
+    const advance = () => {
+      if (paused) return;
+
+      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const current = scrollContainer.scrollLeft;
+      const step = getStepDistance();
+      let target = current + step;
+
+      if (current >= maxScroll - 2) {
+        target = 0;
+      } else if (target > maxScroll) {
+        target = maxScroll;
+      }
+
+      scrollContainer.scrollTo({
+        left: target,
+        behavior: 'smooth',
+      });
+    };
+
+    window.setInterval(advance, interval);
+
+    hoverTarget.addEventListener('mouseenter', () => {
+      paused = true;
+    });
+    hoverTarget.addEventListener('mouseleave', () => {
+      paused = false;
+    });
+    hoverTarget.addEventListener('focusin', () => {
+      paused = true;
+    });
+    hoverTarget.addEventListener('focusout', () => {
+      paused = false;
+    });
+  };
+
   const sliderWrappers = document.querySelectorAll('.slider-wrap, .offerings-wrap');
 
   sliderWrappers.forEach((sliderWrap) => {
     const sliderTrack = sliderWrap.querySelector('.slider-track');
-    const slides = sliderTrack?.querySelectorAll('.value-card, .offering-card');
+    if (!sliderTrack) return;
 
-    if (!sliderTrack || !slides || slides.length === 0) return;
-
-    let paused = false;
-    const scrollSpeed = sliderWrap.classList.contains('kitchen-showcase-wrap') ? 0.6 : 0.45;
-
-    const scrollStep = () => {
-      if (!paused) {
-        sliderTrack.scrollLeft += scrollSpeed;
-        const maxScroll = sliderTrack.scrollWidth - sliderTrack.clientWidth;
-        if (sliderTrack.scrollLeft >= maxScroll) {
-          sliderTrack.scrollLeft = 0;
-        }
-      }
-      requestAnimationFrame(scrollStep);
-    };
-
-    sliderWrap.addEventListener('mouseenter', () => {
-      paused = true;
+    startAutoCarousel({
+      hoverTarget: sliderWrap,
+      scrollContainer: sliderTrack,
+      itemTrack: sliderTrack,
+      interval: 3000,
     });
-    sliderWrap.addEventListener('mouseleave', () => {
-      paused = false;
-    });
-    sliderWrap.addEventListener('focusin', () => {
-      paused = true;
-    });
-    sliderWrap.addEventListener('focusout', () => {
-      paused = false;
-    });
-
-    scrollStep();
   });
 
   const whyChooseCarousel = document.querySelector('.whyChooseUs_slider__vpqwR');
   if (whyChooseCarousel) {
     const whyChooseTrack = whyChooseCarousel.querySelector('.whyChooseUs_slide-icons__3t3Vh');
-    let animationId = null;
-    let paused = false;
-    const scrollSpeed = 0.5;
-
-    const scrollStep = () => {
-      if (!paused && whyChooseTrack) {
-        whyChooseCarousel.scrollLeft += scrollSpeed;
-        if (whyChooseCarousel.scrollLeft >= whyChooseTrack.scrollWidth - whyChooseCarousel.clientWidth) {
-          whyChooseCarousel.scrollLeft = 0;
-        }
-      }
-      animationId = requestAnimationFrame(scrollStep);
-    };
-
-    whyChooseCarousel.addEventListener('mouseenter', () => paused = true);
-    whyChooseCarousel.addEventListener('mouseleave', () => paused = false);
-    whyChooseCarousel.addEventListener('focusin', () => paused = true);
-    whyChooseCarousel.addEventListener('focusout', () => paused = false);
-
-    scrollStep();
+    if (whyChooseTrack) {
+      startAutoCarousel({
+        hoverTarget: whyChooseCarousel,
+        scrollContainer: whyChooseCarousel,
+        itemTrack: whyChooseTrack,
+        interval: 3000,
+      });
+    }
   }
 
   const scrollToHashTarget = () => {
