@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Interior Designs | AJOR Doors & Interiors</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="topbar">
@@ -121,7 +123,8 @@
   <main>
     <section class="interior-hero">
       <div class="interior-hero-media">
-        <img src="../images/home intrior hero.jpg" alt="Elegant home interior living room" class="interior-hero-image" />
+        <img src="../images/home intrior hero.jpg" alt="Elegant home interior living room"
+          class="interior-hero-image" />
         <div class="interior-hero-overlay"></div>
       </div>
 
@@ -138,7 +141,8 @@
                       <path id="free-circle-path" d="M50,50 m-34,0 a34,34 0 1,1 68,0 a34,34 0 1,1 -68,0" />
                     </defs>
                     <text>
-                      <textPath href="#free-circle-path" startOffset="50%" text-anchor="middle">FREE &bull; FREE &bull; FREE &bull; FREE &bull;</textPath>
+                      <textPath href="#free-circle-path" startOffset="50%" text-anchor="middle">FREE &bull; FREE &bull;
+                        FREE &bull; FREE &bull;</textPath>
                     </text>
                   </svg>
                 </span>
@@ -152,6 +156,49 @@
       <div class="online-pill" aria-label="We are online">
         <span>We're Online!</span>
         <a href="contact.html">Connect</a>
+      </div>
+    </section>
+    <section class="offerings-section modular-kitchen-section kitchen-showcase-section">
+      <div class="container kitchen-showcase-intro">
+        <h2>Popular Interior Designs for Every Room</h2>
+        <p>Browse trending designs for kitchens, living rooms and wardrobes. Get inspired by the latest styles and find the perfect look for your home.</p>
+      </div>
+
+      <div class="container kitchen-showcase-head">
+        <h3>Inspiring Kitchen Designs</h3>
+        <a href="contact.html" class="kitchen-see-all">See all &rsaquo;</a>
+      </div>
+
+      <div class="container offerings-wrap kitchen-showcase-wrap">
+        <button class="slider-arrow prev" aria-label="Previous offering">&lsaquo;</button>
+        <div class="slider-track">
+          <article class="offering-card">
+            <img src="../images/modular kitchen design/Coastal Chic Modular Kitchen Design.jpg" alt="Coastal Chic Modular Kitchen" class="offering-image" />
+            <h3>Coastal Chic Modular Kitchen Design</h3>
+          
+          </article>
+          <article class="offering-card">
+            <img src="../images/modular kitchen design/Dark Elegance Kitchen Design.jpg" alt="Dark Elegance Kitchen" class="offering-image" />
+            <h3>Dark Elegance Kitchen Design</h3>
+          </article>
+          <article class="offering-card">
+            <img src="../images/modular kitchen design/Dark Vanilla L-Shaped Modular Kitchen.jpg" alt="Dark Vanilla L-Shaped Kitchen" class="offering-image" />
+            <h3>Dark Vanilla L-Shaped Modular Kitchen</h3>
+          </article>
+          <article class="offering-card">
+            <img src="../images/modular kitchen design/Elegant Ecru L-Shaped Modular Kitchen.jpg" alt="Elegant Ecru L-Shaped Kitchen" class="offering-image" />
+            <h3>Elegant Ecru L-Shaped Modular Kitchen</h3>
+          </article>
+          <article class="offering-card">
+            <img src="../images/modular kitchen design/Flawless White Straight Modular Kitchen.jpg" alt="Flawless White Straight Kitchen" class="offering-image" />
+            <h3>Flawless White Straight Modular Kitchen</h3>
+          </article>
+          <article class="offering-card">
+            <img src="../images/modular kitchen design/Gainsboro Modular Island Kitchen.jpg" alt="Gainsboro Modular Island Kitchen" class="offering-image" />
+            <h3>Gainsboro Modular Island Kitchen</h3>
+          </article>
+        </div>
+        <button class="slider-arrow next" aria-label="Next offering">&rsaquo;</button>
       </div>
     </section>
   </main>
@@ -190,7 +237,37 @@
           });
         }
       });
+
+      const sliderWrap = document.querySelector('.kitchen-showcase-wrap');
+      if (sliderWrap) {
+        const sliderTrack = sliderWrap.querySelector('.slider-track');
+        const prevButton = sliderWrap.querySelector('.slider-arrow.prev');
+        const nextButton = sliderWrap.querySelector('.slider-arrow.next');
+        const slides = sliderTrack ? sliderTrack.querySelectorAll('.offering-card') : [];
+
+        const scrollToSlide = (index) => {
+          const slide = slides[index];
+          if (!slide) return;
+          sliderTrack.scrollTo({
+            left: slide.offsetLeft - 10,
+            behavior: 'smooth'
+          });
+        };
+
+        let currentIndex = 0;
+
+        prevButton?.addEventListener('click', () => {
+          currentIndex = currentIndex + 1 >= slides.length ? 0 : currentIndex + 1;
+          scrollToSlide(currentIndex);
+        });
+
+        nextButton?.addEventListener('click', () => {
+          currentIndex = currentIndex - 1 < 0 ? slides.length - 1 : currentIndex - 1;
+          scrollToSlide(currentIndex);
+        });
+      }
     });
   </script>
 </body>
+
 </html>
