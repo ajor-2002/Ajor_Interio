@@ -3198,11 +3198,11 @@ img {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0;
   width: min(100%, 392px);
   min-height: 64px;
-  padding: 13px 50px;
+  padding: 13px 28px;
   border-radius: 5px;
   background: #ec2026;
   color: #fff;
@@ -3213,91 +3213,6 @@ img {
   text-decoration: none;
   user-select: none;
   cursor: pointer;
-}
-
-.interior-hero-btn > span:first-child {
-  position: relative;
-  z-index: 1;
-}
-
-.AnimatedBfcCta_container__37hY4 {
-  position: relative;
-  margin-left: auto;
-  width: 72px;
-  height: 72px;
-  flex: 0 0 auto;
-}
-
-.AnimatedBfcCta_free-circle__1ctu5 {
-  position: absolute;
-  right: -39px;
-  top: -31px;
-  width: 72px;
-  height: 72px;
-}
-
-.AnimatedBfcCta_free-circle__1ctu5 svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  animation: AnimatedBfcCta_rotateText__17V8p 6s linear infinite !important;
-  transform-origin: center center;
-}
-
-.AnimatedBfcCta_free-circle__1ctu5 text {
-  fill: #fff;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.interior-hero-btn:hover .AnimatedBfcCta_free-circle__1ctu5 svg {
-  animation-duration: 3.6s;
-}
-
-.AnimatedBfcCta_arrow__jqMFl {
-  position: absolute;
-  right: 18px;
-  top: 50%;
-  width: 13px;
-  height: 13px;
-  transform: translateY(-50%);
-  display: grid;
-  place-items: center;
-  z-index: 1;
-}
-
-.interior-hero-btn:hover .AnimatedBfcCta_arrow__jqMFl {
-  animation: AnimatedBfcCta_moveArrow__2qitp 0.5s ease-in-out infinite alternate;
-}
-
-@keyframes AnimatedBfcCta_rotateText__17V8p {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes AnimatedBfcCta_moveArrow__2qitp {
-  from {
-    transform: translateY(-50%) translateX(0);
-  }
-  to {
-    transform: translateY(-50%) translateX(5px);
-  }
-}
-
-.interior-hero-arrow {
-  display: inline-grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  font-size: 1.25rem;
 }
 
 .online-pill {
@@ -3365,9 +3280,9 @@ img {
 
   .interior-hero-btn {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     min-height: 58px;
-    padding: 12px 46px 12px 18px;
+    padding: 12px 18px;
   }
 
   .online-pill {
@@ -3386,31 +3301,6 @@ img {
 @media (max-width: 420px) {
   .interior-hero-copy h1 {
     font-size: 2.15rem;
-  }
-
-  .interior-hero-arrow {
-    width: 42px;
-    height: 42px;
-  }
-
-  .AnimatedBfcCta_container__37hY4 {
-    width: 58px;
-    height: 58px;
-  }
-
-  .AnimatedBfcCta_free-circle__1ctu5 {
-    right: -34px;
-    top: -28px;
-    width: 58px;
-    height: 58px;
-  }
-
-  .AnimatedBfcCta_free-circle__1ctu5 text {
-    font-size: 10px;
-  }
-
-  .AnimatedBfcCta_arrow__jqMFl {
-    right: 14px;
   }
 }
 
