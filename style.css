@@ -606,13 +606,17 @@ img {
   margin-bottom: 12px;
 }
 
+.kitchen-showcase-wrap + .kitchen-showcase-head {
+  margin-top: 48px;
+}
+
 .kitchen-showcase-head h3 {
   margin: 0;
   color: #222;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 700;
   letter-spacing: 0;
-  line-height: 19px;
+  line-height: 29px;
   position: relative;
   text-align: left;
 }
@@ -1007,13 +1011,18 @@ img {
   .kitchen-showcase-head {
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: 14px;
+  }
+
+  .kitchen-showcase-wrap + .kitchen-showcase-head {
+    margin-top: 34px;
   }
 
   .kitchen-showcase-head h3 {
-    font-size: 16px;
+    font-size: 20px;
+    line-height: 26px;
     margin-left: 15px;
-    padding-top: 15px;
+    padding-top: 0;
   }
 
   .kitchen-see-all {
@@ -3604,18 +3613,19 @@ img {
 
 .interior-estimate-section {
   background: #eeebe7;
-  padding: 86px 0 96px;
+  padding: 116px 0 96px;
 }
 
 .interior-estimate-wrap {
-  max-width: 1400px;
+  width: min(100%, 1420px);
+  max-width: none;
 }
 
 .interior-estimate-wrap h2 {
-  margin: 0 0 52px;
+  margin: 0 0 48px;
   color: #111827;
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 48px;
   letter-spacing: 0;
   text-align: center;
@@ -3625,7 +3635,7 @@ img {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 86px;
-  max-width: 1370px;
+  max-width: 1368px;
   margin: 0 auto;
 }
 
