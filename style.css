@@ -3602,6 +3602,151 @@ img {
   }
 }
 
+.interior-estimate-section {
+  background: #eeebe7;
+  padding: 86px 0 96px;
+}
+
+.interior-estimate-wrap {
+  max-width: 1400px;
+}
+
+.interior-estimate-wrap h2 {
+  margin: 0 0 52px;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.interior-estimate-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 86px;
+  max-width: 1370px;
+  margin: 0 auto;
+}
+
+.interior-estimate-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px 19px;
+  overflow: hidden;
+}
+
+.interior-estimate-card img {
+  width: 100%;
+  height: 250px;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.interior-estimate-card-body {
+  padding-top: 18px;
+}
+
+.interior-estimate-card h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: 0;
+}
+
+.interior-estimate-card p {
+  margin: 2px 0 22px;
+  color: #1f2937;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0;
+}
+
+.interior-estimate-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 222px;
+  min-height: 52px;
+  padding: 13px 30px;
+  border-radius: 5px;
+  background: #e71c24;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+.interior-estimate-btn:hover {
+  background: #c81520;
+}
+
+@media (max-width: 1100px) {
+  .interior-estimate-cards {
+    gap: 32px;
+  }
+
+  .interior-estimate-card h3 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .interior-estimate-card p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 760px) {
+  .interior-estimate-section {
+    padding: 60px 0 66px;
+  }
+
+  .interior-estimate-wrap h2 {
+    margin-bottom: 32px;
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .interior-estimate-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .interior-estimate-card img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 420px) {
+  .interior-estimate-card {
+    padding: 14px;
+  }
+
+  .interior-estimate-card img {
+    height: 185px;
+  }
+
+  .interior-estimate-card h3 {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .interior-estimate-card p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .interior-estimate-btn {
+    width: 100%;
+  }
+}
+
 .page-back {
   position: fixed;
   top: 120px;
