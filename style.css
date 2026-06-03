@@ -3549,14 +3549,14 @@ img {
 }
 
 .interior-estimate-wrap {
-  width: min(100%, 1420px);
+  width: min(100%, 1000px);
   max-width: none;
 }
 
 .interior-estimate-wrap h2 {
   margin: 0 0 48px;
   color: #111827;
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 48px;
   letter-spacing: 0;
@@ -3567,7 +3567,7 @@ img {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 86px;
-  max-width: 1368px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
