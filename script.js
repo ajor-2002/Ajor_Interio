@@ -88,6 +88,87 @@
     });
   });
 
+  let imageLightbox = null;
+  let lastLightboxTrigger = null;
+
+  const getImageLightbox = () => {
+    if (imageLightbox) return imageLightbox;
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'image-lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', 'Expanded slider image');
+    lightbox.innerHTML = `
+      <button class="image-lightbox-close" type="button" aria-label="Close image">x</button>
+      <figure class="image-lightbox-frame">
+        <img src="" alt="" />
+        <figcaption></figcaption>
+      </figure>
+    `;
+
+    document.body.appendChild(lightbox);
+
+    imageLightbox = {
+      root: lightbox,
+      image: lightbox.querySelector('img'),
+      caption: lightbox.querySelector('figcaption'),
+      closeButton: lightbox.querySelector('.image-lightbox-close'),
+    };
+
+    return imageLightbox;
+  };
+
+  const closeImageLightbox = () => {
+    if (!imageLightbox) return;
+
+    imageLightbox.root.classList.remove('is-open');
+    document.body.classList.remove('lightbox-open');
+
+    if (lastLightboxTrigger && typeof lastLightboxTrigger.focus === 'function') {
+      lastLightboxTrigger.focus({ preventScroll: true });
+    }
+  };
+
+  const openImageLightbox = (image) => {
+    const lightbox = getImageLightbox();
+    const cardTitle = image.closest('.offering-card')?.querySelector('h3')?.textContent?.trim();
+    const caption = cardTitle || image.alt || 'Interior design image';
+
+    lastLightboxTrigger = image;
+    lightbox.image.src = image.currentSrc || image.src;
+    lightbox.image.alt = image.alt || caption;
+    lightbox.caption.textContent = caption;
+    lightbox.root.classList.add('is-open');
+    document.body.classList.add('lightbox-open');
+    lightbox.closeButton.focus({ preventScroll: true });
+  };
+
+  document.addEventListener('click', (event) => {
+    const sliderCard = event.target.closest('.slider-track .offering-card');
+    const sliderImage = sliderCard?.querySelector('.offering-image');
+    if (!sliderCard || !sliderImage) return;
+
+    event.preventDefault();
+    openImageLightbox(sliderImage);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!imageLightbox || !imageLightbox.root.classList.contains('is-open')) return;
+
+    const clickedBackdrop = event.target === imageLightbox.root;
+    const clickedClose = event.target.closest('.image-lightbox-close');
+    if (clickedBackdrop || clickedClose) {
+      closeImageLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && imageLightbox?.root.classList.contains('is-open')) {
+      closeImageLightbox();
+    }
+  });
+
   const whyChooseCarousel = document.querySelector('.whyChooseUs_slider__vpqwR');
   if (whyChooseCarousel) {
     const whyChooseTrack = whyChooseCarousel.querySelector('.whyChooseUs_slide-icons__3t3Vh');

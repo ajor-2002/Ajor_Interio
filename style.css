@@ -911,6 +911,11 @@ img {
   position: relative;
 }
 
+.offering-card,
+.offering-image {
+  cursor: zoom-in;
+}
+
 .offering-image {
   width: 100%;
   height: 220px;
@@ -938,6 +943,75 @@ img {
 .offering-card:focus-within h3 {
   opacity: 1;
   transform: translateY(0);
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(5, 5, 5, 0.86);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.image-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image-lightbox-frame {
+  width: min(100%, 1180px);
+  margin: 0;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.image-lightbox-frame img {
+  max-width: 100%;
+  max-height: min(78vh, 760px);
+  object-fit: contain;
+  border-radius: 18px;
+  background: #111;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+}
+
+.image-lightbox-frame figcaption {
+  max-width: 920px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.image-lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
 }
 
 @media (max-width: 768px) {
@@ -4568,6 +4642,31 @@ img {
 
   .offering-image {
     height: 190px;
+  }
+
+  .image-lightbox {
+    padding: 18px 12px;
+  }
+
+  .image-lightbox-frame {
+    gap: 10px;
+  }
+
+  .image-lightbox-frame img {
+    max-height: 72vh;
+    border-radius: 12px;
+  }
+
+  .image-lightbox-frame figcaption {
+    font-size: 14px;
+  }
+
+  .image-lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   .offering-card h3 {
