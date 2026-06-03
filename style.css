@@ -606,13 +606,17 @@ img {
   margin-bottom: 12px;
 }
 
+.kitchen-showcase-wrap + .kitchen-showcase-head {
+  margin-top: 34px;
+}
+
 .kitchen-showcase-head h3 {
   margin: 0;
   color: #222;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0;
-  line-height: 19px;
+  line-height: 24px;
   position: relative;
   text-align: left;
 }
@@ -1007,13 +1011,18 @@ img {
   .kitchen-showcase-head {
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: 14px;
+  }
+
+  .kitchen-showcase-wrap + .kitchen-showcase-head {
+    margin-top: 28px;
   }
 
   .kitchen-showcase-head h3 {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 24px;
     margin-left: 15px;
-    padding-top: 15px;
+    padding-top: 0;
   }
 
   .kitchen-see-all {
