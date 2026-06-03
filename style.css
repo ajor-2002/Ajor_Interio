@@ -777,7 +777,7 @@ img {
   margin: 0 0 15px;
 }
 
-. @media (max-width: 1100px) {
+@media (max-width: 1100px) {
   .step-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2390,6 +2390,307 @@ img {
     .interactive-side {
         min-width: 100%;
     }
+}
+
+@media (max-width: 860px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    display: none;
+  }
+
+  .nav-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand toggle"
+      "cta cta"
+      "menu menu";
+    align-items: center;
+    gap: 0.85rem 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .brand-logo {
+    grid-area: brand;
+  }
+
+  .brand-logo img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-toggle {
+    grid-area: toggle;
+    display: inline-flex;
+    justify-self: end;
+  }
+
+  .nav-cta {
+    grid-area: cta;
+    width: 100%;
+  }
+
+  .navbar {
+    grid-area: menu;
+    width: 100%;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    padding-top: 0.25rem;
+  }
+
+  .nav-list.open {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-item button,
+  .nav-item a {
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem 0.25rem;
+  }
+
+  .dropdown-menu {
+    position: static;
+    top: auto;
+    left: auto;
+    min-width: 0;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.65rem;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    display: none;
+  }
+
+  .nav-item.open .dropdown-menu {
+    display: grid;
+  }
+
+  .dropdown-panel.columns-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 1rem 2.5rem;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-card {
+    max-width: none;
+    margin-left: 0;
+    padding: 1.35rem 1.1rem;
+  }
+
+  .why-choose {
+    padding: 24px 0;
+  }
+
+  .whyChooseUs_why-choose-us-container__MK7ng .whyChooseUs_headingTitle__34rH2 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .whyChooseUs_why-choose-us-container__MK7ng .whyChooseUs_slider__vpqwR .whyChooseUs_slide__2zElW {
+    width: 170px;
+  }
+
+  .whyChooseUs_icon-block__3L3Uh p {
+    font-size: 13px;
+  }
+
+  .offerings-section,
+  .estimate-section,
+  .design-services-section,
+  .faq-section,
+  .assurance-section,
+  .referral-section,
+  .reviews,
+  .reward-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .offerings-wrap,
+  .slider-wrap {
+    gap: 0.75rem;
+  }
+
+  .offering-card {
+    min-width: min(82vw, 280px);
+  }
+
+  .offering-image {
+    height: 180px;
+  }
+
+  .section-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-header--split {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .estimate-cards,
+  .step-grid,
+  .assurance-grid,
+  .design-services-grid,
+  .reward-container,
+  .referral-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .estimate-card,
+  .review-card {
+    min-width: 0;
+  }
+
+  .estimate-card-inner {
+    padding: 1.35rem;
+  }
+
+  .step-card-svg-wrapper {
+    width: min(100%, 240px);
+    height: 210px;
+  }
+
+  .luxe-section {
+    height: auto;
+    min-height: 0;
+    padding: 48px 0;
+    display: block;
+  }
+
+  .luxe-overlay {
+    width: 100%;
+    min-height: 0;
+    padding: 24px 16px;
+  }
+
+  .intro-text {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .luxe-btn {
+    font-size: 16px;
+    padding: 14px 28px;
+    margin-top: 28px;
+  }
+
+  .reviews h2 {
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-slider {
+    padding: 0 6px;
+  }
+
+  .review-track {
+    gap: 16px;
+  }
+
+  .review-card {
+    min-width: 82vw;
+    padding: 24px 20px;
+  }
+
+  .referral-title {
+    font-size: 2rem;
+  }
+
+  .gift-scene {
+    width: min(100%, 300px);
+  }
+
+  .design-services-grid {
+    gap: 1.5rem 0.85rem;
+  }
+
+  .design-service-card {
+    min-height: auto;
+  }
+
+  .assurance-card {
+    min-height: auto;
+  }
+
+  .faq-item summary {
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: clamp(2.2rem, 13vw, 3rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .nav-cta,
+  .nav-list {
+    font-size: 0.95rem;
+  }
+
+  .offering-card {
+    min-width: 88vw;
+  }
+
+  .whyChooseUs_why-choose-us-container__MK7ng .whyChooseUs_slider__vpqwR .whyChooseUs_slide__2zElW {
+    width: 148px;
+  }
+
+  .design-services-btn {
+    width: 100%;
+  }
 }
 
 
