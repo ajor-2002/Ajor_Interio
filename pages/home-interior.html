@@ -161,7 +161,8 @@
     <section class="offerings-section modular-kitchen-section kitchen-showcase-section">
       <div class="container kitchen-showcase-intro">
         <h2>Popular Interior Designs for Every Room</h2>
-        <p>Browse trending designs for kitchens, living rooms and wardrobes. Get inspired by the latest styles and find the perfect look for your home.</p>
+        <p>Browse trending designs for kitchens, living rooms and wardrobes. Get inspired by the latest styles and find
+          the perfect look for your home.</p>
       </div>
 
       <div class="container kitchen-showcase-head">
@@ -173,29 +174,55 @@
         <button class="slider-arrow prev" aria-label="Previous offering">&lsaquo;</button>
         <div class="slider-track">
           <article class="offering-card">
-            <img src="../images/modular kitchen design/Coastal Chic Modular Kitchen Design.jpg" alt="Coastal Chic Modular Kitchen" class="offering-image" />
-            <h3>Coastal Chic Modular Kitchen Design</h3>
-          
+            <img src="images/modular kitchen design/Coastal Chic Modular Kitchen Design.jpg"
+              alt="Coastal Chic Modular Kitchen" class="offering-image" />
+            <h3>Coastal Chic Kitchen</h3>
           </article>
           <article class="offering-card">
-            <img src="../images/modular kitchen design/Dark Elegance Kitchen Design.jpg" alt="Dark Elegance Kitchen" class="offering-image" />
-            <h3>Dark Elegance Kitchen Design</h3>
+            <img src="images/modular kitchen design/Dark Elegance Kitchen Design.jpg" alt="Dark Elegance Kitchen"
+              class="offering-image" />
+            <h3>Dark Elegance Kitchen</h3>
           </article>
           <article class="offering-card">
-            <img src="../images/modular kitchen design/Dark Vanilla L-Shaped Modular Kitchen.jpg" alt="Dark Vanilla L-Shaped Kitchen" class="offering-image" />
-            <h3>Dark Vanilla L-Shaped Modular Kitchen</h3>
+            <img src="images/modular kitchen design/Dark Vanilla L-Shaped Modular Kitchen.jpg"
+              alt="Dark Vanilla L-Shaped Kitchen" class="offering-image" />
+            <h3>Dark Vanilla L-Shaped Kitchen</h3>
           </article>
           <article class="offering-card">
-            <img src="../images/modular kitchen design/Elegant Ecru L-Shaped Modular Kitchen.jpg" alt="Elegant Ecru L-Shaped Kitchen" class="offering-image" />
-            <h3>Elegant Ecru L-Shaped Modular Kitchen</h3>
+            <img src="images/modular kitchen design/Elegant Ecru L-Shaped Modular Kitchen.jpg"
+              alt="Elegant Ecru L-Shaped Kitchen" class="offering-image" />
+            <h3>Elegant Ecru L-Shaped Kitchen</h3>
           </article>
           <article class="offering-card">
-            <img src="../images/modular kitchen design/Flawless White Straight Modular Kitchen.jpg" alt="Flawless White Straight Kitchen" class="offering-image" />
-            <h3>Flawless White Straight Modular Kitchen</h3>
+            <img src="images/modular kitchen design/Flawless White Straight Modular Kitchen.jpg"
+              alt="Flawless White Straight Kitchen" class="offering-image" />
+            <h3>Flawless White Straight Kitchen</h3>
           </article>
           <article class="offering-card">
-            <img src="../images/modular kitchen design/Gainsboro Modular Island Kitchen.jpg" alt="Gainsboro Modular Island Kitchen" class="offering-image" />
+            <img src="images/modular kitchen design/Gainsboro Modular Island Kitchen.jpg"
+              alt="Gainsboro Modular Island Kitchen" class="offering-image" />
             <h3>Gainsboro Modular Island Kitchen</h3>
+          </article>
+          <article class="offering-card">
+            <img
+              src="images/modular kitchen design/Modular Kitchen Design with Stylish Cabinets and Sleek Appliances.jpg"
+              alt="Stylish Cabinets and Sleek Appliances" class="offering-image" />
+            <h3>Stylish Cabinets & Appliances</h3>
+          </article>
+          <article class="offering-card">
+            <img src="images/modular kitchen design/Mojave Desert Modular Island Kitchen.jpg"
+              alt="Mojave Desert Modular Island Kitchen" class="offering-image" />
+            <h3>Mojave Desert Island Kitchen</h3>
+          </article>
+          <article class="offering-card">
+            <img src="images/modular kitchen design/Sleek Serenity Modern Kitchen Design.jpg"
+              alt="Sleek Serenity Modern Kitchen" class="offering-image" />
+            <h3>Sleek Serenity Kitchen</h3>
+          </article>
+          <article class="offering-card">
+            <img src="images/modular kitchen design/Vivid White U-Shaped Modular Kitchen.jpg"
+              alt="Vivid White U-Shaped Modular Kitchen" class="offering-image" />
+            <h3>Vivid White U-Shaped Kitchen</h3>
           </article>
         </div>
         <button class="slider-arrow next" aria-label="Next offering">&rsaquo;</button>
@@ -244,6 +271,8 @@
         const prevButton = sliderWrap.querySelector('.slider-arrow.prev');
         const nextButton = sliderWrap.querySelector('.slider-arrow.next');
         const slides = sliderTrack ? sliderTrack.querySelectorAll('.offering-card') : [];
+        const visibleCount = 4;
+        const maxStartIndex = Math.max(0, slides.length - visibleCount);
 
         const scrollToSlide = (index) => {
           const slide = slides[index];
@@ -257,12 +286,18 @@
         let currentIndex = 0;
 
         prevButton?.addEventListener('click', () => {
-          currentIndex = currentIndex + 1 >= slides.length ? 0 : currentIndex + 1;
+          currentIndex = currentIndex - visibleCount;
+          if (currentIndex < 0) {
+            currentIndex = maxStartIndex;
+          }
           scrollToSlide(currentIndex);
         });
 
         nextButton?.addEventListener('click', () => {
-          currentIndex = currentIndex - 1 < 0 ? slides.length - 1 : currentIndex - 1;
+          currentIndex = currentIndex + visibleCount;
+          if (currentIndex > maxStartIndex) {
+            currentIndex = 0;
+          }
           scrollToSlide(currentIndex);
         });
       }
