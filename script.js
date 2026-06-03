@@ -32,44 +32,31 @@
     }
   });
 
-  const startAutoCarousel = ({ hoverTarget, scrollContainer, itemTrack, interval = 3000 }) => {
+  const startAutoCarousel = ({ hoverTarget, scrollContainer, itemTrack, speed = 0.45 }) => {
     const items = Array.from(itemTrack.children);
-    if (items.length < 2) return;
+    if (items.length < 2 || itemTrack.dataset.autoLoopInitialized === 'true') return;
+
+    items.forEach((item) => {
+      itemTrack.appendChild(item.cloneNode(true));
+    });
+
+    itemTrack.dataset.autoLoopInitialized = 'true';
 
     let paused = false;
 
-    const getStepDistance = () => {
-      const firstItem = items[0];
-      const itemStyles = window.getComputedStyle(itemTrack);
-      const gap = parseFloat(itemStyles.columnGap || itemStyles.gap || '0') || 0;
-      const itemWidth = firstItem.getBoundingClientRect().width + gap;
-      const visibleCount = Math.max(1, Math.floor((scrollContainer.clientWidth + gap) / itemWidth));
-      return itemWidth * visibleCount;
-    };
-
-    const advance = () => {
-      if (paused) return;
-
-      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-      if (maxScroll <= 0) return;
-
-      const current = scrollContainer.scrollLeft;
-      const step = getStepDistance();
-      let target = current + step;
-
-      if (current >= maxScroll - 2) {
-        target = 0;
-      } else if (target > maxScroll) {
-        target = maxScroll;
+    const tick = () => {
+      if (!paused) {
+        const loopWidth = itemTrack.scrollWidth / 2;
+        if (loopWidth > 0) {
+          scrollContainer.scrollLeft += speed;
+          if (scrollContainer.scrollLeft >= loopWidth) {
+            scrollContainer.scrollLeft -= loopWidth;
+          }
+        }
       }
 
-      scrollContainer.scrollTo({
-        left: target,
-        behavior: 'smooth',
-      });
+      requestAnimationFrame(tick);
     };
-
-    window.setInterval(advance, interval);
 
     hoverTarget.addEventListener('mouseenter', () => {
       paused = true;
@@ -83,6 +70,8 @@
     hoverTarget.addEventListener('focusout', () => {
       paused = false;
     });
+
+    tick();
   };
 
   const sliderWrappers = document.querySelectorAll('.slider-wrap, .offerings-wrap');
@@ -95,7 +84,7 @@
       hoverTarget: sliderWrap,
       scrollContainer: sliderTrack,
       itemTrack: sliderTrack,
-      interval: 3000,
+      speed: sliderWrap.classList.contains('kitchen-showcase-wrap') ? 0.55 : 0.45,
     });
   });
 
@@ -107,7 +96,7 @@
         hoverTarget: whyChooseCarousel,
         scrollContainer: whyChooseCarousel,
         itemTrack: whyChooseTrack,
-        interval: 3000,
+        speed: 0.5,
       });
     }
   }
