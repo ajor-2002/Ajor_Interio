@@ -3181,8 +3181,8 @@ img {
 
 .interior-hero-copy h1 {
   margin: 0 0 1rem;
-  font-size: clamp(3rem, 5vw, 5.2rem);
-  line-height: 0.95;
+  font-size: 32px;
+  line-height: 40px;
   letter-spacing: -0.04em;
   font-weight: 700;
 }
@@ -3200,15 +3200,14 @@ img {
   align-items: center;
   justify-content: center;
   gap: 0;
-  width: min(100%, 392px);
+  width: 100%;
   min-height: 64px;
-  padding: 13px 28px;
+  padding: 13px 50px;
   border-radius: 5px;
-  background: #ec2026;
+  background-color: #e71c24;
   color: #fff;
-  font-size: 1.02rem;
+  font-size: 16px;
   font-weight: 700;
-  box-shadow: 0 18px 34px rgba(236, 32, 38, 0.26);
   overflow: hidden;
   text-decoration: none;
   user-select: none;
@@ -3282,7 +3281,7 @@ img {
     width: 100%;
     justify-content: center;
     min-height: 58px;
-    padding: 12px 18px;
+    padding: 13px 50px;
   }
 
   .online-pill {
