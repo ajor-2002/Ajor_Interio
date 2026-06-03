@@ -3181,7 +3181,7 @@ img {
 
 .interior-hero-copy h1 {
   margin: 0 0 1rem;
-  font-size: 32px;
+  font-size: 50px;
   line-height: 40px;
   letter-spacing: -0.04em;
   font-weight: 700;
@@ -3201,7 +3201,7 @@ img {
   justify-content: center;
   gap: 0;
   width: 100%;
-  min-height: 64px;
+  min-height: 58px;
   padding: 13px 50px;
   border-radius: 5px;
   background-color: #e71c24;
