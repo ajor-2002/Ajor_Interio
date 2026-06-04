@@ -4,6 +4,38 @@ document.addEventListener('DOMContentLoaded', function () {
   const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
   const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
 
+  document.querySelectorAll('main img').forEach((img) => {
+    if (img.classList.contains('hero-image')) return;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+  });
+
+  const leadForm = document.querySelector('.lead-form');
+  if (leadForm) {
+    leadForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(leadForm);
+      const name = (formData.get('name') || '').toString().trim();
+      const phone = (formData.get('phone') || '').toString().trim();
+      const city = (formData.get('city') || '').toString().trim();
+      const subject = 'New 3D Design Session Enquiry';
+      const body = [
+        'New lead from AJOR Interio website',
+        '',
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `City: ${city}`,
+        `Page: ${window.location.href}`,
+        '',
+        'Please follow up with this lead as soon as possible.',
+      ].join('\n');
+
+      const mailtoUrl = `mailto:ajorinterio@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+    });
+  }
+
   const closeOpenDropdowns = (exceptItem = null) => {
     document.querySelectorAll('.nav-item.open').forEach((openItem) => {
       if (openItem !== exceptItem) {

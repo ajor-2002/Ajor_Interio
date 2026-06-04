@@ -147,11 +147,18 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Interiors you'll love.</p>
-          <h1>Without the stress!</h1>
-          <p class="hero-text">Transform your dream home with AJOR's premium doors and interior solutions.</p>
+          <h1>Premium interiors, without the stress.</h1>
+          <p class="hero-text">Browse modular kitchens, wardrobes and premium interior solutions designed for modern homes.</p>
+          <div class="hero-trust">
+            <span>Verified quality</span>
+            <span>55,000+ homes</span>
+            <span>10 year warranty</span>
+          </div>
           <div class="hero-actions">
-            <a href="pages/home-interior.html" class="btn btn-secondary">Explore Designs</a>
-            <a href="pages/contact.html" class="btn btn-primary">Get Free Estimate</a>
+            <a href="pages/home-interior.html" class="btn btn-secondary">Browse Products</a>
+            <a href="pages/contact.html" class="btn btn-primary">Get Free Quote</a>
+            <a href="pages/contact.html" class="btn btn-secondary btn-ghost">Talk to Expert</a>
+            <a href="pages/contact.html" class="btn btn-secondary btn-ghost">Join as Seller</a>
           </div>
         </div>
 
@@ -159,18 +166,18 @@
           <div class="card-header">
             <h2>Meet a designer</h2>
           </div>
-          <form class="lead-form">
+          <form class="lead-form" id="lead-form">
             <label>
               Name
-              <input type="text" placeholder="Enter your name" />
+              <input type="text" name="name" placeholder="Enter your name" autocomplete="name" required />
             </label>
             <label>
               Phone Number
-              <input type="tel" placeholder="Enter your mobile number" />
+              <input type="tel" name="phone" placeholder="Enter your mobile number" autocomplete="tel" required />
             </label>
             <label>
               City
-              <input type="text" placeholder="Select your property city" />
+              <input type="text" name="city" placeholder="Select your property city" autocomplete="address-level2" required />
             </label>
             <button type="submit" class="btn btn-secondary btn-block">Book 3D Design Session</button>
           </form>
