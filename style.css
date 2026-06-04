@@ -5399,6 +5399,8 @@ body.lightbox-open {
   justify-content: center;
   margin-bottom: 3rem;
   white-space: nowrap;
+  position: relative;
+  z-index: 3;
 }
 
 .mk-filter {
@@ -5411,6 +5413,9 @@ body.lightbox-open {
   border-radius: 8px;
   font-size: 0.95rem;
   cursor: pointer;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
 }
 
 .mk-filter.active {
@@ -5458,6 +5463,8 @@ body.lightbox-open {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   cursor: pointer;
   user-select: none;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .mk-design-info {
@@ -5497,6 +5504,8 @@ body.lightbox-open {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+  position: relative;
+  z-index: 3;
 }
 
 .mk-load-more-wrap[hidden] {
@@ -5514,6 +5523,7 @@ body.lightbox-open {
   font-size: 1.05rem;
   font-weight: 400;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .mk-load-more:hover {
@@ -5536,6 +5546,7 @@ body.lightbox-open {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.42);
+  pointer-events: auto;
 }
 
 .mk-filter-drawer-panel {
@@ -5548,6 +5559,8 @@ body.lightbox-open {
   box-shadow: 18px 0 50px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .mk-filter-drawer-header {
@@ -5632,6 +5645,7 @@ body.lightbox-open {
   font-size: 1.02rem;
   cursor: pointer;
   text-align: center;
+  pointer-events: auto;
 }
 
 .mk-filter-chip.active {
@@ -5653,6 +5667,7 @@ body.lightbox-open {
   background: #fff;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .mk-color-chip.active {
@@ -5720,6 +5735,8 @@ body.lightbox-open {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid #dcdcdc;
+  position: relative;
+  z-index: 2;
 }
 
 .mk-filter-cancel,
@@ -5769,6 +5786,7 @@ body.no-scroll {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.52);
+  pointer-events: auto;
 }
 
 .mk-login-panel {
@@ -5783,6 +5801,7 @@ body.no-scroll {
   display: grid;
   grid-template-columns: 44% 56%;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24);
+  pointer-events: auto;
 }
 
 .mk-login-close {
@@ -5796,6 +5815,7 @@ body.no-scroll {
   font-size: 2.3rem;
   line-height: 1;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .mk-login-form {
