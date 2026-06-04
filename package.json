@@ -1,0 +1,16 @@
+{
+  "name": "ajor-interio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static AJOR Doors & Interiors website.",
+  "scripts": {
+    "dev": "live-server --port=3000 --quiet",
+    "start": "live-server --port=3000 --quiet"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0"
+  }
+}
