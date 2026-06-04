@@ -5760,7 +5760,9 @@ body.no-scroll {
 }
 
 .mk-login-modal.is-open {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mk-login-backdrop {
@@ -5771,9 +5773,10 @@ body.no-scroll {
 
 .mk-login-panel {
   position: relative;
+  z-index: 1;
   width: min(90vw, 960px);
   min-height: 520px;
-  margin: 44px auto;
+  margin: 0;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;

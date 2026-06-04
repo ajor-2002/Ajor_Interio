@@ -416,12 +416,13 @@ document.addEventListener('DOMContentLoaded', function () {
       closeFilterDrawer();
     });
 
-    document.querySelectorAll('.mk-fav').forEach((heart) => {
-      heart.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        openLoginModal();
-      });
+    modularKitchenGallery.addEventListener('click', (event) => {
+      const heart = event.target.closest('.mk-fav');
+      if (!heart) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openLoginModal();
     });
 
     loginBackdrop?.addEventListener('click', closeLoginModal);
