@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const leadForm = document.querySelector('.lead-form');
   if (leadForm) {
     const formStatus = leadForm.querySelector('.form-status');
-    const submitButton = leadForm.querySelector('button[type="submit"]');
     const nameInput = leadForm.querySelector('input[name="name"]');
     const phoneInput = leadForm.querySelector('input[name="phone"]');
     const cityInput = leadForm.querySelector('input[name="city"]');
@@ -32,13 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return /^[A-Za-z][A-Za-z\s.'-]{1,}$/.test(trimmed);
     };
 
-    const setSubmitting = (isSubmitting) => {
-      if (!submitButton) return;
-      submitButton.disabled = isSubmitting;
-      submitButton.textContent = isSubmitting ? 'Submitting...' : 'Book 3D Design Session';
-    };
-
-    leadForm.addEventListener('submit', async (event) => {
+    leadForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
       const formData = new FormData(leadForm);
@@ -64,36 +57,20 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      setSubmitting(true);
-      setStatus('Submitting your request...', '');
+      const subject = encodeURIComponent('New 3D Design Session Lead');
+      const body = encodeURIComponent(
+        [
+          'New lead from AJOR Interio website',
+          `Name: ${name}`,
+          `Phone: ${phone}`,
+          `City: ${city}`,
+          `Page URL: ${window.location.href}`,
+        ].join('\n')
+      );
 
-      try {
-        const response = await fetch('/api/lead', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name,
-            phone,
-            city,
-            pageUrl: window.location.href,
-          }),
-        });
-
-        const result = await response.json().catch(() => ({}));
-
-        if (!response.ok || result.success !== true) {
-          throw new Error(result.message || 'Unable to submit your request right now.');
-        }
-
-        setStatus('Thank you for visiting. Your request has been submitted successfully.', 'success');
-        leadForm.reset();
-      } catch (error) {
-        setStatus(error.message || 'Unable to submit your request right now.', 'error');
-      } finally {
-        setSubmitting(false);
-      }
+      setStatus('Opening your mail app to send the request...', 'success');
+      leadForm.reset();
+      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
     });
   }
 
