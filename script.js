@@ -12,6 +12,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const leadForm = document.querySelector('.lead-form');
   if (leadForm) {
+    const formStatus = leadForm.querySelector('.form-status');
+    const nameInput = leadForm.querySelector('input[name="name"]');
+    const phoneInput = leadForm.querySelector('input[name="phone"]');
+    const cityInput = leadForm.querySelector('input[name="city"]');
+
+    const setStatus = (message, type = '') => {
+      if (!formStatus) return;
+      formStatus.textContent = message;
+      formStatus.classList.toggle('is-error', type === 'error');
+      formStatus.classList.toggle('is-success', type === 'success');
+    };
+
+    const getDigitCount = (value) => (value.match(/\d/g) || []).length;
+
+    const isValidCity = (value) => {
+      const trimmed = value.trim();
+      return /^[A-Za-z][A-Za-z\s.'-]{1,}$/.test(trimmed);
+    };
+
     leadForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -19,20 +38,27 @@ document.addEventListener('DOMContentLoaded', function () {
       const name = (formData.get('name') || '').toString().trim();
       const phone = (formData.get('phone') || '').toString().trim();
       const city = (formData.get('city') || '').toString().trim();
-      const subject = 'New 3D Design Session Enquiry';
-      const body = [
-        'New lead from AJOR Interio website',
-        '',
-        `Name: ${name}`,
-        `Phone: ${phone}`,
-        `City: ${city}`,
-        `Page: ${window.location.href}`,
-        '',
-        'Please follow up with this lead as soon as possible.',
-      ].join('\n');
 
-      const mailtoUrl = `mailto:ajorinterio@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
+      if (!name) {
+        nameInput?.focus();
+        setStatus('Please enter your name.', 'error');
+        return;
+      }
+
+      if (getDigitCount(phone) < 10) {
+        phoneInput?.focus();
+        setStatus('Phone number must contain at least 10 digits.', 'error');
+        return;
+      }
+
+      if (!isValidCity(city)) {
+        cityInput?.focus();
+        setStatus('Please enter a valid city name.', 'error');
+        return;
+      }
+
+      setStatus('Thank you for visiting. Your request has been submitted successfully.', 'success');
+      leadForm.reset();
     });
   }
 

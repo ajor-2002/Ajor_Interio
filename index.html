@@ -164,7 +164,7 @@
           <div class="card-header">
             <h2>Meet a designer</h2>
           </div>
-          <form class="lead-form" id="lead-form">
+          <form class="lead-form" id="lead-form" novalidate>
             <label>
               Name
               <input type="text" name="name" placeholder="Enter your name" autocomplete="name" required />
@@ -179,6 +179,7 @@
                 required />
             </label>
             <button type="submit" class="btn btn-secondary btn-block">Book 3D Design Session</button>
+            <p class="form-status" aria-live="polite"></p>
           </form>
           <p class="card-note">By submitting, you agree to our privacy policy and terms of use.</p>
         </div>
