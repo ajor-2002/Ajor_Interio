@@ -320,7 +320,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (digitCount < 10) {
         loginPhoneInput?.focus();
         loginPhoneInput?.setAttribute('aria-invalid', 'true');
-        loginPhoneInput?.placeholder = 'Enter at least 10 digits';
+        if (loginPhoneInput) {
+          loginPhoneInput.placeholder = 'Enter at least 10 digits';
+        }
         return;
       }
 
