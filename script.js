@@ -74,6 +74,102 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const modularKitchenGallery = document.querySelector('.mk-gallery-section');
+  if (modularKitchenGallery) {
+    const cards = Array.from(modularKitchenGallery.querySelectorAll('.mk-design-card'));
+    const filterButtons = Array.from(modularKitchenGallery.querySelectorAll('.mk-filter-bar .mk-filter'));
+    const loadMoreWrap = modularKitchenGallery.querySelector('.mk-load-more-wrap');
+    const loadMoreButton = modularKitchenGallery.querySelector('.mk-load-more');
+    const initialLimit = 6;
+
+    let activeFilter = 'all';
+    let expanded = false;
+
+    const normalizeText = (value) =>
+      (value || '')
+        .toString()
+        .toLowerCase()
+        .replace(/[_\-.]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    const detectCategory = (card) => {
+      const image = card.querySelector('img');
+      const source = normalizeText(
+        [card.querySelector('h3')?.textContent, image?.alt, image?.getAttribute('src')]
+          .filter(Boolean)
+          .join(' ')
+      );
+
+      if (source.includes('parallel')) return 'parallel';
+      if (source.includes('straight island')) return 'straight-island';
+      if (source.includes('l shaped island')) return 'l-shaped-island';
+      if (source.includes('u shaped island')) return 'u-shaped-island';
+      if (source.includes('u shaped')) return 'u-shaped';
+      if (source.includes('l shaped')) return 'l-shaped';
+      if (source.includes('straight')) return 'straight';
+
+      return 'all';
+    };
+
+    cards.forEach((card) => {
+      card.dataset.category = detectCategory(card);
+    });
+
+    const getMatchingCards = () =>
+      cards.filter((card) => activeFilter === 'all' || card.dataset.category === activeFilter);
+
+    const updateFilterButtons = () => {
+      filterButtons.forEach((button) => {
+        const buttonFilter = button.dataset.filter || 'all';
+        button.classList.toggle('active', buttonFilter === activeFilter && buttonFilter !== 'more');
+      });
+    };
+
+    const renderGallery = () => {
+      const matchingCards = getMatchingCards();
+
+      cards.forEach((card) => {
+        card.classList.add('is-hidden');
+        card.setAttribute('aria-hidden', 'true');
+      });
+
+      matchingCards.forEach((card, index) => {
+        const shouldShow = expanded || index < initialLimit;
+        card.classList.toggle('is-hidden', !shouldShow);
+        card.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      });
+
+      if (loadMoreWrap) {
+        loadMoreWrap.hidden = expanded || matchingCards.length <= initialLimit;
+      }
+
+      if (loadMoreButton) {
+        loadMoreButton.textContent = 'Load More';
+      }
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const buttonFilter = button.dataset.filter || 'all';
+        if (buttonFilter === 'more') return;
+
+        activeFilter = buttonFilter;
+        expanded = false;
+        updateFilterButtons();
+        renderGallery();
+      });
+    });
+
+    loadMoreButton?.addEventListener('click', () => {
+      expanded = true;
+      renderGallery();
+    });
+
+    updateFilterButtons();
+    renderGallery();
+  }
+
   const closeOpenDropdowns = (exceptItem = null) => {
     document.querySelectorAll('.nav-item.open').forEach((openItem) => {
       if (openItem !== exceptItem) {
