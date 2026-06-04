@@ -5284,11 +5284,12 @@ body.lightbox-open {
 .mk-simple-hero h1 {
   margin: 0;
   color: #fff;
-  font-size:56px;
-line-height: 64px;
+  font-size: clamp(2rem, 4vw, 56px);
+  line-height: 1.1;
   letter-spacing: -0.04em;
-  max-width: 12ch;
-  display: flex;
+  white-space: nowrap;
+  width: fit-content;
+  max-width: none;
 }
 
 .mk-simple-hero-btn {
@@ -5318,7 +5319,7 @@ line-height: 64px;
   }
 
   .mk-simple-hero h1 {
-    font-size: clamp(2.2rem, 10vw, 3.4rem);
+    font-size: clamp(1.6rem, 6.8vw, 2.8rem);
   }
 
   .mk-simple-hero-btn {
