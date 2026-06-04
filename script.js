@@ -92,6 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const drawerColorButtons = Array.from(
       document.querySelectorAll('.mk-filter-drawer .mk-color-chip[data-color]')
     );
+    const drawerFinishButtons = Array.from(
+      document.querySelectorAll('.mk-filter-drawer .mk-filter-chip[data-finish]')
+    );
     const drawerStorageButtons = Array.from(
       document.querySelectorAll('.mk-filter-drawer .mk-filter-chip[data-storage]')
     );
@@ -100,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let activeFilterMode = 'shape';
     let activeShapeFilter = 'all';
     let activeColorFilter = '';
+    let activeFinishFilter = '';
     let activeStorageFilter = '';
     let expanded = false;
 
@@ -153,6 +157,23 @@ document.addEventListener('DOMContentLoaded', function () {
       return 'white';
     };
 
+    const detectFinish = (card) => {
+      const image = card.querySelector('img');
+      const source = normalizeText(
+        [card.querySelector('h3')?.textContent, image?.alt, image?.getAttribute('src')]
+          .filter(Boolean)
+          .join(' ')
+      );
+
+      if (source.includes('acrylic')) return 'acrylic';
+      if (source.includes('lacquered') || source.includes('high gloss') || source.includes('glass')) {
+        return 'lacquered-glass';
+      }
+      if (source.includes('membrane')) return 'membrane';
+      if (source.includes('gloss') || source.includes('sleek') || source.includes('modern')) return 'gloss';
+      return 'matte';
+    };
+
     const detectStorage = (card) => {
       const image = card.querySelector('img');
       const source = normalizeText(
@@ -175,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cards.forEach((card) => {
       card.dataset.category = detectCategory(card);
       card.dataset.color = detectColor(card);
+      card.dataset.finish = detectFinish(card);
       card.dataset.storage = detectStorage(card);
     });
 
@@ -182,6 +204,10 @@ document.addEventListener('DOMContentLoaded', function () {
       cards.filter((card) => {
         if (activeFilterMode === 'color') {
           return !activeColorFilter || card.dataset.color === activeColorFilter;
+        }
+
+        if (activeFilterMode === 'finish') {
+          return !activeFinishFilter || card.dataset.finish === activeFinishFilter;
         }
 
         if (activeFilterMode === 'storage') {
@@ -206,6 +232,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
       drawerColorButtons.forEach((button) => {
         button.classList.toggle('active', activeFilterMode === 'color' && button.dataset.color === activeColorFilter);
+      });
+
+      drawerFinishButtons.forEach((button) => {
+        button.classList.toggle(
+          'active',
+          activeFilterMode === 'finish' && button.dataset.finish === activeFinishFilter
+        );
       });
 
       drawerStorageButtons.forEach((button) => {
@@ -289,6 +322,17 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
+    drawerFinishButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilterMode = 'finish';
+        activeFinishFilter = button.dataset.finish || '';
+        expanded = false;
+        updateFilterButtons();
+        renderGallery();
+        closeFilterDrawer();
+      });
+    });
+
     drawerStorageButtons.forEach((button) => {
       button.addEventListener('click', () => {
         activeFilterMode = 'storage';
@@ -308,6 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
       activeFilterMode = 'shape';
       activeShapeFilter = 'all';
       activeColorFilter = '';
+      activeFinishFilter = '';
       activeStorageFilter = '';
       expanded = false;
       updateFilterButtons();
