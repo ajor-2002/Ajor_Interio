@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const navList = document.querySelector('.nav-list');
   const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
   const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+  let modularKitchenLoginModal = null;
+  let closeModularKitchenLoginModal = () => {};
 
   document.querySelectorAll('main img').forEach((img) => {
     if (img.classList.contains('hero-image')) return;
@@ -86,6 +88,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterDrawerCancel = document.querySelector('.mk-filter-cancel');
     const filterDrawerApply = document.querySelector('.mk-filter-apply');
     const filterDrawerClear = document.querySelector('.mk-filter-clear');
+    const loginModal = document.querySelector('.mk-login-modal');
+    const loginBackdrop = document.querySelector('.mk-login-backdrop');
+    const loginClose = document.querySelector('.mk-login-close');
+    const loginSubmit = document.querySelector('.mk-login-submit');
+    const loginGoogle = document.querySelector('.mk-login-google');
+    const loginPhoneInput = document.querySelector('#mk-login-phone-input');
     const drawerShapeButtons = Array.from(
       document.querySelectorAll('.mk-filter-drawer .mk-filter-chip[data-filter]')
     );
@@ -287,6 +295,54 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('no-scroll');
     };
 
+    const openLoginModal = () => {
+      if (!loginModal) return;
+      loginModal.classList.add('is-open');
+      loginModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+      setTimeout(() => loginPhoneInput?.focus(), 0);
+    };
+
+    const closeLoginModal = () => {
+      if (!loginModal) return;
+      loginModal.classList.remove('is-open');
+      loginModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    };
+
+    modularKitchenLoginModal = loginModal;
+    closeModularKitchenLoginModal = closeLoginModal;
+
+    const sendLoginLead = () => {
+      const phone = (loginPhoneInput?.value || '').trim();
+      const digitCount = (phone.match(/\d/g) || []).length;
+
+      if (digitCount < 10) {
+        loginPhoneInput?.focus();
+        loginPhoneInput?.setAttribute('aria-invalid', 'true');
+        loginPhoneInput?.placeholder = 'Enter at least 10 digits';
+        return;
+      }
+
+      loginPhoneInput?.setAttribute('aria-invalid', 'false');
+
+      const subject = encodeURIComponent('New Login Lead from AJOR Interio');
+      const body = encodeURIComponent(
+        [
+          'New login request from AJOR Interio website',
+          `Phone: ${phone}`,
+          `Page URL: ${window.location.href}`,
+        ].join('\n')
+      );
+
+      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
+      closeLoginModal();
+
+      window.setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 500);
+    };
+
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const buttonFilter = button.dataset.filter || 'all';
@@ -359,6 +415,23 @@ document.addEventListener('DOMContentLoaded', function () {
       renderGallery();
       closeFilterDrawer();
     });
+
+    document.querySelectorAll('.mk-fav').forEach((heart) => {
+      heart.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openLoginModal();
+      });
+    });
+
+    loginBackdrop?.addEventListener('click', closeLoginModal);
+    loginClose?.addEventListener('click', closeLoginModal);
+    loginSubmit?.addEventListener('click', sendLoginLead);
+    loginGoogle?.addEventListener('click', closeLoginModal);
+
+    if (loginModal) {
+      loginModal.setAttribute('aria-hidden', 'true');
+    }
 
     loadMoreButton?.addEventListener('click', () => {
       expanded = true;
@@ -564,6 +637,10 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && imageLightbox?.root.classList.contains('is-open')) {
       closeImageLightbox();
+    }
+
+    if (event.key === 'Escape' && modularKitchenLoginModal?.classList.contains('is-open')) {
+      closeModularKitchenLoginModal();
     }
   });
 
