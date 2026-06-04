@@ -80,9 +80,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterButtons = Array.from(modularKitchenGallery.querySelectorAll('.mk-filter-bar .mk-filter'));
     const loadMoreWrap = modularKitchenGallery.querySelector('.mk-load-more-wrap');
     const loadMoreButton = modularKitchenGallery.querySelector('.mk-load-more');
+    const filterDrawer = document.querySelector('.mk-filter-drawer');
+    const filterDrawerOverlay = document.querySelector('.mk-filter-drawer-overlay');
+    const filterDrawerClose = document.querySelector('.mk-filter-close');
+    const filterDrawerCancel = document.querySelector('.mk-filter-cancel');
+    const filterDrawerApply = document.querySelector('.mk-filter-apply');
+    const filterDrawerClear = document.querySelector('.mk-filter-clear');
+    const drawerShapeButtons = Array.from(
+      document.querySelectorAll('.mk-filter-drawer .mk-filter-chip[data-filter]')
+    );
+    const drawerColorButtons = Array.from(
+      document.querySelectorAll('.mk-filter-drawer .mk-color-chip[data-color]')
+    );
+    const drawerStorageButtons = Array.from(
+      document.querySelectorAll('.mk-filter-drawer .mk-filter-chip[data-storage]')
+    );
     const initialLimit = 6;
 
-    let activeFilter = 'all';
+    let activeFilterMode = 'shape';
+    let activeShapeFilter = 'all';
+    let activeColorFilter = '';
+    let activeStorageFilter = '';
     let expanded = false;
 
     const normalizeText = (value) =>
@@ -112,17 +130,89 @@ document.addEventListener('DOMContentLoaded', function () {
       return 'all';
     };
 
+    const detectColor = (card) => {
+      const image = card.querySelector('img');
+      const source = normalizeText(
+        [card.querySelector('h3')?.textContent, image?.alt, image?.getAttribute('src')]
+          .filter(Boolean)
+          .join(' ')
+      );
+
+      if (source.includes('black')) return 'black';
+      if (source.includes('green') || source.includes('meadow')) return 'green';
+      if (source.includes('orange') || source.includes('citrus') || source.includes('amber')) return 'orange';
+      if (source.includes('brown') || source.includes('beige') || source.includes('coffee') || source.includes('umber') || source.includes('mojave') || source.includes('walnut') || source.includes('oak') || source.includes('acacia') || source.includes('cappuccino') || source.includes('wood') || source.includes('ecru') || source.includes('chamoisee')) return 'brown';
+      if (source.includes('grey') || source.includes('gray') || source.includes('silver') || source.includes('gainsboro')) return 'grey';
+      if (source.includes('blue') || source.includes('indigo') || source.includes('navy') || source.includes('lupin') || source.includes('azure')) return 'blue';
+      if (source.includes('yellow') || source.includes('buttercream') || source.includes('gold') || source.includes('lemon')) return 'yellow';
+      if (source.includes('red') || source.includes('berry') || source.includes('burgundy') || source.includes('ruby')) return 'red';
+      if (source.includes('purple') || source.includes('plum') || source.includes('lavender')) return 'purple';
+      if (source.includes('pink') || source.includes('rose') || source.includes('passion flower')) return 'pink';
+      if (source.includes('ivory') || source.includes('cream') || source.includes('white') || source.includes('frosty')) return 'ivory';
+
+      return 'white';
+    };
+
+    const detectStorage = (card) => {
+      const image = card.querySelector('img');
+      const source = normalizeText(
+        [card.querySelector('h3')?.textContent, image?.alt, image?.getAttribute('src')]
+          .filter(Boolean)
+          .join(' ')
+      );
+
+      if (source.includes('breakfast counter')) return 'breakfast-counter';
+      if (source.includes('built in appliance') || source.includes('appliance') || source.includes('oven')) {
+        return 'built-in-appliance';
+      }
+      if (source.includes('open shelves') || source.includes('open shelf')) return 'open-shelves';
+      if (source.includes('glass shutter') || source.includes('glass')) return 'glass-shutter';
+      if (source.includes('loft')) return 'loft';
+      if (source.includes('tall')) return 'tall-unit';
+      return 'base-wall-units';
+    };
+
     cards.forEach((card) => {
       card.dataset.category = detectCategory(card);
+      card.dataset.color = detectColor(card);
+      card.dataset.storage = detectStorage(card);
     });
 
     const getMatchingCards = () =>
-      cards.filter((card) => activeFilter === 'all' || card.dataset.category === activeFilter);
+      cards.filter((card) => {
+        if (activeFilterMode === 'color') {
+          return !activeColorFilter || card.dataset.color === activeColorFilter;
+        }
+
+        if (activeFilterMode === 'storage') {
+          return !activeStorageFilter || card.dataset.storage === activeStorageFilter;
+        }
+
+        return activeShapeFilter === 'all' || card.dataset.category === activeShapeFilter;
+      });
 
     const updateFilterButtons = () => {
       filterButtons.forEach((button) => {
         const buttonFilter = button.dataset.filter || 'all';
-        button.classList.toggle('active', buttonFilter === activeFilter && buttonFilter !== 'more');
+        button.classList.toggle(
+          'active',
+          activeFilterMode === 'shape' && buttonFilter === activeShapeFilter && buttonFilter !== 'more'
+        );
+      });
+
+      drawerShapeButtons.forEach((button) => {
+        button.classList.toggle('active', activeFilterMode === 'shape' && button.dataset.filter === activeShapeFilter);
+      });
+
+      drawerColorButtons.forEach((button) => {
+        button.classList.toggle('active', activeFilterMode === 'color' && button.dataset.color === activeColorFilter);
+      });
+
+      drawerStorageButtons.forEach((button) => {
+        button.classList.toggle(
+          'active',
+          activeFilterMode === 'storage' && button.dataset.storage === activeStorageFilter
+        );
       });
     };
 
@@ -149,21 +239,94 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
 
+    const openFilterDrawer = () => {
+      if (!filterDrawer) return;
+      updateFilterButtons();
+      filterDrawer.classList.add('is-open');
+      filterDrawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+    };
+
+    const closeFilterDrawer = () => {
+      if (!filterDrawer) return;
+      filterDrawer.classList.remove('is-open');
+      filterDrawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    };
+
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const buttonFilter = button.dataset.filter || 'all';
         if (buttonFilter === 'more') return;
 
-        activeFilter = buttonFilter;
+        activeFilterMode = 'shape';
+        activeShapeFilter = buttonFilter;
         expanded = false;
         updateFilterButtons();
         renderGallery();
       });
     });
 
+    drawerShapeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilterMode = 'shape';
+        activeShapeFilter = button.dataset.filter || 'all';
+        expanded = false;
+        updateFilterButtons();
+        renderGallery();
+        closeFilterDrawer();
+      });
+    });
+
+    drawerColorButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilterMode = 'color';
+        activeColorFilter = button.dataset.color || '';
+        expanded = false;
+        updateFilterButtons();
+        renderGallery();
+        closeFilterDrawer();
+      });
+    });
+
+    drawerStorageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilterMode = 'storage';
+        activeStorageFilter = button.dataset.storage || '';
+        expanded = false;
+        updateFilterButtons();
+        renderGallery();
+        closeFilterDrawer();
+      });
+    });
+
+    filterDrawerOverlay?.addEventListener('click', closeFilterDrawer);
+    filterDrawerClose?.addEventListener('click', closeFilterDrawer);
+    filterDrawerCancel?.addEventListener('click', closeFilterDrawer);
+    filterDrawerApply?.addEventListener('click', closeFilterDrawer);
+    filterDrawerClear?.addEventListener('click', () => {
+      activeFilterMode = 'shape';
+      activeShapeFilter = 'all';
+      activeColorFilter = '';
+      activeStorageFilter = '';
+      expanded = false;
+      updateFilterButtons();
+      renderGallery();
+      closeFilterDrawer();
+    });
+
     loadMoreButton?.addEventListener('click', () => {
       expanded = true;
       renderGallery();
+    });
+
+    if (filterDrawer) {
+      filterDrawer.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelector('.mk-filter-outline')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      openFilterDrawer();
     });
 
     updateFilterButtons();
