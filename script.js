@@ -1,7 +1,16 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   const navToggle = document.querySelector('.nav-toggle');
   const navList = document.querySelector('.nav-list');
   const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
+  const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+
+  const closeOpenDropdowns = (exceptItem = null) => {
+    document.querySelectorAll('.nav-item.open').forEach((openItem) => {
+      if (openItem !== exceptItem) {
+        openItem.classList.remove('open');
+      }
+    });
+  };
 
   if (navToggle && navList) {
     navToggle.addEventListener('click', function () {
@@ -17,13 +26,17 @@
     });
   });
 
+  dropdownItems.forEach((item) => {
+    item.addEventListener('mouseenter', function () {
+      closeOpenDropdowns(this);
+    });
+  });
+
   dropdownButtons.forEach((button) => {
     button.addEventListener('click', function () {
       const item = this.closest('.nav-item');
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.nav-item.open').forEach((openItem) => {
-        openItem.classList.remove('open');
-      });
+      closeOpenDropdowns(item);
       if (!isOpen) {
         item.classList.add('open');
       }
@@ -34,9 +47,7 @@
     const clickedInsideHeader = event.target.closest('.nav-main') || event.target.closest('.topbar');
     const isDropdown = event.target.closest('.nav-item');
     if (!isDropdown) {
-      document.querySelectorAll('.nav-item.open').forEach((openItem) => {
-        openItem.classList.remove('open');
-      });
+      closeOpenDropdowns();
     }
 
     if (navList && navToggle && navList.classList.contains('open') && !clickedInsideHeader) {
