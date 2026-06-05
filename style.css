@@ -1752,18 +1752,15 @@ body.lightbox-open {
 
 .ajor-luxe-visual {
   position: relative;
-  min-height: 560px;
+  min-height: 0;
   overflow: hidden;
+  background: #f0eee9;
 }
 
 .ajor-luxe-visual > img {
   display: block;
   width: 100%;
-  height: min(68vh, 650px);
-  min-height: 520px;
-  object-fit: contain;
-  object-position: center center;
-  background: #f0eee9;
+  height: auto;
 }
 
 .ajor-luxe-booking-card {
@@ -5077,8 +5074,8 @@ body.lightbox-open {
   }
 
   .ajor-luxe-visual > img {
-    height: 54vh;
-    min-height: 380px;
+    height: auto;
+    min-height: 0;
   }
 
   .ajor-luxe-booking-card {
@@ -5510,8 +5507,8 @@ body.lightbox-open {
   }
 
   .ajor-luxe-visual > img {
-    height: 48vh;
-    min-height: 320px;
+    height: auto;
+    min-height: 0;
   }
 
   .ajor-luxe-booking-card {
