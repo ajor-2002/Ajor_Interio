@@ -4687,6 +4687,128 @@ body.lightbox-open {
   color: #2f3744;
 }
 
+.ajor-offering-faq-section {
+  background: #fff;
+  border-top: 1px solid #dce4e5;
+  padding: 34px 0 72px;
+}
+
+.ajor-offering-faq-wrap {
+  width: min(100%, 1160px);
+  text-align: center;
+}
+
+.ajor-offering-faq-wrap h2 {
+  margin: 0 0 24px;
+  color: #081522;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-offering-faq-list {
+  text-align: left;
+}
+
+.ajor-offering-faq-item {
+  border-bottom: 1px solid #d4dadd;
+}
+
+.ajor-offering-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 18px 0;
+  list-style: none;
+  color: #1f2937;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.ajor-offering-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ajor-offering-faq-item summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-right: 1.5px solid #6b7280;
+  border-bottom: 1.5px solid #6b7280;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.ajor-offering-faq-item[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.ajor-offering-faq-content {
+  max-width: 880px;
+  padding: 0 0 18px;
+  color: #3f4654;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.ajor-offering-faq-content p {
+  margin: 0;
+}
+
+.ajor-meet-designer-section {
+  background: #f4f6f8;
+  padding: 92px 0 88px;
+}
+
+.ajor-meet-designer-wrap {
+  width: min(100%, 980px);
+  text-align: center;
+}
+
+.ajor-meet-designer-wrap h2 {
+  margin: 0 0 22px;
+  color: #081522;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.ajor-meet-designer-wrap p {
+  margin: 0 0 34px;
+  color: #344052;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.ajor-meet-designer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 178px;
+  min-height: 48px;
+  padding: 12px 26px;
+  border-radius: 7px;
+  background: #ed1b2f;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition: background 180ms ease;
+}
+
+.ajor-meet-designer-btn:hover {
+  background: #c91425;
+}
+
 @media (max-width: 1400px) {
   .ajor-decor-section,
   .ajor-services-section {
@@ -5032,6 +5154,26 @@ body.lightbox-open {
 
   .ajor-compare-cell p {
     font-size: 16px;
+  }
+
+  .ajor-offering-faq-section {
+    padding: 30px 0 58px;
+  }
+
+  .ajor-offering-faq-wrap h2 {
+    font-size: 30px;
+  }
+
+  .ajor-meet-designer-section {
+    padding: 70px 0 72px;
+  }
+
+  .ajor-meet-designer-wrap h2 {
+    font-size: 27px;
+  }
+
+  .ajor-meet-designer-wrap p {
+    font-size: 23px;
   }
 }
 
@@ -5413,6 +5555,45 @@ body.lightbox-open {
 
   .ajor-compare-cell p {
     font-size: 15px;
+  }
+
+  .ajor-offering-faq-section {
+    padding: 28px 0 44px;
+  }
+
+  .ajor-offering-faq-wrap h2 {
+    margin-bottom: 14px;
+    font-size: 26px;
+  }
+
+  .ajor-offering-faq-item summary {
+    padding: 15px 0;
+    font-size: 15px;
+  }
+
+  .ajor-offering-faq-content {
+    padding-bottom: 14px;
+    font-size: 14px;
+  }
+
+  .ajor-meet-designer-section {
+    padding: 52px 0 56px;
+  }
+
+  .ajor-meet-designer-wrap h2 {
+    margin-bottom: 16px;
+    font-size: 23px;
+  }
+
+  .ajor-meet-designer-wrap p {
+    margin-bottom: 26px;
+    font-size: 19px;
+  }
+
+  .ajor-meet-designer-btn {
+    min-width: 154px;
+    min-height: 44px;
+    font-size: 16px;
   }
 }
 
