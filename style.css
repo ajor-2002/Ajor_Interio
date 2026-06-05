@@ -4560,9 +4560,7 @@ body.lightbox-open {
   }
 
   .ajor-services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
-    max-width: 620px;
   }
 
   .ajor-services-card {
@@ -4837,9 +4835,7 @@ body.lightbox-open {
   }
 
   .ajor-services-grid {
-    grid-template-columns: 1fr;
     gap: 16px;
-    max-width: 340px;
   }
 
   .ajor-services-card {
