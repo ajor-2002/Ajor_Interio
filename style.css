@@ -1015,6 +1015,128 @@ img {
   transform: translateY(0);
 }
 
+.ajor-interiors-hero {
+  position: relative;
+  min-height: calc(100vh - 120px);
+  overflow: hidden;
+  background: #111;
+}
+
+.ajor-interiors-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.ajor-interiors-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.26) 52%, rgba(0, 0, 0, 0.48) 100%);
+}
+
+.ajor-interiors-hero-content {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 120px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 386px;
+  align-items: center;
+  gap: 64px;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.ajor-interiors-copy {
+  align-self: end;
+  padding-bottom: 16px;
+}
+
+.ajor-interiors-copy h1 {
+  margin: 0 0 18px;
+  color: #f4f000;
+  font-size: clamp(3rem, 5.2vw, 5.6rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-shadow: 0 5px 22px rgba(0, 0, 0, 0.36);
+}
+
+.ajor-interiors-copy p {
+  max-width: 640px;
+  margin: 0;
+  color: #fff;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.ajor-interiors-card {
+  justify-self: center;
+  width: 100%;
+  max-width: 386px;
+  padding: 34px 34px 38px;
+  border-radius: 8px;
+  background: #fff;
+  color: #111827;
+  text-align: center;
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.22);
+}
+
+.ajor-interiors-card-icon {
+  width: 178px;
+  height: 178px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  background: #fff0d8;
+}
+
+.ajor-interiors-card-icon img {
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+}
+
+.ajor-interiors-card h2 {
+  margin: 0 0 22px;
+  color: #111827;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.ajor-interiors-card p {
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.ajor-interiors-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42px;
+  padding: 0.75rem 1rem;
+  border-radius: 7px;
+  background: #ed1c24;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.ajor-interiors-card-btn:hover {
+  background: #c81520;
+}
+
 body.lightbox-open {
   overflow: hidden;
 }
@@ -4027,6 +4149,32 @@ body.lightbox-open {
     max-width: 100%;
     height: 360px;
   }
+
+  .ajor-interiors-hero,
+  .ajor-interiors-hero-content {
+    min-height: auto;
+  }
+
+  .ajor-interiors-hero-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 64px;
+    padding-bottom: 52px;
+  }
+
+  .ajor-interiors-copy {
+    align-self: auto;
+    padding-bottom: 0;
+  }
+
+  .ajor-interiors-copy h1 {
+    font-size: clamp(2.7rem, 11vw, 4.4rem);
+  }
+
+  .ajor-interiors-card {
+    justify-self: start;
+    max-width: 360px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -4198,6 +4346,35 @@ body.lightbox-open {
     width: 239px;
     height: 48px;
     font-size: 14px;
+  }
+
+  .ajor-interiors-hero-content {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+
+  .ajor-interiors-copy h1 {
+    font-size: clamp(2.25rem, 12vw, 3.35rem);
+  }
+
+  .ajor-interiors-copy p {
+    font-size: 0.96rem;
+  }
+
+  .ajor-interiors-card {
+    max-width: 100%;
+    padding: 24px 18px 26px;
+  }
+
+  .ajor-interiors-card-icon {
+    width: 124px;
+    height: 124px;
+    margin-bottom: 18px;
+  }
+
+  .ajor-interiors-card-icon img {
+    width: 68px;
+    height: 68px;
   }
 
   .mk-materials-section {
