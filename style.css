@@ -1752,9 +1752,9 @@ body.lightbox-open {
 
 .ajor-luxe-visual {
   position: relative;
-  width: min(100%, 1380px);
+  width: 100%;
   min-height: 0;
-  margin: 0 auto;
+  margin: 0;
   overflow: hidden;
   background: #f0eee9;
 }
