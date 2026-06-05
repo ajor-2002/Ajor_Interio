@@ -4775,8 +4775,8 @@ body.lightbox-open {
   min-height: 194px;
   width: min(100%, 1320px);
   align-items: center;
-  justify-content: flex-start;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
 }
 
 .ajor-meet-designer-copy {
@@ -4833,7 +4833,7 @@ body.lightbox-open {
   object-fit: contain;
   object-position: right center;
   pointer-events: none;
-  transform: scale(1.08);
+  transform: scale(1.09);
   transform-origin: right bottom;
 }
 
@@ -5198,8 +5198,8 @@ body.lightbox-open {
 
   .ajor-meet-designer-wrap {
     min-height: 230px;
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
   }
 
   .ajor-meet-designer-copy {
