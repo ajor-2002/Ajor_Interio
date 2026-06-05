@@ -3087,7 +3087,7 @@ body.lightbox-open {
 .ajor-services-section {
   background: #fff;
   border-bottom: 0.8px solid #dce4e5;
-  padding: 62px 0 70px;
+  padding: 112px 42px 96px;
 }
 
 .ajor-services-wrap {
@@ -4402,6 +4402,13 @@ body.lightbox-open {
   letter-spacing: 0;
 }
 
+@media (max-width: 1400px) {
+  .ajor-decor-section,
+  .ajor-services-section {
+    padding: 112px 0 96px;
+  }
+}
+
 @media (max-width: 900px) {
   .interior-why-section {
     padding: 72px 0 68px;
@@ -4514,7 +4521,7 @@ body.lightbox-open {
   }
 
   .ajor-decor-section {
-    padding: 42px 0 50px;
+    padding: 112px 0 96px;
   }
 
   .ajor-decor-wrap h2 {
@@ -4540,7 +4547,7 @@ body.lightbox-open {
   }
 
   .ajor-services-section {
-    padding: 46px 0 54px;
+    padding: 112px 0 96px;
   }
 
   .ajor-services-wrap h2 {
@@ -4568,6 +4575,11 @@ body.lightbox-open {
 }
 
 @media (max-width: 768px) {
+  .ajor-decor-section,
+  .ajor-services-section {
+    padding: 64px 0 32px;
+  }
+
   .mk-cost-panel {
     align-items: flex-start;
   }
@@ -4780,7 +4792,7 @@ body.lightbox-open {
   }
 
   .ajor-decor-section {
-    padding: 34px 0 40px;
+    padding: 64px 0 32px;
   }
 
   .ajor-decor-wrap h2 {
@@ -4811,7 +4823,7 @@ body.lightbox-open {
   }
 
   .ajor-services-section {
-    padding: 36px 0 42px;
+    padding: 64px 0 32px;
   }
 
   .ajor-services-wrap h2 {
