@@ -4762,12 +4762,23 @@ body.lightbox-open {
 
 .ajor-meet-designer-section {
   background: #f4f6f8;
-  padding: 92px 0 88px;
+  padding: 88px 0 0;
+  overflow: hidden;
 }
 
 .ajor-meet-designer-wrap {
-  width: min(100%, 980px);
+  position: relative;
+  display: grid;
+  min-height: 320px;
+  width: min(100%, 1320px);
+  place-items: start center;
   text-align: center;
+}
+
+.ajor-meet-designer-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
 }
 
 .ajor-meet-designer-wrap h2 {
@@ -4807,6 +4818,16 @@ body.lightbox-open {
 
 .ajor-meet-designer-btn:hover {
   background: #c91425;
+}
+
+.ajor-meet-designer-image {
+  position: absolute;
+  right: -22px;
+  bottom: 0;
+  width: min(19vw, 260px);
+  min-width: 210px;
+  height: auto;
+  object-fit: contain;
 }
 
 @media (max-width: 1400px) {
@@ -5165,7 +5186,11 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-section {
-    padding: 70px 0 72px;
+    padding: 64px 0 0;
+  }
+
+  .ajor-meet-designer-wrap {
+    min-height: 290px;
   }
 
   .ajor-meet-designer-wrap h2 {
@@ -5174,6 +5199,12 @@ body.lightbox-open {
 
   .ajor-meet-designer-wrap p {
     font-size: 23px;
+  }
+
+  .ajor-meet-designer-image {
+    right: -12px;
+    width: 210px;
+    min-width: 0;
   }
 }
 
@@ -5577,7 +5608,14 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-section {
-    padding: 52px 0 56px;
+    padding: 42px 0 0;
+  }
+
+  .ajor-meet-designer-wrap {
+    display: flex;
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
   }
 
   .ajor-meet-designer-wrap h2 {
@@ -5594,6 +5632,12 @@ body.lightbox-open {
     min-width: 154px;
     min-height: 44px;
     font-size: 16px;
+  }
+
+  .ajor-meet-designer-image {
+    position: static;
+    width: min(62vw, 220px);
+    margin-top: 22px;
   }
 }
 
