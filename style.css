@@ -4488,6 +4488,69 @@ body.lightbox-open {
   letter-spacing: 0;
 }
 
+.ajor-quality-section {
+  background: #fff;
+  padding: 88px 0 94px;
+}
+
+.ajor-quality-wrap {
+  width: min(100%, 1480px);
+  text-align: center;
+}
+
+.ajor-quality-wrap h2 {
+  margin: 0 0 58px;
+  color: #081522;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-quality-wrap h2 strong {
+  font-weight: 500;
+}
+
+.ajor-quality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 70px 96px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.ajor-quality-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ajor-quality-item img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 18px;
+  object-fit: contain;
+}
+
+.ajor-quality-item h3 {
+  margin: 0 0 16px;
+  color: #07101f;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-quality-item p {
+  max-width: 360px;
+  margin: 0;
+  color: #172033;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
 @media (max-width: 1400px) {
   .ajor-decor-section,
   .ajor-services-section {
@@ -4790,6 +4853,20 @@ body.lightbox-open {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
+
+  .ajor-quality-section {
+    padding: 72px 0 76px;
+  }
+
+  .ajor-quality-wrap h2 {
+    margin-bottom: 44px;
+    font-size: 32px;
+  }
+
+  .ajor-quality-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 54px 48px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -5082,6 +5159,36 @@ body.lightbox-open {
     left: 12px;
     bottom: 12px;
     font-size: 16px;
+  }
+
+  .ajor-quality-section {
+    padding: 52px 0 58px;
+  }
+
+  .ajor-quality-wrap h2 {
+    margin-bottom: 34px;
+    font-size: 26px;
+  }
+
+  .ajor-quality-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .ajor-quality-item img {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 14px;
+  }
+
+  .ajor-quality-item h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .ajor-quality-item p {
+    max-width: 340px;
+    font-size: 15px;
   }
 }
 
