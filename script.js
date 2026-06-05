@@ -562,6 +562,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  document.querySelectorAll('.mk-accessories-carousel').forEach((carousel) => {
+    const track = carousel.querySelector('.mk-accessories-track');
+    const cards = Array.from(carousel.querySelectorAll('.mk-accessory-card'));
+    const prevButton = carousel.querySelector('.mk-accessories-arrow-prev');
+    const nextButton = carousel.querySelector('.mk-accessories-arrow-next');
+    let activeIndex = 0;
+
+    if (!track || cards.length === 0 || !prevButton || !nextButton) return;
+
+    const getVisibleCount = () => {
+      if (window.matchMedia('(max-width: 520px)').matches) return 1;
+      if (window.matchMedia('(max-width: 900px)').matches) return 2;
+      return 4;
+    };
+
+    const updateCarousel = () => {
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(cards.length - visibleCount, 0);
+      activeIndex = Math.min(activeIndex, maxIndex);
+      const cardWidth = cards[0].getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+      track.style.transform = `translateX(-${activeIndex * (cardWidth + gap)}px)`;
+      prevButton.disabled = activeIndex === 0;
+      nextButton.disabled = activeIndex === maxIndex;
+    };
+
+    prevButton.addEventListener('click', () => {
+      activeIndex = Math.max(activeIndex - 1, 0);
+      updateCarousel();
+    });
+
+    nextButton.addEventListener('click', () => {
+      activeIndex += 1;
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel, { passive: true });
+    updateCarousel();
+  });
+
   let imageLightbox = null;
   let lastLightboxTrigger = null;
 
