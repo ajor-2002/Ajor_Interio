@@ -1761,8 +1761,9 @@ body.lightbox-open {
   width: 100%;
   height: min(68vh, 650px);
   min-height: 520px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
+  background: #f0eee9;
 }
 
 .ajor-luxe-booking-card {
