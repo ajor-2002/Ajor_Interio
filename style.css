@@ -140,10 +140,6 @@ img {
   position: relative;
 }
 
-.mobile-nav-item {
-  display: none;
-}
-
 .nav-item button,
 .nav-item a {
   background: transparent;
@@ -4580,10 +4576,6 @@ body.lightbox-open {
   }
 
   .nav-item.dropdown {
-    display: none;
-  }
-
-  .mobile-nav-item {
     display: block;
   }
 
@@ -4592,26 +4584,6 @@ body.lightbox-open {
     min-height: 44px;
     padding: 0.95rem 1.05rem;
     text-align: left;
-  }
-
-  .mobile-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    color: #222;
-    font-size: 0.98rem;
-    font-weight: 400;
-    border-bottom: none;
-    padding-left: 1.05rem;
-    padding-right: 1.05rem;
-  }
-
-  .mobile-nav-link::before {
-    content: '›';
-    color: var(--red);
-    font-size: 1.35rem;
-    line-height: 1;
-    flex: 0 0 auto;
   }
 
   .dropdown-menu {
