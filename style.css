@@ -1298,6 +1298,12 @@ img {
   letter-spacing: 0;
 }
 
+.ajor-decor-title-p {
+  max-width: 1120px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
 .ajor-decor-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -4896,6 +4902,10 @@ body.lightbox-open {
   .ajor-decor-wrap > p {
     margin-bottom: 24px;
     font-size: 15px;
+  }
+
+  .ajor-decor-title-p {
+    white-space: normal;
   }
 
   .ajor-decor-grid {
