@@ -5612,10 +5612,14 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-wrap {
-    display: flex;
-    min-height: auto;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    min-height: 250px;
+    place-items: start center;
+  }
+
+  .ajor-meet-designer-copy {
+    max-width: calc(100% - 120px);
+    padding-right: 82px;
   }
 
   .ajor-meet-designer-wrap h2 {
@@ -5635,9 +5639,11 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-image {
-    position: static;
-    width: min(62vw, 220px);
-    margin-top: 22px;
+    position: absolute;
+    right: -18px;
+    bottom: 0;
+    width: 132px;
+    margin-top: 0;
   }
 }
 
