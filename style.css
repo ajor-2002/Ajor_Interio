@@ -4402,6 +4402,86 @@ body.lightbox-open {
   letter-spacing: 0;
 }
 
+.ajor-furniture-section {
+  background: #f7f5f0;
+  padding: 126px 0 108px;
+}
+
+.ajor-furniture-wrap {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) minmax(0, 1010px);
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  width: min(100%, 1540px);
+}
+
+.ajor-furniture-copy {
+  text-align: left;
+}
+
+.ajor-furniture-copy h2 {
+  margin: 0 0 18px;
+  color: #081522;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-furniture-copy p {
+  margin: 0;
+  color: #243142;
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.ajor-furniture-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.ajor-furniture-card {
+  position: relative;
+  min-height: 270px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #ddd;
+}
+
+.ajor-furniture-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.66) 100%);
+  pointer-events: none;
+}
+
+.ajor-furniture-card img {
+  display: block;
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+}
+
+.ajor-furniture-card h3 {
+  position: absolute;
+  left: 14px;
+  right: 12px;
+  bottom: 14px;
+  z-index: 1;
+  margin: 0;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  letter-spacing: 0;
+}
+
 @media (max-width: 1400px) {
   .ajor-decor-section,
   .ajor-services-section {
@@ -4676,6 +4756,34 @@ body.lightbox-open {
   .mk-finish-card img {
     min-height: 240px;
   }
+
+  .ajor-furniture-section {
+    padding: 88px 0 82px;
+  }
+
+  .ajor-furniture-wrap {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .ajor-furniture-copy {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ajor-furniture-copy h2 {
+    font-size: 32px;
+  }
+
+  .ajor-furniture-copy p {
+    font-size: 18px;
+  }
+
+  .ajor-furniture-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -4922,6 +5030,47 @@ body.lightbox-open {
   .mk-finish-card h3 {
     left: 18px;
     bottom: 18px;
+    font-size: 16px;
+  }
+
+  .ajor-furniture-section {
+    padding: 64px 0 42px;
+  }
+
+  .ajor-furniture-wrap {
+    gap: 28px;
+  }
+
+  .ajor-furniture-copy {
+    text-align: left;
+  }
+
+  .ajor-furniture-copy h2 {
+    margin-bottom: 12px;
+    font-size: 28px;
+  }
+
+  .ajor-furniture-copy p {
+    font-size: 16px;
+  }
+
+  .ajor-furniture-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .ajor-furniture-card,
+  .ajor-furniture-card img {
+    min-height: 220px;
+  }
+
+  .ajor-furniture-card img {
+    height: 220px;
+  }
+
+  .ajor-furniture-card h3 {
+    left: 12px;
+    bottom: 12px;
     font-size: 16px;
   }
 }
