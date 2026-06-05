@@ -1270,6 +1270,81 @@ img {
   letter-spacing: 0;
 }
 
+.ajor-decor-section {
+  background: #f0ebe6;
+  padding: 88px 0 112px;
+}
+
+.ajor-decor-wrap {
+  width: min(100%, 1560px);
+  text-align: center;
+}
+
+.ajor-decor-wrap h2 {
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-decor-wrap > p {
+  max-width: 1120px;
+  margin: 0 auto 36px;
+  color: #1f2937;
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.ajor-decor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 1520px;
+  margin: 0 auto;
+}
+
+.ajor-decor-card {
+  position: relative;
+  min-height: 430px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #ddd;
+}
+
+.ajor-decor-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.58) 100%);
+  pointer-events: none;
+}
+
+.ajor-decor-card img {
+  display: block;
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+}
+
+.ajor-decor-card h3 {
+  position: absolute;
+  left: 24px;
+  right: 20px;
+  bottom: 22px;
+  z-index: 1;
+  margin: 0;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  letter-spacing: 0;
+}
+
 body.lightbox-open {
   overflow: hidden;
 }
@@ -4364,6 +4439,32 @@ body.lightbox-open {
     margin-top: 28px;
     font-size: 18px;
   }
+
+  .ajor-decor-section {
+    padding: 58px 0 72px;
+  }
+
+  .ajor-decor-wrap h2 {
+    font-size: 32px;
+  }
+
+  .ajor-decor-wrap > p {
+    font-size: 17px;
+  }
+
+  .ajor-decor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 760px;
+  }
+
+  .ajor-decor-card {
+    min-height: 320px;
+  }
+
+  .ajor-decor-card img {
+    height: 320px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -4576,6 +4677,37 @@ body.lightbox-open {
 
   .ajor-collection-note {
     font-size: 16px;
+  }
+
+  .ajor-decor-section {
+    padding: 42px 0 54px;
+  }
+
+  .ajor-decor-wrap h2 {
+    font-size: 26px;
+  }
+
+  .ajor-decor-wrap > p {
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+
+  .ajor-decor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ajor-decor-card {
+    min-height: 260px;
+  }
+
+  .ajor-decor-card img {
+    height: 260px;
+  }
+
+  .ajor-decor-card h3 {
+    left: 18px;
+    bottom: 18px;
+    font-size: 22px;
   }
 
   .mk-materials-section {
