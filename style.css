@@ -4551,6 +4551,142 @@ body.lightbox-open {
   letter-spacing: 0;
 }
 
+.ajor-compare-section {
+  background: #fff;
+  border-top: 1px solid #dce4e5;
+  padding: 52px 0 70px;
+}
+
+.ajor-compare-wrap {
+  width: min(100%, 1260px);
+  text-align: center;
+}
+
+.ajor-compare-wrap h2 {
+  margin: 0 0 30px;
+  color: #081522;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-compare-table {
+  position: relative;
+  overflow: hidden;
+  max-width: 1120px;
+  margin: 0 auto;
+  border: 1px solid #dce4e5;
+  border-radius: 20px;
+  background: #fff;
+  text-align: left;
+}
+
+.ajor-compare-table::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: #dce4e5;
+  transform: translateX(-50%);
+}
+
+.ajor-compare-head,
+.ajor-compare-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ajor-compare-head {
+  position: relative;
+  min-height: 86px;
+  border-bottom: 1px solid #dce4e5;
+}
+
+.ajor-compare-brand,
+.ajor-compare-contractor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 58px;
+  color: #344052;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.ajor-compare-brand {
+  color: #e51b2b;
+}
+
+.ajor-compare-brand img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.ajor-compare-vs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid #dce4e5;
+  border-radius: 50%;
+  background: #fff;
+  color: #668092;
+  font-size: 20px;
+  font-weight: 700;
+  transform: translate(-50%, -50%);
+}
+
+.ajor-compare-row {
+  border-bottom: 1px solid #dce4e5;
+}
+
+.ajor-compare-row:last-child {
+  border-bottom: 0;
+}
+
+.ajor-compare-cell {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-height: 102px;
+  padding: 20px 58px;
+}
+
+.ajor-compare-cell img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.ajor-compare-cell p {
+  margin: 0;
+  color: #07101f;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.ajor-compare-cell-muted img {
+  filter: grayscale(1);
+  opacity: 0.52;
+}
+
+.ajor-compare-cell-muted p {
+  color: #2f3744;
+}
+
 @media (max-width: 1400px) {
   .ajor-decor-section,
   .ajor-services-section {
@@ -4866,6 +5002,36 @@ body.lightbox-open {
   .ajor-quality-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 34px 36px;
+  }
+
+  .ajor-compare-section {
+    padding: 44px 0 56px;
+  }
+
+  .ajor-compare-wrap h2 {
+    font-size: 29px;
+  }
+
+  .ajor-compare-brand,
+  .ajor-compare-contractor {
+    padding: 22px 34px;
+    font-size: 22px;
+  }
+
+  .ajor-compare-cell {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 18px;
+    min-height: 92px;
+    padding: 18px 34px;
+  }
+
+  .ajor-compare-cell img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ajor-compare-cell p {
+    font-size: 16px;
   }
 }
 
@@ -5189,6 +5355,64 @@ body.lightbox-open {
   .ajor-quality-item p {
     max-width: 310px;
     font-size: 14px;
+  }
+
+  .ajor-compare-section {
+    padding: 34px 0 42px;
+  }
+
+  .ajor-compare-wrap h2 {
+    margin-bottom: 22px;
+    font-size: 24px;
+  }
+
+  .ajor-compare-table {
+    border-radius: 14px;
+  }
+
+  .ajor-compare-table::before,
+  .ajor-compare-vs {
+    display: none;
+  }
+
+  .ajor-compare-head,
+  .ajor-compare-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ajor-compare-head {
+    min-height: auto;
+  }
+
+  .ajor-compare-brand,
+  .ajor-compare-contractor {
+    padding: 16px 18px;
+    font-size: 20px;
+  }
+
+  .ajor-compare-contractor {
+    border-top: 1px solid #dce4e5;
+  }
+
+  .ajor-compare-cell {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 14px;
+    min-height: auto;
+    padding: 16px 18px;
+  }
+
+  .ajor-compare-cell + .ajor-compare-cell {
+    border-top: 1px solid #edf1f2;
+    background: #fafafa;
+  }
+
+  .ajor-compare-cell img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ajor-compare-cell p {
+    font-size: 15px;
   }
 }
 
