@@ -1137,6 +1137,87 @@ img {
   background: #c81520;
 }
 
+.ajor-collection-section {
+  background: #fff;
+  padding: 70px 0 28px;
+}
+
+.ajor-collection-wrap {
+  width: min(100%, 1420px);
+  text-align: center;
+}
+
+.ajor-collection-wrap h2 {
+  margin: 0 0 34px;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1396px;
+  margin: 0 auto;
+}
+
+.ajor-collection-card {
+  position: relative;
+  min-height: 450px;
+}
+
+.ajor-collection-card img {
+  display: block;
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.ajor-collection-label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  min-width: 146px;
+  padding: 12px 20px 14px;
+  border-top-right-radius: 6px;
+  background: #fff;
+  text-align: left;
+  box-shadow: 0 -8px 24px rgba(17, 24, 39, 0.04);
+}
+
+.ajor-collection-label h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.ajor-collection-label a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  color: #ed1c24;
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.ajor-collection-note {
+  max-width: 1060px;
+  margin: 36px auto 0;
+  color: #1f2937;
+  font-size: 21px;
+  line-height: 1.42;
+  letter-spacing: 0;
+}
+
 body.lightbox-open {
   overflow: hidden;
 }
@@ -4175,6 +4256,33 @@ body.lightbox-open {
     justify-self: start;
     max-width: 360px;
   }
+
+  .ajor-collection-section {
+    padding: 52px 0 24px;
+  }
+
+  .ajor-collection-wrap h2 {
+    margin-bottom: 26px;
+    font-size: 32px;
+  }
+
+  .ajor-collection-grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+
+  .ajor-collection-card {
+    min-height: 340px;
+  }
+
+  .ajor-collection-card img {
+    height: 340px;
+  }
+
+  .ajor-collection-note {
+    margin-top: 28px;
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -4375,6 +4483,32 @@ body.lightbox-open {
   .ajor-interiors-card-icon img {
     width: 68px;
     height: 68px;
+  }
+
+  .ajor-collection-section {
+    padding: 38px 0 20px;
+  }
+
+  .ajor-collection-wrap h2 {
+    font-size: 26px;
+  }
+
+  .ajor-collection-card,
+  .ajor-collection-card img {
+    min-height: 260px;
+    height: 260px;
+  }
+
+  .ajor-collection-label {
+    padding: 10px 16px 12px;
+  }
+
+  .ajor-collection-label h3 {
+    font-size: 24px;
+  }
+
+  .ajor-collection-note {
+    font-size: 16px;
   }
 
   .mk-materials-section {
