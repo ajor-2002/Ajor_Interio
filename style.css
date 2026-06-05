@@ -3683,7 +3683,7 @@ body.lightbox-open {
 }
 
 .mk-cost-wrap {
-  width: min(100%, 1180px);
+  width: min(100%, 1000px);
 }
 
 .mk-cost-wrap h2 {
@@ -3714,7 +3714,7 @@ body.lightbox-open {
   flex: 1 1 800px;
   min-width: 0;
   margin-bottom: 10px;
-  width: 800px;
+  width: 500px;
   aspect-ratio: 800 / 520;
 }
 
