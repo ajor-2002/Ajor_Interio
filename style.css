@@ -4435,9 +4435,14 @@ body.lightbox-open {
 }
 
 @media (max-width: 860px) {
+  .topbar {
+    display: none;
+  }
+
   .page-back {
-    top: 92px;
+    top: auto;
     left: 12px;
+    bottom: 12px;
     width: 44px;
     height: 44px;
     font-size: 1.45rem;
@@ -4454,8 +4459,9 @@ body.lightbox-open {
 
 @media (max-width: 640px) {
   .page-back {
-    top: 84px;
+    top: auto;
     left: 10px;
+    bottom: 12px;
   }
 
   .back-to-top {
@@ -4494,7 +4500,7 @@ body.lightbox-open {
   }
 
   .topbar {
-    display: block;
+    display: none;
   }
 
   .container,
@@ -4935,8 +4941,9 @@ body.lightbox-open {
   }
 
   .page-back {
-    top: 86px;
+    top: auto;
     left: 10px;
+    bottom: 12px;
     width: 40px;
     height: 40px;
     font-size: 1.3rem;
