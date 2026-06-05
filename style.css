@@ -4762,22 +4762,26 @@ body.lightbox-open {
 
 .ajor-meet-designer-section {
   background: #f4f6f8;
-  padding: 88px 0 0;
+  min-height: 386px;
+  padding: 96px 37px;
   overflow: hidden;
+  position: relative;
 }
 
 .ajor-meet-designer-wrap {
   position: relative;
-  display: grid;
-  min-height: 320px;
+  z-index: 1;
+  display: flex;
+  min-height: 194px;
   width: min(100%, 1320px);
-  place-items: start center;
-  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .ajor-meet-designer-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 760px;
 }
 
@@ -4822,12 +4826,13 @@ body.lightbox-open {
 
 .ajor-meet-designer-image {
   position: absolute;
-  right: -22px;
-  bottom: 0;
-  width: min(19vw, 260px);
-  min-width: 210px;
-  height: auto;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  object-position: right center;
+  pointer-events: none;
 }
 
 @media (max-width: 1400px) {
@@ -5186,11 +5191,17 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-section {
-    padding: 64px 0 0;
+    padding: 64px 20px;
   }
 
   .ajor-meet-designer-wrap {
-    min-height: 290px;
+    min-height: 230px;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .ajor-meet-designer-copy {
+    max-width: 520px;
   }
 
   .ajor-meet-designer-wrap h2 {
@@ -5198,13 +5209,12 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-wrap p {
+    margin-bottom: 40px;
     font-size: 23px;
   }
 
   .ajor-meet-designer-image {
-    right: -12px;
-    width: 210px;
-    min-width: 0;
+    object-fit: cover;
   }
 }
 
@@ -5608,42 +5618,45 @@ body.lightbox-open {
   }
 
   .ajor-meet-designer-section {
-    padding: 42px 0 0;
+    min-height: 100%;
+    padding: 39px 20px 27px;
   }
 
   .ajor-meet-designer-wrap {
-    display: grid;
-    min-height: 250px;
-    place-items: start center;
+    min-height: auto;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .ajor-meet-designer-copy {
-    max-width: calc(100% - 120px);
-    padding-right: 82px;
+    max-width: 210px;
+    padding-right: 0;
   }
 
   .ajor-meet-designer-wrap h2 {
     margin-bottom: 16px;
-    font-size: 23px;
+    font-size: 24px;
+    line-height: 1.15;
   }
 
   .ajor-meet-designer-wrap p {
-    margin-bottom: 26px;
-    font-size: 19px;
+    display: none;
   }
 
   .ajor-meet-designer-btn {
     min-width: 154px;
     min-height: 44px;
+    margin-top: 43px;
     font-size: 16px;
   }
 
   .ajor-meet-designer-image {
     position: absolute;
-    right: -18px;
-    bottom: 0;
-    width: 132px;
-    margin-top: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right center;
   }
 }
 
