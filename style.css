@@ -3013,6 +3013,101 @@ body.lightbox-open {
   }
 }
 
+.ajor-luxe-terms-page {
+  background: #fbfaf7;
+  padding: 72px 0 96px;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.ajor-luxe-terms-wrap {
+  width: min(100% - 32px, 980px);
+  margin: 0 auto;
+  padding: 56px 64px;
+  border: 1px solid #e1ddd9;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(73, 73, 73, 0.06);
+}
+
+.ajor-luxe-terms-wrap h1 {
+  margin: 0 0 8px;
+  color: #494949;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-terms-date {
+  margin: 0 0 42px;
+  color: #9a6b12;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.ajor-luxe-terms-wrap section {
+  margin-top: 34px;
+}
+
+.ajor-luxe-terms-wrap h2 {
+  margin: 0 0 14px;
+  color: #494949;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-terms-wrap h3 {
+  margin: 22px 0 10px;
+  color: #494949;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-terms-wrap p,
+.ajor-luxe-terms-wrap li {
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-terms-wrap p {
+  margin: 0 0 12px;
+}
+
+.ajor-luxe-terms-wrap ol {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.ajor-luxe-terms-wrap li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .ajor-luxe-terms-page {
+    padding: 42px 0 64px;
+  }
+
+  .ajor-luxe-terms-wrap {
+    padding: 34px 22px;
+  }
+
+  .ajor-luxe-terms-wrap h1 {
+    font-size: 30px;
+  }
+
+  .ajor-luxe-terms-wrap h2 {
+    font-size: 21px;
+  }
+}
+
 @media (max-width: 768px) {
   .luxe-overlay {
     width: 100%;
