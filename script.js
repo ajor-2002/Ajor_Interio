@@ -215,6 +215,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const homeCalcForm = document.querySelector('.home-calc-form');
+  if (homeCalcForm) {
+    const progressSteps = Array.from(document.querySelectorAll('.home-calc-step'));
+
+    homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {
+      const optionButtons = Array.from(fieldset.querySelectorAll('[data-home-calc-option]'));
+
+      optionButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          optionButtons.forEach((optionButton) => {
+            optionButton.classList.toggle('active', optionButton === button);
+          });
+        });
+      });
+    });
+
+    homeCalcForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      progressSteps.forEach((step, index) => {
+        step.classList.toggle('active', index === 1);
+      });
+    });
+  }
+
   const modularKitchenGallery = document.querySelector('.mk-gallery-section');
   if (modularKitchenGallery) {
     const cards = Array.from(modularKitchenGallery.querySelectorAll('.mk-design-card'));

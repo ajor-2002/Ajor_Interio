@@ -1,33 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="1;url=../index.html" />
-  <title>Price Calculators | AJOR Doors & Interiors</title>
+  <title>Home Calculator | AJOR Interio</title>
+  <link rel="icon" href="../images/logo.png" type="image/png" />
   <link rel="stylesheet" href="../style.css" />
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #f8f4ef, #ffffff); }
-    .redirect-page { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
-    .redirect-card { max-width: 620px; width: 100%; background: #fff; border-radius: 24px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,.12); text-align: center; }
-    .redirect-card h1 { margin: 0 0 12px; color: #e11b22; font-size: clamp(2rem, 4vw, 3rem); }
-    .redirect-card p { margin: 0 0 20px; color: #555; line-height: 1.6; }
-    .redirect-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .redirect-actions a { display: inline-block; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700; }
-    .redirect-actions .primary { background: #e11b22; color: #fff; }
-    .redirect-actions .secondary { border: 1px solid #ddd; color: #222; }
-  </style>
 </head>
-<body>
-  <main class="redirect-page">
-    <section class="redirect-card">
-      <h1>Price Calculators</h1>
-      <p>This page is being restored. You will be redirected to the main site in a moment.</p>
-      <div class="redirect-actions">
-        <a class="primary" href="../index.html">Go to Home</a>
-        <a class="secondary" href="../index.html#lead-form">Book 3D Design Session</a>
+
+<body class="home-calc-page">
+  <header class="home-calc-header" aria-label="Home calculator progress">
+    <a href="../index.html" class="home-calc-logo" aria-label="Back to home">
+      <img src="../images/logo.png" alt="AJOR logo" />
+    </a>
+
+    <nav class="home-calc-progress" aria-label="Calculator steps">
+      <div class="home-calc-step active">
+        <span>1</span>
+        <strong>Your Space</strong>
       </div>
+      <i></i>
+      <div class="home-calc-step">
+        <span>2</span>
+        <strong>Scope</strong>
+      </div>
+      <i></i>
+      <div class="home-calc-step">
+        <span>3</span>
+        <strong>Package</strong>
+      </div>
+      <i></i>
+      <div class="home-calc-step">
+        <span>4</span>
+        <strong>Estimate</strong>
+      </div>
+    </nav>
+  </header>
+
+  <main class="home-calc-main">
+    <section class="home-calc-card" aria-labelledby="home-calc-title">
+      <h1 id="home-calc-title">Your Space</h1>
+
+      <form class="home-calc-form">
+        <fieldset>
+          <legend>Property Type</legend>
+          <div class="home-calc-options">
+            <button class="active" type="button" data-home-calc-option>Apartment</button>
+            <button type="button" data-home-calc-option>Independent House/Villa</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>BHK Type / Size</legend>
+          <div class="home-calc-options bhk">
+            <button class="active" type="button" data-home-calc-option>1 BHK</button>
+            <button type="button" data-home-calc-option>2 BHK</button>
+            <button type="button" data-home-calc-option>3 BHK</button>
+            <button type="button" data-home-calc-option>4 BHK</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Project Type</legend>
+          <div class="home-calc-options">
+            <button type="button" data-home-calc-option>New Home</button>
+            <button class="active" type="button" data-home-calc-option>Renovation</button>
+          </div>
+        </fieldset>
+
+        <div class="home-calc-actions">
+          <button type="submit">Continue to Scope</button>
+        </div>
+      </form>
     </section>
   </main>
+
+  <script src="../script.js"></script>
 </body>
+
 </html>
