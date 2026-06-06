@@ -2954,6 +2954,65 @@ body.lightbox-open {
   }
 }
 
+.ajor-luxe-footer {
+  position: relative;
+  width: 100%;
+  height: 368px;
+  overflow: hidden;
+  background: #454545;
+}
+
+.ajor-luxe-footer-pattern {
+  position: absolute;
+  inset: 0;
+  background-color: #454545;
+  background-image:
+    radial-gradient(ellipse 46px 92px at 50% 100%, transparent 33px, rgba(29, 29, 29, 0.42) 34px, rgba(29, 29, 29, 0.42) 35px, transparent 36px),
+    linear-gradient(90deg, rgba(25, 25, 25, 0.38) 1px, transparent 1px);
+  background-position: 0 0, 0 0;
+  background-size: 126px 190px, 42px 100%;
+}
+
+.ajor-luxe-footer-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 68px 0 0;
+  background-image: radial-gradient(ellipse 46px 92px at 50% 100%, transparent 33px, rgba(29, 29, 29, 0.36) 34px, rgba(29, 29, 29, 0.36) 35px, transparent 36px);
+  background-position: 63px 0;
+  background-size: 126px 190px;
+}
+
+.ajor-luxe-footer-links {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+}
+
+.ajor-luxe-footer-links a {
+  color: #c19038;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0 4px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.ajor-luxe-footer-links a:first-child {
+  margin-left: 0;
+}
+
+.ajor-luxe-footer-links a:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .ajor-luxe-footer {
+    height: 367px;
+  }
+}
+
 @media (max-width: 768px) {
   .luxe-overlay {
     width: 100%;
