@@ -1941,13 +1941,16 @@ body.lightbox-open {
 }
 
 .ajor-luxe-journey-wrap {
+  -moz-box-align: start;
+  -moz-box-pack: center;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: 24px;
+  position: relative;
   width: calc(100% - 226px);
   max-width: none;
-  margin: 0 138px 0 78px;
+  margin: 130px 138px 74px 78px;
   padding: 0;
 }
 
