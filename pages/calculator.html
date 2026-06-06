@@ -118,8 +118,82 @@
 
       <div class="home-calc-scope-actions">
         <button class="home-calc-back" type="button" data-home-calc-back>Back</button>
-        <button class="home-calc-continue" type="button">Continue to Style</button>
+        <button class="home-calc-continue" type="button" data-home-calc-scope-next>Continue to Style</button>
       </div>
+    </section>
+
+    <section class="home-calc-card home-calc-panel home-calc-package-card" aria-labelledby="home-calc-package-title" data-home-calc-panel="package">
+      <h1 id="home-calc-package-title">Select Your Package</h1>
+
+      <div class="home-calc-package-grid">
+        <button class="home-calc-package-option" type="button" data-home-calc-package>
+          <strong>Standard</strong>
+          <img src="../images/living room design/Modern Oasis Living Room Design.jpg" alt="Standard interior package" />
+          <ul>
+            <li>Balanced pricing</li>
+            <li>Modern layouts</li>
+            <li>Modular storage</li>
+          </ul>
+        </button>
+
+        <button class="home-calc-package-option" type="button" data-home-calc-package>
+          <strong>Premium</strong>
+          <img src="../images/living room design/Chic Contrast Open-Plan Living Room Design.jpg" alt="Premium interior package" />
+          <ul>
+            <li>Premium pricing</li>
+            <li>Contemporary style</li>
+            <li>Enhanced materials</li>
+          </ul>
+        </button>
+
+        <button class="home-calc-package-option active" type="button" data-home-calc-package>
+          <strong>Luxe</strong>
+          <img src="../images/ajor luxe.jpg" alt="Luxe interior package" />
+          <ul>
+            <li>Elite pricing</li>
+            <li>Lavish design</li>
+            <li>Custom accessories</li>
+          </ul>
+        </button>
+      </div>
+
+      <div class="home-calc-package-actions">
+        <button class="home-calc-back" type="button" data-home-calc-package-back>Back</button>
+        <button class="home-calc-continue" type="button" data-home-calc-package-next>Continue to Estimate</button>
+      </div>
+    </section>
+
+    <section class="home-calc-card home-calc-panel home-calc-estimate-card" aria-labelledby="home-calc-estimate-title" data-home-calc-panel="estimate">
+      <h1 id="home-calc-estimate-title">Contact &amp; Estimate</h1>
+
+      <form class="home-calc-estimate-form">
+        <label>
+          <span>Name</span>
+          <input name="name" type="text" />
+        </label>
+
+        <label>
+          <span>Phone Number</span>
+          <input name="phone" type="tel" placeholder="Enter phone" />
+        </label>
+
+        <label>
+          <span>Email</span>
+          <input name="email" type="email" placeholder="you@example.com" />
+        </label>
+
+        <label>
+          <span>Preferred Visit Date</span>
+          <input name="visitDate" type="date" />
+        </label>
+
+        <p class="home-calc-estimate-status" aria-live="polite"></p>
+
+        <div class="home-calc-estimate-actions">
+          <button class="home-calc-back" type="button" data-home-calc-estimate-back>Back</button>
+          <button class="home-calc-continue" type="submit">Get Estimate</button>
+        </div>
+      </form>
     </section>
   </main>
 

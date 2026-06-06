@@ -220,10 +220,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const progressSteps = Array.from(document.querySelectorAll('.home-calc-step'));
     const panels = Array.from(document.querySelectorAll('[data-home-calc-panel]'));
     const backButton = document.querySelector('[data-home-calc-back]');
+    const scopeNextButton = document.querySelector('[data-home-calc-scope-next]');
+    const packageBackButton = document.querySelector('[data-home-calc-package-back]');
+    const packageNextButton = document.querySelector('[data-home-calc-package-next]');
+    const estimateBackButton = document.querySelector('[data-home-calc-estimate-back]');
+    const estimateForm = document.querySelector('.home-calc-estimate-form');
+    const estimateStatus = document.querySelector('.home-calc-estimate-status');
+    const packageButtons = Array.from(document.querySelectorAll('[data-home-calc-package]'));
+    const panelByStep = ['space', 'scope', 'package', 'estimate'];
 
     const showHomeCalcStep = (stepIndex) => {
       panels.forEach((panel) => {
-        panel.classList.toggle('active', panel.dataset.homeCalcPanel === (stepIndex === 1 ? 'scope' : 'space'));
+        panel.classList.toggle('active', panel.dataset.homeCalcPanel === panelByStep[stepIndex]);
       });
 
       progressSteps.forEach((step, index) => {
@@ -251,6 +259,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
     backButton?.addEventListener('click', () => {
       showHomeCalcStep(0);
+    });
+
+    scopeNextButton?.addEventListener('click', () => {
+      showHomeCalcStep(2);
+    });
+
+    packageBackButton?.addEventListener('click', () => {
+      showHomeCalcStep(1);
+    });
+
+    packageNextButton?.addEventListener('click', () => {
+      showHomeCalcStep(3);
+    });
+
+    estimateBackButton?.addEventListener('click', () => {
+      showHomeCalcStep(2);
+    });
+
+    packageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        packageButtons.forEach((packageButton) => {
+          packageButton.classList.toggle('active', packageButton === button);
+        });
+      });
+    });
+
+    estimateForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(estimateForm);
+      const name = (formData.get('name') || '').toString().trim();
+      const phone = (formData.get('phone') || '').toString().trim();
+      const email = (formData.get('email') || '').toString().trim();
+      const visitDate = (formData.get('visitDate') || '').toString().trim();
+
+      if (!name || (phone.match(/\d/g) || []).length < 10 || !email || !visitDate) {
+        if (estimateStatus) {
+          estimateStatus.textContent = 'Please fill all contact details correctly.';
+          estimateStatus.classList.remove('is-success');
+        }
+        return;
+      }
+
+      const subject = encodeURIComponent('New Home Calculator Estimate Request');
+      const body = encodeURIComponent(
+        [
+          'New home calculator estimate request',
+          `Name: ${name}`,
+          `Phone: ${phone}`,
+          `Email: ${email}`,
+          `Preferred Visit Date: ${visitDate}`,
+          `Page URL: ${window.location.href}`,
+        ].join('\n')
+      );
+
+      if (estimateStatus) {
+        estimateStatus.textContent = 'Opening your mail app to send the estimate request...';
+        estimateStatus.classList.add('is-success');
+      }
+
+      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
     });
 
     document.querySelectorAll('[data-room-count]').forEach((room) => {

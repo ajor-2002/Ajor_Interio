@@ -10702,6 +10702,140 @@ body.no-scroll {
   cursor: pointer;
 }
 
+.home-calc-package-card {
+  width: min(100%, 1120px);
+  min-height: 660px;
+  padding: 44px 40px 40px;
+}
+
+.home-calc-package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.home-calc-package-option {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 402px;
+  padding: 0;
+  border: 1px solid #d1d6de;
+  border-radius: 13px;
+  background: #fff;
+  color: #2d2d2d;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(45, 45, 45, 0.1);
+  cursor: pointer;
+}
+
+.home-calc-package-option.active {
+  border-color: #c19038;
+  box-shadow: 0 4px 10px rgba(193, 144, 56, 0.16);
+}
+
+.home-calc-package-option strong {
+  padding: 26px 20px 20px;
+  color: #2d2d2d;
+  font-size: 1.2rem;
+}
+
+.home-calc-package-option img {
+  width: 100%;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+}
+
+.home-calc-package-option ul {
+  margin: 0;
+  padding: 24px 26px 22px;
+  list-style: none;
+}
+
+.home-calc-package-option li {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 28px;
+  color: #2d2d2d;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.home-calc-package-option li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #1aa64a;
+  font-weight: 800;
+}
+
+.home-calc-package-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 58px;
+}
+
+.home-calc-estimate-card {
+  width: min(100%, 840px);
+  min-height: 720px;
+  padding: 44px 40px 40px;
+}
+
+.home-calc-estimate-form {
+  display: grid;
+  gap: 26px;
+  margin-top: 28px;
+}
+
+.home-calc-estimate-form label {
+  display: grid;
+  gap: 10px;
+}
+
+.home-calc-estimate-form span {
+  color: #2d2d2d;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.home-calc-estimate-form input {
+  width: 100%;
+  height: 52px;
+  padding: 0 20px;
+  border: 1px solid #cbd2dc;
+  border-radius: 9px;
+  background: #fff;
+  color: #2d2d2d;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.home-calc-estimate-form input::placeholder {
+  color: #8b95a7;
+}
+
+.home-calc-estimate-status {
+  min-height: 20px;
+  margin: -4px 0 0;
+  color: #ef3347;
+  font-size: 0.92rem;
+}
+
+.home-calc-estimate-status.is-success {
+  color: #147a35;
+}
+
+.home-calc-estimate-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
 @media (max-width: 991px) {
   .home-calc-header {
     height: auto;
@@ -10781,5 +10915,35 @@ body.no-scroll {
 
   .home-calc-continue {
     width: 100%;
+  }
+
+  .home-calc-package-card {
+    padding: 28px 18px 24px;
+  }
+
+  .home-calc-package-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .home-calc-package-option {
+    min-height: auto;
+  }
+
+  .home-calc-package-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  .home-calc-estimate-card {
+    padding: 28px 18px 24px;
+  }
+
+  .home-calc-estimate-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 18px;
   }
 }
