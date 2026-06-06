@@ -2229,6 +2229,182 @@ body.lightbox-open {
   }
 }
 
+.ajor-luxe-offerings-section {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 84px 0 76px;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.ajor-luxe-offerings-wrap {
+  position: relative;
+  width: min(100%, 1740px);
+  margin: 0 auto;
+  padding: 0 96px;
+}
+
+.ajor-luxe-offerings-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 22px;
+  margin: 0 0 76px;
+  color: #494949;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-offerings-title span {
+  font-size: 48px;
+  font-weight: 300;
+}
+
+.ajor-luxe-offerings-title em {
+  color: #494949;
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+  font-size: 86px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.6;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 58px 88px;
+  align-items: start;
+}
+
+.ajor-luxe-offering-card {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.ajor-luxe-offering-card img {
+  display: block;
+  width: 265px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.ajor-luxe-offering-card h3 {
+  margin: 16px 0 0;
+  color: #5a5a5a;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-offerings-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 58%;
+  display: grid;
+  width: 44px;
+  height: 56px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #9a6b12;
+  cursor: pointer;
+}
+
+.ajor-luxe-offerings-arrow span {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+.ajor-luxe-offerings-arrow--prev {
+  left: 12px;
+}
+
+.ajor-luxe-offerings-arrow--prev span {
+  transform: rotate(-45deg);
+}
+
+.ajor-luxe-offerings-arrow--next {
+  right: 12px;
+}
+
+.ajor-luxe-offerings-arrow--next span {
+  transform: rotate(135deg);
+}
+
+@media (max-width: 1120px) {
+  .ajor-luxe-offerings-wrap {
+    padding: 0 52px;
+  }
+
+  .ajor-luxe-offerings-grid {
+    grid-template-columns: repeat(3, minmax(170px, 1fr));
+    gap: 44px 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ajor-luxe-offerings-section {
+    padding: 56px 0 54px;
+  }
+
+  .ajor-luxe-offerings-wrap {
+    padding: 0 24px;
+  }
+
+  .ajor-luxe-offerings-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 42px;
+  }
+
+  .ajor-luxe-offerings-title span {
+    font-size: 30px;
+  }
+
+  .ajor-luxe-offerings-title em {
+    font-size: 58px;
+    line-height: 0.8;
+  }
+
+  .ajor-luxe-offerings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+
+  .ajor-luxe-offering-card img {
+    width: 100%;
+  }
+
+  .ajor-luxe-offering-card h3 {
+    font-size: 18px;
+  }
+
+  .ajor-luxe-offerings-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ajor-luxe-offerings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ajor-luxe-offering-card img {
+    width: min(100%, 280px);
+  }
+}
+
 @media (max-width: 768px) {
   .luxe-overlay {
     width: 100%;
