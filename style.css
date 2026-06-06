@@ -1625,8 +1625,9 @@ body.lightbox-open {
 }
 
 .ajor-luxe-header {
-  position: relative;
-  z-index: 5;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   min-height: 66px;
   align-items: center;
@@ -1958,6 +1959,7 @@ body.lightbox-open {
   height: 720px;
   position: relative;
   width: 50%;
+ 
 }
 
 .ajor-luxe-journey-title-box {
@@ -1969,7 +1971,7 @@ body.lightbox-open {
   border-top-right-radius: 10px;
   display: flex;
   justify-content: center;
-  margin: 8px auto 0;
+  margin: 8px auto 10px;
   min-height: 120px;
   position: sticky;
   top: 84px;
