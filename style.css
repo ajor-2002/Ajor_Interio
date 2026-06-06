@@ -2439,7 +2439,7 @@ body.lightbox-open {
 }
 
 .ajor-luxe-spaces-wrap {
-  width: min(100%, 1120px);
+  width: min(100%, 980px);
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -2502,7 +2502,7 @@ body.lightbox-open {
 .ajor-luxe-spaces-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px;
+  gap: 30px;
 }
 
 .ajor-luxe-space-card {
@@ -2520,7 +2520,7 @@ body.lightbox-open {
 .ajor-luxe-space-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 1;
+  height: 360px;
   object-fit: cover;
 }
 
@@ -2554,13 +2554,21 @@ body.lightbox-open {
   }
 
   .ajor-luxe-spaces-gallery {
-    gap: 24px;
+    gap: 20px;
+  }
+
+  .ajor-luxe-space-card img {
+    height: 280px;
   }
 }
 
 @media (max-width: 560px) {
   .ajor-luxe-spaces-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .ajor-luxe-space-card img {
+    height: 260px;
   }
 
   .ajor-luxe-spaces-title em {
