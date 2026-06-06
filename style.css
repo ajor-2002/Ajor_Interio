@@ -2039,7 +2039,7 @@ body.lightbox-open {
 
 .ajor-luxe-journey-card:nth-child(1) {
   transform: translateY(0);
-  z-index: 1;
+ 
 }
 
 .ajor-luxe-journey-card:nth-child(2) {
@@ -2054,23 +2054,22 @@ body.lightbox-open {
 
 .ajor-luxe-journey-card:nth-child(4) {
   transform: translateY(36px);
-  z-index: 4;
+
 }
 
 .ajor-luxe-journey-card:nth-child(5) {
   transform: translateY(48px);
-  z-index: 5;
+ 
 }
 
 .ajor-luxe-journey-card:nth-child(6) {
   transform: translateY(60px);
-  z-index: 6;
+ 
 }
 
 .ajor-luxe-journey-card:nth-child(7) {
   transform: translateY(72px);
-  z-index: 7;
-}
+
 
 .ajor-luxe-journey-header {
   display: flex;
