@@ -1945,7 +1945,10 @@ body.lightbox-open {
   align-items: flex-start;
   justify-content: center;
   gap: 24px;
-  width: min(100%, 1540px);
+  width: calc(100% - 226px);
+  max-width: none;
+  margin: 0 138px 0 78px;
+  padding: 0;
 }
 
 .ajor-luxe-journey-title-panel {
@@ -2139,6 +2142,9 @@ body.lightbox-open {
   .ajor-luxe-journey-wrap {
     flex-direction: column;
     gap: 14px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 32px;
   }
 
   .ajor-luxe-journey-title-panel {
