@@ -2233,23 +2233,23 @@ body.lightbox-open {
   position: relative;
   overflow: hidden;
   background: #fff;
-  padding: 84px 0 76px;
+  padding: 48px 0 46px;
   font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
 }
 
 .ajor-luxe-offerings-wrap {
   position: relative;
-  width: min(100%, 1740px);
+  width: min(100%, 1480px);
   margin: 0 auto;
-  padding: 0 96px;
+  padding: 0 78px;
 }
 
 .ajor-luxe-offerings-title {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 22px;
-  margin: 0 0 76px;
+  gap: 14px;
+  margin: 0 0 44px;
   color: #494949;
   font-weight: 300;
   line-height: 1;
@@ -2258,14 +2258,14 @@ body.lightbox-open {
 }
 
 .ajor-luxe-offerings-title span {
-  font-size: 48px;
+  font-size: 34px;
   font-weight: 300;
 }
 
 .ajor-luxe-offerings-title em {
   color: #494949;
   font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
-  font-size: 86px;
+  font-size: 58px;
   font-style: normal;
   font-weight: 400;
   line-height: 0.6;
@@ -2275,7 +2275,7 @@ body.lightbox-open {
 .ajor-luxe-offerings-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(180px, 1fr));
-  gap: 58px 88px;
+  gap: 34px 60px;
   align-items: start;
 }
 
@@ -2287,7 +2287,7 @@ body.lightbox-open {
 
 .ajor-luxe-offering-card img {
   display: block;
-  width: 265px;
+  width: 190px;
   max-width: 100%;
   aspect-ratio: 1;
   border-radius: 8px;
@@ -2295,9 +2295,9 @@ body.lightbox-open {
 }
 
 .ajor-luxe-offering-card h3 {
-  margin: 16px 0 0;
+  margin: 10px 0 0;
   color: #5a5a5a;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 0;
@@ -2306,10 +2306,10 @@ body.lightbox-open {
 .ajor-luxe-offerings-arrow {
   position: absolute;
   z-index: 2;
-  top: 58%;
+  top: 56%;
   display: grid;
-  width: 44px;
-  height: 56px;
+  width: 34px;
+  height: 44px;
   place-items: center;
   border: 0;
   background: transparent;
@@ -2319,8 +2319,8 @@ body.lightbox-open {
 
 .ajor-luxe-offerings-arrow span {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   border-top: 2px solid currentColor;
   border-left: 2px solid currentColor;
 }
@@ -2343,43 +2343,43 @@ body.lightbox-open {
 
 @media (max-width: 1120px) {
   .ajor-luxe-offerings-wrap {
-    padding: 0 52px;
+    padding: 0 42px;
   }
 
   .ajor-luxe-offerings-grid {
     grid-template-columns: repeat(3, minmax(170px, 1fr));
-    gap: 44px 48px;
+    gap: 30px 36px;
   }
 }
 
 @media (max-width: 768px) {
   .ajor-luxe-offerings-section {
-    padding: 56px 0 54px;
+    padding: 36px 0 38px;
   }
 
   .ajor-luxe-offerings-wrap {
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
   .ajor-luxe-offerings-title {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    margin-bottom: 42px;
+    margin-bottom: 28px;
   }
 
   .ajor-luxe-offerings-title span {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .ajor-luxe-offerings-title em {
-    font-size: 58px;
+    font-size: 44px;
     line-height: 0.8;
   }
 
   .ajor-luxe-offerings-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 30px 20px;
+    gap: 24px 18px;
   }
 
   .ajor-luxe-offering-card img {
@@ -2387,7 +2387,7 @@ body.lightbox-open {
   }
 
   .ajor-luxe-offering-card h3 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .ajor-luxe-offerings-arrow {
@@ -2401,7 +2401,7 @@ body.lightbox-open {
   }
 
   .ajor-luxe-offering-card img {
-    width: min(100%, 280px);
+    width: min(100%, 220px);
   }
 }
 
