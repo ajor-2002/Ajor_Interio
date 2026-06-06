@@ -2432,6 +2432,146 @@ body.lightbox-open {
   }
 }
 
+.ajor-luxe-spaces-section {
+  background: #fff;
+  padding: 58px 0 88px;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.ajor-luxe-spaces-wrap {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ajor-luxe-spaces-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 38px;
+  color: #494949;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-spaces-title em {
+  color: #494949;
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.7;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-spaces-title span {
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-spaces-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 52px;
+  margin-bottom: 28px;
+}
+
+.ajor-luxe-spaces-tab {
+  border: 0;
+  background: transparent;
+  color: #4f4f4f;
+  cursor: pointer;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  transition: color 0.2s ease;
+}
+
+.ajor-luxe-spaces-tab:hover,
+.ajor-luxe-spaces-tab.is-active {
+  color: #c18400;
+}
+
+.ajor-luxe-spaces-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.ajor-luxe-space-card {
+  display: none;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f5f2ed;
+}
+
+.ajor-luxe-space-card.is-active {
+  display: block;
+}
+
+.ajor-luxe-space-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .ajor-luxe-spaces-section {
+    padding: 48px 0 64px;
+  }
+
+  .ajor-luxe-spaces-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 28px;
+  }
+
+  .ajor-luxe-spaces-title em {
+    font-size: 52px;
+  }
+
+  .ajor-luxe-spaces-title span {
+    font-size: 30px;
+  }
+
+  .ajor-luxe-spaces-tabs {
+    flex-wrap: wrap;
+    gap: 16px 28px;
+  }
+
+  .ajor-luxe-spaces-tab {
+    font-size: 17px;
+  }
+
+  .ajor-luxe-spaces-gallery {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .ajor-luxe-spaces-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .ajor-luxe-spaces-title em {
+    font-size: 44px;
+  }
+
+  .ajor-luxe-spaces-title span {
+    font-size: 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .luxe-overlay {
     width: 100%;

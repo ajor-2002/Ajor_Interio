@@ -626,6 +626,39 @@ document.addEventListener('DOMContentLoaded', function () {
     renderOfferings();
   });
 
+  document.querySelectorAll('.ajor-luxe-spaces-section').forEach((section) => {
+    const tabs = Array.from(section.querySelectorAll('.ajor-luxe-spaces-tab'));
+    const cards = Array.from(section.querySelectorAll('.ajor-luxe-space-card'));
+    const gallery = section.querySelector('.ajor-luxe-spaces-gallery');
+
+    if (tabs.length === 0 || cards.length === 0) return;
+
+    const setActiveStyle = (style) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.spaceStyle === style;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      cards.forEach((card) => {
+        const isActive = card.dataset.spaceStyle === style;
+        card.classList.toggle('is-active', isActive);
+        card.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+
+      gallery?.setAttribute('data-active-style', style);
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        setActiveStyle(tab.dataset.spaceStyle || 'rustic');
+      });
+    });
+
+    const initialStyle = tabs.find((tab) => tab.classList.contains('is-active'))?.dataset.spaceStyle || 'rustic';
+    setActiveStyle(initialStyle);
+  });
+
   document.querySelectorAll('.mk-accessories-carousel').forEach((carousel) => {
     const track = carousel.querySelector('.mk-accessories-track');
     const cards = Array.from(carousel.querySelectorAll('.mk-accessory-card'));
