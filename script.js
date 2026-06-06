@@ -218,6 +218,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const homeCalcForm = document.querySelector('.home-calc-form');
   if (homeCalcForm) {
     const progressSteps = Array.from(document.querySelectorAll('.home-calc-step'));
+    const panels = Array.from(document.querySelectorAll('[data-home-calc-panel]'));
+    const backButton = document.querySelector('[data-home-calc-back]');
+
+    const showHomeCalcStep = (stepIndex) => {
+      panels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.homeCalcPanel === (stepIndex === 1 ? 'scope' : 'space'));
+      });
+
+      progressSteps.forEach((step, index) => {
+        step.classList.toggle('active', index === stepIndex);
+        step.classList.toggle('complete', index < stepIndex);
+      });
+    };
 
     homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {
       const optionButtons = Array.from(fieldset.querySelectorAll('[data-home-calc-option]'));
@@ -233,8 +246,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     homeCalcForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      progressSteps.forEach((step, index) => {
-        step.classList.toggle('active', index === 1);
+      showHomeCalcStep(1);
+    });
+
+    backButton?.addEventListener('click', () => {
+      showHomeCalcStep(0);
+    });
+
+    document.querySelectorAll('[data-room-count]').forEach((room) => {
+      const value = room.querySelector('span');
+      const minus = room.querySelector('[data-room-minus]');
+      const plus = room.querySelector('[data-room-plus]');
+
+      minus?.addEventListener('click', () => {
+        const nextValue = Math.max(0, Number(value?.textContent || 0) - 1);
+        if (value) value.textContent = nextValue.toString();
+      });
+
+      plus?.addEventListener('click', () => {
+        const nextValue = Number(value?.textContent || 0) + 1;
+        if (value) value.textContent = nextValue.toString();
       });
     });
   }

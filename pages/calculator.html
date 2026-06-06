@@ -39,7 +39,7 @@
   </header>
 
   <main class="home-calc-main">
-    <section class="home-calc-card" aria-labelledby="home-calc-title">
+    <section class="home-calc-card home-calc-panel active" aria-labelledby="home-calc-title" data-home-calc-panel="space">
       <h1 id="home-calc-title">Your Space</h1>
 
       <form class="home-calc-form">
@@ -73,6 +73,53 @@
           <button type="submit">Continue to Scope</button>
         </div>
       </form>
+    </section>
+
+    <section class="home-calc-card home-calc-panel home-calc-scope-card" aria-labelledby="home-calc-scope-title" data-home-calc-panel="scope">
+      <h1 id="home-calc-scope-title">Select the rooms you'd like us to design</h1>
+      <p class="home-calc-helper">To know more about this, <a href="offerings.html">click here</a></p>
+
+      <div class="home-calc-room-list">
+        <div class="home-calc-room" data-room-count>
+          <strong>Living Room</strong>
+          <button type="button" data-room-minus aria-label="Decrease living room">-</button>
+          <span>1</span>
+          <button type="button" data-room-plus aria-label="Increase living room">+</button>
+        </div>
+
+        <div class="home-calc-room" data-room-count>
+          <strong>Kitchen</strong>
+          <button type="button" data-room-minus aria-label="Decrease kitchen">-</button>
+          <span>1</span>
+          <button type="button" data-room-plus aria-label="Increase kitchen">+</button>
+        </div>
+
+        <div class="home-calc-room" data-room-count>
+          <strong>Bedroom</strong>
+          <button type="button" data-room-minus aria-label="Decrease bedroom">-</button>
+          <span>2</span>
+          <button type="button" data-room-plus aria-label="Increase bedroom">+</button>
+        </div>
+
+        <div class="home-calc-room" data-room-count>
+          <strong>Bathroom</strong>
+          <button type="button" data-room-minus aria-label="Decrease bathroom">-</button>
+          <span>1</span>
+          <button type="button" data-room-plus aria-label="Increase bathroom">+</button>
+        </div>
+
+        <div class="home-calc-room" data-room-count>
+          <strong>Dining</strong>
+          <button type="button" data-room-minus aria-label="Decrease dining">-</button>
+          <span>1</span>
+          <button type="button" data-room-plus aria-label="Increase dining">+</button>
+        </div>
+      </div>
+
+      <div class="home-calc-scope-actions">
+        <button class="home-calc-back" type="button" data-home-calc-back>Back</button>
+        <button class="home-calc-continue" type="button">Continue to Style</button>
+      </div>
     </section>
   </main>
 
