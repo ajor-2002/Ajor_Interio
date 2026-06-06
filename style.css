@@ -2582,7 +2582,7 @@ body.lightbox-open {
 
 .ajor-luxe-partners-section {
   background: #464646;
-  padding: 92px 0 116px;
+  padding: 52px 0 64px;
   font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
 }
 
@@ -2597,7 +2597,7 @@ body.lightbox-open {
   align-items: baseline;
   justify-content: center;
   gap: 14px;
-  margin: 0 0 80px;
+  margin: 0 0 48px;
   color: #fff;
   font-weight: 300;
   line-height: 1;
@@ -2606,14 +2606,14 @@ body.lightbox-open {
 }
 
 .ajor-luxe-partners-title span {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 300;
 }
 
 .ajor-luxe-partners-title em {
   color: #fff;
   font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
-  font-size: 74px;
+  font-size: 52px;
   font-style: normal;
   font-weight: 400;
   line-height: 0.64;
@@ -2623,16 +2623,16 @@ body.lightbox-open {
 .ajor-luxe-partners-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(150px, 1fr));
-  gap: 82px 110px;
+  gap: 44px 80px;
   align-items: center;
 }
 
 .ajor-luxe-partner-logo {
   display: grid;
-  min-height: 62px;
+  min-height: 44px;
   place-items: center;
   color: #fff;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1;
   text-align: center;
@@ -2650,19 +2650,19 @@ body.lightbox-open {
 
 .ajor-luxe-partner-logo--stylam {
   justify-self: center;
-  width: 96px;
-  min-height: 54px;
+  width: 78px;
+  min-height: 42px;
   border: 2px solid #f2f2f2;
   background: #fff;
   color: #d9222a;
   font-family: Georgia, serif;
-  font-size: 27px;
+  font-size: 21px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .ajor-luxe-partner-logo--aristo {
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 900;
 }
 
@@ -2676,12 +2676,12 @@ body.lightbox-open {
 }
 
 .ajor-luxe-partner-logo--rehau {
-  font-size: 30px;
+  font-size: 24px;
   font-family: Georgia, serif;
 }
 
 .ajor-luxe-partner-logo--hafele {
-  font-size: 28px;
+  font-size: 23px;
   font-weight: 900;
 }
 
@@ -2692,31 +2692,31 @@ body.lightbox-open {
 .ajor-luxe-partner-logo--elica {
   align-content: center;
   justify-items: center;
-  font-size: 34px;
+  font-size: 27px;
   font-weight: 300;
   text-transform: lowercase;
 }
 
 .ajor-luxe-partner-logo--egger {
-  font-size: 26px;
+  font-size: 21px;
   text-decoration: overline;
 }
 
 .ajor-luxe-partner-logo--hettich {
-  font-size: 29px;
+  font-size: 23px;
   font-weight: 800;
   text-transform: none;
 }
 
 .ajor-luxe-partner-logo--asian {
   font-family: Georgia, serif;
-  font-size: 24px;
+  font-size: 19px;
   letter-spacing: 0.08em;
 }
 
 @media (max-width: 900px) {
   .ajor-luxe-partners-section {
-    padding: 72px 0 86px;
+    padding: 46px 0 56px;
   }
 
   .ajor-luxe-partners-wrap {
@@ -2724,26 +2724,26 @@ body.lightbox-open {
   }
 
   .ajor-luxe-partners-title {
-    margin-bottom: 54px;
+    margin-bottom: 36px;
   }
 
   .ajor-luxe-partners-title span {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .ajor-luxe-partners-title em {
-    font-size: 56px;
+    font-size: 46px;
   }
 
   .ajor-luxe-partners-grid {
     grid-template-columns: repeat(2, minmax(130px, 1fr));
-    gap: 46px 40px;
+    gap: 32px 32px;
   }
 }
 
 @media (max-width: 520px) {
   .ajor-luxe-partners-section {
-    padding: 56px 0 66px;
+    padding: 38px 0 46px;
   }
 
   .ajor-luxe-partners-title {
@@ -2754,7 +2754,7 @@ body.lightbox-open {
 
   .ajor-luxe-partners-grid {
     grid-template-columns: 1fr;
-    gap: 34px;
+    gap: 24px;
   }
 }
 
