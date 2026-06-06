@@ -2758,6 +2758,180 @@ body.lightbox-open {
   }
 }
 
+.ajor-luxe-studios-section {
+  background: #fff;
+  padding: 20px 0 96px;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.ajor-luxe-studios-wrap {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(360px, 0.92fr);
+  align-items: center;
+  gap: 50px;
+  width: min(100%, 1500px);
+  min-height: 520px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.ajor-luxe-studios-panel {
+  display: grid;
+  min-height: 500px;
+  place-items: center;
+  border-radius: 8px;
+  background: #f0ede8;
+}
+
+.ajor-luxe-studios-title {
+  margin: 0;
+  color: #494949;
+  text-align: left;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-studios-title span {
+  display: block;
+  font-size: 54px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-studios-title em {
+  display: block;
+  margin-top: 10px;
+  color: #494949;
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+  font-size: 74px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.72;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-studios-list {
+  display: grid;
+  align-items: center;
+  min-height: 500px;
+}
+
+.ajor-luxe-studio-card {
+  max-width: 720px;
+  color: #111827;
+}
+
+.ajor-luxe-studio-card h3 {
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-studio-card p {
+  max-width: 720px;
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-studio-map {
+  display: inline-flex;
+  min-width: 194px;
+  min-height: 45px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 1px solid #a9741b;
+  border-radius: 4px;
+  color: #111827;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-studio-map span {
+  position: relative;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50% 50% 50% 0;
+  background: #9a6b12;
+  transform: rotate(-45deg);
+}
+
+.ajor-luxe-studio-map span::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .ajor-luxe-studios-section {
+    padding: 16px 0 64px;
+  }
+
+  .ajor-luxe-studios-wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    min-height: 0;
+    padding: 0 24px;
+  }
+
+  .ajor-luxe-studios-panel,
+  .ajor-luxe-studios-list {
+    min-height: 280px;
+  }
+
+  .ajor-luxe-studios-title span {
+    font-size: 40px;
+  }
+
+  .ajor-luxe-studios-title em {
+    font-size: 58px;
+  }
+
+  .ajor-luxe-studio-card {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .ajor-luxe-studios-panel {
+    min-height: 220px;
+  }
+
+  .ajor-luxe-studios-title span {
+    font-size: 32px;
+  }
+
+  .ajor-luxe-studios-title em {
+    font-size: 46px;
+  }
+
+  .ajor-luxe-studio-card h3 {
+    font-size: 20px;
+  }
+
+  .ajor-luxe-studio-card p {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   .luxe-overlay {
     width: 100%;
