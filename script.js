@@ -76,6 +76,49 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const referCard = document.querySelector('.refer-card');
+  if (referCard) {
+    const phoneInput = referCard.querySelector('#refer-phone');
+    const result = referCard.querySelector('.refer-result');
+    const shareLinks = Array.from(referCard.querySelectorAll('.refer-share a'));
+
+    referCard.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const phone = (phoneInput?.value || '').trim();
+      const digits = (phone.match(/\d/g) || []).join('');
+
+      if (digits.length < 10) {
+        if (result) {
+          result.textContent = 'Please enter a valid phone number.';
+        }
+        phoneInput?.focus();
+        return;
+      }
+
+      const referralCode = digits.slice(-10);
+      const referralUrl = `${window.location.origin}${window.location.pathname.replace('pages/refer-and-earn.html', '')}?ref=${referralCode}`;
+      const shareText = `Try AJOR Interio for your home interiors. Use my referral link: ${referralUrl}`;
+
+      if (result) {
+        result.textContent = referralUrl;
+      }
+
+      if (shareLinks[0]) {
+        shareLinks[0].href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralUrl)}`;
+      }
+      if (shareLinks[1]) {
+        shareLinks[1].href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      }
+      if (shareLinks[2]) {
+        shareLinks[2].href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      }
+      if (shareLinks[3]) {
+        shareLinks[3].href = `mailto:?subject=${encodeURIComponent('Ajor Interio referral')}&body=${encodeURIComponent(shareText)}`;
+      }
+    });
+  }
+
   const modularKitchenGallery = document.querySelector('.mk-gallery-section');
   if (modularKitchenGallery) {
     const cards = Array.from(modularKitchenGallery.querySelectorAll('.mk-design-card'));
