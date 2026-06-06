@@ -2776,14 +2776,34 @@ body.lightbox-open {
 }
 
 .ajor-luxe-studios-panel {
+  position: relative;
   display: grid;
   min-height: 500px;
   place-items: center;
   border-radius: 8px;
-  background: #f0ede8 url("images/home image skatch.jpg") center / cover no-repeat;
+  overflow: hidden;
+  background: #f0ede8;
+}
+
+.ajor-luxe-studios-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/home image skatch.jpg") center / cover no-repeat;
+  filter: blur(2px);
+  transform: scale(1.02);
+}
+
+.ajor-luxe-studios-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(240, 237, 232, 0.32);
 }
 
 .ajor-luxe-studios-title {
+  position: relative;
+  z-index: 1;
   margin: 0;
   color: #9a6b12;
   text-align: left;
@@ -2795,7 +2815,7 @@ body.lightbox-open {
 
 .ajor-luxe-studios-title span {
   display: block;
-  color: #3f3324;
+  color: #9a6b12;
   font-size: 54px;
   font-weight: 300;
   letter-spacing: 0;
