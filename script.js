@@ -79,11 +79,61 @@ document.addEventListener('DOMContentLoaded', function () {
   const referCard = document.querySelector('.refer-card');
   if (referCard) {
     const phoneInput = referCard.querySelector('#refer-phone');
-    const result = referCard.querySelector('.refer-result');
+    const result = referCard.querySelector('[data-refer-panel="link"] .refer-result');
     const shareLinks = Array.from(referCard.querySelectorAll('.refer-share a'));
+    const tabButtons = Array.from(referCard.querySelectorAll('[data-refer-tab]'));
+    const panels = Array.from(referCard.querySelectorAll('[data-refer-panel]'));
+    let activeReferTab = 'link';
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeReferTab = button.dataset.referTab || 'link';
+        tabButtons.forEach((tabButton) => {
+          tabButton.classList.toggle('active', tabButton === button);
+        });
+        panels.forEach((panel) => {
+          panel.classList.toggle('active', panel.dataset.referPanel === activeReferTab);
+        });
+      });
+    });
 
     referCard.addEventListener('submit', (event) => {
       event.preventDefault();
+
+      if (activeReferTab === 'invite') {
+        const inviteResult = referCard.querySelector('.refer-invite-result');
+        const city = referCard.querySelector('select[name="city"]')?.value.trim();
+        const name = referCard.querySelector('input[name="friendName"]')?.value.trim();
+        const email = referCard.querySelector('input[name="friendEmail"]')?.value.trim();
+        const friendPhone = referCard.querySelector('input[name="friendPhone"]')?.value.trim();
+        const yourPhone = referCard.querySelector('input[name="yourPhone"]')?.value.trim();
+
+        if (!city || !name || !email || (friendPhone.match(/\d/g) || []).length < 10 || (yourPhone.match(/\d/g) || []).length < 10) {
+          if (inviteResult) {
+            inviteResult.textContent = 'Please fill all invite details correctly.';
+          }
+          return;
+        }
+
+        const subject = encodeURIComponent('New referral invite from AJOR Interio');
+        const body = encodeURIComponent(
+          [
+            'Referral invite',
+            `City: ${city}`,
+            `Friend Name: ${name}`,
+            `Friend Email: ${email}`,
+            `Friend Phone: ${friendPhone}`,
+            `Referrer Phone: ${yourPhone}`,
+            `Page URL: ${window.location.href}`,
+          ].join('\n')
+        );
+
+        if (inviteResult) {
+          inviteResult.textContent = 'Opening your mail app to send the invite...';
+        }
+        window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
+        return;
+      }
 
       const phone = (phoneInput?.value || '').trim();
       const digits = (phone.match(/\d/g) || []).join('');

@@ -9510,7 +9510,7 @@ body.no-scroll {
 
 .refer-hero {
   position: relative;
-  min-height: calc(100vh - 128px);
+  min-height: 560px;
   overflow: hidden;
   background: #f4f1ed;
 }
@@ -9527,11 +9527,11 @@ body.no-scroll {
 .refer-hero-panel {
   position: relative;
   z-index: 1;
-  width: min(54vw, 980px);
-  min-height: calc(100vh - 128px);
+  width: min(50vw, 820px);
+  min-height: 560px;
   display: flex;
   align-items: center;
-  padding: 60px 0 70px 68px;
+  padding: 42px 0 48px 54px;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.9) 64%, rgba(255, 255, 255, 0) 100%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0 62%, rgba(255, 255, 255, 0) 62% 100%);
@@ -9539,14 +9539,14 @@ body.no-scroll {
 }
 
 .refer-hero-copy {
-  width: 360px;
+  width: 330px;
   max-width: calc(100vw - 48px);
 }
 
 .refer-hero-copy h1 {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   color: #070707;
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(1.75rem, 2.45vw, 2.55rem);
   font-weight: 300;
   line-height: 1.15;
 }
@@ -9556,14 +9556,14 @@ body.no-scroll {
 }
 
 .refer-hero-copy > p {
-  margin: 0 0 30px;
+  margin: 0 0 22px;
   color: #111;
-  font-size: 1.08rem;
+  font-size: 0.98rem;
   line-height: 1.45;
 }
 
 .refer-card {
-  width: 320px;
+  width: 300px;
   max-width: 100%;
   overflow: hidden;
   border: 1px solid #d6d6d6;
@@ -9575,19 +9575,19 @@ body.no-scroll {
 .refer-tabs {
   display: flex;
   align-items: center;
-  min-height: 48px;
+  min-height: 42px;
   border-bottom: 1px solid #e4e4e4;
 }
 
 .refer-tabs button {
-  height: 48px;
-  padding: 0 20px;
+  height: 42px;
+  padding: 0 16px;
   border: 0;
   border-bottom: 2px solid transparent;
   background: transparent;
   color: #8a8a8a;
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   cursor: pointer;
 }
 
@@ -9598,50 +9598,87 @@ body.no-scroll {
 }
 
 .refer-card-body {
-  padding: 20px;
+  padding: 16px;
+}
+
+.refer-panel {
+  display: none;
+}
+
+.refer-panel.active {
+  display: block;
 }
 
 .refer-card-body label,
 .refer-share-label {
   display: block;
   color: #161616;
-  font-size: 0.92rem;
+  font-size: 0.84rem;
   line-height: 1.4;
 }
 
-.refer-card-body input {
+.refer-card-body input,
+.refer-card-body select {
   width: 100%;
-  min-height: 44px;
-  margin: 12px 0 14px;
-  padding: 0 14px;
+  min-height: 40px;
+  margin: 10px 0 12px;
+  padding: 0 12px;
   border: 1px solid #dadada;
   border-radius: 7px;
   color: #222;
   font: inherit;
-  font-size: 0.92rem;
+  font-size: 0.84rem;
 }
 
 .refer-card-body input::placeholder {
   color: #b8b8b8;
 }
 
+.refer-invite-title {
+  margin: 0 0 12px;
+  color: #111;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.refer-panel[data-refer-panel="invite"] input,
+.refer-panel[data-refer-panel="invite"] select {
+  min-height: 36px;
+  margin: 0 0 10px;
+  padding: 0 2px;
+  border: 0;
+  border-bottom: 1px solid #c9c9c9;
+  border-radius: 0;
+  background: transparent;
+  color: #333;
+}
+
+.refer-panel[data-refer-panel="invite"] select {
+  color: #a8a8a8;
+  appearance: auto;
+}
+
+.refer-panel[data-refer-panel="invite"] .refer-generate {
+  margin-top: 2px;
+}
+
 .refer-generate {
   width: 100%;
-  min-height: 48px;
+  min-height: 42px;
   border: 0;
   border-radius: 7px;
   background: #ed1c24;
   color: #fff;
   font: inherit;
-  font-size: 0.94rem;
+  font-size: 0.86rem;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
 }
 
 .refer-result {
-  min-height: 18px;
-  margin: 10px 0 14px;
+  min-height: 16px;
+  margin: 8px 0 12px;
   color: #e11b22;
   font-size: 0.82rem;
   line-height: 1.35;
@@ -9650,20 +9687,20 @@ body.no-scroll {
 
 .refer-share {
   display: flex;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
 .refer-share a {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: #f5f5f5;
   color: #e11b22;
-  font-size: 1.25rem;
+  font-size: 1.08rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -9790,14 +9827,14 @@ body.no-scroll {
   .refer-hero-image {
     position: relative;
     width: 100%;
-    height: 280px;
+    height: 220px;
     display: block;
   }
 
   .refer-hero-panel {
     width: 100%;
     clip-path: none;
-    padding: 28px 18px 36px;
+    padding: 22px 16px 30px;
     background: #fff;
   }
 

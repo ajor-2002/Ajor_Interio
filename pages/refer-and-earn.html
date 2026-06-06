@@ -129,11 +129,11 @@
 
           <form class="refer-card">
             <div class="refer-tabs" role="tablist" aria-label="Referral options">
-              <button class="active" type="button">Referral Link</button>
-              <button type="button">Send Invite</button>
+              <button class="active" type="button" data-refer-tab="link">Referral Link</button>
+              <button type="button" data-refer-tab="invite">Send Invite</button>
             </div>
 
-            <div class="refer-card-body">
+            <div class="refer-card-body refer-panel active" data-refer-panel="link">
               <label for="refer-phone">Generate your referral link:</label>
               <input id="refer-phone" name="phone" type="tel" placeholder="Your Phone Number" />
               <button class="refer-generate" type="submit">Generate Link</button>
@@ -146,6 +146,24 @@
                 <a href="#" aria-label="Share on WhatsApp">w</a>
                 <a href="#" aria-label="Share by email">@</a>
               </div>
+            </div>
+
+            <div class="refer-card-body refer-panel" data-refer-panel="invite">
+              <p class="refer-invite-title">Know someone who might be interested in us?</p>
+              <select name="city" aria-label="City">
+                <option value="">City</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+              </select>
+              <input name="friendName" type="text" placeholder="Name" />
+              <input name="friendEmail" type="email" placeholder="Email" />
+              <input name="friendPhone" type="tel" placeholder="Phone Number" />
+              <input name="yourPhone" type="tel" placeholder="Your Phone" />
+              <button class="refer-generate" type="submit">I Know Someone</button>
+              <p class="refer-result refer-invite-result" aria-live="polite"></p>
             </div>
           </form>
         </div>
