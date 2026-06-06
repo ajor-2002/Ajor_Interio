@@ -10836,6 +10836,99 @@ body.no-scroll {
   margin-top: 20px;
 }
 
+.home-calc-result-card {
+  width: min(100%, 720px);
+  min-height: 612px;
+  padding: 58px 30px 34px;
+  border-radius: 13px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 2px 0 rgba(9, 34, 71, 0.03), 0 10px 18px rgba(0, 0, 0, 0.14);
+}
+
+.home-calc-result-kicker {
+  margin: 0 0 14px;
+  color: #00813d;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.home-calc-result-card h1 {
+  margin: 0 0 10px;
+  color: #006b35;
+  font-size: 2.35rem;
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.home-calc-result-note {
+  margin: 0 0 28px;
+  color: #4f5870;
+  font-size: 0.92rem;
+}
+
+.home-calc-summary-link {
+  margin-bottom: 42px;
+  border: 0;
+  background: transparent;
+  color: #005cff;
+  font: inherit;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.home-calc-quote-box {
+  max-width: 660px;
+  margin: 0 auto 48px;
+  padding: 34px 42px;
+  border: 1px solid #f6c996;
+  border-radius: 12px;
+  background: #fff7ec;
+}
+
+.home-calc-quote-box h2 {
+  margin: 0 0 22px;
+  color: #101010;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.home-calc-quote-box p {
+  max-width: 520px;
+  margin: 0 auto 30px;
+  color: #1f2a44;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.home-calc-quote-box strong {
+  color: #00a751;
+}
+
+.home-calc-quote-box a {
+  min-width: 286px;
+  min-height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #ef3347;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-calc-trust-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  color: #34405a;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 991px) {
   .home-calc-header {
     height: auto;
@@ -10945,5 +11038,23 @@ body.no-scroll {
     flex-direction: column-reverse;
     align-items: stretch;
     gap: 18px;
+  }
+
+  .home-calc-result-card {
+    min-height: auto;
+    padding: 34px 18px 28px;
+  }
+
+  .home-calc-quote-box {
+    padding: 28px 18px;
+  }
+
+  .home-calc-quote-box a {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .home-calc-trust-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -226,8 +226,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const estimateBackButton = document.querySelector('[data-home-calc-estimate-back]');
     const estimateForm = document.querySelector('.home-calc-estimate-form');
     const estimateStatus = document.querySelector('.home-calc-estimate-status');
+    const budgetOutput = document.querySelector('[data-home-calc-budget]');
     const packageButtons = Array.from(document.querySelectorAll('[data-home-calc-package]'));
-    const panelByStep = ['space', 'scope', 'package', 'estimate'];
+    const panelByStep = ['space', 'scope', 'package', 'estimate', 'result'];
 
     const showHomeCalcStep = (stepIndex) => {
       panels.forEach((panel) => {
@@ -235,9 +236,29 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       progressSteps.forEach((step, index) => {
-        step.classList.toggle('active', index === stepIndex);
-        step.classList.toggle('complete', index < stepIndex);
+        const visibleStepIndex = Math.min(stepIndex, 3);
+        step.classList.toggle('active', index === visibleStepIndex);
+        step.classList.toggle('complete', index < visibleStepIndex);
       });
+    };
+
+    const getActiveOptionText = (selector) => {
+      const group = document.querySelector(selector);
+      return group?.querySelector('.active')?.textContent?.trim() || '';
+    };
+
+    const getBudgetRange = () => {
+      const bhk = getActiveOptionText('.home-calc-options.bhk');
+      const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || 'Luxe';
+      const bhkValue = Number((bhk.match(/\d+/) || ['2'])[0]);
+      const packageMultiplier = {
+        Standard: 4,
+        Premium: 6,
+        Luxe: 9,
+      }[selectedPackage] || 9;
+      const lower = Math.max(4, bhkValue * packageMultiplier);
+      const upper = lower + Math.max(3, bhkValue * 2);
+      return `₹${lower}L - ₹${upper}L`;
     };
 
     homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {
@@ -302,24 +323,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      const subject = encodeURIComponent('New Home Calculator Estimate Request');
-      const body = encodeURIComponent(
-        [
-          'New home calculator estimate request',
-          `Name: ${name}`,
-          `Phone: ${phone}`,
-          `Email: ${email}`,
-          `Preferred Visit Date: ${visitDate}`,
-          `Page URL: ${window.location.href}`,
-        ].join('\n')
-      );
-
       if (estimateStatus) {
-        estimateStatus.textContent = 'Opening your mail app to send the estimate request...';
+        estimateStatus.textContent = '';
         estimateStatus.classList.add('is-success');
       }
 
-      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
+      if (budgetOutput) {
+        budgetOutput.textContent = getBudgetRange();
+      }
+
+      showHomeCalcStep(4);
     });
 
     document.querySelectorAll('[data-room-count]').forEach((room) => {
