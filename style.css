@@ -10416,7 +10416,7 @@ body.no-scroll {
   margin: 0;
   min-height: 100vh;
   background: #f5f6f8;
-  color: #08264b;
+  color: #2d2d2d;
 }
 
 .home-calc-page * {
@@ -10428,7 +10428,7 @@ body.no-scroll {
   display: grid;
   grid-template-columns: 180px 1fr 180px;
   align-items: center;
-  border-bottom: 1px solid #092247;
+  border-bottom: 1px solid #d8d2c8;
   background: #fff;
 }
 
@@ -10467,7 +10467,7 @@ body.no-scroll {
   gap: 12px;
   border: 2px solid #cfd5df;
   border-radius: 999px;
-  color: #092247;
+  color: #4a4036;
   background: #fff;
 }
 
@@ -10485,17 +10485,17 @@ body.no-scroll {
 }
 
 .home-calc-step strong {
-  color: #092247;
+  color: #4a4036;
   font-size: 1.02rem;
   font-weight: 500;
 }
 
 .home-calc-step.active {
-  border-color: #8b19ff;
+  border-color: #c19038;
 }
 
 .home-calc-step.active span {
-  background: #8b19ff;
+  background: #c19038;
 }
 
 .home-calc-step.active strong {
@@ -10522,7 +10522,7 @@ body.no-scroll {
 
 .home-calc-card h1 {
   margin: 0 0 28px;
-  color: #092b55;
+  color: #2d2d2d;
   font-size: 1.9rem;
   line-height: 1.2;
 }
@@ -10535,7 +10535,7 @@ body.no-scroll {
 
 .home-calc-form legend {
   margin-bottom: 12px;
-  color: #08264b;
+  color: #2d2d2d;
   font-size: 1.18rem;
   font-weight: 800;
 }
@@ -10550,10 +10550,10 @@ body.no-scroll {
   min-width: 146px;
   min-height: 52px;
   padding: 0 26px;
-  border: 1px solid #cbd2dc;
+  border: 1px solid #d9d1c5;
   border-radius: 9px;
   background: #fff;
-  color: #061c3b;
+  color: #2d2d2d;
   font: inherit;
   font-size: 1.12rem;
   cursor: pointer;
@@ -10564,8 +10564,8 @@ body.no-scroll {
 }
 
 .home-calc-options button.active {
-  border-color: #8b19ff;
-  color: #8b19ff;
+  border-color: #c19038;
+  color: #c19038;
 }
 
 .home-calc-actions {
