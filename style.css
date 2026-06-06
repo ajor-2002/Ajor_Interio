@@ -2773,7 +2773,6 @@ body.lightbox-open {
   min-height: 520px;
   margin: 0 auto;
   padding: 0 48px;
-  background: url("images/home image skatch.jpg") center / cover no-repeat;
 }
 
 .ajor-luxe-studios-panel {
@@ -2781,7 +2780,7 @@ body.lightbox-open {
   min-height: 500px;
   place-items: center;
   border-radius: 8px;
-  background: #f0ede8;
+  background: #f0ede8 url("images/home image skatch.jpg") center / cover no-repeat;
 }
 
 .ajor-luxe-studios-title {
