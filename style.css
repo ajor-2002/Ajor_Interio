@@ -2785,15 +2785,17 @@ body.lightbox-open {
 
 .ajor-luxe-studios-title {
   margin: 0;
-  color: #494949;
+  color: #3f3324;
   text-align: left;
   font-weight: 300;
   line-height: 1;
   letter-spacing: 0;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.72);
 }
 
 .ajor-luxe-studios-title span {
   display: block;
+  color: #3f3324;
   font-size: 54px;
   font-weight: 300;
   letter-spacing: 0;
@@ -2802,7 +2804,7 @@ body.lightbox-open {
 .ajor-luxe-studios-title em {
   display: block;
   margin-top: 10px;
-  color: #494949;
+  color: #9a6b12;
   font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
   font-size: 74px;
   font-style: normal;
