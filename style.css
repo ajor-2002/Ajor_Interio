@@ -1937,6 +1937,7 @@ body.lightbox-open {
 
 .ajor-luxe-journey-section {
   background: #fff;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
 }
 
 .ajor-luxe-journey-wrap {
@@ -1983,6 +1984,7 @@ body.lightbox-open {
 .ajor-luxe-journey-standard {
   color: #494949;
   display: block;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
   font-size: 34px;
   font-weight: 300;
   line-height: 40px;
@@ -1992,11 +1994,11 @@ body.lightbox-open {
 .ajor-luxe-journey-stylish {
   color: #494949;
   display: block;
-  font-family: Wonderful, Lato, sans-serif;
+  font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
   font-size: 86px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 34px;
   margin-left: 28px;
   letter-spacing: 0;
 }
@@ -2008,6 +2010,7 @@ body.lightbox-open {
   background: linear-gradient(90deg, #c19038, #735419);
   border-radius: 5px;
   color: #fff;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
   margin-top: 68px;
   padding: 12px 38px;
   width: 220px;
@@ -2075,6 +2078,7 @@ body.lightbox-open {
 
 .ajor-luxe-journey-step {
   color: #95805a;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -2084,8 +2088,9 @@ body.lightbox-open {
 
 .ajor-luxe-journey-heading {
   color: #494949;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 24px;
   margin: 6px 0 0;
   letter-spacing: 0;
@@ -2093,8 +2098,9 @@ body.lightbox-open {
 
 .ajor-luxe-journey-description {
   color: #494949;
+  font-family: "Lato", "Inter", "Segoe UI", Arial, sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 17px;
   margin: 3px 0 0;
   letter-spacing: 0;
@@ -2189,13 +2195,13 @@ body.lightbox-open {
 
   .ajor-luxe-journey-heading {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 21.6px;
   }
 
   .ajor-luxe-journey-description {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 20px;
   }
 }
