@@ -169,6 +169,52 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const referSteps = document.querySelector('.refer-steps-wrap');
+  if (referSteps) {
+    const stepArt = referSteps.querySelector('.refer-steps-art');
+    const stepButtons = Array.from(referSteps.querySelectorAll('[data-refer-step]'));
+    const stepTitle = referSteps.querySelector('[data-refer-step-title]');
+    const stepCopy = referSteps.querySelector('[data-refer-step-copy]');
+    const stepContent = {
+      1: {
+        title: 'Refer',
+        copy: 'Tell your friends about us',
+      },
+      2: {
+        title: 'Relax',
+        copy: 'Your friend books us',
+      },
+      3: {
+        title: 'Rejoice',
+        copy: 'Your friends pay us half, we pay you full',
+      },
+    };
+
+    stepButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const step = button.dataset.referStep || '2';
+        const content = stepContent[step] || stepContent[2];
+
+        stepButtons.forEach((stepButton) => {
+          stepButton.classList.toggle('active', stepButton === button);
+        });
+
+        if (stepArt) {
+          stepArt.classList.remove('is-step-1', 'is-step-2', 'is-step-3');
+          stepArt.classList.add(`is-step-${step}`);
+        }
+
+        if (stepTitle) {
+          stepTitle.textContent = content.title;
+        }
+
+        if (stepCopy) {
+          stepCopy.textContent = content.copy;
+        }
+      });
+    });
+  }
+
   const modularKitchenGallery = document.querySelector('.mk-gallery-section');
   if (modularKitchenGallery) {
     const cards = Array.from(modularKitchenGallery.querySelectorAll('.mk-design-card'));
