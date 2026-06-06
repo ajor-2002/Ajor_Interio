@@ -1,176 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Interior Calculator | AJOR Interio</title>
-  <link rel="icon" href="../images/logo.png" type="image/png" />
+  <meta http-equiv="refresh" content="1;url=../index.html" />
+  <title>Price Calculators | AJOR Doors & Interiors</title>
   <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #f8f4ef, #ffffff); }
+    .redirect-page { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    .redirect-card { max-width: 620px; width: 100%; background: #fff; border-radius: 24px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,.12); text-align: center; }
+    .redirect-card h1 { margin: 0 0 12px; color: #e11b22; font-size: clamp(2rem, 4vw, 3rem); }
+    .redirect-card p { margin: 0 0 20px; color: #555; line-height: 1.6; }
+    .redirect-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .redirect-actions a { display: inline-block; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700; }
+    .redirect-actions .primary { background: #e11b22; color: #fff; }
+    .redirect-actions .secondary { border: 1px solid #ddd; color: #222; }
+  </style>
 </head>
-
-<body class="calc-page">
-  <header class="calc-header">
-    <a href="../index.html" class="calc-logo">
-      <img src="../images/logo.png" alt="AJOR logo" />
-    </a>
-
-    <nav class="calc-nav" aria-label="Calculator navigation">
-      <a href="home-interior.html">Design Gallery</a>
-      <a href="offerings.html">Offerings</a>
-      <a href="calculator.html">Price Calculators</a>
-      <a href="refer-and-earn.html">More</a>
-    </nav>
-
-    <a href="../index.html#lead-form" class="calc-consult-btn">Get Free Consultation</a>
-  </header>
-
-  <main>
-    <section class="calc-hero">
-      <div class="calc-hero-overlay"></div>
-
-      <div class="calc-hero-content">
-        <div class="calc-hero-left">
-          <p class="calc-tagline">Interiors you'll love.</p>
-          <h1>Premium interiors,<br />without the stress.</h1>
-          <p class="calc-hero-desc">
-            Browse modular kitchens, wardrobes and premium interior solutions.
-          </p>
-
-          <div class="calc-hero-badges">
-            <span>Verified quality</span>
-            <span>55,000+ homes</span>
-            <span>10 year warranty</span>
-          </div>
-        </div>
-
-        <div class="calc-form-card">
-          <h2>Meet a designer</h2>
-
-          <form class="calc-consult-form">
-            <input name="name" type="text" placeholder="Enter your name" />
-            <input name="phone" type="tel" placeholder="Enter mobile number" />
-            <select name="city">
-              <option value="">Select your city</option>
-              <option>Bangalore</option>
-              <option>Hyderabad</option>
-              <option>Mumbai</option>
-              <option>Pune</option>
-              <option>Chennai</option>
-            </select>
-            <button type="submit">Book Free Consultation</button>
-            <p class="calc-form-status" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="calc-estimate-section">
-      <div class="calc-container">
-        <div class="calc-section-title">
-          <h2>Get Instant Interior Estimate</h2>
-          <p>Calculate your dream home interior pricing instantly.</p>
-        </div>
-
-        <div class="calc-estimate-grid">
-          <div class="calc-steps">
-            <button class="calc-step-card active" type="button" data-calc-step="property">
-              <span>1</span>
-              <div>
-                <h3>Select Property Type</h3>
-                <p>2BHK, 3BHK, Villa etc.</p>
-              </div>
-            </button>
-
-            <button class="calc-step-card" type="button" data-calc-step="package">
-              <span>2</span>
-              <div>
-                <h3>Select Interior Package</h3>
-                <p>Essential, Comfort or Luxe</p>
-              </div>
-            </button>
-
-            <button class="calc-step-card" type="button" data-calc-step="addons">
-              <span>3</span>
-              <div>
-                <h3>Add Kitchen &amp; Wardrobes</h3>
-                <p>Customize your estimate</p>
-              </div>
-            </button>
-          </div>
-
-          <aside class="calc-summary-card">
-            <h3>Your Estimate</h3>
-            <div class="calc-price">₹ 4,85,000</div>
-
-            <ul>
-              <li>Modular Kitchen</li>
-              <li>Wardrobes</li>
-              <li>TV Unit</li>
-              <li>False Ceiling</li>
-            </ul>
-
-            <a href="../index.html#lead-form">Get Detailed Quote</a>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="calc-packages">
-      <div class="calc-container">
-        <article class="calc-package-card">
-          <img src="../images/living room design/Modern Oasis Living Room Design.jpg" alt="Essential interiors" />
-          <div class="calc-package-content">
-            <h3>Essential Interiors</h3>
-            <p>For budget-friendly modern homes.</p>
-            <div class="calc-package-price">Starting ₹3.5L</div>
-            <a href="../index.html#lead-form">View Details</a>
-          </div>
-        </article>
-
-        <article class="calc-package-card featured">
-          <img src="../images/end to end offerings/Contemporary Oasis Bedroom Design.jpg" alt="Comfort interiors" />
-          <div class="calc-package-content">
-            <h3>Comfort Interiors</h3>
-            <p>Perfect balance of design and pricing.</p>
-            <div class="calc-package-price">Starting ₹5.8L</div>
-            <a href="../index.html#lead-form">View Details</a>
-          </div>
-        </article>
-
-        <article class="calc-package-card">
-          <img src="../images/ajor luxe.jpg" alt="Luxe interiors" />
-          <div class="calc-package-content">
-            <h3>Luxe Interiors</h3>
-            <p>Luxury crafted interiors with premium finish.</p>
-            <div class="calc-package-price">Starting ₹9.5L</div>
-            <a href="ajor-luxe.html">View Details</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="calc-why-ajor">
-      <div class="calc-container">
-        <article class="calc-feature">
-          <h3>10 Year Warranty</h3>
-          <p>Premium quality guaranteed.</p>
-        </article>
-
-        <article class="calc-feature">
-          <h3>45-Day Delivery</h3>
-          <p>Fast and timely completion.</p>
-        </article>
-
-        <article class="calc-feature">
-          <h3>500+ Design Experts</h3>
-          <p>Expert designers for every style.</p>
-        </article>
+<body>
+  <main class="redirect-page">
+    <section class="redirect-card">
+      <h1>Price Calculators</h1>
+      <p>This page is being restored. You will be redirected to the main site in a moment.</p>
+      <div class="redirect-actions">
+        <a class="primary" href="../index.html">Go to Home</a>
+        <a class="secondary" href="../index.html#lead-form">Book 3D Design Session</a>
       </div>
     </section>
   </main>
-
-  <script src="../script.js"></script>
 </body>
-
 </html>

@@ -215,63 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  const calcPage = document.querySelector('.calc-page');
-  if (calcPage) {
-    const calcForm = calcPage.querySelector('.calc-consult-form');
-    const calcStatus = calcPage.querySelector('.calc-form-status');
-    const calcSteps = Array.from(calcPage.querySelectorAll('.calc-step-card'));
-    const calcPrice = calcPage.querySelector('.calc-price');
-    const calcPrices = {
-      property: '₹ 4,85,000',
-      package: '₹ 5,80,000',
-      addons: '₹ 6,45,000',
-    };
-
-    calcSteps.forEach((step) => {
-      step.addEventListener('click', () => {
-        calcSteps.forEach((item) => item.classList.toggle('active', item === step));
-        if (calcPrice) {
-          calcPrice.textContent = calcPrices[step.dataset.calcStep] || calcPrices.property;
-        }
-      });
-    });
-
-    calcForm?.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(calcForm);
-      const name = (formData.get('name') || '').toString().trim();
-      const phone = (formData.get('phone') || '').toString().trim();
-      const city = (formData.get('city') || '').toString().trim();
-
-      if (!name || (phone.match(/\d/g) || []).length < 10 || !city) {
-        if (calcStatus) {
-          calcStatus.textContent = 'Please enter name, valid mobile number and city.';
-          calcStatus.classList.remove('is-success');
-        }
-        return;
-      }
-
-      const subject = encodeURIComponent('New Home Interior Calculator Lead');
-      const body = encodeURIComponent(
-        [
-          'New calculator consultation request',
-          `Name: ${name}`,
-          `Phone: ${phone}`,
-          `City: ${city}`,
-          `Page URL: ${window.location.href}`,
-        ].join('\n')
-      );
-
-      if (calcStatus) {
-        calcStatus.textContent = 'Opening your mail app to send the request...';
-        calcStatus.classList.add('is-success');
-      }
-
-      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
-    });
-  }
-
   const modularKitchenGallery = document.querySelector('.mk-gallery-section');
   if (modularKitchenGallery) {
     const cards = Array.from(modularKitchenGallery.querySelectorAll('.mk-design-card'));
