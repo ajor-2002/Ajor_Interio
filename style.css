@@ -2027,7 +2027,7 @@ body.lightbox-open {
 .ajor-luxe-journey-card {
   position: sticky;
   top: 84px;
-  transform: translateY(0);
+  transform: translateY(0px);
   overflow: hidden;
   padding: 15px 22px 15px 20px;
   border: 1px solid #e1ddd9;
@@ -2038,38 +2038,39 @@ body.lightbox-open {
 }
 
 .ajor-luxe-journey-card:nth-child(1) {
-  transform: translateY(0);
- 
+  transform: translateY(0px);
+  z-index: 1;
 }
 
 .ajor-luxe-journey-card:nth-child(2) {
   transform: translateY(12px);
- 
+  z-index: 2;
 }
 
 .ajor-luxe-journey-card:nth-child(3) {
   transform: translateY(24px);
-
+  z-index: 3;
 }
 
 .ajor-luxe-journey-card:nth-child(4) {
   transform: translateY(36px);
-
+  z-index: 4;
 }
 
 .ajor-luxe-journey-card:nth-child(5) {
   transform: translateY(48px);
- 
+  z-index: 5;
 }
 
 .ajor-luxe-journey-card:nth-child(6) {
   transform: translateY(60px);
- 
+  z-index: 6;
 }
 
 .ajor-luxe-journey-card:nth-child(7) {
   transform: translateY(72px);
-
+  z-index: 7;
+}
 
 .ajor-luxe-journey-header {
   display: flex;
