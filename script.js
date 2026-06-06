@@ -562,6 +562,53 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  document.querySelectorAll('.ajor-luxe-offerings-section').forEach((section) => {
+    const cards = Array.from(section.querySelectorAll('.ajor-luxe-offering-card'));
+    const prevButton = section.querySelector('.ajor-luxe-offerings-arrow--prev');
+    const nextButton = section.querySelector('.ajor-luxe-offerings-arrow--next');
+    let activePage = 0;
+
+    if (cards.length === 0 || !prevButton || !nextButton) return;
+
+    const getPageSize = () => {
+      if (window.matchMedia('(max-width: 480px)').matches) return 1;
+      if (window.matchMedia('(max-width: 768px)').matches) return 4;
+      if (window.matchMedia('(max-width: 1120px)').matches) return 6;
+      return 7;
+    };
+
+    const renderOfferings = () => {
+      const pageSize = getPageSize();
+      const totalPages = Math.max(Math.ceil(cards.length / pageSize), 1);
+      activePage = ((activePage % totalPages) + totalPages) % totalPages;
+      const start = activePage * pageSize;
+      const end = start + pageSize;
+
+      cards.forEach((card, index) => {
+        const isVisible = index >= start && index < end;
+        card.classList.toggle('is-hidden', !isVisible);
+        card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+      });
+
+      const hasMultiplePages = totalPages > 1;
+      prevButton.disabled = !hasMultiplePages;
+      nextButton.disabled = !hasMultiplePages;
+    };
+
+    prevButton.addEventListener('click', () => {
+      activePage -= 1;
+      renderOfferings();
+    });
+
+    nextButton.addEventListener('click', () => {
+      activePage += 1;
+      renderOfferings();
+    });
+
+    window.addEventListener('resize', renderOfferings, { passive: true });
+    renderOfferings();
+  });
+
   document.querySelectorAll('.mk-accessories-carousel').forEach((carousel) => {
     const track = carousel.querySelector('.mk-accessories-track');
     const cards = Array.from(carousel.querySelectorAll('.mk-accessory-card'));

@@ -2283,6 +2283,11 @@ body.lightbox-open {
   display: grid;
   justify-items: center;
   text-align: center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ajor-luxe-offering-card.is-hidden {
+  display: none;
 }
 
 .ajor-luxe-offering-card img {
@@ -2315,6 +2320,11 @@ body.lightbox-open {
   background: transparent;
   color: #9a6b12;
   cursor: pointer;
+}
+
+.ajor-luxe-offerings-arrow:disabled {
+  cursor: default;
+  opacity: 0.35;
 }
 
 .ajor-luxe-offerings-arrow span {
@@ -2391,7 +2401,22 @@ body.lightbox-open {
   }
 
   .ajor-luxe-offerings-arrow {
-    display: none;
+    top: 62%;
+    width: 28px;
+    height: 36px;
+  }
+
+  .ajor-luxe-offerings-arrow--prev {
+    left: 0;
+  }
+
+  .ajor-luxe-offerings-arrow--next {
+    right: 0;
+  }
+
+  .ajor-luxe-offerings-arrow span {
+    width: 16px;
+    height: 16px;
   }
 }
 
