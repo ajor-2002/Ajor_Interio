@@ -5,54 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
   let modularKitchenLoginModal = null;
   let closeModularKitchenLoginModal = () => {};
-  let pendingWishlistItem = null;
-  const wishlistStorageKey = 'ajorInteriorWishlist';
-  const loginStorageKey = 'ajorInteriorLoggedIn';
-
-  const getWishlistItems = () => {
-    try {
-      return JSON.parse(localStorage.getItem(wishlistStorageKey) || '[]');
-    } catch (error) {
-      return [];
-    }
-  };
-
-  const saveWishlistItem = (item) => {
-    if (!item || !item.title || !item.image) return;
-
-    const items = getWishlistItems();
-    const itemId = item.id || item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    const nextItem = {
-      ...item,
-      id: itemId,
-      savedAt: new Date().toISOString(),
-    };
-    const withoutDuplicate = items.filter((savedItem) => savedItem.id !== itemId);
-    localStorage.setItem(wishlistStorageKey, JSON.stringify([nextItem, ...withoutDuplicate]));
-  };
-
-  const getDesignCardDetails = (card) => {
-    if (!card) return null;
-
-    const image = card.querySelector('img');
-    const title = card.querySelector('h3')?.textContent?.trim() || image?.alt?.trim() || 'Interior Design';
-    const imageSrc = image?.getAttribute('src') || '';
-
-    return {
-      id: title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-      title,
-      image: imageSrc,
-      category: card.dataset.category || 'modular-kitchen',
-      color: card.dataset.color || '',
-      finish: card.dataset.finish || '',
-      storage: card.dataset.storage || '',
-      page: window.location.pathname.split('/').pop() || 'Modular_Kitchen.html',
-    };
-  };
-
-  const openWishlistPage = () => {
-    window.location.href = 'wishlist.html';
-  };
 
   document.querySelectorAll('main img').forEach((img) => {
     if (img.classList.contains('hero-image')) return;
@@ -361,18 +313,6 @@ document.addEventListener('DOMContentLoaded', function () {
     modularKitchenLoginModal = loginModal;
     closeModularKitchenLoginModal = closeLoginModal;
 
-    const completeWishlistLogin = () => {
-      localStorage.setItem(loginStorageKey, 'true');
-
-      if (!pendingWishlistItem) return false;
-
-      saveWishlistItem(pendingWishlistItem);
-      pendingWishlistItem = null;
-      closeLoginModal();
-      openWishlistPage();
-      return true;
-    };
-
     const sendLoginLead = () => {
       const phone = (loginPhoneInput?.value || '').trim();
       const digitCount = (phone.match(/\d/g) || []).length;
@@ -396,8 +336,6 @@ document.addEventListener('DOMContentLoaded', function () {
           `Page URL: ${window.location.href}`,
         ].join('\n')
       );
-
-      if (completeWishlistLogin()) return;
 
       window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
       closeLoginModal();
@@ -480,36 +418,10 @@ document.addEventListener('DOMContentLoaded', function () {
       closeFilterDrawer();
     });
 
-    modularKitchenGallery.addEventListener('click', (event) => {
-      const heart = event.target.closest('.mk-fav');
-      if (!heart) return;
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      const card = heart.closest('.mk-design-card');
-      const wishlistItem = getDesignCardDetails(card);
-      pendingWishlistItem = wishlistItem;
-
-      if (localStorage.getItem(loginStorageKey) === 'true') {
-        saveWishlistItem(wishlistItem);
-        heart.classList.add('is-active');
-        heart.textContent = '♥';
-        openWishlistPage();
-        return;
-      }
-
-      openLoginModal();
-    });
-
     loginBackdrop?.addEventListener('click', closeLoginModal);
     loginClose?.addEventListener('click', closeLoginModal);
     loginSubmit?.addEventListener('click', sendLoginLead);
-    loginGoogle?.addEventListener('click', () => {
-      if (!completeWishlistLogin()) {
-        closeLoginModal();
-      }
-    });
+    loginGoogle?.addEventListener('click', closeLoginModal);
 
     if (loginModal) {
       loginModal.setAttribute('aria-hidden', 'true');
@@ -531,48 +443,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateFilterButtons();
     renderGallery();
-  }
-
-  const wishlistPage = document.querySelector('.wishlist-page');
-  if (wishlistPage) {
-    const wishlistGrid = wishlistPage.querySelector('.wishlist-grid');
-    const wishlistEmpty = wishlistPage.querySelector('.wishlist-empty');
-    const wishlistCount = wishlistPage.querySelector('.wishlist-count');
-    const items = getWishlistItems();
-
-    if (wishlistCount) {
-      wishlistCount.textContent = `Interior Wishlist (${items.length})`;
-    }
-
-    if (items.length && wishlistGrid) {
-      wishlistEmpty?.setAttribute('hidden', 'hidden');
-      wishlistGrid.innerHTML = items
-        .map((item) => {
-          const detailList = [
-            item.category ? `<span>${item.category.replace(/-/g, ' ')}</span>` : '',
-            item.color ? `<span>${item.color}</span>` : '',
-            item.finish ? `<span>${item.finish}</span>` : '',
-            item.storage ? `<span>${item.storage.replace(/-/g, ' ')}</span>` : '',
-          ]
-            .filter(Boolean)
-            .join('');
-
-          return `
-            <article class="wishlist-card">
-              <img src="${item.image}" alt="${item.title}">
-              <div class="wishlist-card-body">
-                <p class="wishlist-card-kicker">Saved Design</p>
-                <h2>${item.title}</h2>
-                <div class="wishlist-card-details">${detailList}</div>
-                <a href="${item.page || 'Modular_Kitchen.html'}#mk-gallery" class="wishlist-quote">View Design</a>
-              </div>
-            </article>
-          `;
-        })
-        .join('');
-    } else {
-      wishlistEmpty?.removeAttribute('hidden');
-    }
   }
 
   const closeOpenDropdowns = (exceptItem = null) => {
