@@ -9710,6 +9710,241 @@ body.no-scroll {
   color: #fff;
 }
 
+.refer-terms-section {
+  background: #fff;
+  padding: 54px 54px 50px;
+}
+
+.refer-steps-wrap {
+  display: grid;
+  grid-template-columns: 260px 360px;
+  gap: 90px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.refer-steps-art {
+  position: relative;
+  height: 190px;
+}
+
+.refer-steps-art::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 8px;
+  width: 132px;
+  height: 132px;
+  border-radius: 22px;
+  background: #fde8eb;
+  transform: rotate(34deg);
+}
+
+.refer-art-card {
+  position: absolute;
+  left: 58px;
+  top: 48px;
+  width: 145px;
+  height: 106px;
+  border: 1px solid #2b3040;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.08);
+}
+
+.refer-art-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 24px;
+  background: #df1e2d;
+}
+
+.refer-art-card::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 27px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 86px 0 0 #fff;
+}
+
+.refer-art-card span {
+  position: absolute;
+  width: 36px;
+  height: 20px;
+  border: 1px solid #9ba0af;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.refer-art-card span:nth-child(1) {
+  left: 13px;
+  top: 40px;
+  background: #ef2334;
+}
+
+.refer-art-card span:nth-child(1)::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.refer-art-card span:nth-child(2) {
+  left: 58px;
+  top: 40px;
+  background: #ef2334;
+}
+
+.refer-art-card span:nth-child(3) {
+  left: 13px;
+  top: 72px;
+}
+
+.refer-art-card span:nth-child(4) {
+  left: 58px;
+  top: 72px;
+}
+
+.refer-art-person {
+  position: absolute;
+  left: 150px;
+  top: 90px;
+  width: 18px;
+  height: 64px;
+  border-radius: 10px 10px 0 0;
+  background: #424056;
+}
+
+.refer-art-person::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: -18px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #424056;
+}
+
+.refer-art-person::after {
+  content: "";
+  position: absolute;
+  left: -34px;
+  bottom: -8px;
+  width: 108px;
+  height: 2px;
+  background: #9da2b1;
+}
+
+.refer-steps-copy {
+  text-align: center;
+}
+
+.refer-steps-copy h2 {
+  margin: 0 0 28px;
+  color: #111;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.refer-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.refer-progress span {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #222;
+  border: 1px solid #e1e1e1;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.refer-progress span.done {
+  border-radius: 2px;
+  background: #2867e8;
+  border-color: #2867e8;
+  color: #fff;
+}
+
+.refer-progress span.active {
+  background: #e11b22;
+  border-color: #e11b22;
+  color: #fff;
+}
+
+.refer-progress i {
+  width: 78px;
+  border-top: 1px dashed #b8b8b8;
+}
+
+.refer-steps-copy h3 {
+  margin: 0 0 8px;
+  color: #e11b22;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.refer-steps-copy p {
+  margin: 0;
+  color: #111;
+  font-size: 0.86rem;
+}
+
+.refer-terms-copy {
+  max-width: 980px;
+  color: #111;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.refer-terms-copy h2 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.refer-terms-copy p {
+  margin: 0 0 18px;
+}
+
+.refer-terms-copy ol {
+  margin: 20px 0 0 18px;
+  padding: 0;
+}
+
+.refer-terms-copy li {
+  margin-bottom: 10px;
+}
+
+.refer-terms-copy ul {
+  margin: 10px 0 8px 20px;
+  padding: 0;
+}
+
+.refer-terms-copy a {
+  color: #1e75ff;
+}
+
 @media (max-width: 768px) {
   .mk-intro-section {
     padding: 24px 0 58px;
@@ -9844,5 +10079,28 @@ body.no-scroll {
 
   .refer-card {
     width: 100%;
+  }
+
+  .refer-terms-section {
+    padding: 36px 18px 38px;
+  }
+
+  .refer-steps-wrap {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 34px;
+  }
+
+  .refer-steps-art {
+    width: 240px;
+    margin: 0 auto;
+  }
+
+  .refer-progress i {
+    width: 54px;
+  }
+
+  .refer-terms-copy {
+    font-size: 0.8rem;
   }
 }
