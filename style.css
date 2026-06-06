@@ -1945,16 +1945,16 @@ body.lightbox-open {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin: 130px 138px 74px 78px;
+  margin: 70px 110px 50px 70px;
   position: relative;
-  width: -moz-calc(100% - 226px);
-  width: calc(100% - 226px);
+  width: -moz-calc(100% - 180px);
+  width: calc(100% - 180px);
   max-width: none;
   padding: 0;
 }
 
 .ajor-luxe-journey-title-panel {
-  height: 1056px;
+  height: 720px;
   position: relative;
   width: 50%;
 }
@@ -1968,10 +1968,10 @@ body.lightbox-open {
   border-top-right-radius: 10px;
   display: flex;
   justify-content: center;
-  margin: 14px auto 0;
-  min-height: 160px;
+  margin: 8px auto 0;
+  min-height: 120px;
   position: sticky;
-  top: 104px;
+  top: 84px;
   width: 90%;
 }
 
@@ -1983,9 +1983,9 @@ body.lightbox-open {
 .ajor-luxe-journey-standard {
   color: #494949;
   display: block;
-  font-size: 48px;
+  font-size: 34px;
   font-weight: 300;
-  line-height: 57.6px;
+  line-height: 40px;
   letter-spacing: 0;
 }
 
@@ -1993,11 +1993,11 @@ body.lightbox-open {
   color: #494949;
   display: block;
   font-family: Wonderful, Lato, sans-serif;
-  font-size: 142px;
+  font-size: 86px;
   font-style: normal;
   font-weight: 400;
-  line-height: 40px;
-  margin-left: 48px;
+  line-height: 28px;
+  margin-left: 28px;
   letter-spacing: 0;
 }
 
@@ -2008,10 +2008,10 @@ body.lightbox-open {
   background: linear-gradient(90deg, #c19038, #735419);
   border-radius: 5px;
   color: #fff;
-  margin-top: 120px;
-  padding: 16px 57px;
-  width: 292px;
-  font-size: 13px;
+  margin-top: 68px;
+  padding: 12px 38px;
+  width: 220px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
@@ -2029,10 +2029,10 @@ body.lightbox-open {
   border-radius: 10px;
   box-shadow: 0 15px 15px 0 hsla(39, 44%, 58%, 0.05);
   height: auto;
-  margin: 10px auto;
-  min-height: 160px;
+  margin: 7px auto;
+  min-height: 112px;
   overflow: hidden;
-  padding: 20px 30px 20px 25px;
+  padding: 14px 22px 14px 18px;
   position: sticky;
   top: 84px;
   transform-origin: center top;
@@ -2052,14 +2052,14 @@ body.lightbox-open {
 }
 
 .ajor-luxe-journey-icon {
-  height: 28px;
-  width: 37.35px;
+  height: 22px;
+  width: 30px;
   color: #95805a;
 }
 
 .ajor-luxe-journey-icon svg {
   display: block;
-  height: 28px;
+  height: 22px;
   width: auto;
   fill: none;
   stroke: currentColor;
@@ -2075,36 +2075,36 @@ body.lightbox-open {
 
 .ajor-luxe-journey-step {
   color: #95805a;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 18px;
   vertical-align: top;
   letter-spacing: 0;
 }
 
 .ajor-luxe-journey-heading {
   color: #494949;
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 38.4px;
-  margin: 8px 0 0;
+  line-height: 24px;
+  margin: 6px 0 0;
   letter-spacing: 0;
 }
 
 .ajor-luxe-journey-description {
   color: #494949;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 20px;
-  margin: 4px 0 0;
+  line-height: 17px;
+  margin: 3px 0 0;
   letter-spacing: 0;
 }
 
 @media (max-width: 768px) {
   .ajor-luxe-journey-wrap {
     flex-direction: column;
-    margin: 60px auto 92px;
-    padding-top: 30px;
+    margin: 36px auto 56px;
+    padding-top: 22px;
     width: 100%;
   }
 
@@ -2120,7 +2120,7 @@ body.lightbox-open {
 
   .ajor-luxe-journey-title-panel {
     height: unset;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     padding-bottom: unset;
     position: relative;
     top: unset;
@@ -2141,18 +2141,18 @@ body.lightbox-open {
   .ajor-luxe-journey-standard {
     color: #494949;
     display: inline-block;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
-    line-height: 28.8px;
+    line-height: 24px;
   }
 
   .ajor-luxe-journey-stylish {
     color: #494949;
     display: inline-block;
-    font-size: 66px;
+    font-size: 46px;
     font-weight: 400;
-    line-height: 80.72px;
-    margin-left: 12px;
+    line-height: 56px;
+    margin-left: 8px;
   }
 
   .ajor-luxe-journey-cta {
@@ -2160,40 +2160,41 @@ body.lightbox-open {
   }
 
   .ajor-luxe-journey-stack {
-    padding: 0 32px;
+    padding: 0 22px;
     width: 100%;
   }
 
   .ajor-luxe-journey-card {
-    height: 200px;
+    height: auto;
+    min-height: 132px;
     margin: 5px auto;
     max-width: 320px;
-    padding: 24px 30px 26px;
+    padding: 18px 22px 20px;
   }
 
   .ajor-luxe-journey-icon {
-    height: 34.209px;
-    width: 48px;
+    height: 28px;
+    width: 38px;
   }
 
   .ajor-luxe-journey-icon svg {
-    height: 34.209px;
+    height: 28px;
   }
 
   .ajor-luxe-journey-step {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
     line-height: 15.6px;
   }
 
   .ajor-luxe-journey-heading {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 21.6px;
   }
 
   .ajor-luxe-journey-description {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 20px;
   }
@@ -2201,13 +2202,13 @@ body.lightbox-open {
 
 @media (min-width: 769px) and (max-width: 1120px) {
   .ajor-luxe-journey-wrap {
-    margin: 180px 64px 120px;
-    width: -moz-calc(100% - 128px);
-    width: calc(100% - 128px);
+    margin: 90px 50px 70px;
+    width: -moz-calc(100% - 100px);
+    width: calc(100% - 100px);
   }
 
   .ajor-luxe-journey-heading {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .ajor-luxe-journey-description {
