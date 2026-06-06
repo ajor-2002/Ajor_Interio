@@ -566,6 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const cards = Array.from(section.querySelectorAll('.ajor-luxe-offering-card'));
     const prevButton = section.querySelector('.ajor-luxe-offerings-arrow--prev');
     const nextButton = section.querySelector('.ajor-luxe-offerings-arrow--next');
+    const slideIds = Array.from(new Set(cards.map((card) => card.dataset.slide).filter(Boolean)));
     let activePage = 0;
 
     if (cards.length === 0 || !prevButton || !nextButton) return;
@@ -578,6 +579,22 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const renderOfferings = () => {
+      if (slideIds.length > 0) {
+        activePage = ((activePage % slideIds.length) + slideIds.length) % slideIds.length;
+        const activeSlideId = slideIds[activePage];
+
+        cards.forEach((card) => {
+          const isVisible = card.dataset.slide === activeSlideId;
+          card.classList.toggle('is-hidden', !isVisible);
+          card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+        });
+
+        const hasMultipleSlides = slideIds.length > 1;
+        prevButton.disabled = !hasMultipleSlides;
+        nextButton.disabled = !hasMultipleSlides;
+        return;
+      }
+
       const pageSize = getPageSize();
       const totalPages = Math.max(Math.ceil(cards.length / pageSize), 1);
       activePage = ((activePage % totalPages) + totalPages) % totalPages;
