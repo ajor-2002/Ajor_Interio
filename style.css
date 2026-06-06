@@ -1935,6 +1935,300 @@ body.lightbox-open {
   letter-spacing: 0;
 }
 
+.ajor-luxe-journey-section {
+  background: linear-gradient(180deg, #fff 0%, #fcfbf7 100%);
+  padding: 92px 0 112px;
+}
+
+.ajor-luxe-journey-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 56px;
+  width: min(100%, 1540px);
+}
+
+.ajor-luxe-journey-title-panel {
+  flex: 0 0 36%;
+  min-width: 320px;
+  align-self: flex-start;
+  position: sticky;
+  top: 112px;
+}
+
+.ajor-luxe-journey-title-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.ajor-luxe-journey-title {
+  margin: 0;
+  max-width: 420px;
+  color: #494949;
+}
+
+.ajor-luxe-journey-standard {
+  display: block;
+  color: #494949;
+  font-size: clamp(34px, 3.7vw, 52px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-journey-stylish {
+  display: block;
+  margin: 8px 0 0 48px;
+  color: #494949;
+  font-family: "Brush Script MT", cursive;
+  font-size: clamp(90px, 9vw, 142px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.58;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-journey-cta {
+  display: inline-flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 112px;
+  padding: 16px 56px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #c19038 0%, #735419 100%);
+  box-shadow: 0 14px 30px rgba(145, 104, 28, 0.18);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.ajor-luxe-journey-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(145, 104, 28, 0.24);
+  filter: brightness(1.02);
+}
+
+.ajor-luxe-journey-stack {
+  display: grid;
+  flex: 1;
+  gap: 14px;
+  width: min(100%, 760px);
+}
+
+.ajor-luxe-journey-card {
+  position: sticky;
+  top: 84px;
+  overflow: hidden;
+  padding: 20px 30px 20px 25px;
+  border: 1px solid #e1ddd9;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 15px 15px 0 rgba(191, 165, 119, 0.05);
+}
+
+.ajor-luxe-journey-card:nth-child(1) {
+  top: 84px;
+}
+
+.ajor-luxe-journey-card:nth-child(2) {
+  top: 92px;
+}
+
+.ajor-luxe-journey-card:nth-child(3) {
+  top: 100px;
+}
+
+.ajor-luxe-journey-card:nth-child(4) {
+  top: 108px;
+}
+
+.ajor-luxe-journey-card:nth-child(5) {
+  top: 116px;
+}
+
+.ajor-luxe-journey-card:nth-child(6) {
+  top: 124px;
+}
+
+.ajor-luxe-journey-card:nth-child(7) {
+  top: 132px;
+}
+
+.ajor-luxe-journey-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ajor-luxe-journey-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  color: #95805a;
+  flex-shrink: 0;
+}
+
+.ajor-luxe-journey-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ajor-luxe-journey-icon svg path[fill],
+.ajor-luxe-journey-icon svg circle[fill] {
+  fill: currentColor;
+}
+
+.ajor-luxe-journey-step {
+  color: #95805a;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ajor-luxe-journey-heading {
+  margin: 8px 0 0;
+  color: #494949;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: 0;
+}
+
+.ajor-luxe-journey-description {
+  margin: 4px 0 0;
+  color: #494949;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+@media (max-width: 768px) {
+  .ajor-luxe-journey-section {
+    padding: 40px 0 52px;
+  }
+
+  .ajor-luxe-journey-wrap {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .ajor-luxe-journey-title-panel {
+    position: static;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ajor-luxe-journey-title {
+    max-width: none;
+  }
+
+  .ajor-luxe-journey-standard {
+    display: inline-block;
+    font-size: 30px;
+  }
+
+  .ajor-luxe-journey-stylish {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    font-size: 58px;
+    line-height: 0.9;
+    vertical-align: -0.1em;
+  }
+
+  .ajor-luxe-journey-cta {
+    margin-top: 24px;
+    min-width: 240px;
+    padding: 14px 28px;
+  }
+
+  .ajor-luxe-journey-stack {
+    width: 100%;
+  }
+
+  .ajor-luxe-journey-card {
+    position: static;
+    padding: 22px 24px;
+  }
+
+  .ajor-luxe-journey-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .ajor-luxe-journey-step {
+    font-size: 13px;
+  }
+
+  .ajor-luxe-journey-heading {
+    font-size: 20px;
+  }
+
+  .ajor-luxe-journey-description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ajor-luxe-journey-section {
+    padding: 32px 0 44px;
+  }
+
+  .ajor-luxe-journey-standard {
+    display: block;
+    font-size: 24px;
+  }
+
+  .ajor-luxe-journey-stylish {
+    display: block;
+    margin: 2px 0 0;
+    font-size: 44px;
+  }
+
+  .ajor-luxe-journey-cta {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 18px;
+    text-align: center;
+  }
+
+  .ajor-luxe-journey-card {
+    padding: 18px 18px 20px;
+    border-radius: 12px;
+  }
+
+  .ajor-luxe-journey-header {
+    gap: 12px;
+  }
+
+  .ajor-luxe-journey-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ajor-luxe-journey-heading {
+    font-size: 19px;
+  }
+}
+
 @media (max-width: 768px) {
   .luxe-overlay {
     width: 100%;
