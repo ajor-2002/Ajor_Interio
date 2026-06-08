@@ -425,32 +425,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || '-';
       const budget = budgetOutput?.textContent?.trim() || getBudgetRange();
-      const subject = encodeURIComponent('New Free Consultation Request');
-      const body = encodeURIComponent(
-        [
-          'New free consultation request from AJOR Interio calculator',
-          '',
-          `Name: ${name}`,
-          `Email: ${email}`,
-          `Phone: ${phone}`,
-          `Project Type: ${projectType}`,
-          `Project Location: ${location}`,
-          `Preferred Time Slot: ${timeSlot}`,
-          '',
-          'Calculator Details',
-          `Property Type: ${getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options')}`,
-          `BHK Type: ${getActiveOptionText('.home-calc-options.bhk')}`,
-          `BHK Size: ${getActiveOptionText('.home-calc-size-options') || 'Not required for 1 BHK'}`,
-          `Project Category: ${getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options')}`,
-          `Package: ${selectedPackage}`,
-          `Estimated Cost: ${budget}`,
-          `Visit Date: ${getEstimateFormValue('visitDate')}`,
-          `Page URL: ${window.location.href}`,
-        ].join('\n')
-      );
+      const hiddenFields = {
+        propertyType: getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options'),
+        bhkType: getActiveOptionText('.home-calc-options.bhk'),
+        bhkSize: getActiveOptionText('.home-calc-size-options') || 'Not required for 1 BHK',
+        projectCategory: getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options'),
+        package: selectedPackage,
+        budget,
+        visitDate: getEstimateFormValue('visitDate'),
+        pageUrl: window.location.href,
+      };
 
-      setConsultationStatus('Opening your mail app to send the request...', 'success');
-      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
+      Object.entries(hiddenFields).forEach(([key, value]) => {
+        const field = consultationForm.querySelector(`[data-home-calc-consultation-hidden="${key}"]`);
+        if (field) field.value = value;
+      });
+
+      setConsultationStatus('Sending your consultation request...', 'success');
+      consultationForm.submit();
     };
 
     homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {

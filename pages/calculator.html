@@ -231,10 +231,22 @@
   </div>
 
   <div class="home-calc-consultation-modal" data-home-calc-consultation-modal hidden>
-    <form class="home-calc-consultation-dialog" aria-labelledby="home-calc-consultation-title" data-home-calc-consultation-form>
+    <form class="home-calc-consultation-dialog" action="https://formsubmit.co/ajorinterio@gmail.com" method="POST" aria-labelledby="home-calc-consultation-title" data-home-calc-consultation-form>
       <button class="home-calc-consultation-close" type="button" aria-label="Close consultation form" data-home-calc-consultation-close>&times;</button>
       <h2 id="home-calc-consultation-title">Book Your Free Consultation</h2>
       <p>Our experts at <strong>AJOR Interio</strong> will contact you shortly.</p>
+
+      <input type="hidden" name="_subject" value="New Free Consultation Request" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="Calculator Property Type" data-home-calc-consultation-hidden="propertyType" />
+      <input type="hidden" name="Calculator BHK Type" data-home-calc-consultation-hidden="bhkType" />
+      <input type="hidden" name="Calculator BHK Size" data-home-calc-consultation-hidden="bhkSize" />
+      <input type="hidden" name="Calculator Project Category" data-home-calc-consultation-hidden="projectCategory" />
+      <input type="hidden" name="Calculator Package" data-home-calc-consultation-hidden="package" />
+      <input type="hidden" name="Calculator Estimated Cost" data-home-calc-consultation-hidden="budget" />
+      <input type="hidden" name="Calculator Visit Date" data-home-calc-consultation-hidden="visitDate" />
+      <input type="hidden" name="Page URL" data-home-calc-consultation-hidden="pageUrl" />
 
       <input name="name" type="text" placeholder="Your Name" autocomplete="name" />
       <input name="email" type="email" placeholder="Email Address" autocomplete="email" />
