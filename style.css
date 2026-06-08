@@ -13839,3 +13839,30 @@ body.no-scroll {
 .blogs-footer-logo img {
   filter: none;
 }
+/* Footer social icons: image only */
+.blogs-footer-social a {
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
+.blogs-footer-social a:hover,
+.blogs-footer-social a:focus-visible {
+  transform: translateY(-2px);
+  border-color: transparent;
+  background: transparent;
+}
+
+.blogs-footer-social a img {
+  width: 26px;
+  height: 26px;
+}
+
+.blogs-footer-social a[aria-label="WhatsApp"] img {
+  width: 28px;
+  height: 28px;
+}
