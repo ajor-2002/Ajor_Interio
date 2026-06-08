@@ -12732,7 +12732,7 @@ body.no-scroll {
   max-width: 980px;
   margin: 34px auto 44px;
   color: #fff;
-  font-size: clamp(3.2rem, 5vw, 5.7rem);
+  font-size: clamp(2.7rem, 4.1vw, 4.6rem);
   line-height: 1.08;
   letter-spacing: 0;
   font-weight: 900;
@@ -12766,10 +12766,11 @@ body.no-scroll {
   .blogs-hero h1 {
     max-width: 92%;
     margin: 30px auto 36px;
-    font-size: clamp(2.45rem, 11vw, 4rem);
+    font-size: clamp(2rem, 8.5vw, 3.2rem);
   }
 
   .blogs-hero-date {
     font-size: 1rem;
   }
 }
+
