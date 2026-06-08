@@ -11014,6 +11014,19 @@ body.no-scroll {
 .kitchen-calc-steps {
   display: grid;
   gap: 22px;
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+}
+
+.kitchen-calc-steps::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kitchen-calc-steps::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #cfd5df;
 }
 
 .kitchen-step-card {
@@ -11426,6 +11439,12 @@ body.no-scroll {
 @media (max-width: 768px) {
   .kitchen-calc-flow {
     grid-template-columns: 1fr;
+  }
+
+  .kitchen-calc-steps {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .kitchen-radio-row,
