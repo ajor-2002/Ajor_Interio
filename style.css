@@ -13866,3 +13866,183 @@ body.no-scroll {
   width: 28px;
   height: 28px;
 }
+
+/* Final mobile visibility polish */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+.blogs-footer p,
+.blogs-footer a,
+.blogs-footer-copy,
+.blog-article,
+.customer-stories-page,
+.kitchen-calc-page,
+.home-calc-page {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  body {
+    min-width: 0;
+  }
+
+  .site-header,
+  .topbar,
+  .nav-main,
+  .main-nav,
+  .hero,
+  .blogs-hero,
+  .customer-stories-hero,
+  .kitchen-calc-hero {
+    max-width: 100vw;
+  }
+
+  .hero h1,
+  .section-title,
+  .blogs-hero h1,
+  .customer-stories-hero-copy h1,
+  .kitchen-calc-hero h1,
+  .home-calc-card h1,
+  .home-calc-result-card h1,
+  .blog-article h2,
+  .blog-article h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .blogs-footer {
+    padding: 34px 18px 18px;
+  }
+
+  .blogs-footer-main {
+    width: 100%;
+    gap: 24px;
+  }
+
+  .blogs-footer nav,
+  .blogs-footer-newsletter,
+  .blogs-footer-main > div {
+    min-width: 0;
+  }
+
+  .blogs-footer-newsletter input,
+  .blogs-footer-newsletter button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .blogs-footer-social {
+    gap: 14px;
+  }
+
+  .blogs-footer-social a img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .customer-stories-gallery,
+  .customer-stories-cta,
+  .customer-stories-reviews,
+  .customer-stories-journey,
+  .customer-stories-stats,
+  .blog-discover,
+  .blog-article,
+  .kitchen-calc-start,
+  .kitchen-calc-faq {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .customer-stories-gallery-grid img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  .customer-stories-actions,
+  .blogs-hero-actions,
+  .customer-cta-actions,
+  .home-calc-actions,
+  .home-calc-scope-actions,
+  .home-calc-package-actions,
+  .home-calc-estimate-actions {
+    width: 100%;
+  }
+
+  .customer-stories-actions a,
+  .blogs-hero-actions a,
+  .customer-cta-actions a,
+  .home-calc-actions button,
+  .home-calc-scope-actions button,
+  .home-calc-package-actions button,
+  .home-calc-estimate-actions button,
+  .home-calc-estimate-actions a {
+    width: 100%;
+  }
+
+  .kitchen-calc-flow {
+    align-items: stretch;
+  }
+
+  .kitchen-estimate-card {
+    position: static;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .kitchen-calc-steps {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .kitchen-step-card,
+  .kitchen-estimate-card,
+  .home-calc-card,
+  .home-calc-result-card,
+  .home-calc-summary-dialog,
+  .home-calc-consultation-dialog,
+  .kitchen-price-dialog {
+    width: 100%;
+    max-width: calc(100vw - 32px);
+  }
+}
+
+@media (max-width: 520px) {
+  .blogs-page .blog-step-card > strong,
+  .blogs-page .blog-step-card h3 {
+    display: block;
+  }
+
+  .blogs-page .blog-step-card > strong::after {
+    content: "";
+  }
+
+  .home-calc-toast {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+  }
+
+  .kitchen-calc-hero,
+  .blogs-hero,
+  .customer-stories-hero {
+    min-height: 320px;
+  }
+
+  .customer-stories-gallery-grid,
+  .blog-post-grid,
+  .kitchen-shape-grid,
+  .kitchen-accessory-track {
+    grid-template-columns: 1fr;
+  }
+}
