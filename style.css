@@ -11001,7 +11001,9 @@ body.no-scroll {
 .kitchen-calc-start {
   max-width: 1260px;
   margin: 0 auto;
+  height: calc(100vh - 150px);
   padding: 22px 20px 56px;
+  overflow: hidden;
 }
 
 .kitchen-calc-flow {
@@ -11009,11 +11011,25 @@ body.no-scroll {
   grid-template-columns: minmax(0, 1fr) 320px;
   gap: 22px;
   align-items: start;
+  height: 100%;
 }
 
 .kitchen-calc-steps {
   display: grid;
   gap: 22px;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+}
+
+.kitchen-calc-steps::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kitchen-calc-steps::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #cfd5df;
 }
 
 .kitchen-step-card {
@@ -11210,8 +11226,8 @@ body.no-scroll {
 }
 
 .kitchen-estimate-card {
-  position: sticky;
-  top: 16px;
+  position: relative;
+  top: 0;
   align-self: start;
   max-height: none;
   overflow: visible;
@@ -11424,8 +11440,20 @@ body.no-scroll {
 }
 
 @media (max-width: 768px) {
+  .kitchen-calc-start {
+    height: auto;
+    overflow: visible;
+  }
+
   .kitchen-calc-flow {
     grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .kitchen-calc-steps {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .kitchen-radio-row,
