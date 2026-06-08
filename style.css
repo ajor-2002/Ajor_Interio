@@ -13142,3 +13142,236 @@ body.no-scroll {
     grid-template-columns: 1fr;
   }
 }
+/* Plain long-form blog article style */
+.blogs-page .blog-article {
+  background: #fff;
+  padding: 66px 6vw 96px;
+}
+
+.blogs-page .blog-article-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.blogs-page .blog-article-intro {
+  max-width: 100%;
+  margin: 0 0 62px;
+  text-align: left;
+}
+
+.blogs-page .blog-article-intro span {
+  display: none;
+}
+
+.blogs-page .blog-article-intro h2 {
+  margin-bottom: 24px;
+  color: #050505;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 1.18;
+  font-weight: 900;
+}
+
+.blogs-page .blog-article-intro p {
+  max-width: 1120px;
+  margin: 0 0 18px;
+  color: #4f5967;
+  font-size: 1.16rem;
+  line-height: 1.75;
+}
+
+.blogs-page .blog-step-list {
+  display: block;
+}
+
+.blogs-page .blog-step-card,
+.blogs-page .blog-step-card:last-child {
+  display: block;
+  padding: 0 0 58px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.blogs-page .blog-step-card > strong {
+  width: auto;
+  min-height: 0;
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #050505;
+  font-size: clamp(2.35rem, 3.8vw, 3.45rem);
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.blogs-page .blog-step-card > strong::after {
+  content: ": ";
+}
+
+.blogs-page .blog-step-card h3 {
+  display: inline;
+  margin: 0;
+  color: #050505;
+  font-size: clamp(2.35rem, 3.8vw, 3.45rem);
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.blogs-page .blog-step-card h3::after {
+  content: "";
+  display: block;
+  height: 32px;
+}
+
+.blogs-page .blog-step-card h4 {
+  margin: 42px 0 22px;
+  color: #050505;
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.blogs-page .blog-step-card p,
+.blogs-page .blog-step-card ul {
+  max-width: 1120px;
+}
+
+.blogs-page .blog-step-card p,
+.blogs-page .blog-room-grid p,
+.blogs-page .blog-closing-note p {
+  color: #4f5967;
+  font-size: 1.16rem;
+  line-height: 1.75;
+}
+
+.blogs-page .blog-step-card p {
+  margin: 0 0 22px;
+}
+
+.blogs-page .blog-step-card ul {
+  display: block;
+  margin: 0 0 28px 22px;
+  padding-left: 24px;
+  color: #4f5967;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.blogs-page .blog-step-card li {
+  padding-left: 10px;
+}
+
+.blogs-page .blog-step-card li::marker,
+.blogs-page .blog-advice-grid li::marker {
+  color: #555;
+}
+
+.blogs-page .blog-room-grid {
+  display: block;
+  max-width: 1120px;
+  margin-top: 10px;
+}
+
+.blogs-page .blog-room-grid div {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  margin-bottom: 22px;
+}
+
+.blogs-page .blog-room-grid h4 {
+  margin: 0 0 8px;
+  color: #050505;
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.blogs-page .blog-advice-grid {
+  display: block;
+  margin-top: 6px;
+}
+
+.blogs-page .blog-advice-grid > div {
+  padding: 0 0 58px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.blogs-page .blog-advice-grid h2,
+.blogs-page .blog-closing-note h2 {
+  color: #050505;
+  font-size: clamp(2.35rem, 3.8vw, 3.45rem);
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.blogs-page .blog-advice-grid ul {
+  margin: 26px 0 0 22px;
+  padding-left: 24px;
+  color: #4f5967;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.blogs-page .blog-closing-note {
+  margin-top: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+}
+
+.blogs-page .blog-closing-note p {
+  max-width: 1120px;
+  margin: 24px 0 0;
+}
+
+.blogs-page .blog-closing-note a {
+  min-height: 54px;
+  margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .blogs-page .blog-article {
+    padding: 46px 22px 74px;
+  }
+
+  .blogs-page .blog-step-card {
+    padding-bottom: 44px;
+  }
+
+  .blogs-page .blog-step-card > strong,
+  .blogs-page .blog-step-card h3,
+  .blogs-page .blog-advice-grid h2,
+  .blogs-page .blog-closing-note h2 {
+    font-size: clamp(2rem, 9vw, 2.9rem);
+  }
+
+  .blogs-page .blog-step-card h3::after {
+    height: 22px;
+  }
+
+  .blogs-page .blog-step-card h4 {
+    margin-top: 32px;
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .blogs-page .blog-step-card p,
+  .blogs-page .blog-step-card ul,
+  .blogs-page .blog-article-intro p,
+  .blogs-page .blog-room-grid p,
+  .blogs-page .blog-closing-note p {
+    font-size: 1.02rem;
+  }
+}
