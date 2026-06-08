@@ -289,6 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const consultationForm = document.querySelector('[data-home-calc-consultation-form]');
     const consultationCloseButton = document.querySelector('[data-home-calc-consultation-close]');
     const consultationStatus = document.querySelector('.home-calc-consultation-status');
+    const consultationHomeButton = document.querySelector('[data-home-calc-consultation-home]');
     const calcToast = document.querySelector('[data-home-calc-toast]');
     const calcToastTitle = document.querySelector('[data-home-calc-toast-title]');
     const calcToastMessage = document.querySelector('[data-home-calc-toast-message]');
@@ -454,6 +455,9 @@ document.addEventListener('DOMContentLoaded', function () {
         consultationStatus.textContent = '';
         consultationStatus.classList.remove('is-error', 'is-success');
       }
+      if (consultationHomeButton) {
+        consultationHomeButton.hidden = true;
+      }
       consultationForm?.elements?.name?.focus();
     };
 
@@ -573,6 +577,9 @@ document.addEventListener('DOMContentLoaded', function () {
         );
         setConsultationStatus('Thank you. Your request has been sent.', 'success');
         consultationForm.reset();
+        if (consultationHomeButton) {
+          consultationHomeButton.hidden = false;
+        }
       } catch (error) {
         setConsultationStatus(`There was an error: ${error.message}`, 'error');
       } finally {

@@ -11204,6 +11204,13 @@ body.no-scroll {
   color: #00813d;
 }
 
+.home-calc-consultation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
 .home-calc-consultation-submit {
   min-width: 92px;
   min-height: 38px;
@@ -11215,6 +11222,25 @@ body.no-scroll {
   font-size: 0.9rem;
   font-weight: 800;
   cursor: pointer;
+}
+
+.home-calc-consultation-home {
+  min-width: 116px;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid #d5dce8;
+  border-radius: 999px;
+  color: #1e3358;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-calc-consultation-home[hidden] {
+  display: none;
 }
 
 @media (max-width: 991px) {
