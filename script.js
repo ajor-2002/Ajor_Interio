@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const setAuthMode = (mode) => {
       activeAuthMode = mode;
       if (!authModal) return;
+      authModal.dataset.authMode = mode;
       const title = authModal.querySelector('.auth-modal-title');
       const subtitle = authModal.querySelector('.auth-modal-subtitle');
       const loginPanel = authModal.querySelector('[data-auth-panel="login"]');
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               <form data-auth-panel="login" novalidate>
                 <label class="auth-phone-field">
-                  <span class="auth-country">IN +</span>
+                  <span class="auth-country"><span class="auth-flag" aria-hidden="true"></span><span class="auth-caret" aria-hidden="true"></span></span>
                   <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" />
                 </label>
                 <button class="auth-submit" type="submit">Login</button>
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <form data-auth-panel="signup" hidden novalidate>
                 <input type="text" name="name" placeholder="Enter your name" autocomplete="name" />
                 <label class="auth-phone-field">
-                  <span class="auth-country">IN +</span>
+                  <span class="auth-country"><span class="auth-flag" aria-hidden="true"></span><span class="auth-caret" aria-hidden="true"></span></span>
                   <input type="tel" name="phone" placeholder="Enter your mobile number" autocomplete="tel" />
                 </label>
                 <label class="auth-whatsapp">
