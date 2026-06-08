@@ -228,7 +228,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const estimateStatus = document.querySelector('.home-calc-estimate-status');
     const budgetOutput = document.querySelector('[data-home-calc-budget]');
     const packageButtons = Array.from(document.querySelectorAll('[data-home-calc-package]'));
+    const sizeFieldset = document.querySelector('[data-home-calc-size-fieldset]');
+    const sizeTitle = document.querySelector('[data-home-calc-size-title]');
+    const sizeOptions = document.querySelector('[data-home-calc-size-options]');
     const panelByStep = ['space', 'scope', 'package', 'estimate', 'result'];
+    const bhkSizeOptions = {
+      2: ['Below 800 sq.ft', 'Above 800 sq.ft'],
+      3: ['Below 1200 sq.ft', 'Above 1200 sq.ft'],
+      4: ['Below 1800 sq.ft', 'Above 1800 sq.ft'],
+    };
 
     const showHomeCalcStep = (stepIndex) => {
       panels.forEach((panel) => {
@@ -245,6 +253,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const getActiveOptionText = (selector) => {
       const group = document.querySelector(selector);
       return group?.querySelector('.active')?.textContent?.trim() || '';
+    };
+
+    const updateBhkSizeOptions = () => {
+      if (!sizeFieldset || !sizeTitle || !sizeOptions) return;
+
+      const bhk = getActiveOptionText('.home-calc-options.bhk');
+      const bhkValue = Number((bhk.match(/\d+/) || ['1'])[0]);
+      const options = bhkSizeOptions[bhkValue] || [];
+
+      sizeOptions.replaceChildren();
+      sizeFieldset.hidden = options.length === 0;
+
+      if (!options.length) return;
+
+      sizeTitle.textContent = `Select Size for ${bhkValue} BHK`;
+      options.forEach((optionText) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.homeCalcOption = '';
+        button.textContent = optionText;
+        sizeOptions.append(button);
+      });
     };
 
     const getBudgetRange = () => {
@@ -269,9 +299,24 @@ document.addEventListener('DOMContentLoaded', function () {
           optionButtons.forEach((optionButton) => {
             optionButton.classList.toggle('active', optionButton === button);
           });
+
+          if (fieldset.querySelector('.home-calc-options.bhk')) {
+            updateBhkSizeOptions();
+          }
         });
       });
     });
+
+    sizeOptions?.addEventListener('click', (event) => {
+      const selectedButton = event.target.closest('[data-home-calc-option]');
+      if (!selectedButton || !sizeOptions.contains(selectedButton)) return;
+
+      Array.from(sizeOptions.querySelectorAll('[data-home-calc-option]')).forEach((button) => {
+        button.classList.toggle('active', button === selectedButton);
+      });
+    });
+
+    updateBhkSizeOptions();
 
     homeCalcForm.addEventListener('submit', (event) => {
       event.preventDefault();
