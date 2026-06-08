@@ -10946,18 +10946,19 @@ body.no-scroll {
   position: relative;
   min-height: 285px;
   height: 285px;
-  display: grid;
-  grid-template-columns: minmax(460px, 48%) 1fr;
+  display: flex;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(90deg, #edf1f1 0%, #edf1f1 43%, rgba(237, 241, 241, 0.7) 52%, rgba(237, 241, 241, 0) 68%);
+  padding: 0 100px;
+  background: url("images/straight/contemporary-straight-kitchen-quartz-red-cabinets.jpg") no-repeat 50%;
+  background-color: transparent;
+  background-size: cover;
 }
 
 .kitchen-calc-hero-copy {
   position: relative;
   z-index: 1;
-  align-self: center;
-  padding: 0 7vw;
+  padding: 0;
 }
 
 .kitchen-calc-hero h1 {
@@ -10978,11 +10979,7 @@ body.no-scroll {
 }
 
 .kitchen-calc-hero img {
-  width: 100%;
-  height: 100%;
-  min-height: 285px;
-  object-fit: cover;
-  object-position: center;
+  display: none;
 }
 
 .kitchen-calc-breadcrumb {
@@ -11026,11 +11023,11 @@ body.no-scroll {
     height: 250px;
     display: flex;
     align-items: center;
-    background: #edf1f1;
+    padding: 80px 15px 0;
   }
 
   .kitchen-calc-hero-copy {
-    padding: 80px 15px 0;
+    padding: 0;
   }
 
   .kitchen-calc-hero h1 {
@@ -11038,12 +11035,7 @@ body.no-scroll {
   }
 
   .kitchen-calc-hero img {
-    position: absolute;
-    inset: 0;
-    height: 250px;
-    min-height: 250px;
-    opacity: 0.55;
-    object-position: center;
+    display: none;
   }
 
   .kitchen-calc-breadcrumb {
