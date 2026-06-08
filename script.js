@@ -235,6 +235,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const summaryModal = document.querySelector('[data-home-calc-summary-modal]');
     const summaryDetails = document.querySelector('[data-home-calc-summary-details]');
     const summaryCloseButton = document.querySelector('[data-home-calc-summary-close]');
+    const consultationOpenButton = document.querySelector('[data-home-calc-consultation-open]');
+    const consultationModal = document.querySelector('[data-home-calc-consultation-modal]');
+    const consultationForm = document.querySelector('[data-home-calc-consultation-form]');
+    const consultationCloseButton = document.querySelector('[data-home-calc-consultation-close]');
+    const consultationStatus = document.querySelector('.home-calc-consultation-status');
     const panelByStep = ['space', 'scope', 'package', 'estimate', 'result'];
     const bhkSizeOptions = {
       2: ['Below 800 sq.ft', 'Above 800 sq.ft'],
@@ -262,6 +267,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const getEstimateFormValue = (name) => {
       const field = estimateForm?.elements?.[name];
       return field?.value?.trim() || '-';
+    };
+
+    const getConsultationFormValue = (name) => {
+      const field = consultationForm?.elements?.[name];
+      return field?.value?.trim() || '';
     };
 
     const updateBhkSizeOptions = () => {
@@ -345,6 +355,102 @@ document.addEventListener('DOMContentLoaded', function () {
       summaryModal.hidden = true;
       document.body.classList.remove('home-calc-summary-open');
       summaryButton?.focus();
+    };
+
+    const openConsultationForm = () => {
+      if (!consultationModal) return;
+      consultationModal.hidden = false;
+      document.body.classList.add('home-calc-summary-open');
+      if (consultationStatus) {
+        consultationStatus.textContent = '';
+        consultationStatus.classList.remove('is-error', 'is-success');
+      }
+      consultationForm?.elements?.name?.focus();
+    };
+
+    const closeConsultationForm = () => {
+      if (!consultationModal) return;
+      consultationModal.hidden = true;
+      document.body.classList.remove('home-calc-summary-open');
+      consultationOpenButton?.focus();
+    };
+
+    const sendConsultationRequest = () => {
+      if (!consultationForm) return;
+
+      const name = getConsultationFormValue('name');
+      const email = getConsultationFormValue('email');
+      const phone = getConsultationFormValue('phone');
+      const projectType = getConsultationFormValue('projectType');
+      const location = getConsultationFormValue('location');
+      const timeSlot = getConsultationFormValue('timeSlot');
+      const consent = consultationForm.elements?.consent?.checked;
+      const phoneDigits = (phone.match(/\d/g) || []).length;
+
+      const setConsultationStatus = (message, type) => {
+        if (!consultationStatus) return;
+        consultationStatus.textContent = message;
+        consultationStatus.classList.toggle('is-error', type === 'error');
+        consultationStatus.classList.toggle('is-success', type === 'success');
+      };
+
+      if (!name) {
+        consultationForm.elements?.name?.focus();
+        setConsultationStatus('Please enter your name.', 'error');
+        return;
+      }
+
+      if (!email || !email.includes('@')) {
+        consultationForm.elements?.email?.focus();
+        setConsultationStatus('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      if (phoneDigits < 10) {
+        consultationForm.elements?.phone?.focus();
+        setConsultationStatus('Phone number must contain at least 10 digits.', 'error');
+        return;
+      }
+
+      if (!projectType || !location || !timeSlot) {
+        setConsultationStatus('Please fill project type, location and preferred time slot.', 'error');
+        return;
+      }
+
+      if (!consent) {
+        consultationForm.elements?.consent?.focus();
+        setConsultationStatus('Please accept the contact permission checkbox.', 'error');
+        return;
+      }
+
+      const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || '-';
+      const budget = budgetOutput?.textContent?.trim() || getBudgetRange();
+      const subject = encodeURIComponent('New Free Consultation Request');
+      const body = encodeURIComponent(
+        [
+          'New free consultation request from AJOR Interio calculator',
+          '',
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Phone: ${phone}`,
+          `Project Type: ${projectType}`,
+          `Project Location: ${location}`,
+          `Preferred Time Slot: ${timeSlot}`,
+          '',
+          'Calculator Details',
+          `Property Type: ${getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options')}`,
+          `BHK Type: ${getActiveOptionText('.home-calc-options.bhk')}`,
+          `BHK Size: ${getActiveOptionText('.home-calc-size-options') || 'Not required for 1 BHK'}`,
+          `Project Category: ${getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options')}`,
+          `Package: ${selectedPackage}`,
+          `Estimated Cost: ${budget}`,
+          `Visit Date: ${getEstimateFormValue('visitDate')}`,
+          `Page URL: ${window.location.href}`,
+        ].join('\n')
+      );
+
+      setConsultationStatus('Opening your mail app to send the request...', 'success');
+      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
     };
 
     homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {
@@ -444,9 +550,30 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
+    consultationOpenButton?.addEventListener('click', (event) => {
+      event.preventDefault();
+      openConsultationForm();
+    });
+
+    consultationCloseButton?.addEventListener('click', closeConsultationForm);
+    consultationModal?.addEventListener('click', (event) => {
+      if (event.target === consultationModal) {
+        closeConsultationForm();
+      }
+    });
+
+    consultationForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      sendConsultationRequest();
+    });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && summaryModal && !summaryModal.hidden) {
         closeQuoteSummary();
+      }
+
+      if (event.key === 'Escape' && consultationModal && !consultationModal.hidden) {
+        closeConsultationForm();
       }
     });
 

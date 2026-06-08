@@ -210,7 +210,7 @@
       <div class="home-calc-quote-box">
         <h2>Want an accurate quote?</h2>
         <p>Book a <strong>FREE</strong> consultation with our designer to get a detailed quote for your interiors.</p>
-        <a href="../index.html#lead-form">Book a Free Consultation</a>
+        <a href="../index.html#lead-form" data-home-calc-consultation-open>Book a Free Consultation</a>
       </div>
 
       <div class="home-calc-trust-row">
@@ -228,6 +228,35 @@
       <h2 id="home-calc-summary-title">Quote Summary</h2>
       <div class="home-calc-summary-details" data-home-calc-summary-details></div>
     </div>
+  </div>
+
+  <div class="home-calc-consultation-modal" data-home-calc-consultation-modal hidden>
+    <form class="home-calc-consultation-dialog" aria-labelledby="home-calc-consultation-title" data-home-calc-consultation-form>
+      <button class="home-calc-consultation-close" type="button" aria-label="Close consultation form" data-home-calc-consultation-close>&times;</button>
+      <h2 id="home-calc-consultation-title">Book Your Free Consultation</h2>
+      <p>Our experts at <strong>AJOR Interio</strong> will contact you shortly.</p>
+
+      <input name="name" type="text" placeholder="Your Name" autocomplete="name" />
+      <input name="email" type="email" placeholder="Email Address" autocomplete="email" />
+      <input name="phone" type="tel" placeholder="Phone Number" autocomplete="tel" />
+      <input name="projectType" type="text" placeholder="Project Type (e.g., Living Room, Kitchen)" />
+      <input name="location" type="text" placeholder="Project Location" />
+
+      <select name="timeSlot" aria-label="Select Preferred Time Slot">
+        <option value="">Select Preferred Time Slot</option>
+        <option value="Morning: 9 AM - 12 PM">Morning: 9 AM - 12 PM</option>
+        <option value="Afternoon: 12 PM - 4 PM">Afternoon: 12 PM - 4 PM</option>
+        <option value="Evening: 4 PM - 8 PM">Evening: 4 PM - 8 PM</option>
+      </select>
+
+      <label class="home-calc-consultation-consent">
+        <input name="consent" type="checkbox" />
+        <span>I agree to the terms &amp; conditions and allow AJOR Interio to contact me.</span>
+      </label>
+
+      <p class="home-calc-consultation-status" aria-live="polite"></p>
+      <button class="home-calc-consultation-submit" type="submit">Submit</button>
+    </form>
   </div>
 
   <script src="../script.js"></script>
