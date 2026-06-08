@@ -1581,7 +1581,7 @@ document.addEventListener('DOMContentLoaded', function () {
     lastLightboxTrigger = image;
     lightbox.image.src = image.currentSrc || image.src;
     lightbox.image.alt = image.alt || caption;
-    lightbox.caption.textContent = caption;
+    lightbox.caption.textContent = '';
     lightbox.root.classList.add('is-open');
     document.body.classList.add('lightbox-open');
     lightbox.closeButton.focus({ preventScroll: true });
