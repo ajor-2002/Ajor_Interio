@@ -13800,3 +13800,14 @@ body.no-scroll {
     width: 118px;
   }
 }
+.blogs-footer-social a img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+}
+
+.blogs-footer-social a[aria-label="WhatsApp"] img {
+  width: 22px;
+  height: 22px;
+}
