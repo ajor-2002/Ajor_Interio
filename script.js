@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
               Friend_Phone: friendPhone,
               Referrer_Phone: yourPhone,
             },
-            'New referral invite from AJOR Interio'
+            'New referral invite from Ajor Interio'
           );
           if (inviteResult) {
             inviteResult.textContent = 'Referral invite sent successfully.';
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const referralCode = digits.slice(-10);
       const referralUrl = `${window.location.origin}${window.location.pathname.replace('pages/refer-and-earn.html', '')}?ref=${referralCode}`;
-      const shareText = `Try AJOR Interio for your home interiors. Use my referral link: ${referralUrl}`;
+      const shareText = `Try Ajor Interio for your home interiors. Use my referral link: ${referralUrl}`;
 
       if (result) {
         result.textContent = referralUrl;
@@ -1169,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             Form_Type: 'Login Phone Lead',
             Phone: phone,
           },
-          'New Login Lead from AJOR Interio'
+          'New Login Lead from Ajor Interio'
         );
         closeLoginModal();
 
