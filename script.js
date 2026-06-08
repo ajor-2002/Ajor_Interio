@@ -264,6 +264,48 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const kitchenAccessorySlider = document.querySelector('[data-kitchen-accessory-slider]');
+  if (kitchenAccessorySlider) {
+    const track = kitchenAccessorySlider.querySelector('[data-kitchen-accessory-track]');
+    const prevButton = kitchenAccessorySlider.querySelector('[data-kitchen-accessory-prev]');
+    const nextButton = kitchenAccessorySlider.querySelector('[data-kitchen-accessory-next]');
+    const items = Array.from(kitchenAccessorySlider.querySelectorAll('.kitchen-accessory'));
+    let currentIndex = 0;
+
+    const getVisibleCount = () => {
+      if (window.matchMedia('(max-width: 520px)').matches) return 1;
+      if (window.matchMedia('(max-width: 768px)').matches) return 2;
+      return 4;
+    };
+
+    const updateKitchenAccessorySlider = () => {
+      if (!track || !items.length) return;
+
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, items.length - visibleCount);
+      currentIndex = Math.min(currentIndex, maxIndex);
+      const gap = parseFloat(window.getComputedStyle(track).columnGap || '0') || 0;
+      const itemWidth = items[0].getBoundingClientRect().width + gap;
+
+      track.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+      if (prevButton) prevButton.disabled = currentIndex === 0;
+      if (nextButton) nextButton.disabled = currentIndex >= maxIndex;
+    };
+
+    prevButton?.addEventListener('click', () => {
+      currentIndex = Math.max(0, currentIndex - 1);
+      updateKitchenAccessorySlider();
+    });
+
+    nextButton?.addEventListener('click', () => {
+      currentIndex += 1;
+      updateKitchenAccessorySlider();
+    });
+
+    window.addEventListener('resize', updateKitchenAccessorySlider, { passive: true });
+    updateKitchenAccessorySlider();
+  }
+
   const homeCalcForm = document.querySelector('.home-calc-form');
   if (homeCalcForm) {
     const progressSteps = Array.from(document.querySelectorAll('.home-calc-step'));
