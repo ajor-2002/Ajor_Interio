@@ -10947,7 +10947,7 @@ body.no-scroll {
   min-height: 285px;
   height: 285px;
   display: grid;
-  grid-template-columns: minmax(320px, 44%) 1fr;
+  grid-template-columns: minmax(460px, 48%) 1fr;
   align-items: center;
   overflow: hidden;
   background: linear-gradient(90deg, #edf1f1 0%, #edf1f1 43%, rgba(237, 241, 241, 0.7) 52%, rgba(237, 241, 241, 0) 68%);
@@ -10963,10 +10963,11 @@ body.no-scroll {
 .kitchen-calc-hero h1 {
   margin: 0 0 8px;
   color: #18202b;
-  font-size: clamp(1.85rem, 2.35vw, 2.7rem);
+  font-size: clamp(1.45rem, 1.75vw, 2rem);
   line-height: 1.15;
   font-weight: 500;
   letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .kitchen-calc-hero p {
@@ -11030,6 +11031,10 @@ body.no-scroll {
 
   .kitchen-calc-hero-copy {
     padding: 80px 15px 0;
+  }
+
+  .kitchen-calc-hero h1 {
+    white-space: normal;
   }
 
   .kitchen-calc-hero img {
