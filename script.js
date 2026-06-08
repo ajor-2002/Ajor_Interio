@@ -12,6 +12,34 @@ document.addEventListener('DOMContentLoaded', function () {
     img.decoding = 'async';
   });
 
+  const formSubmitEndpoint = 'https://formsubmit.co/ajax/ajorinterio@gmail.com';
+
+  const sendFormSubmitEmail = async (fields, subject) => {
+    const payload = {
+      _subject: subject,
+      _template: 'table',
+      _captcha: 'false',
+      Page_URL: window.location.href,
+      ...fields,
+    };
+
+    const response = await fetch(formSubmitEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+
+    if (!response.ok || !(data.success === 'true' || data.success === true)) {
+      throw new Error(data.message || 'Form submission failed. Please try again.');
+    }
+
+    return data;
+  };
+
   const leadForm = document.querySelector('.lead-form');
   if (leadForm) {
     const formStatus = leadForm.querySelector('.form-status');
@@ -33,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return /^[A-Za-z][A-Za-z\s.'-]{1,}$/.test(trimmed);
     };
 
-    leadForm.addEventListener('submit', (event) => {
+    leadForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       const formData = new FormData(leadForm);
@@ -59,20 +87,34 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      const subject = encodeURIComponent('New 3D Design Session Lead');
-      const body = encodeURIComponent(
-        [
-          'New lead from AJOR Interio website',
-          `Name: ${name}`,
-          `Phone: ${phone}`,
-          `City: ${city}`,
-          `Page URL: ${window.location.href}`,
-        ].join('\n')
-      );
+      const submitButton = leadForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton?.textContent || '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+      setStatus('Sending your request...', 'success');
 
-      setStatus('Opening your mail app to send the request...', 'success');
-      leadForm.reset();
-      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: '3D Design Session Lead',
+            Name: name,
+            Phone: phone,
+            City: city,
+          },
+          'New 3D Design Session Lead'
+        );
+        setStatus('Thank you. We will contact you shortly.', 'success');
+        leadForm.reset();
+      } catch (error) {
+        setStatus(`There was an error: ${error.message}`, 'error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
     });
   }
 
@@ -97,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    referCard.addEventListener('submit', (event) => {
+    referCard.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       if (activeReferTab === 'invite') {
@@ -115,23 +157,30 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
 
-        const subject = encodeURIComponent('New referral invite from AJOR Interio');
-        const body = encodeURIComponent(
-          [
-            'Referral invite',
-            `City: ${city}`,
-            `Friend Name: ${name}`,
-            `Friend Email: ${email}`,
-            `Friend Phone: ${friendPhone}`,
-            `Referrer Phone: ${yourPhone}`,
-            `Page URL: ${window.location.href}`,
-          ].join('\n')
-        );
-
         if (inviteResult) {
-          inviteResult.textContent = 'Opening your mail app to send the invite...';
+          inviteResult.textContent = 'Sending referral invite...';
         }
-        window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
+
+        try {
+          await sendFormSubmitEmail(
+            {
+              Form_Type: 'Referral Invite',
+              City: city,
+              Friend_Name: name,
+              Friend_Email: email,
+              Friend_Phone: friendPhone,
+              Referrer_Phone: yourPhone,
+            },
+            'New referral invite from AJOR Interio'
+          );
+          if (inviteResult) {
+            inviteResult.textContent = 'Referral invite sent successfully.';
+          }
+        } catch (error) {
+          if (inviteResult) {
+            inviteResult.textContent = `There was an error: ${error.message}`;
+          }
+        }
         return;
       }
 
@@ -375,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
       consultationOpenButton?.focus();
     };
 
-    const sendConsultationRequest = () => {
+    const sendConsultationRequest = async () => {
       if (!consultationForm) return;
 
       const name = getConsultationFormValue('name');
@@ -442,7 +491,43 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       setConsultationStatus('Sending your consultation request...', 'success');
-      consultationForm.submit();
+      const submitButton = consultationForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton?.textContent || '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: 'Free Consultation Request',
+            Name: name,
+            Email: email,
+            Phone: phone,
+            Project_Type: projectType,
+            Project_Location: location,
+            Preferred_Time_Slot: timeSlot,
+            Calculator_Property_Type: hiddenFields.propertyType,
+            Calculator_BHK_Type: hiddenFields.bhkType,
+            Calculator_BHK_Size: hiddenFields.bhkSize,
+            Calculator_Project_Category: hiddenFields.projectCategory,
+            Calculator_Package: hiddenFields.package,
+            Calculator_Estimated_Cost: hiddenFields.budget,
+            Calculator_Visit_Date: hiddenFields.visitDate,
+          },
+          'New Free Consultation Request'
+        );
+        setConsultationStatus('Thank you. Your request has been sent.', 'success');
+        consultationForm.reset();
+      } catch (error) {
+        setConsultationStatus(`There was an error: ${error.message}`, 'error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
     };
 
     homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {
@@ -823,7 +908,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modularKitchenLoginModal = loginModal;
     closeModularKitchenLoginModal = closeLoginModal;
 
-    const sendLoginLead = () => {
+    const sendLoginLead = async () => {
       const phone = (loginPhoneInput?.value || '').trim();
       const digitCount = (phone.match(/\d/g) || []).length;
 
@@ -838,21 +923,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
       loginPhoneInput?.setAttribute('aria-invalid', 'false');
 
-      const subject = encodeURIComponent('New Login Lead from AJOR Interio');
-      const body = encodeURIComponent(
-        [
-          'New login request from AJOR Interio website',
-          `Phone: ${phone}`,
-          `Page URL: ${window.location.href}`,
-        ].join('\n')
-      );
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: 'Login Phone Lead',
+            Phone: phone,
+          },
+          'New Login Lead from AJOR Interio'
+        );
+        closeLoginModal();
 
-      window.location.href = `mailto:ajorinterio@gmail.com?subject=${subject}&body=${body}`;
-      closeLoginModal();
-
-      window.setTimeout(() => {
-        window.location.href = '../index.html';
-      }, 500);
+        window.setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 500);
+      } catch (error) {
+        loginPhoneInput?.focus();
+        loginPhoneInput?.setAttribute('aria-invalid', 'true');
+        if (loginPhoneInput) {
+          loginPhoneInput.placeholder = `Error: ${error.message}`;
+        }
+      }
     };
 
     filterButtons.forEach((button) => {
