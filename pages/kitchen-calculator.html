@@ -133,8 +133,137 @@
     </nav>
 
     <section class="kitchen-calc-start" id="kitchen-calc-start" aria-labelledby="kitchen-calc-start-title">
-      <h2 id="kitchen-calc-start-title">Kitchen calculator coming next</h2>
-      <p>Select layout, dimensions and finish preferences to estimate your modular kitchen cost.</p>
+      <div class="kitchen-calc-flow">
+        <div class="kitchen-calc-steps">
+          <article class="kitchen-step-card">
+            <header><strong>Step 1 :</strong> Select Your City</header>
+            <div class="kitchen-step-body">
+              <select aria-label="Select your city">
+                <option>Bhilai</option>
+                <option>Bengaluru</option>
+                <option>Hyderabad</option>
+                <option>Mumbai</option>
+                <option>Pune</option>
+              </select>
+            </div>
+          </article>
+
+          <article class="kitchen-step-card">
+            <header><strong>Step 2 :</strong> Home Configuration</header>
+            <div class="kitchen-step-body kitchen-radio-row">
+              <label><input type="radio" name="kitchen-bhk" checked /> <span>1 BHK</span></label>
+              <label><input type="radio" name="kitchen-bhk" /> <span>2 BHK</span></label>
+              <label><input type="radio" name="kitchen-bhk" /> <span>3 BHK</span></label>
+              <label><input type="radio" name="kitchen-bhk" /> <span>4 BHK</span></label>
+            </div>
+          </article>
+
+          <article class="kitchen-step-card">
+            <header><strong>Step 3 :</strong> Kitchen Shape</header>
+            <div class="kitchen-step-body">
+              <div class="kitchen-shape-grid">
+                <label class="kitchen-shape-option">
+                  <span class="kitchen-plan kitchen-plan-l"><i></i><b></b></span>
+                  <span><input type="radio" name="kitchen-shape" checked /> L-Shape</span>
+                </label>
+                <label class="kitchen-shape-option">
+                  <span class="kitchen-plan kitchen-plan-u"><i></i><b></b><em></em></span>
+                  <span><input type="radio" name="kitchen-shape" /> U-Shape</span>
+                </label>
+                <label class="kitchen-shape-option">
+                  <span class="kitchen-plan kitchen-plan-parallel"><i></i><b></b></span>
+                  <span><input type="radio" name="kitchen-shape" /> Parallel</span>
+                </label>
+                <label class="kitchen-shape-option">
+                  <span class="kitchen-plan kitchen-plan-straight"><i></i></span>
+                  <span><input type="radio" name="kitchen-shape" /> Straight</span>
+                </label>
+              </div>
+
+              <div class="kitchen-wall-controls">
+                <label>Wall A <select><option>12</option><option>10</option><option>8</option></select> Feet <select><option>0</option><option>6</option></select> Inch</label>
+                <label>Wall B <select><option>5</option><option>6</option><option>8</option></select> Feet <select><option>0</option><option>6</option></select> Inch</label>
+              </div>
+            </div>
+          </article>
+
+          <article class="kitchen-step-card">
+            <header><strong>Step 4 :</strong> Cabinet Material <span class="kitchen-info-dot">i</span></header>
+            <div class="kitchen-step-body">
+              <select aria-label="Cabinet material">
+                <option>Particle Board</option>
+                <option>MDF</option>
+                <option>HDF-HMR</option>
+                <option>Plywood</option>
+              </select>
+            </div>
+          </article>
+
+          <article class="kitchen-step-card">
+            <header><strong>Step 5 :</strong> Shutter Material &amp; Finish <span class="kitchen-info-dot">i</span></header>
+            <div class="kitchen-step-body">
+              <select aria-label="Shutter material and finish">
+                <option>Particle Board Matte Laminate</option>
+                <option>Acrylic</option>
+                <option>Membrane</option>
+                <option>PU Finish</option>
+              </select>
+            </div>
+          </article>
+
+          <article class="kitchen-step-card">
+            <header><strong>Step 6 :</strong> Accessories</header>
+            <div class="kitchen-step-body">
+              <div class="kitchen-accessory-grid">
+                <div class="kitchen-accessory">
+                  <img src="../images/Accessories/Detergent holder & bin holder designs.jpg" alt="Detergent holder and bin holder" />
+                  <p>Detergent holder &amp; bin holder designs</p>
+                  <div><button type="button">-</button><strong>1</strong><button type="button">+</button></div>
+                </div>
+                <div class="kitchen-accessory">
+                  <img src="../images/Accessories/Detergent holder (350mm) designs.jpg" alt="Detergent holder" />
+                  <p>Detergent holder (350mm) designs</p>
+                  <div><button type="button">-</button><strong>1</strong><button type="button">+</button></div>
+                </div>
+                <div class="kitchen-accessory">
+                  <img src="../images/Accessories/Cutlery cup & saucer thali tray designs.jpg" alt="Cutlery and saucer thali tray" />
+                  <p>Cutlery cup &amp; saucer thali tray designs</p>
+                  <div><button type="button">-</button><strong>1</strong><button type="button">+</button></div>
+                </div>
+                <div class="kitchen-accessory">
+                  <img src="../images/Accessories/Bottle pull-out (300mm soft-close channels) designs.jpg" alt="Bottle pull-out" />
+                  <p>Bottle pull-out (300mm soft-close channels) designs</p>
+                  <div><button type="button">-</button><strong>1</strong><button type="button">+</button></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <aside class="kitchen-estimate-card" aria-labelledby="kitchen-estimate-title">
+          <h2 id="kitchen-estimate-title">Your Estimate Is Almost Ready</h2>
+          <p>SignUp to view estimate</p>
+          <form>
+            <input type="text" placeholder="Enter your name" />
+            <div class="kitchen-phone-row"><span>🇮🇳</span><input type="tel" placeholder="Enter your mobile number" /></div>
+            <label class="kitchen-whatsapp-row"><span>Send me updates on WhatsApp</span><input type="checkbox" checked /></label>
+            <select aria-label="Possession">
+              <option>Possession in</option>
+              <option>0-3 months</option>
+              <option>3-6 months</option>
+              <option>6+ months</option>
+            </select>
+            <select aria-label="Select your property city">
+              <option>Select your property city</option>
+              <option>Bhilai</option>
+              <option>Bengaluru</option>
+              <option>Hyderabad</option>
+            </select>
+            <button type="button">Get Free Estimate</button>
+          </form>
+          <small>By submitting, you agree to our privacy policy and terms of use, allowing us to use your information as outlined.</small>
+        </aside>
+      </div>
     </section>
   </main>
 

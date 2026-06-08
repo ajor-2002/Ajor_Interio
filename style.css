@@ -10999,25 +10999,398 @@ body.no-scroll {
 }
 
 .kitchen-calc-start {
-  max-width: 980px;
+  max-width: 1460px;
   margin: 0 auto;
-  padding: 42px 24px 72px;
+  padding: 28px 24px 72px;
 }
 
-.kitchen-calc-start h2 {
-  margin: 0 0 10px;
-  color: #17233a;
-  font-size: 1.8rem;
-  line-height: 1.2;
+.kitchen-calc-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  align-items: start;
 }
 
-.kitchen-calc-start p {
-  margin: 0;
-  color: #536073;
+.kitchen-calc-steps {
+  display: grid;
+  gap: 30px;
+}
+
+.kitchen-step-card {
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.kitchen-step-card header {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #d9d9d9;
+  color: #000;
   font-size: 1rem;
 }
 
+.kitchen-step-card header strong {
+  font-weight: 800;
+}
+
+.kitchen-step-body {
+  padding: 34px 26px 36px;
+}
+
+.kitchen-step-body select,
+.kitchen-estimate-card select,
+.kitchen-estimate-card input {
+  border: 0;
+  border-bottom: 1px solid #d0d0d0;
+  border-radius: 0;
+  background: transparent;
+  color: #172033;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: 0;
+}
+
+.kitchen-step-body > select {
+  width: min(100%, 520px);
+  padding: 12px 0;
+}
+
+.kitchen-radio-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.kitchen-radio-row label,
+.kitchen-shape-option span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.kitchen-radio-row input,
+.kitchen-shape-option input {
+  width: 20px;
+  height: 20px;
+  accent-color: #ed1c2a;
+}
+
+.kitchen-shape-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 34px;
+  align-items: end;
+}
+
+.kitchen-shape-option {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.kitchen-plan {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: block;
+  background: #eff6f7;
+}
+
+.kitchen-plan::before,
+.kitchen-plan::after,
+.kitchen-plan i,
+.kitchen-plan b,
+.kitchen-plan em {
+  content: "";
+  position: absolute;
+  display: block;
+  background: #fff;
+  border: 2px solid #8b8f94;
+}
+
+.kitchen-plan-l::before {
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 178px;
+}
+
+.kitchen-plan-l::after {
+  left: 0;
+  top: 0;
+  width: 178px;
+  height: 44px;
+}
+
+.kitchen-plan-l i {
+  left: 16px;
+  bottom: 28px;
+  width: 20px;
+  height: 10px;
+  border-color: #ed1c2a;
+  background: #ed1c2a;
+}
+
+.kitchen-plan-l b {
+  right: 0;
+  top: 0;
+  width: 42px;
+  height: 44px;
+  border-bottom-color: #f4b23b;
+}
+
+.kitchen-plan-u::before {
+  left: 0;
+  top: 0;
+  width: 42px;
+  height: 178px;
+}
+
+.kitchen-plan-u::after {
+  left: 0;
+  top: 0;
+  width: 178px;
+  height: 42px;
+}
+
+.kitchen-plan-u i {
+  right: 0;
+  top: 0;
+  width: 42px;
+  height: 178px;
+}
+
+.kitchen-plan-u b {
+  right: 16px;
+  top: 14px;
+  width: 18px;
+  height: 10px;
+  border-color: #ed1c2a;
+  background: #fff;
+}
+
+.kitchen-plan-u em {
+  left: 14px;
+  bottom: 44px;
+  width: 18px;
+  height: 10px;
+  border-color: #f4b23b;
+  background: #f4b23b;
+}
+
+.kitchen-plan-parallel::before,
+.kitchen-plan-straight::before {
+  left: 0;
+  top: 0;
+  width: 178px;
+  height: 42px;
+}
+
+.kitchen-plan-parallel::after {
+  left: 0;
+  bottom: 0;
+  width: 178px;
+  height: 42px;
+}
+
+.kitchen-plan-parallel i {
+  right: 0;
+  bottom: 0;
+  width: 42px;
+  height: 42px;
+  border-bottom-color: #ed1c2a;
+}
+
+.kitchen-plan-straight i {
+  right: 0;
+  top: 0;
+  width: 42px;
+  height: 42px;
+  border-bottom-color: #ed1c2a;
+}
+
+.kitchen-wall-controls {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+  color: #111827;
+  font-size: 0.9rem;
+}
+
+.kitchen-wall-controls select {
+  width: 54px;
+  margin: 0 6px;
+  border: 1px solid #9ca3af;
+  border-radius: 4px;
+}
+
+.kitchen-info-dot {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ed1c2a;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.kitchen-accessory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kitchen-accessory {
+  text-align: center;
+}
+
+.kitchen-accessory img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.kitchen-accessory p {
+  min-height: 38px;
+  margin: 8px 0 12px;
+  color: #111827;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.kitchen-accessory div {
+  display: inline-grid;
+  grid-template-columns: 24px 32px 24px;
+  border: 1px solid #ed1c2a;
+}
+
+.kitchen-accessory button,
+.kitchen-accessory strong {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: #fff;
+  color: #ed1c2a;
+  font: inherit;
+}
+
+.kitchen-accessory strong {
+  background: #ed1c2a;
+  color: #fff;
+  font-weight: 700;
+}
+
+.kitchen-estimate-card {
+  position: sticky;
+  top: 20px;
+  padding: 18px 20px 32px;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  background: #fff;
+}
+
+.kitchen-estimate-card h2 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.kitchen-estimate-card > p {
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.kitchen-estimate-card form {
+  display: grid;
+  gap: 14px;
+}
+
+.kitchen-estimate-card input,
+.kitchen-estimate-card select {
+  width: 100%;
+  min-height: 40px;
+  color: #111827;
+}
+
+.kitchen-phone-row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.kitchen-phone-row input {
+  border: 0;
+}
+
+.kitchen-whatsapp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #111827;
+  font-size: 0.72rem;
+}
+
+.kitchen-whatsapp-row input {
+  width: 42px;
+  min-height: 22px;
+  accent-color: #ed1c2a;
+}
+
+.kitchen-estimate-card button {
+  min-height: 42px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 5px;
+  background: #ed1c2a;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.kitchen-estimate-card small {
+  display: block;
+  margin-top: 10px;
+  color: #111827;
+  font-size: 0.62rem;
+  line-height: 1.35;
+}
+
 @media (max-width: 768px) {
+  .kitchen-calc-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .kitchen-radio-row,
+  .kitchen-shape-grid,
+  .kitchen-accessory-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .kitchen-estimate-card {
+    position: static;
+    border: 1px solid #d9d9d9;
+  }
+
   .kitchen-calc-hero {
     min-height: 250px;
     height: 250px;
@@ -11040,6 +11413,22 @@ body.no-scroll {
 
   .kitchen-calc-breadcrumb {
     padding: 18px 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .kitchen-calc-start {
+    padding: 22px 14px 54px;
+  }
+
+  .kitchen-step-body {
+    padding: 24px 18px;
+  }
+
+  .kitchen-radio-row,
+  .kitchen-shape-grid,
+  .kitchen-accessory-grid {
+    grid-template-columns: 1fr;
   }
 }
 
