@@ -306,6 +306,25 @@ document.addEventListener('DOMContentLoaded', function () {
     updateKitchenAccessorySlider();
   }
 
+  const kitchenFeetSelects = Array.from(document.querySelectorAll('[data-kitchen-feet]'));
+  const kitchenInchSelects = Array.from(document.querySelectorAll('[data-kitchen-inch]'));
+
+  const fillNumberSelect = (select, start, end) => {
+    const defaultValue = select.dataset.defaultValue || String(start);
+    select.replaceChildren();
+
+    for (let value = start; value <= end; value += 1) {
+      const option = document.createElement('option');
+      option.value = String(value);
+      option.textContent = String(value);
+      option.selected = String(value) === defaultValue;
+      select.append(option);
+    }
+  };
+
+  kitchenFeetSelects.forEach((select) => fillNumberSelect(select, 5, 20));
+  kitchenInchSelects.forEach((select) => fillNumberSelect(select, 0, 11));
+
   const homeCalcForm = document.querySelector('.home-calc-form');
   if (homeCalcForm) {
     const progressSteps = Array.from(document.querySelectorAll('.home-calc-step'));

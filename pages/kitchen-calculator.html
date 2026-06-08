@@ -163,26 +163,27 @@
             <div class="kitchen-step-body">
               <div class="kitchen-shape-grid">
                 <label class="kitchen-shape-option">
-                  <span class="kitchen-plan kitchen-plan-l"><i></i><b></b></span>
+                  <img class="kitchen-plan-image" src="../images/l shape kitchen.jpg" alt="L-shape kitchen layout" />
                   <span><input type="radio" name="kitchen-shape" checked /> L-Shape</span>
                 </label>
                 <label class="kitchen-shape-option">
-                  <span class="kitchen-plan kitchen-plan-u"><i></i><b></b><em></em></span>
+                  <img class="kitchen-plan-image" src="../images/u shape kitchen.jpg" alt="U-shape kitchen layout" />
                   <span><input type="radio" name="kitchen-shape" /> U-Shape</span>
                 </label>
                 <label class="kitchen-shape-option">
-                  <span class="kitchen-plan kitchen-plan-parallel"><i></i><b></b></span>
+                  <img class="kitchen-plan-image" src="../images/parallel.jpg" alt="Parallel kitchen layout" />
                   <span><input type="radio" name="kitchen-shape" /> Parallel</span>
                 </label>
                 <label class="kitchen-shape-option">
-                  <span class="kitchen-plan kitchen-plan-straight"><i></i></span>
+                  <img class="kitchen-plan-image" src="../images/parallel.jpg" alt="Straight kitchen layout" />
                   <span><input type="radio" name="kitchen-shape" /> Straight</span>
                 </label>
               </div>
 
               <div class="kitchen-wall-controls">
-                <label>Wall A <select><option>12</option><option>10</option><option>8</option></select> Feet <select><option>0</option><option>6</option></select> Inch</label>
-                <label>Wall B <select><option>5</option><option>6</option><option>8</option></select> Feet <select><option>0</option><option>6</option></select> Inch</label>
+                <label>Wall A <select data-kitchen-feet data-default-value="10"></select> Feet <select data-kitchen-inch data-default-value="0"></select> Inch</label>
+                <label>Wall B <select data-kitchen-feet data-default-value="5"></select> Feet <select data-kitchen-inch data-default-value="0"></select> Inch</label>
+                <label>Wall C <select data-kitchen-feet data-default-value="5"></select> Feet <select data-kitchen-inch data-default-value="0"></select> Inch</label>
               </div>
             </div>
           </article>
