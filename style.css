@@ -10929,6 +10929,27 @@ body.no-scroll {
   font-size: 0.9rem;
 }
 
+.home-calc-result-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #e8edf4;
+  color: #4f5870;
+  font-size: 0.9rem;
+}
+
+.home-calc-result-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-calc-result-footer a:hover {
+  color: #ef3347;
+}
+
 .home-calc-summary-open {
   overflow: hidden;
 }
@@ -11014,11 +11035,11 @@ body.no-scroll {
 
 .home-calc-consultation-dialog {
   position: relative;
-  width: min(100%, 540px);
+  width: min(100%, 460px);
   max-height: calc(100vh - 48px);
   overflow-y: auto;
-  padding: 30px 34px 28px;
-  border-radius: 14px;
+  padding: 24px 28px 22px;
+  border-radius: 12px;
   background: #fff;
   color: #1f2a44;
   box-shadow: 0 26px 54px rgba(0, 0, 0, 0.24);
@@ -11026,31 +11047,31 @@ body.no-scroll {
 
 .home-calc-consultation-close {
   position: absolute;
-  top: 18px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
+  top: 12px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
   border: 0;
   background: transparent;
   color: #9fcfd1;
   font: inherit;
-  font-size: 32px;
+  font-size: 26px;
   line-height: 1;
   cursor: pointer;
 }
 
 .home-calc-consultation-dialog h2 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: #1e3358;
-  font-size: 1.9rem;
+  font-size: 1.55rem;
   line-height: 1.15;
   text-align: center;
 }
 
 .home-calc-consultation-dialog > p {
-  margin: 0 0 22px;
+  margin: 0 0 16px;
   color: #477ca5;
-  font-size: 1rem;
+  font-size: 0.92rem;
   text-align: center;
 }
 
@@ -11061,15 +11082,15 @@ body.no-scroll {
 .home-calc-consultation-dialog input,
 .home-calc-consultation-dialog select {
   width: 100%;
-  min-height: 48px;
-  margin-bottom: 14px;
-  padding: 0 16px;
+  min-height: 40px;
+  margin-bottom: 10px;
+  padding: 0 12px;
   border: 1px solid #1e3358;
   border-radius: 9px;
   background: #fff;
   color: #263247;
   font: inherit;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   outline: none;
 }
 
@@ -11085,11 +11106,11 @@ body.no-scroll {
 .home-calc-consultation-consent {
   display: grid;
   grid-template-columns: 18px 1fr;
-  gap: 10px;
-  margin: 2px 0 10px;
+  gap: 8px;
+  margin: 0 0 8px;
   color: #526078;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  line-height: 1.32;
 }
 
 .home-calc-consultation-consent input {
@@ -11102,10 +11123,10 @@ body.no-scroll {
 }
 
 .home-calc-consultation-status {
-  min-height: 20px;
-  margin: 0 0 8px;
+  min-height: 18px;
+  margin: 0 0 6px;
   color: #526078;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .home-calc-consultation-status.is-error {
@@ -11117,13 +11138,14 @@ body.no-scroll {
 }
 
 .home-calc-consultation-submit {
-  min-width: 106px;
-  min-height: 46px;
+  min-width: 92px;
+  min-height: 38px;
   border: 0;
   border-radius: 999px;
   background: #ef3347;
   color: #fff;
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 800;
   cursor: pointer;
 }
