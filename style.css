@@ -13811,3 +13811,31 @@ body.no-scroll {
   width: 22px;
   height: 22px;
 }
+/* Common footer light background override */
+.blogs-footer {
+  background: rgba(230,236,241,.3);
+  color: #17233b;
+}
+
+.blogs-footer h2,
+.blogs-footer h3,
+.blogs-footer p,
+.blogs-footer a,
+.blogs-footer nav a {
+  color: #17233b;
+}
+
+.blogs-footer-copy {
+  border-top-color: rgba(23, 35, 59, 0.14);
+  color: #596579;
+}
+
+.blogs-footer-social a {
+  border-color: rgba(23, 35, 59, 0.14);
+  background: #fff;
+  color: #17233b;
+}
+
+.blogs-footer-logo img {
+  filter: none;
+}
