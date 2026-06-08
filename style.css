@@ -10999,21 +10999,21 @@ body.no-scroll {
 }
 
 .kitchen-calc-start {
-  max-width: 1460px;
+  max-width: 1260px;
   margin: 0 auto;
-  padding: 28px 24px 72px;
+  padding: 22px 20px 56px;
 }
 
 .kitchen-calc-flow {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 22px;
   align-items: start;
 }
 
 .kitchen-calc-steps {
   display: grid;
-  gap: 30px;
+  gap: 22px;
 }
 
 .kitchen-step-card {
@@ -11024,7 +11024,7 @@ body.no-scroll {
 }
 
 .kitchen-step-card header {
-  min-height: 56px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11039,7 +11039,7 @@ body.no-scroll {
 }
 
 .kitchen-step-body {
-  padding: 34px 26px 36px;
+  padding: 26px 22px 28px;
 }
 
 .kitchen-step-body select,
@@ -11215,7 +11215,7 @@ body.no-scroll {
   align-self: start;
   max-height: none;
   overflow: visible;
-  padding: 18px 20px 32px;
+  padding: 16px 18px 24px;
   border-left: 1px solid #d9d9d9;
   border-right: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
@@ -11225,7 +11225,7 @@ body.no-scroll {
 .kitchen-estimate-card h2 {
   margin: 0 0 6px;
   color: #111827;
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   line-height: 1.2;
   text-align: center;
 }
@@ -11311,8 +11311,8 @@ body.no-scroll {
 
 .kitchen-price-dialog {
   position: relative;
-  width: min(100%, 550px);
-  padding: 24px 24px 12px;
+  width: min(100%, 460px);
+  padding: 18px 20px 10px;
   border: 1px solid #d7d7d7;
   border-radius: 7px;
   background: #fff;
@@ -11336,11 +11336,11 @@ body.no-scroll {
 }
 
 .kitchen-price-dialog h2 {
-  margin: 0 0 16px;
-  padding-bottom: 12px;
+  margin: 0 0 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #d8d8d8;
   color: #111;
-  font-size: 1.55rem;
+  font-size: 1.35rem;
   line-height: 1.2;
   text-align: center;
   font-weight: 500;
@@ -11350,7 +11350,7 @@ body.no-scroll {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 12px;
-  padding: 14px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #d8d8d8;
 }
 
@@ -11370,12 +11370,12 @@ body.no-scroll {
   grid-column: 1 / -1;
   margin: -4px 0 0;
   color: #4b5563;
-  font-size: 0.78rem;
-  line-height: 1.55;
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 .kitchen-price-summary > div:last-child {
-  padding-top: 28px;
+  padding-top: 18px;
   border-bottom: 0;
 }
 
@@ -11387,21 +11387,21 @@ body.no-scroll {
 
 .kitchen-price-next {
   margin-top: 4px;
-  padding: 14px 14px 12px;
+  padding: 10px 12px;
   border: 1px solid #f8c978;
   border-radius: 5px;
   background: #fff6e6;
 }
 
 .kitchen-price-next p {
-  margin: 0 0 18px 10px;
+  margin: 0 0 12px 8px;
   color: #111827;
   font-size: 0.8rem;
   line-height: 1.15;
 }
 
 .kitchen-price-next a {
-  min-height: 42px;
+  min-height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
