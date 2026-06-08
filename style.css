@@ -11292,6 +11292,134 @@ body.no-scroll {
   line-height: 1.35;
 }
 
+.kitchen-price-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.kitchen-price-modal[hidden] {
+  display: none;
+}
+
+.kitchen-price-dialog {
+  position: relative;
+  width: min(100%, 550px);
+  padding: 24px 24px 12px;
+  border: 1px solid #d7d7d7;
+  border-radius: 7px;
+  background: #fff;
+  color: #111827;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
+}
+
+.kitchen-price-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.kitchen-price-dialog h2 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d8d8d8;
+  color: #111;
+  font-size: 1.55rem;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 500;
+}
+
+.kitchen-price-summary > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.kitchen-price-summary span {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.kitchen-price-summary strong {
+  color: #000;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.kitchen-price-summary p {
+  grid-column: 1 / -1;
+  margin: -4px 0 0;
+  color: #4b5563;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.kitchen-price-summary > div:last-child {
+  padding-top: 28px;
+  border-bottom: 0;
+}
+
+.kitchen-price-summary > div:last-child span,
+.kitchen-price-summary > div:last-child strong {
+  color: #000;
+  font-size: 1rem;
+}
+
+.kitchen-price-next {
+  margin-top: 4px;
+  padding: 14px 14px 12px;
+  border: 1px solid #f8c978;
+  border-radius: 5px;
+  background: #fff6e6;
+}
+
+.kitchen-price-next p {
+  margin: 0 0 18px 10px;
+  color: #111827;
+  font-size: 0.8rem;
+  line-height: 1.15;
+}
+
+.kitchen-price-next a {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 4px;
+  background: #ed1c2a;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.kitchen-price-next a span {
+  position: absolute;
+  right: 34px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 0.62rem;
+  letter-spacing: 0;
+}
+
 @media (max-width: 768px) {
   .kitchen-calc-flow {
     grid-template-columns: 1fr;

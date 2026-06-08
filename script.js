@@ -325,6 +325,107 @@ document.addEventListener('DOMContentLoaded', function () {
   kitchenFeetSelects.forEach((select) => fillNumberSelect(select, 5, 20));
   kitchenInchSelects.forEach((select) => fillNumberSelect(select, 0, 11));
 
+  const kitchenEstimateButton = document.querySelector('[data-kitchen-estimate-open]');
+  const kitchenPriceModal = document.querySelector('[data-kitchen-price-modal]');
+  const kitchenPriceSummary = document.querySelector('[data-kitchen-price-summary]');
+  const kitchenPriceClose = document.querySelector('[data-kitchen-price-close]');
+
+  const formatIndianPrice = (value) => `₹ ${Math.round(value).toLocaleString('en-IN')}`;
+
+  document.querySelectorAll('.kitchen-accessory').forEach((accessory) => {
+    const quantity = accessory.querySelector('strong');
+    const buttons = Array.from(accessory.querySelectorAll('button'));
+    const minusButton = buttons[0];
+    const plusButton = buttons[1];
+
+    const updateQuantity = (nextValue) => {
+      const value = Math.max(0, nextValue);
+      if (quantity) quantity.textContent = String(value);
+      if (minusButton) minusButton.disabled = value === 0;
+    };
+
+    minusButton?.addEventListener('click', () => {
+      updateQuantity(Number(quantity?.textContent || 0) - 1);
+    });
+
+    plusButton?.addEventListener('click', () => {
+      updateQuantity(Number(quantity?.textContent || 0) + 1);
+    });
+
+    updateQuantity(Number(quantity?.textContent || 0));
+  });
+
+  const createKitchenSummaryRow = (label, value, detail = '') => {
+    const row = document.createElement('div');
+    const labelElement = document.createElement('span');
+    const valueElement = document.createElement('strong');
+    labelElement.textContent = label;
+    valueElement.textContent = value;
+    row.append(labelElement, valueElement);
+
+    if (detail) {
+      const detailElement = document.createElement('p');
+      detailElement.textContent = detail;
+      row.append(detailElement);
+    }
+
+    return row;
+  };
+
+  const openKitchenEstimateModal = () => {
+    if (!kitchenPriceModal || !kitchenPriceSummary) return;
+
+    const shape = document.querySelector('input[name="kitchen-shape"]:checked')?.parentElement?.textContent?.trim() || 'L-Shape';
+    const wallRows = Array.from(document.querySelectorAll('.kitchen-wall-controls label')).map((label) => {
+      const selects = label.querySelectorAll('select');
+      return `${selects[0]?.value || 0}ft ${selects[1]?.value || 0}in`;
+    });
+    const cabinetMaterial = document.querySelector('select[aria-label="Cabinet material"]')?.value || 'Particle Board';
+    const shutterMaterial = document.querySelector('select[aria-label="Shutter material and finish"]')?.value || 'Particle Board Matte Laminate';
+    const selectedAccessories = Array.from(document.querySelectorAll('.kitchen-accessory'))
+      .map((accessory) => {
+        const quantity = Number(accessory.querySelector('strong')?.textContent || 0);
+        const name = accessory.querySelector('p')?.textContent?.trim() || '';
+        return { name, quantity };
+      })
+      .filter((item) => item.quantity > 0);
+    const accessoryNames = selectedAccessories.map((item) => item.quantity > 1 ? `${item.name} x ${item.quantity}` : item.name).join(', ');
+    const materialCost = 155590;
+    const accessoryCost = selectedAccessories.reduce((sum, item) => sum + item.quantity * 18500, 0);
+    const subtotal = materialCost + accessoryCost;
+
+    kitchenPriceSummary.replaceChildren(
+      createKitchenSummaryRow('Shape:', shape),
+      createKitchenSummaryRow('Size:', wallRows.join(' x ')),
+      createKitchenSummaryRow('Material:', formatIndianPrice(materialCost), `${cabinetMaterial}, ${shutterMaterial}`),
+      createKitchenSummaryRow('Accessories:', formatIndianPrice(accessoryCost), accessoryNames || 'No accessories selected'),
+      createKitchenSummaryRow('Sub Total:', formatIndianPrice(subtotal))
+    );
+
+    kitchenPriceModal.hidden = false;
+    document.body.classList.add('home-calc-summary-open');
+    kitchenPriceClose?.focus();
+  };
+
+  const closeKitchenEstimateModal = () => {
+    if (!kitchenPriceModal) return;
+    kitchenPriceModal.hidden = true;
+    document.body.classList.remove('home-calc-summary-open');
+    kitchenEstimateButton?.focus();
+  };
+
+  kitchenEstimateButton?.addEventListener('click', openKitchenEstimateModal);
+  kitchenPriceClose?.addEventListener('click', closeKitchenEstimateModal);
+  kitchenPriceModal?.addEventListener('click', (event) => {
+    if (event.target === kitchenPriceModal) closeKitchenEstimateModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && kitchenPriceModal && !kitchenPriceModal.hidden) {
+      closeKitchenEstimateModal();
+    }
+  });
+
   const homeCalcForm = document.querySelector('.home-calc-form');
   if (homeCalcForm) {
     const progressSteps = Array.from(document.querySelectorAll('.home-calc-step'));
