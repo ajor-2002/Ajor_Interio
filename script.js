@@ -289,6 +289,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const consultationForm = document.querySelector('[data-home-calc-consultation-form]');
     const consultationCloseButton = document.querySelector('[data-home-calc-consultation-close]');
     const consultationStatus = document.querySelector('.home-calc-consultation-status');
+    const calcToast = document.querySelector('[data-home-calc-toast]');
+    const calcToastTitle = document.querySelector('[data-home-calc-toast-title]');
+    const calcToastMessage = document.querySelector('[data-home-calc-toast-message]');
+    const calcToastClose = document.querySelector('[data-home-calc-toast-close]');
+    let calcToastTimer = null;
     const panelByStep = ['space', 'scope', 'package', 'estimate', 'result'];
     const bhkSizeOptions = {
       2: ['Below 800 sq.ft', 'Above 800 sq.ft'],
@@ -323,6 +328,28 @@ document.addEventListener('DOMContentLoaded', function () {
       return field?.value?.trim() || '';
     };
 
+    const showCalcToast = (title, message) => {
+      if (!calcToast || !calcToastTitle || !calcToastMessage) return;
+
+      window.clearTimeout(calcToastTimer);
+      calcToastTitle.textContent = title;
+      calcToastMessage.textContent = message;
+      calcToast.hidden = false;
+      calcToast.classList.add('is-visible');
+
+      calcToastTimer = window.setTimeout(() => {
+        calcToast.classList.remove('is-visible');
+        calcToast.hidden = true;
+      }, 4200);
+    };
+
+    const hideCalcToast = () => {
+      if (!calcToast) return;
+      window.clearTimeout(calcToastTimer);
+      calcToast.classList.remove('is-visible');
+      calcToast.hidden = true;
+    };
+
     const updateBhkSizeOptions = () => {
       if (!sizeFieldset || !sizeTitle || !sizeOptions) return;
 
@@ -343,6 +370,19 @@ document.addEventListener('DOMContentLoaded', function () {
         button.textContent = optionText;
         sizeOptions.append(button);
       });
+    };
+
+    const validateSpaceStep = () => {
+      const bhk = getActiveOptionText('.home-calc-options.bhk');
+      const bhkValue = Number((bhk.match(/\d+/) || ['1'])[0]);
+
+      if (bhkSizeOptions[bhkValue] && !getActiveOptionText('.home-calc-size-options')) {
+        showCalcToast('BHK size is missing', 'Please select the size for your BHK type.');
+        sizeOptions?.querySelector('button')?.focus();
+        return false;
+      }
+
+      return true;
     };
 
     const getBudgetRange = () => {
@@ -445,30 +485,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (!name) {
         consultationForm.elements?.name?.focus();
-        setConsultationStatus('Please enter your name.', 'error');
+        showCalcToast('Name is missing', 'Please fill out the name field.');
         return;
       }
 
       if (!email || !email.includes('@')) {
         consultationForm.elements?.email?.focus();
-        setConsultationStatus('Please enter a valid email address.', 'error');
+        showCalcToast('Email is missing', 'Please enter a valid email address.');
         return;
       }
 
       if (phoneDigits < 10) {
         consultationForm.elements?.phone?.focus();
-        setConsultationStatus('Phone number must contain at least 10 digits.', 'error');
+        showCalcToast('Phone number is missing', 'Please enter a valid phone number.');
         return;
       }
 
-      if (!projectType || !location || !timeSlot) {
-        setConsultationStatus('Please fill project type, location and preferred time slot.', 'error');
+      if (!projectType) {
+        consultationForm.elements?.projectType?.focus();
+        showCalcToast('Project type is missing', 'Please fill out the project type field.');
+        return;
+      }
+
+      if (!location) {
+        consultationForm.elements?.location?.focus();
+        showCalcToast('Project location is missing', 'Please fill out the project location field.');
+        return;
+      }
+
+      if (!timeSlot) {
+        consultationForm.elements?.timeSlot?.focus();
+        showCalcToast('Time slot is missing', 'Please select your preferred time slot.');
         return;
       }
 
       if (!consent) {
         consultationForm.elements?.consent?.focus();
-        setConsultationStatus('Please accept the contact permission checkbox.', 'error');
+        showCalcToast('Permission is missing', 'Please accept the contact permission checkbox.');
         return;
       }
 
@@ -559,6 +612,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     homeCalcForm.addEventListener('submit', (event) => {
       event.preventDefault();
+      if (!validateSpaceStep()) return;
       showHomeCalcStep(1);
     });
 
@@ -599,11 +653,27 @@ document.addEventListener('DOMContentLoaded', function () {
       const email = (formData.get('email') || '').toString().trim();
       const visitDate = (formData.get('visitDate') || '').toString().trim();
 
-      if (!name || (phone.match(/\d/g) || []).length < 10 || !email || !visitDate) {
-        if (estimateStatus) {
-          estimateStatus.textContent = 'Please fill all contact details correctly.';
-          estimateStatus.classList.remove('is-success');
-        }
+      if (!name) {
+        showCalcToast('Name is missing', 'Please fill out the name field.');
+        estimateForm.elements?.name?.focus();
+        return;
+      }
+
+      if ((phone.match(/\d/g) || []).length < 10) {
+        showCalcToast('Phone number is missing', 'Please enter a valid phone number.');
+        estimateForm.elements?.phone?.focus();
+        return;
+      }
+
+      if (!email) {
+        showCalcToast('Email is missing', 'Please fill out the email field.');
+        estimateForm.elements?.email?.focus();
+        return;
+      }
+
+      if (!visitDate) {
+        showCalcToast('Visit date is missing', 'Please select your preferred visit date.');
+        estimateForm.elements?.visitDate?.focus();
         return;
       }
 
@@ -620,6 +690,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     summaryButton?.addEventListener('click', openQuoteSummary);
+    calcToastClose?.addEventListener('click', hideCalcToast);
     summaryCloseButton?.addEventListener('click', closeQuoteSummary);
     summaryModal?.addEventListener('click', (event) => {
       if (event.target === summaryModal) {

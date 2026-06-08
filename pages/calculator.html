@@ -201,7 +201,8 @@
       </form>
     </section>
 
-    <section class="home-calc-result-card home-calc-panel" aria-label="Estimated budget range" data-home-calc-panel="result">
+    <section class="home-calc-result-panel home-calc-panel" aria-label="Estimated budget range" data-home-calc-panel="result">
+      <div class="home-calc-result-card">
       <p class="home-calc-result-kicker">Here's your estimated budget range</p>
       <h1 data-home-calc-budget>₹18L - ₹22L</h1>
       <p class="home-calc-result-note">This isn't a final quote and can be customised to suit your needs.</p>
@@ -219,6 +220,7 @@
         <span>146 checks</span>
         <span>Easy EMI's</span>
       </div>
+      </div>
 
       <footer class="home-calc-result-footer">
         <a href="mailto:ajorinterio@gmail.com">ajorinterio@gmail.com</a>
@@ -227,6 +229,15 @@
       </footer>
     </section>
   </main>
+
+  <div class="home-calc-toast" data-home-calc-toast hidden>
+    <span>!</span>
+    <div>
+      <strong data-home-calc-toast-title>Details missing</strong>
+      <p data-home-calc-toast-message>Please fill out the required field.</p>
+    </div>
+    <button type="button" aria-label="Close message" data-home-calc-toast-close>&times;</button>
+  </div>
 
   <div class="home-calc-summary-modal" data-home-calc-summary-modal hidden>
     <div class="home-calc-summary-dialog" role="dialog" aria-modal="true" aria-labelledby="home-calc-summary-title">
