@@ -11436,6 +11436,69 @@ body.no-scroll {
   letter-spacing: 0;
 }
 
+.kitchen-calc-faq {
+  padding: 46px 6vw 76px;
+  border-top: 1px solid #d9d9d9;
+  background: #fff;
+  color: #2f343b;
+}
+
+.kitchen-calc-faq h2 {
+  margin: 0 0 36px;
+  color: #000;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  text-align: center;
+  font-weight: 800;
+}
+
+.kitchen-calc-faq-list {
+  max-width: 1630px;
+  margin: 0 auto;
+}
+
+.kitchen-calc-faq-list details {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.kitchen-calc-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  color: #343941;
+  font-size: clamp(1.2rem, 1.45vw, 1.58rem);
+  line-height: 1.35;
+  font-weight: 400;
+  cursor: pointer;
+  list-style: none;
+}
+
+.kitchen-calc-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.kitchen-calc-faq-list summary::after {
+  content: "v";
+  flex: 0 0 auto;
+  color: #667085;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.kitchen-calc-faq-list details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.kitchen-calc-faq-list p {
+  max-width: 980px;
+  margin: -6px 0 18px;
+  color: #5b6472;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
 @media (max-width: 768px) {
   .kitchen-calc-flow {
     grid-template-columns: 1fr;
@@ -11483,6 +11546,25 @@ body.no-scroll {
 
   .kitchen-calc-breadcrumb {
     padding: 18px 24px;
+  }
+
+  .kitchen-calc-faq {
+    padding: 34px 20px 54px;
+  }
+
+  .kitchen-calc-faq h2 {
+    margin-bottom: 24px;
+    font-size: 1.15rem;
+  }
+
+  .kitchen-calc-faq-list summary {
+    gap: 16px;
+    padding: 15px 0;
+    font-size: 1.05rem;
+  }
+
+  .kitchen-calc-faq-list p {
+    font-size: 0.94rem;
   }
 }
 
