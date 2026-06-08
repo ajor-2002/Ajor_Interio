@@ -10929,6 +10929,75 @@ body.no-scroll {
   font-size: 0.9rem;
 }
 
+.home-calc-summary-open {
+  overflow: hidden;
+}
+
+.home-calc-summary-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.home-calc-summary-modal[hidden] {
+  display: none;
+}
+
+.home-calc-summary-dialog {
+  position: relative;
+  width: min(100%, 560px);
+  padding: 34px 30px 30px;
+  border-radius: 12px;
+  background: #fff;
+  color: #1f2a44;
+  text-align: left;
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.22);
+}
+
+.home-calc-summary-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: #7a8498;
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.home-calc-summary-dialog h2 {
+  margin: 0 0 24px;
+  color: #1e3358;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.home-calc-summary-details p {
+  margin: 0 0 10px;
+  color: #263247;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.home-calc-summary-details strong {
+  color: #20293a;
+  font-weight: 800;
+}
+
+.home-calc-summary-cost {
+  margin-top: 26px !important;
+  color: #1e3358 !important;
+  font-weight: 800;
+}
+
 @media (max-width: 991px) {
   .home-calc-header {
     height: auto;

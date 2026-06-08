@@ -231,6 +231,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const sizeFieldset = document.querySelector('[data-home-calc-size-fieldset]');
     const sizeTitle = document.querySelector('[data-home-calc-size-title]');
     const sizeOptions = document.querySelector('[data-home-calc-size-options]');
+    const summaryButton = document.querySelector('[data-home-calc-summary]');
+    const summaryModal = document.querySelector('[data-home-calc-summary-modal]');
+    const summaryDetails = document.querySelector('[data-home-calc-summary-details]');
+    const summaryCloseButton = document.querySelector('[data-home-calc-summary-close]');
     const panelByStep = ['space', 'scope', 'package', 'estimate', 'result'];
     const bhkSizeOptions = {
       2: ['Below 800 sq.ft', 'Above 800 sq.ft'],
@@ -253,6 +257,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const getActiveOptionText = (selector) => {
       const group = document.querySelector(selector);
       return group?.querySelector('.active')?.textContent?.trim() || '';
+    };
+
+    const getEstimateFormValue = (name) => {
+      const field = estimateForm?.elements?.[name];
+      return field?.value?.trim() || '-';
     };
 
     const updateBhkSizeOptions = () => {
@@ -289,6 +298,53 @@ document.addEventListener('DOMContentLoaded', function () {
       const lower = Math.max(4, bhkValue * packageMultiplier);
       const upper = lower + Math.max(3, bhkValue * 2);
       return `₹${lower}L - ₹${upper}L`;
+    };
+
+    const createSummaryRow = (label, value) => {
+      const row = document.createElement('p');
+      const labelElement = document.createElement('strong');
+      labelElement.textContent = `${label}: `;
+      row.append(labelElement, document.createTextNode(value || '-'));
+      return row;
+    };
+
+    const openQuoteSummary = () => {
+      if (!summaryModal || !summaryDetails) return;
+
+      const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || '-';
+      const budget = budgetOutput?.textContent?.trim() || getBudgetRange();
+      const bhkSize = getActiveOptionText('.home-calc-size-options');
+      const rows = [
+        ['Name', getEstimateFormValue('name')],
+        ['Email', getEstimateFormValue('email')],
+        ['Mobile', getEstimateFormValue('phone')],
+        ['Property Type', getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options')],
+        ['BHK Type', getActiveOptionText('.home-calc-options.bhk')],
+        ['BHK Size', bhkSize || 'Not required for 1 BHK'],
+        ['Project Type', getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options')],
+        ['Package', selectedPackage],
+        ['Visit Date', getEstimateFormValue('visitDate')],
+      ];
+
+      summaryDetails.replaceChildren();
+      rows.forEach(([label, value]) => {
+        summaryDetails.append(createSummaryRow(label, value));
+      });
+
+      const costRow = createSummaryRow('Final Estimated Cost', budget);
+      costRow.className = 'home-calc-summary-cost';
+      summaryDetails.append(costRow);
+
+      summaryModal.hidden = false;
+      document.body.classList.add('home-calc-summary-open');
+      summaryCloseButton?.focus();
+    };
+
+    const closeQuoteSummary = () => {
+      if (!summaryModal) return;
+      summaryModal.hidden = true;
+      document.body.classList.remove('home-calc-summary-open');
+      summaryButton?.focus();
     };
 
     homeCalcForm.querySelectorAll('fieldset').forEach((fieldset) => {
@@ -378,6 +434,20 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       showHomeCalcStep(4);
+    });
+
+    summaryButton?.addEventListener('click', openQuoteSummary);
+    summaryCloseButton?.addEventListener('click', closeQuoteSummary);
+    summaryModal?.addEventListener('click', (event) => {
+      if (event.target === summaryModal) {
+        closeQuoteSummary();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && summaryModal && !summaryModal.hidden) {
+        closeQuoteSummary();
+      }
     });
 
     document.querySelectorAll('[data-room-count]').forEach((room) => {
