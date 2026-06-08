@@ -1597,6 +1597,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.addEventListener('click', (event) => {
+    const galleryImage = event.target.closest('.customer-stories-gallery-grid img');
+    if (!galleryImage) return;
+
+    event.preventDefault();
+    openImageLightbox(galleryImage);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+
+    const galleryImage = event.target.closest?.('.customer-stories-gallery-grid img');
+    if (!galleryImage) return;
+
+    event.preventDefault();
+    openImageLightbox(galleryImage);
+  });
+
+  document.addEventListener('click', (event) => {
     if (!imageLightbox || !imageLightbox.root.classList.contains('is-open')) return;
 
     const clickedBackdrop = event.target === imageLightbox.root;

@@ -11777,10 +11777,17 @@ body.no-scroll {
   width: 100%;
   height: 336px;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   background: #f1f1f1;
+  cursor: zoom-in;
 }
+
+.customer-stories-gallery-grid img:focus-visible {
+  outline: 3px solid #88478c;
+  outline-offset: 4px;
+}
+
 
 .customer-stories-actions {
   position: fixed;
@@ -12647,6 +12654,11 @@ body.no-scroll {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+
+
+
 
 
 
