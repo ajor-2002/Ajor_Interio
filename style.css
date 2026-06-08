@@ -11496,6 +11496,158 @@ body.no-scroll {
   line-height: 1.65;
 }
 
+.customer-stories-page {
+  background: #fff;
+}
+
+.customer-stories-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #111827;
+}
+
+.customer-stories-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.customer-stories-hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.12) 58%, rgba(0, 0, 0, 0.04));
+}
+
+.customer-stories-hero-copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1460px);
+  margin: 0 auto;
+  padding: 92px 7vw 76px;
+  color: #fff;
+}
+
+.customer-stories-hero-copy h1 {
+  margin: 0;
+  font-size: clamp(3.2rem, 5.3vw, 5.75rem);
+  line-height: 1;
+  letter-spacing: 0;
+  font-weight: 800;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.28);
+}
+
+.customer-stories-hero-copy span {
+  display: block;
+  width: min(820px, 56vw);
+  height: 2px;
+  margin: 12px 0 10px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.customer-stories-hero-copy p {
+  margin: 0;
+  font-size: clamp(2.35rem, 4.35vw, 4.75rem);
+  line-height: 1.08;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.25);
+}
+
+.customer-stories-gallery {
+  position: relative;
+  padding: 22px 7vw 34px;
+  background: #fff;
+}
+
+.customer-stories-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 1652px;
+  margin: 0 auto;
+}
+
+.customer-stories-gallery-grid img {
+  width: 100%;
+  height: 336px;
+  display: block;
+  object-fit: cover;
+  background: #f1f1f1;
+}
+
+.customer-stories-actions {
+  position: fixed;
+  z-index: 40;
+  right: 18px;
+  top: 48%;
+  transform: translateY(-50%);
+  width: 88px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #9a5b9b;
+  box-shadow: 0 16px 34px rgba(31, 41, 55, 0.18);
+}
+
+.customer-stories-action {
+  min-height: 110px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
+.customer-stories-action + .customer-stories-action {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.customer-stories-action span {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #9a5b9b;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.customer-stories-action:first-child span {
+  background: #08c76a;
+  color: #fff;
+}
+
+.customer-stories-estimate {
+  position: fixed;
+  right: 18px;
+  top: calc(48% + 186px);
+  z-index: 40;
+  min-width: 208px;
+  min-height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: #88478c;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 16px 34px rgba(31, 41, 55, 0.18);
+}
+
 @media (max-width: 768px) {
   .kitchen-calc-flow {
     grid-template-columns: 1fr;
@@ -11563,6 +11715,76 @@ body.no-scroll {
   .kitchen-calc-faq-list p {
     font-size: 0.94rem;
   }
+
+  .customer-stories-hero {
+    min-height: 430px;
+  }
+
+  .customer-stories-hero-copy {
+    padding: 72px 24px 58px;
+  }
+
+  .customer-stories-hero-copy h1 {
+    font-size: clamp(2.45rem, 11vw, 3.7rem);
+  }
+
+  .customer-stories-hero-copy span {
+    width: min(100%, 520px);
+  }
+
+  .customer-stories-hero-copy p {
+    font-size: clamp(1.75rem, 8vw, 3rem);
+  }
+
+  .customer-stories-gallery {
+    padding: 14px 14px 88px;
+  }
+
+  .customer-stories-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .customer-stories-gallery-grid img {
+    height: 210px;
+  }
+
+  .customer-stories-actions {
+    top: auto;
+    right: 12px;
+    bottom: 12px;
+    transform: none;
+    width: auto;
+    display: flex;
+  }
+
+  .customer-stories-action {
+    min-height: 58px;
+    min-width: 76px;
+    padding: 8px;
+    font-size: 0.72rem;
+  }
+
+  .customer-stories-action + .customer-stories-action {
+    border-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .customer-stories-action span {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+  }
+
+  .customer-stories-estimate {
+    right: auto;
+    left: 12px;
+    top: auto;
+    bottom: 12px;
+    min-width: 150px;
+    min-height: 58px;
+    font-size: 0.92rem;
+  }
 }
 
 @media (max-width: 520px) {
@@ -11581,6 +11803,14 @@ body.no-scroll {
 
   .kitchen-accessory {
     flex-basis: 100%;
+  }
+
+  .customer-stories-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-stories-gallery-grid img {
+    height: 260px;
   }
 }
 

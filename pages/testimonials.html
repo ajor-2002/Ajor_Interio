@@ -1,33 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="1;url=../index.html" />
-  <title>Customer Stories | AJOR Doors & Interiors</title>
+  <title>Customer Stories | AJOR Interio</title>
+  <link rel="icon" href="../images/logo.png" type="image/png" />
   <link rel="stylesheet" href="../style.css" />
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #f8f4ef, #ffffff); }
-    .redirect-page { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
-    .redirect-card { max-width: 620px; width: 100%; background: #fff; border-radius: 24px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,.12); text-align: center; }
-    .redirect-card h1 { margin: 0 0 12px; color: #e11b22; font-size: clamp(2rem, 4vw, 3rem); }
-    .redirect-card p { margin: 0 0 20px; color: #555; line-height: 1.6; }
-    .redirect-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .redirect-actions a { display: inline-block; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700; }
-    .redirect-actions .primary { background: #e11b22; color: #fff; }
-    .redirect-actions .secondary { border: 1px solid #ddd; color: #222; }
-  </style>
 </head>
-<body>
-  <main class="redirect-page">
-    <section class="redirect-card">
-      <h1>Customer Stories</h1>
-      <p>This page is being restored. You will be redirected to the main site in a moment.</p>
-      <div class="redirect-actions">
-        <a class="primary" href="../index.html">Go to Home</a>
-        <a class="secondary" href="../index.html#reviews">Read Reviews</a>
+
+<body class="customer-stories-page">
+  <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div class="top-links">
+          <a href="refer-and-earn.html" class="top-link">Refer and Earn</a>
+        </div>
+        <div class="top-actions">
+          <a href="contact.html" class="top-link">Login/Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-main">
+      <div class="container nav-inner">
+        <a href="../index.html" class="brand-logo">
+          <img src="../images/logo.png" alt="AJOR logo" />
+        </a>
+
+        <nav class="navbar">
+          <ul class="nav-list">
+            <li class="nav-item dropdown">
+              <button class="dropdown-toggle" type="button">Design Gallery <span>&#9662;</span></button>
+              <div class="dropdown-menu dropdown-panel columns-2">
+                <a href="home-interior.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/home interior icon.png" alt="Home Interiors" /></span>
+                  <div>
+                    <strong>Home Interiors</strong>
+                    <span>Living, bedroom and dining designs</span>
+                  </div>
+                </a>
+                <a href="Modular_Kitchen.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/modular kitchen icon.png" alt="Modular Kitchen" /></span>
+                  <div>
+                    <strong>Modular Kitchen</strong>
+                    <span>Modern kitchens with premium finishes</span>
+                  </div>
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <button class="dropdown-toggle" type="button">Offerings <span>&#9662;</span></button>
+              <div class="dropdown-menu dropdown-panel">
+                <a href="offerings.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/ajor interio icon.png" alt="Ajor Interiors" /></span>
+                  <div>
+                    <strong>Ajor Interiors</strong>
+                    <span>End-to-end interior solutions</span>
+                  </div>
+                </a>
+                <a href="ajor-luxe.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/luxe icon.png" alt="Ajor Luxe" /></span>
+                  <div>
+                    <strong>Ajor Luxe</strong>
+                    <span>Luxury interiors and premium finishes</span>
+                  </div>
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <button class="dropdown-toggle" type="button">Price Calculators <span>&#9662;</span></button>
+              <div class="dropdown-menu dropdown-panel">
+                <a href="calculator.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/estimate Home.png" alt="Home Interior Calculator" /></span>
+                  <div>
+                    <strong>Home Interior Calculator</strong>
+                  </div>
+                </a>
+                <a href="kitchen-calculator.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/estimate kitchen.png" alt="Kitchen Calculator" /></span>
+                  <div>
+                    <strong>Kitchen Calculator</strong>
+                  </div>
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <button class="dropdown-toggle" type="button">More <span>&#9662;</span></button>
+              <div class="dropdown-menu dropdown-panel">
+                <a href="testimonials.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/custom stories icon.png" alt="Customer Stories" /></span>
+                  <div>
+                    <strong>Customer Stories</strong>
+                  </div>
+                </a>
+                <a href="contact.html" class="dropdown-link">
+                  <span class="dropdown-icon"><img src="../images/blogs.png" alt="Blogs" /></span>
+                  <div>
+                    <strong>Blogs</strong>
+                  </div>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <a href="calculator.html" class="btn btn-primary nav-cta">Get Free Estimate</a>
+
+        <button class="nav-toggle" aria-label="Open navigation" type="button">
+          <span class="nav-toggle-label">More</span>
+          <span class="nav-toggle-caret">^</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="customer-stories-hero" aria-labelledby="customer-stories-title">
+      <img src="../images/home intrior hero.jpg" alt="Ajor Interio crafted living room design" />
+      <div class="customer-stories-hero-shade"></div>
+      <div class="customer-stories-hero-copy">
+        <h1 id="customer-stories-title">Your Home. Our Designs</h1>
+        <span aria-hidden="true"></span>
+        <p>Expertly Crafted Interiors by Professionals</p>
       </div>
     </section>
+
+    <section class="customer-stories-gallery" aria-label="Ajor Interio customer project gallery">
+      <div class="customer-stories-gallery-grid">
+        <img src="../images/project/image 1.png" alt="Ajor Interio completed interior project detail" />
+        <img src="../images/project/image 2.png" alt="Ajor Interio completed living room project" />
+        <img src="../images/project/image 3.png" alt="Ajor Interio completed kitchen project" />
+        <img src="../images/project/image 4.png" alt="Ajor Interio completed bedroom project" />
+        <img src="../images/project/image 5.png" alt="Ajor Interio completed TV unit project" />
+        <img src="../images/project/image 6.png" alt="Ajor Interio completed home interior project" />
+        <img src="../images/project/image 7.jpg" alt="Ajor Interio completed modular kitchen project" />
+        <img src="../images/project/image 8.jpg" alt="Ajor Interio completed study unit project" />
+      </div>
+
+      <aside class="customer-stories-actions" aria-label="Quick contact options">
+        <a class="customer-stories-action" href="https://wa.me/919844443388" target="_blank" rel="noopener">
+          <span>W</span>
+          Whatsapp
+        </a>
+        <a class="customer-stories-action" href="mailto:ajorinterio@gmail.com">
+          <span>@</span>
+          Send Mail
+        </a>
+        <a class="customer-stories-estimate" href="calculator.html">Free Estimate</a>
+      </aside>
+    </section>
   </main>
+
+  <script src="../script.js"></script>
 </body>
+
 </html>
