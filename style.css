@@ -14538,3 +14538,109 @@ svg {
     margin-top: 14px;
   }
 }
+
+/* Separate login and signup modal layouts */
+.auth-modal[data-auth-mode="login"] .auth-modal-dialog,
+.auth-modal[data-auth-mode="signup"] .auth-modal-dialog {
+  width: min(100%, 750px);
+  min-height: 642px;
+  grid-template-columns: 50% 50%;
+  border-radius: 6px;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-modal-form {
+  padding: 15px 16px 24px 22px;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-modal-title {
+  margin: 0 0 18px;
+  text-align: left;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-modal-subtitle {
+  margin: 0 0 12px;
+  text-align: left;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-phone-field {
+  width: 100%;
+  min-height: 47px;
+  padding: 0 12px;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-submit {
+  min-height: 40px;
+  margin-top: 0;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-google {
+  margin-top: -1px;
+  margin-bottom: 16px;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-switch {
+  margin-top: 2px;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-modal-form {
+  padding: 18px 16px 24px 22px;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-modal-title {
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-modal-form form {
+  gap: 17px;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-modal-form input,
+.auth-modal[data-auth-mode="signup"] .auth-modal-form select,
+.auth-modal[data-auth-mode="signup"] .auth-phone-field {
+  min-height: 36px;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-submit {
+  min-height: 41px;
+  margin-top: 16px;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-google {
+  margin-top: 36px;
+  margin-bottom: 16px;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-switch {
+  margin-top: 0;
+}
+
+.auth-modal[data-auth-mode="signup"] .auth-terms {
+  margin-top: -8px;
+}
+
+.auth-modal[data-auth-mode="login"] .auth-modal-image,
+.auth-modal[data-auth-mode="signup"] .auth-modal-image {
+  min-height: 642px;
+  background-position: center center;
+}
+
+@media (max-width: 760px) {
+  .auth-modal[data-auth-mode="login"] .auth-modal-dialog,
+  .auth-modal[data-auth-mode="signup"] .auth-modal-dialog {
+    width: min(100%, 430px);
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .auth-modal[data-auth-mode="login"] .auth-modal-image,
+  .auth-modal[data-auth-mode="signup"] .auth-modal-image {
+    min-height: 220px;
+  }
+}
