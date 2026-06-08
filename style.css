@@ -14827,3 +14827,8 @@ svg {
     padding: 18px 18px 28px;
   }
 }
+
+/* Remove signup prompt from login popup */
+.auth-modal[data-auth-mode="login"] .auth-switch {
+  display: none;
+}
