@@ -10926,6 +10926,119 @@ body.no-scroll {
   text-decoration: none;
 }
 
+.kitchen-calc-page {
+  min-height: 100vh;
+  background: #fff;
+  color: #17233a;
+}
+
+.kitchen-calc-header .topbar {
+  background: #fff;
+}
+
+.kitchen-calc-header .nav-main {
+  border-top: 1px solid #eef0f4;
+  border-bottom: 1px solid #d9dee6;
+  background: #fff;
+}
+
+.kitchen-calc-hero {
+  position: relative;
+  min-height: 268px;
+  display: grid;
+  grid-template-columns: minmax(320px, 44%) 1fr;
+  overflow: hidden;
+  background: linear-gradient(90deg, #edf1f1 0%, #edf1f1 43%, rgba(237, 241, 241, 0.7) 52%, rgba(237, 241, 241, 0) 68%);
+}
+
+.kitchen-calc-hero-copy {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  padding: 52px 7vw;
+}
+
+.kitchen-calc-hero h1 {
+  margin: 0 0 8px;
+  color: #18202b;
+  font-size: clamp(1.85rem, 2.35vw, 2.7rem);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.kitchen-calc-hero p {
+  margin: 0;
+  color: #18202b;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.kitchen-calc-hero img {
+  width: 100%;
+  height: 100%;
+  min-height: 268px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.kitchen-calc-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 1660px;
+  margin: 0 auto;
+  padding: 20px 7vw;
+  color: #8b94a5;
+  font-size: 0.88rem;
+}
+
+.kitchen-calc-breadcrumb a {
+  color: #ef3347;
+  text-decoration: none;
+}
+
+.kitchen-calc-start {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+}
+
+.kitchen-calc-start h2 {
+  margin: 0 0 10px;
+  color: #17233a;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.kitchen-calc-start p {
+  margin: 0;
+  color: #536073;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .kitchen-calc-hero {
+    min-height: 360px;
+    display: block;
+    background: #edf1f1;
+  }
+
+  .kitchen-calc-hero-copy {
+    padding: 34px 24px 22px;
+  }
+
+  .kitchen-calc-hero img {
+    height: 220px;
+    min-height: 220px;
+    object-position: center;
+  }
+
+  .kitchen-calc-breadcrumb {
+    padding: 18px 24px;
+  }
+}
+
 .home-calc-trust-row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
