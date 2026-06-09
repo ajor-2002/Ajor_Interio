@@ -69,17 +69,20 @@ document.addEventListener('DOMContentLoaded', function () {
       topActions.className = 'top-actions';
       topbarInner.appendChild(topActions);
     }
-    if (!topbarInner.querySelector('a[href$="refer-and-earn.html"]')) {
-      const referLink = document.createElement('a');
-      referLink.href = referPath;
-      referLink.className = 'top-link highlight';
-      referLink.textContent = 'Refer and Earn';
-      topActions.prepend(referLink);
-    }
     if (topLinks && topActions && topLinks !== topActions) {
-      Array.from(topLinks.children).forEach((child) => topActions.appendChild(child));
+      Array.from(topLinks.children).forEach((child) => child.remove());
       topLinks.hidden = true;
     }
+    Array.from(topActions.children).forEach((child) => {
+      if (!child.classList.contains('ajor-auth-actions')) {
+        child.remove();
+      }
+    });
+    const referLink = document.createElement('a');
+    referLink.href = referPath;
+    referLink.className = 'top-link highlight';
+    referLink.textContent = 'Refer and Earn';
+    topActions.prepend(referLink);
     const authActions = document.createElement('div');
     authActions.className = 'ajor-auth-actions';
     authActions.innerHTML = `
