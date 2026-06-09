@@ -3,9 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const navList = document.querySelector('.nav-list');
   const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
   const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
-  let modularKitchenLoginModal = null;
-  let closeModularKitchenLoginModal = () => {};
-
   document.querySelectorAll('main img').forEach((img) => {
     if (img.classList.contains('hero-image')) return;
     img.loading = 'lazy';
@@ -39,278 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     return data;
   };
-
-  const loginRegisterLinks = Array.from(document.querySelectorAll('a')).filter((link) => {
-    const label = link.textContent.trim().toLowerCase();
-    return label === 'login/register';
-  });
-
-  if (loginRegisterLinks.length) {
-    const authCities = [
-      'Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Gandhinagar',
-      'Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi', 'Belagavi',
-      'Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem',
-      'Kochi', 'Thiruvananthapuram', 'Kozhikode', 'Thrissur', 'Kollam',
-      'Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Tirupati',
-    ];
-
-    const getAssetPath = (path) => (window.location.pathname.includes('/pages/') ? `../${path}` : path);
-    const authStateKey = 'ajorInterioAuthUser';
-    let authModal = null;
-    let activeAuthMode = 'login';
-
-    const getSavedAuthUser = () => {
-      try {
-        return JSON.parse(localStorage.getItem(authStateKey) || 'null');
-      } catch (error) {
-        return null;
-      }
-    };
-
-    const showAuthStatus = (message, type = 'error') => {
-      const status = authModal?.querySelector('.auth-modal-status');
-      if (!status) return;
-      status.textContent = message;
-      status.classList.toggle('is-success', type === 'success');
-      status.classList.toggle('is-error', type === 'error');
-      status.hidden = false;
-    };
-
-    const setAuthHeaderState = () => {
-      const user = getSavedAuthUser();
-      loginRegisterLinks.forEach((link) => {
-        if (user) {
-          link.classList.add('top-link-user');
-          link.setAttribute('href', '#');
-          link.setAttribute('aria-label', `Logged in as ${user.name || user.phone || 'Ajor Interio user'}`);
-          link.innerHTML = `
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M12 12.2c2.5 0 4.5-2 4.5-4.5S14.5 3.2 12 3.2s-4.5 2-4.5 4.5 2 4.5 4.5 4.5Zm0 2.2c-3.1 0-7.2 1.6-7.2 4.8v1.1h14.4v-1.1c0-3.2-4.1-4.8-7.2-4.8Z" />
-            </svg>
-          `;
-        } else {
-          link.classList.remove('top-link-user');
-          link.setAttribute('href', link.dataset.authHref || link.getAttribute('href') || '#');
-          link.removeAttribute('aria-label');
-          link.textContent = 'Login/Register';
-        }
-      });
-    };
-
-    const setAuthMode = (mode) => {
-      activeAuthMode = mode;
-      if (!authModal) return;
-      authModal.dataset.authMode = mode;
-      const title = authModal.querySelector('.auth-modal-title');
-      const subtitle = authModal.querySelector('.auth-modal-subtitle');
-      const loginPanel = authModal.querySelector('[data-auth-panel="login"]');
-      const signupPanel = authModal.querySelector('[data-auth-panel="signup"]');
-      const status = authModal.querySelector('.auth-modal-status');
-
-      title.textContent = mode === 'signup' ? 'Sign Up' : 'Login';
-      subtitle.textContent = mode === 'signup'
-        ? 'Create your Ajor Interio account to continue.'
-        : 'Enter your registered mobile number';
-      loginPanel.hidden = mode !== 'login';
-      signupPanel.hidden = mode !== 'signup';
-      if (status) {
-        status.hidden = true;
-        status.textContent = '';
-      }
-    };
-
-    const closeAuthModal = () => {
-      if (!authModal) return;
-      authModal.classList.remove('is-open');
-      document.body.classList.remove('auth-modal-open');
-    };
-
-    const openAuthModal = (mode = 'login') => {
-      if (!authModal) {
-        const cityOptions = authCities.map((city) => `<option value="${city}">${city}</option>`).join('');
-        authModal = document.createElement('div');
-        authModal.className = 'auth-modal';
-        authModal.setAttribute('role', 'dialog');
-        authModal.setAttribute('aria-modal', 'true');
-        authModal.setAttribute('aria-labelledby', 'auth-modal-title');
-        authModal.innerHTML = `
-          <div class="auth-modal-dialog">
-            <button class="auth-modal-close" type="button" aria-label="Close login form">x</button>
-            <div class="auth-modal-form">
-              <h2 class="auth-modal-title" id="auth-modal-title">Login</h2>
-              <p class="auth-modal-subtitle">Enter your registered mobile number</p>
-              <p class="auth-modal-status" hidden></p>
-
-              <form data-auth-panel="login" novalidate>
-                <label class="auth-phone-field">
-                  <span class="auth-country"><span class="auth-flag" aria-hidden="true"></span><span class="auth-caret" aria-hidden="true"></span></span>
-                  <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" />
-                </label>
-                <button class="auth-submit" type="submit">Login</button>
-                <div class="auth-google">
-                  <span>Or Login in with</span>
-                  <button type="button" aria-label="Continue with Google">G</button>
-                </div>
-                <p class="auth-switch">First time User? <button type="button" data-auth-switch="signup">Sign up</button> here</p>
-              </form>
-
-              <form data-auth-panel="signup" hidden novalidate>
-                <input type="text" name="name" placeholder="Enter your name" autocomplete="name" />
-                <label class="auth-phone-field">
-                  <span class="auth-country"><span class="auth-flag" aria-hidden="true"></span><span class="auth-caret" aria-hidden="true"></span></span>
-                  <input type="tel" name="phone" placeholder="Enter your mobile number" autocomplete="tel" />
-                </label>
-                <label class="auth-whatsapp">
-                  <span>Send me updates on WhatsApp</span>
-                  <input type="checkbox" name="whatsapp" checked />
-                </label>
-                <select name="city">
-                  <option value="">Select your property city</option>
-                  ${cityOptions}
-                </select>
-                <button class="auth-submit" type="submit">Sign Up</button>
-                <div class="auth-google">
-                  <span>Or Signup with</span>
-                  <button type="button" aria-label="Continue with Google">G</button>
-                </div>
-                <p class="auth-switch">Already have an account? <button type="button" data-auth-switch="login">Log in</button> here</p>
-                <p class="auth-terms">Terms & Conditions | Privacy Policy</p>
-              </form>
-            </div>
-            <div class="auth-modal-image" aria-hidden="true"></div>
-          </div>
-        `;
-        authModal.querySelector('.auth-modal-image').style.backgroundImage = `url("${getAssetPath('images/person image.jpg')}")`;
-        document.body.appendChild(authModal);
-
-        authModal.addEventListener('click', (event) => {
-          if (event.target === authModal || event.target.closest('.auth-modal-close')) {
-            closeAuthModal();
-          }
-
-          const switchButton = event.target.closest('[data-auth-switch]');
-          if (switchButton) {
-            setAuthMode(switchButton.dataset.authSwitch);
-          }
-        });
-
-        authModal.querySelector('[data-auth-panel="login"]').addEventListener('submit', async (event) => {
-          event.preventDefault();
-          const form = event.currentTarget;
-          const phoneInput = form.querySelector('input[name="phone"]');
-          const phone = phoneInput.value.trim();
-          const digitCount = (phone.match(/\d/g) || []).length;
-
-          if (digitCount < 10) {
-            phoneInput.focus();
-            showAuthStatus('Mobile number is missing or invalid.');
-            return;
-          }
-
-          const submitButton = form.querySelector('.auth-submit');
-          submitButton.disabled = true;
-          submitButton.textContent = 'Logging in...';
-
-          try {
-            await sendFormSubmitEmail(
-              {
-                Form_Type: 'Login/Register Login',
-                Mobile: phone,
-              },
-              'Ajor Interio Login Request'
-            );
-            localStorage.setItem(authStateKey, JSON.stringify({ phone, loginAt: new Date().toISOString() }));
-            setAuthHeaderState();
-            showAuthStatus('Login successful.', 'success');
-            setTimeout(closeAuthModal, 650);
-          } catch (error) {
-            showAuthStatus(error.message || 'Login failed. Please try again.');
-          } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Login';
-          }
-        });
-
-        authModal.querySelector('[data-auth-panel="signup"]').addEventListener('submit', async (event) => {
-          event.preventDefault();
-          const form = event.currentTarget;
-          const nameInput = form.querySelector('input[name="name"]');
-          const phoneInput = form.querySelector('input[name="phone"]');
-          const cityInput = form.querySelector('select[name="city"]');
-          const name = nameInput.value.trim();
-          const phone = phoneInput.value.trim();
-          const city = cityInput.value.trim();
-          const digitCount = (phone.match(/\d/g) || []).length;
-
-          if (!name) {
-            nameInput.focus();
-            showAuthStatus('Name is missing.');
-            return;
-          }
-
-          if (digitCount < 10) {
-            phoneInput.focus();
-            showAuthStatus('Mobile number is missing or invalid.');
-            return;
-          }
-
-          if (!city) {
-            cityInput.focus();
-            showAuthStatus('Property city is missing.');
-            return;
-          }
-
-          const submitButton = form.querySelector('.auth-submit');
-          submitButton.disabled = true;
-          submitButton.textContent = 'Submitting...';
-
-          try {
-            await sendFormSubmitEmail(
-              {
-                Form_Type: 'Login/Register Sign Up',
-                Name: name,
-                Mobile: phone,
-                Property_City: city,
-                WhatsApp_Updates: form.querySelector('input[name="whatsapp"]').checked ? 'Yes' : 'No',
-              },
-              'New Ajor Interio Sign Up'
-            );
-            localStorage.setItem(authStateKey, JSON.stringify({ name, phone, city, signupAt: new Date().toISOString() }));
-            setAuthHeaderState();
-            showAuthStatus('Signup successful.', 'success');
-            setTimeout(closeAuthModal, 650);
-          } catch (error) {
-            showAuthStatus(error.message || 'Signup failed. Please try again.');
-          } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Sign Up';
-          }
-        });
-      }
-
-      setAuthMode(mode);
-      authModal.classList.add('is-open');
-      document.body.classList.add('auth-modal-open');
-      const firstField = authModal.querySelector(`[data-auth-panel="${activeAuthMode}"] input, [data-auth-panel="${activeAuthMode}"] select`);
-      firstField?.focus({ preventScroll: true });
-    };
-
-    loginRegisterLinks.forEach((link) => {
-      link.dataset.authHref = link.getAttribute('href') || '#';
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        openAuthModal(getSavedAuthUser() ? 'login' : 'login');
-      });
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && authModal?.classList.contains('is-open')) {
-        closeAuthModal();
-      }
-    });
-
-    setAuthHeaderState();
-  }
 
   const leadForm = document.querySelector('.lead-form');
   if (leadForm) {
@@ -1195,12 +920,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterDrawerCancel = document.querySelector('.mk-filter-cancel');
     const filterDrawerApply = document.querySelector('.mk-filter-apply');
     const filterDrawerClear = document.querySelector('.mk-filter-clear');
-    const loginModal = document.querySelector('.mk-login-modal');
-    const loginBackdrop = document.querySelector('.mk-login-backdrop');
-    const loginClose = document.querySelector('.mk-login-close');
-    const loginSubmit = document.querySelector('.mk-login-submit');
-    const loginGoogle = document.querySelector('.mk-login-google');
-    const loginPhoneInput = document.querySelector('#mk-login-phone-input');
     const drawerShapeButtons = Array.from(
       document.querySelectorAll('.mk-filter-drawer .mk-filter-chip[data-filter]')
     );
@@ -1402,61 +1121,6 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('no-scroll');
     };
 
-    const openLoginModal = () => {
-      if (!loginModal) return;
-      loginModal.classList.add('is-open');
-      loginModal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('no-scroll');
-      setTimeout(() => loginPhoneInput?.focus(), 0);
-    };
-
-    const closeLoginModal = () => {
-      if (!loginModal) return;
-      loginModal.classList.remove('is-open');
-      loginModal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-    };
-
-    modularKitchenLoginModal = loginModal;
-    closeModularKitchenLoginModal = closeLoginModal;
-
-    const sendLoginLead = async () => {
-      const phone = (loginPhoneInput?.value || '').trim();
-      const digitCount = (phone.match(/\d/g) || []).length;
-
-      if (digitCount < 10) {
-        loginPhoneInput?.focus();
-        loginPhoneInput?.setAttribute('aria-invalid', 'true');
-        if (loginPhoneInput) {
-          loginPhoneInput.placeholder = 'Enter at least 10 digits';
-        }
-        return;
-      }
-
-      loginPhoneInput?.setAttribute('aria-invalid', 'false');
-
-      try {
-        await sendFormSubmitEmail(
-          {
-            Form_Type: 'Login Phone Lead',
-            Phone: phone,
-          },
-          'New Login Lead from Ajor Interio'
-        );
-        closeLoginModal();
-
-        window.setTimeout(() => {
-          window.location.href = '../index.html';
-        }, 500);
-      } catch (error) {
-        loginPhoneInput?.focus();
-        loginPhoneInput?.setAttribute('aria-invalid', 'true');
-        if (loginPhoneInput) {
-          loginPhoneInput.placeholder = `Error: ${error.message}`;
-        }
-      }
-    };
-
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const buttonFilter = button.dataset.filter || 'all';
@@ -1529,15 +1193,6 @@ document.addEventListener('DOMContentLoaded', function () {
       renderGallery();
       closeFilterDrawer();
     });
-
-    loginBackdrop?.addEventListener('click', closeLoginModal);
-    loginClose?.addEventListener('click', closeLoginModal);
-    loginSubmit?.addEventListener('click', sendLoginLead);
-    loginGoogle?.addEventListener('click', closeLoginModal);
-
-    if (loginModal) {
-      loginModal.setAttribute('aria-hidden', 'true');
-    }
 
     loadMoreButton?.addEventListener('click', () => {
       expanded = true;
@@ -1901,9 +1556,6 @@ document.addEventListener('DOMContentLoaded', function () {
       closeImageLightbox();
     }
 
-    if (event.key === 'Escape' && modularKitchenLoginModal?.classList.contains('is-open')) {
-      closeModularKitchenLoginModal();
-    }
   });
 
   const whyChooseCarousel = document.querySelector('.whyChooseUs_slider__vpqwR');
