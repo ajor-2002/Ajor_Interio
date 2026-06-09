@@ -37,10 +37,30 @@ document.addEventListener('DOMContentLoaded', function () {
     return data;
   };
 
-  const topbarInner = document.querySelector('.topbar-inner');
+  const inPagesFolder = window.location.pathname.includes('/pages/');
+  let topbarInner = document.querySelector('.topbar-inner');
+  if (!topbarInner) {
+    const generatedTopbar = document.createElement('div');
+    generatedTopbar.className = 'topbar generated-topbar';
+    generatedTopbar.innerHTML = `
+      <div class="container topbar-inner">
+        <div class="top-links"></div>
+      </div>
+    `;
+
+    const headerTarget = document.querySelector('header, main');
+    if (headerTarget) {
+      headerTarget.before(generatedTopbar);
+    } else {
+      document.body.prepend(generatedTopbar);
+    }
+    topbarInner = generatedTopbar.querySelector('.topbar-inner');
+  }
+
   if (topbarInner) {
     const authStorageKey = 'ajorInterioAuthUser';
-    const accountIconPath = window.location.pathname.includes('/pages/') ? '../images/user.png' : 'images/user.png';
+    const accountIconPath = inPagesFolder ? '../images/user.png' : 'images/user.png';
+    const referPath = inPagesFolder ? 'refer-and-earn.html' : 'pages/refer-and-earn.html';
     const topLinks = topbarInner.querySelector('.top-links');
     const existingActions = topbarInner.querySelector('.top-actions');
     let topActions = existingActions;
@@ -48,6 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
       topActions = document.createElement('div');
       topActions.className = 'top-actions';
       topbarInner.appendChild(topActions);
+    }
+    if (!topbarInner.querySelector('a[href$="refer-and-earn.html"]')) {
+      const referLink = document.createElement('a');
+      referLink.href = referPath;
+      referLink.className = 'top-link highlight';
+      referLink.textContent = 'Refer and Earn';
+      topActions.prepend(referLink);
     }
     if (topLinks && topActions && topLinks !== topActions) {
       Array.from(topLinks.children).forEach((child) => topActions.appendChild(child));
