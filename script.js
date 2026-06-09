@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <h3>Ajor Interio</h3>
           <p>We are here to help you! Call or chat to connect with us right away.</p>
           <div class="online-support-actions">
-            <a href="tel:+9844443388" aria-label="Call Ajor Interio">
+            <a href="tel:+9844443388" data-online-call-open aria-label="Call Ajor Interio">
               <span class="online-support-action-icon">&#9742;</span>
               <strong>Call</strong>
             </a>
@@ -362,13 +362,49 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </div>
       </div>
+      <div class="online-call-panel" aria-hidden="true">
+        <form class="online-call-form" aria-label="Call us now form">
+          <div class="online-call-header">
+            <button class="online-call-back" type="button" aria-label="Back to support options">&#8249;</button>
+            <img src="${supportLogoPath}" alt="" />
+            <h3>Call us now</h3>
+          </div>
+          <div class="online-call-body">
+            <input type="text" name="name" placeholder="Full Name" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="tel" name="phone" placeholder="Enter your mobile number" required />
+            <select name="city" required>
+              <option value="">Select your city</option>
+              <option value="Ahmedabad">Ahmedabad</option>
+              <option value="Surat">Surat</option>
+              <option value="Vadodara">Vadodara</option>
+              <option value="Rajkot">Rajkot</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Kochi">Kochi</option>
+            </select>
+            <input type="text" name="pincode" placeholder="Current Residence Pincode" inputmode="numeric" />
+            <button type="submit">&#9742; Call Now</button>
+            <span class="online-call-status" hidden></span>
+          </div>
+        </form>
+      </div>
     `;
     document.body.appendChild(supportCard);
+    const supportPanel = supportCard.querySelector('.online-support-panel');
+    const callPanel = supportCard.querySelector('.online-call-panel');
+    const callForm = supportCard.querySelector('.online-call-form');
+    const callStatus = supportCard.querySelector('.online-call-status');
 
     const setSupportOpen = (isOpen) => {
       supportCard.classList.toggle('is-open', isOpen);
       supportCard.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
       onlinePill.classList.toggle('is-hidden', isOpen);
+      if (!isOpen) {
+        supportPanel.hidden = false;
+        callPanel.classList.remove('is-open');
+        callPanel.setAttribute('aria-hidden', 'true');
+      }
     };
 
     onlinePill.addEventListener('click', (event) => {
@@ -378,6 +414,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
     supportCard.querySelector('.online-support-close')?.addEventListener('click', () => {
       setSupportOpen(false);
+    });
+
+    supportCard.querySelector('[data-online-call-open]')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      supportPanel.hidden = true;
+      callPanel.classList.add('is-open');
+      callPanel.setAttribute('aria-hidden', 'false');
+      callForm.querySelector('input')?.focus();
+    });
+
+    supportCard.querySelector('.online-call-back')?.addEventListener('click', () => {
+      callPanel.classList.remove('is-open');
+      callPanel.setAttribute('aria-hidden', 'true');
+      supportPanel.hidden = false;
+    });
+
+    callForm?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(callForm);
+      const name = (formData.get('name') || '').toString().trim();
+      const email = (formData.get('email') || '').toString().trim();
+      const phone = (formData.get('phone') || '').toString().trim();
+      const city = (formData.get('city') || '').toString().trim();
+      const pincode = (formData.get('pincode') || '').toString().trim();
+      const submitButton = callForm.querySelector('button[type="submit"]');
+      const digitCount = (phone.match(/\d/g) || []).length;
+
+      const setCallStatus = (message, type = 'error') => {
+        callStatus.textContent = message;
+        callStatus.classList.toggle('is-success', type === 'success');
+        callStatus.hidden = false;
+      };
+
+      if (!name || !email || digitCount < 10 || !city) {
+        setCallStatus('Please fill name, email, phone and city.');
+        return;
+      }
+
+      const originalText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: 'Call Now Request',
+            Name: name,
+            Email: email,
+            Phone: phone,
+            City: city,
+            Pincode: pincode || 'Not provided',
+          },
+          'New Ajor Interio Call Now Request'
+        );
+        callForm.reset();
+        setCallStatus('Request sent. We will call you shortly.', 'success');
+      } catch (error) {
+        setCallStatus(error.message || 'Could not send request. Please try again.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      }
     });
 
     document.addEventListener('keydown', (event) => {
