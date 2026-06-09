@@ -270,6 +270,112 @@ document.addEventListener('DOMContentLoaded', function () {
     setLoggedInState(getSavedAuthUser());
   }
 
+  document.querySelectorAll('.blogs-footer-newsletter, .blog-newsletter-card form').forEach((newsletterForm) => {
+    const emailInput = newsletterForm.querySelector('input[type="email"]');
+    const submitButton = newsletterForm.querySelector('button[type="submit"]');
+    const status = document.createElement('span');
+    status.className = 'newsletter-status';
+    status.hidden = true;
+    newsletterForm.appendChild(status);
+
+    const setNewsletterStatus = (message, type = '') => {
+      status.textContent = message;
+      status.classList.toggle('is-error', type === 'error');
+      status.classList.toggle('is-success', type === 'success');
+      status.hidden = false;
+    };
+
+    newsletterForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = emailInput?.value.trim() || '';
+
+      if (!email || !emailInput.checkValidity()) {
+        emailInput?.focus();
+        setNewsletterStatus('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      const originalButtonText = submitButton?.textContent || '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Subscribing...';
+      }
+      setNewsletterStatus('Sending...', 'success');
+
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: 'Newsletter Subscription',
+            Email: email,
+          },
+          'New Ajor Interio Newsletter Subscription'
+        );
+        newsletterForm.reset();
+        setNewsletterStatus('Subscribed successfully.', 'success');
+      } catch (error) {
+        setNewsletterStatus(error.message || 'Subscription failed. Please try again.', 'error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
+    });
+  });
+
+  const onlinePill = document.querySelector('.online-pill');
+  if (onlinePill) {
+    const supportLogoPath = window.location.pathname.includes('/pages/') ? '../images/logo.png' : 'images/logo.png';
+    const supportCard = document.createElement('div');
+    supportCard.className = 'online-support-card';
+    supportCard.setAttribute('aria-hidden', 'true');
+    supportCard.innerHTML = `
+      <button class="online-support-close" type="button" aria-label="Close support options"></button>
+      <div class="online-support-panel" role="dialog" aria-label="Ajor Interio support options">
+        <div class="online-support-top"></div>
+        <div class="online-support-body">
+          <div class="online-support-logo">
+            <img src="${supportLogoPath}" alt="" />
+          </div>
+          <h3>Ajor Interio</h3>
+          <p>We are here to help you! Call or chat to connect with us right away.</p>
+          <div class="online-support-actions">
+            <a href="tel:+9844443388" aria-label="Call Ajor Interio">
+              <span class="online-support-action-icon">☎</span>
+              <strong>Call</strong>
+            </a>
+            <a href="https://wa.me/919844443388" target="_blank" rel="noopener" aria-label="Chat with Ajor Interio on WhatsApp">
+              <span class="online-support-action-icon">▣</span>
+              <strong>Chat</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(supportCard);
+
+    const setSupportOpen = (isOpen) => {
+      supportCard.classList.toggle('is-open', isOpen);
+      supportCard.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+      onlinePill.classList.toggle('is-hidden', isOpen);
+    };
+
+    onlinePill.addEventListener('click', (event) => {
+      event.preventDefault();
+      setSupportOpen(true);
+    });
+
+    supportCard.querySelector('.online-support-close')?.addEventListener('click', () => {
+      setSupportOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && supportCard.classList.contains('is-open')) {
+        setSupportOpen(false);
+      }
+    });
+  }
+
   const leadForm = document.querySelector('.lead-form');
   if (leadForm) {
     const formStatus = leadForm.querySelector('.form-status');
