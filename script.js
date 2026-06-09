@@ -1056,14 +1056,30 @@ document.addEventListener('DOMContentLoaded', function () {
       const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || 'Luxe';
       const bhkValue = Number((bhk.match(/\d+/) || ['2'])[0]);
       const calcConfig = window.AJOR_HOME_CALCULATOR_CONFIG || {};
-      const packageRates = calcConfig.packageRatePerBhk || {};
-      const packageMultiplier = packageRates[selectedPackage] || packageRates.Luxe || 9;
+      const bhkSize = getActiveOptionText('.home-calc-size-options');
+      const propertyType = getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options') || 'Apartment';
+      const projectType = getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options') || 'Renovation';
+      const sizeReference = calcConfig.bhkSizeReference?.[bhkValue] || {};
+      const estimatedSqft = Number(sizeReference[bhkSize] || sizeReference.defaultSqft || 550);
+      const packageRatePerSqft = Number(calcConfig.packageRatePerSqft?.[selectedPackage] || calcConfig.packageRatePerSqft?.Luxe || 2200);
+      const areaAmount = (estimatedSqft * packageRatePerSqft) / 100000;
+      const roomRates = calcConfig.roomRateInLakhs || {};
+      const roomAmount = Array.from(document.querySelectorAll('[data-room-count]')).reduce((total, room) => {
+        const roomName = room.querySelector('strong')?.textContent?.trim() || '';
+        const roomCount = Number(room.querySelector('span')?.textContent || 0);
+        const roomRate = Number(roomRates[roomName] || 0);
+        return total + roomCount * roomRate;
+      }, 0);
+      const propertyMultiplier = Number(calcConfig.propertyTypeMultiplier?.[propertyType] || 1);
+      const projectMultiplier = Number(calcConfig.projectTypeMultiplier?.[projectType] || 1);
+      const packageMultiplier = Number(calcConfig.packageMultiplier?.[selectedPackage] || 1);
       const minimumLowerAmount = Number(calcConfig.minimumLowerAmount) || 4;
       const minimumRangeGap = Number(calcConfig.minimumRangeGap) || 3;
-      const rangeGapPerBhk = Number(calcConfig.rangeGapPerBhk) || 2;
-      const lower = Math.max(minimumLowerAmount, bhkValue * packageMultiplier);
-      const upper = lower + Math.max(minimumRangeGap, bhkValue * rangeGapPerBhk);
-      return `₹${lower}L - ₹${upper}L`;
+      const rangePercent = Number(calcConfig.rangePercent) || 0.15;
+      const adjustedAmount = (areaAmount + roomAmount) * propertyMultiplier * projectMultiplier * packageMultiplier;
+      const lower = Math.max(minimumLowerAmount, adjustedAmount);
+      const upper = lower + Math.max(minimumRangeGap, lower * rangePercent);
+      return `Rs. ${Math.round(lower)}L - Rs. ${Math.round(upper)}L`;
     };
 
     const createSummaryRow = (label, value) => {
