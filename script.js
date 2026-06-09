@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     authActions.className = 'ajor-auth-actions';
     authActions.innerHTML = `
       <button class="ajor-account-button" id="accountBtn" type="button" aria-label="Open login">
-        <img src="${accountIconPath}" alt="" />
+        <span>Login</span>
       </button>
       <div class="ajor-profile-wrap" id="userProfile" hidden>
         <button class="ajor-profile-button" id="profileMenuBtn" type="button" aria-label="Open profile menu" aria-expanded="false">
