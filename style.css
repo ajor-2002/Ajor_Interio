@@ -364,7 +364,7 @@ img {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(3rem, 5vw, 5.2rem);
+  font-size: clamp(3rem, 5vw, 2rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
 }
