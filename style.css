@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
 :root {
   --white: #ffffff;
   --black: #111111;
@@ -22,7 +24,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Manrope", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--black);
   background: var(--light);
 }
@@ -14696,5 +14698,445 @@ svg {
   .ajor-auth-socials {
     grid-template-columns: 1fr;
     gap: 7px;
+  }
+}
+
+/* Keep previous Ajor Luxe journey style, only prevent card overlap */
+.ajor-luxe-journey-card:nth-child(1) {
+  top: 84px;
+}
+
+.ajor-luxe-journey-card:nth-child(2) {
+  top: 112px;
+}
+
+.ajor-luxe-journey-card:nth-child(3) {
+  top: 140px;
+}
+
+.ajor-luxe-journey-card:nth-child(4) {
+  top: 168px;
+}
+
+.ajor-luxe-journey-card:nth-child(5) {
+  top: 196px;
+}
+
+.ajor-luxe-journey-card:nth-child(6) {
+  top: 224px;
+}
+
+.ajor-luxe-journey-card:nth-child(7) {
+  top: 252px;
+}
+
+@media (max-width: 768px) {
+  .ajor-luxe-journey-card {
+    position: relative;
+    top: auto;
+  }
+}
+
+
+/* Premium design refresh */
+:root {
+  --premium-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  --premium-red-shadow: 0 18px 50px rgba(216, 26, 26, 0.18);
+  --premium-border: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.hero,
+.offerings-section,
+.estimate-section,
+.after-estimate-section,
+.reviews,
+.referral-section,
+.design-services-section,
+.faq-section,
+.assurance-section,
+.inspiration-section,
+.trust-detail-section {
+  padding-top: clamp(56px, 7vw, 88px);
+  padding-bottom: clamp(56px, 7vw, 88px);
+}
+
+.section-header {
+  gap: 24px;
+  margin-bottom: clamp(24px, 4vw, 42px);
+}
+
+.section-header h2,
+.whyChooseUs_headingTitle__34rH2,
+.reviews h2,
+.faq-header h2,
+.assurance-card h3,
+.estimate-card h3,
+.review-card h3 {
+  letter-spacing: 0;
+}
+
+.section-header h2,
+.whyChooseUs_headingTitle__34rH2,
+.reviews h2,
+.faq-header h2 {
+  font-weight: 800;
+  line-height: 1.06;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.section-kicker::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.section-header p,
+.hero-text,
+.faq-content p,
+.faq-content li,
+.assurance-card p,
+.estimate-card p,
+.review-card p {
+  color: #60656f;
+  line-height: 1.7;
+}
+
+.btn,
+.design-services-btn,
+.estimate-btn,
+.referral-btn,
+.luxe-btn {
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 0 12px 28px rgba(216, 26, 26, 0.16);
+}
+
+.btn:hover,
+.design-services-btn:hover,
+.estimate-btn:hover,
+.referral-btn:hover,
+.luxe-btn:hover {
+  transform: translateY(-2px);
+}
+
+.hero-card,
+.estimate-card,
+.review-card,
+.faq-item,
+.assurance-card,
+.design-service-card,
+.offering-card,
+.inspiration-card,
+.trust-detail-grid article {
+  border-radius: 20px;
+  box-shadow: var(--premium-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.estimate-card:hover,
+.review-card:hover,
+.faq-item:hover,
+.assurance-card:hover,
+.design-service-card:hover,
+.offering-card:hover,
+.inspiration-card:hover,
+.trust-detail-grid article:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--premium-red-shadow);
+}
+
+.hero h1 {
+  max-width: 760px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.hero-trust {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-trust span {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.offerings-wrap {
+  gap: 24px;
+}
+
+.offering-card {
+  overflow: hidden;
+  background: #fff;
+}
+
+.offering-card img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.reviews {
+  background: #fff;
+}
+
+.stars {
+  color: var(--red);
+  letter-spacing: 2px;
+}
+
+.inspiration-section {
+  background:
+    linear-gradient(180deg, #fff 0%, #fff7f7 100%);
+}
+
+.inspiration-wrap,
+.trust-detail-wrap {
+  display: grid;
+  gap: 28px;
+}
+
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+}
+
+.inspiration-card {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #111;
+}
+
+.inspiration-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.inspiration-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.64));
+}
+
+.inspiration-card span {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  z-index: 2;
+  color: #fff;
+  font-size: 1.14rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.inspiration-card:hover img {
+  transform: scale(1.05);
+}
+
+.trust-detail-section {
+  background: #111;
+  color: #fff;
+}
+
+.trust-detail-wrap {
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+}
+
+.trust-detail-copy h2 {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.trust-detail-copy p {
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+}
+
+.trust-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.trust-detail-grid article {
+  display: grid;
+  gap: 10px;
+  min-height: 150px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(216, 26, 26, 0.22), transparent 38%),
+    rgba(255, 255, 255, 0.055);
+  box-shadow: none;
+}
+
+.trust-detail-grid strong {
+  font-size: 1.08rem;
+}
+
+.trust-detail-grid span {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.55;
+}
+
+.mobile-conversion-bar {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2400;
+  display: none;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(216, 26, 26, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 16px 46px rgba(17, 24, 39, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.mobile-conversion-bar a,
+.mobile-conversion-bar button {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 0;
+  border-radius: 13px;
+  background: #fff;
+  color: #171717;
+  cursor: pointer;
+  font-size: 0.83rem;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08);
+}
+
+.mobile-conversion-bar a:first-child {
+  background: #16a34a;
+  color: #fff;
+}
+
+.mobile-conversion-bar a:nth-child(2),
+.mobile-conversion-bar button {
+  background: var(--red);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .nav-list,
+  .hero-actions,
+  .hero-trust,
+  .top-links,
+  .top-actions {
+    flex-wrap: wrap;
+  }
+
+  .trust-detail-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    padding-bottom: 84px;
+  }
+
+  .container {
+    padding-inline: 18px;
+  }
+
+  .hero,
+  .offerings-section,
+  .estimate-section,
+  .after-estimate-section,
+  .reviews,
+  .referral-section,
+  .design-services-section,
+  .faq-section,
+  .assurance-section,
+  .inspiration-section,
+  .trust-detail-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .section-header,
+  .section-header--split {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 12vw, 3.25rem);
+  }
+
+  .hero-actions,
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-card,
+  .estimate-card,
+  .review-card,
+  .faq-item,
+  .assurance-card,
+  .trust-detail-grid article {
+    border-radius: 18px;
+  }
+
+  .design-services-grid,
+  .estimate-cards,
+  .assurance-grid,
+  .step-grid,
+  .inspiration-grid,
+  .trust-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inspiration-card,
+  .inspiration-card img {
+    min-height: 250px;
+  }
+
+  .mobile-conversion-bar {
+    display: grid;
+  }
+
+  .online-pill {
+    bottom: 92px;
+  }
+
+  .copyright-consent {
+    bottom: 92px;
   }
 }

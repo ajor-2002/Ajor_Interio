@@ -382,6 +382,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  if (!document.querySelector('.mobile-conversion-bar')) {
+    const inPagesFolder = window.location.pathname.includes('/pages/');
+    const quotePath = inPagesFolder ? 'contact.html' : 'pages/contact.html';
+    const mobileConversionBar = document.createElement('div');
+    mobileConversionBar.className = 'mobile-conversion-bar';
+    mobileConversionBar.setAttribute('aria-label', 'Quick contact actions');
+    mobileConversionBar.innerHTML = `
+      <a href="https://wa.me/919844443388" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
+      <a href="tel:+919844443388" aria-label="Call Ajor Interio">Call Now</a>
+      <button type="button" data-mobile-quote>Get Quote</button>
+    `;
+    document.body.appendChild(mobileConversionBar);
+
+    mobileConversionBar.querySelector('[data-mobile-quote]')?.addEventListener('click', () => {
+      window.location.href = quotePath;
+    });
+  }
+
   let onlinePill = document.querySelector('.online-pill');
   if (!onlinePill) {
     onlinePill = document.createElement('div');
