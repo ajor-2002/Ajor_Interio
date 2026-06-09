@@ -43,6 +43,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const accountIconPath = window.location.pathname.includes('/pages/') ? '../images/user.png' : 'images/user.png';
     const topLinks = topbarInner.querySelector('.top-links');
     const existingActions = topbarInner.querySelector('.top-actions');
+    let topActions = existingActions;
+    if (!topActions) {
+      topActions = document.createElement('div');
+      topActions.className = 'top-actions';
+      topbarInner.appendChild(topActions);
+    }
+    if (topLinks && topActions && topLinks !== topActions) {
+      Array.from(topLinks.children).forEach((child) => topActions.appendChild(child));
+      topLinks.hidden = true;
+    }
     const authActions = document.createElement('div');
     authActions.className = 'ajor-auth-actions';
     authActions.innerHTML = `
@@ -66,10 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     `;
 
-    if (topLinks) {
-      topLinks.appendChild(authActions);
-    } else if (existingActions) {
-      existingActions.insertAdjacentElement('afterbegin', authActions);
+    if (topActions) {
+      topActions.appendChild(authActions);
     } else {
       topbarInner.appendChild(authActions);
     }

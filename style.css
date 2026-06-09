@@ -77,6 +77,11 @@ img {
   align-items: center;
 }
 
+.top-actions {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
 .top-link {
   color: var(--grey);
   font-size: 0.82rem;
