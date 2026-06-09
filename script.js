@@ -44,8 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const authActions = document.createElement('div');
     authActions.className = 'top-actions ajor-auth-actions';
     authActions.innerHTML = `
-      <button class="top-link ajor-auth-button" id="loginBtn" type="button">Login</button>
-      <button class="top-link ajor-auth-button ajor-auth-button-outline" id="signupBtn" type="button">Signup</button>
+      <button class="ajor-account-button" id="accountBtn" type="button" aria-label="Open login">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
+      </button>
       <div class="ajor-user-profile" id="userProfile" hidden>
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
         <span id="profileName"></span>
@@ -109,8 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
     document.body.appendChild(authPopup);
 
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
+    const accountBtn = document.getElementById('accountBtn');
     const userProfile = document.getElementById('userProfile');
     const profileName = document.getElementById('profileName');
     const loginPopup = document.getElementById('loginPopup');
@@ -148,8 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const setLoggedInState = (user) => {
       const isLoggedIn = Boolean(user?.loggedIn || (user?.email && user?.password));
-      loginBtn.hidden = isLoggedIn;
-      signupBtn.hidden = isLoggedIn;
+      accountBtn.hidden = isLoggedIn;
       userProfile.hidden = !isLoggedIn;
       if (isLoggedIn) {
         profileName.textContent = user.name || user.email || 'User';
@@ -175,8 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
       closePopup(signupPopup);
     };
 
-    loginBtn.addEventListener('click', () => openPopup(loginPopup));
-    signupBtn.addEventListener('click', () => openPopup(signupPopup));
+    accountBtn.addEventListener('click', () => openPopup(loginPopup));
     document.getElementById('closeLogin')?.addEventListener('click', () => closePopup(loginPopup));
     document.getElementById('closeSignup')?.addEventListener('click', () => closePopup(signupPopup));
     document.querySelectorAll('[data-auth-open]').forEach((button) => {

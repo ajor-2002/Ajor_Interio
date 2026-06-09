@@ -13893,21 +13893,31 @@ svg {
   gap: 0.55rem;
 }
 
-.ajor-auth-button {
-  min-height: 34px;
-  padding: 0 16px;
+.ajor-account-button {
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
   border: 0;
-  border-radius: 999px;
-  background: var(--red);
-  color: #fff;
+  border-radius: 50%;
+  background: rgba(216, 26, 26, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(216, 26, 26, 0.14);
   cursor: pointer;
-  font-weight: 700;
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.ajor-auth-button-outline {
-  border: 1px solid rgba(216, 26, 26, 0.3);
-  background: #fff;
-  color: var(--red);
+.ajor-account-button:hover {
+  background: rgba(216, 26, 26, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(216, 26, 26, 0.24);
+  transform: translateY(-1px);
+}
+
+.ajor-account-button img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .ajor-user-profile {
@@ -13925,7 +13935,7 @@ svg {
 }
 
 .ajor-user-profile[hidden],
-.ajor-auth-button[hidden] {
+.ajor-account-button[hidden] {
   display: none;
 }
 
@@ -14215,9 +14225,14 @@ svg {
     justify-content: flex-end;
   }
 
-  .ajor-auth-button {
-    min-height: 32px;
-    padding: 0 12px;
+  .ajor-account-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .ajor-account-button img {
+    width: 25px;
+    height: 25px;
   }
 
   .ajor-auth-popup {
