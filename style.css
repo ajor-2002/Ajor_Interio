@@ -15434,7 +15434,7 @@ svg {
 
 /* Homepage premium conversion pass */
 .hero {
-  min-height: calc(100vh - 90px);
+  min-height: 620px;
   background: #111;
 }
 
@@ -15643,6 +15643,10 @@ svg {
 }
 
 @media (max-width: 860px) {
+  .hero {
+    min-height: 560px;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
   }
@@ -15667,7 +15671,7 @@ svg {
 
 @media (max-width: 560px) {
   .hero {
-    min-height: 0;
+    min-height: 520px;
   }
 
   .hero-grid {
