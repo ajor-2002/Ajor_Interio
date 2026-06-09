@@ -133,7 +133,14 @@
               <label for="refer-phone">Generate your referral link:</label>
               <input id="refer-phone" name="phone" type="tel" placeholder="Your Phone Number" />
               <button class="refer-generate" type="submit">Generate Link</button>
-              <p class="refer-result" aria-live="polite"></p>
+              <div class="refer-link-box" hidden>
+                <span>Your referral link</span>
+                <p class="refer-result" aria-live="polite"></p>
+                <div class="refer-link-actions">
+                  <button type="button" class="refer-copy-btn">Copy Link</button>
+                  <button type="button" class="refer-native-share">Share</button>
+                </div>
+              </div>
 
               <span class="refer-share-label">Share the good word</span>
               <div class="refer-share">

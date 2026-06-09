@@ -688,10 +688,15 @@ document.addEventListener('DOMContentLoaded', function () {
   if (referCard) {
     const phoneInput = referCard.querySelector('#refer-phone');
     const result = referCard.querySelector('[data-refer-panel="link"] .refer-result');
+    const referLinkBox = referCard.querySelector('.refer-link-box');
+    const copyButton = referCard.querySelector('.refer-copy-btn');
+    const nativeShareButton = referCard.querySelector('.refer-native-share');
     const shareLinks = Array.from(referCard.querySelectorAll('.refer-share a'));
     const tabButtons = Array.from(referCard.querySelectorAll('[data-refer-tab]'));
     const panels = Array.from(referCard.querySelectorAll('[data-refer-panel]'));
     let activeReferTab = 'link';
+    let currentReferralUrl = '';
+    let currentShareText = '';
 
     tabButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -757,6 +762,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (result) {
           result.textContent = 'Please enter a valid phone number.';
         }
+        if (referLinkBox) {
+          referLinkBox.hidden = false;
+        }
         phoneInput?.focus();
         return;
       }
@@ -764,9 +772,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const referralCode = digits.slice(-10);
       const referralUrl = `${window.location.origin}${window.location.pathname.replace('pages/refer-and-earn.html', '')}?ref=${referralCode}`;
       const shareText = `Try Ajor Interio for your home interiors. Use my referral link: ${referralUrl}`;
+      currentReferralUrl = referralUrl;
+      currentShareText = shareText;
 
       if (result) {
         result.textContent = referralUrl;
+      }
+      if (referLinkBox) {
+        referLinkBox.hidden = false;
       }
 
       if (shareLinks[0]) {
@@ -781,6 +794,37 @@ document.addEventListener('DOMContentLoaded', function () {
       if (shareLinks[3]) {
         shareLinks[3].href = `mailto:?subject=${encodeURIComponent('Ajor Interio referral')}&body=${encodeURIComponent(shareText)}`;
       }
+    });
+
+    copyButton?.addEventListener('click', async () => {
+      if (!currentReferralUrl) return;
+
+      try {
+        await navigator.clipboard.writeText(currentReferralUrl);
+        copyButton.textContent = 'Copied';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy Link';
+        }, 1800);
+      } catch {
+        if (result) {
+          result.textContent = `${currentReferralUrl} - copy this link manually.`;
+        }
+      }
+    });
+
+    nativeShareButton?.addEventListener('click', async () => {
+      if (!currentReferralUrl) return;
+
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Ajor Interio referral',
+          text: currentShareText,
+          url: currentReferralUrl,
+        });
+        return;
+      }
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(currentShareText)}`, '_blank', 'noopener');
     });
   }
 
