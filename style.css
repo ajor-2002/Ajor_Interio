@@ -15122,8 +15122,7 @@ svg {
   left: 12px;
   z-index: 2400;
   display: none;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: 1fr;
   padding: 8px;
   border: 1px solid rgba(216, 26, 26, 0.16);
   border-radius: 18px;
@@ -15132,32 +15131,28 @@ svg {
   backdrop-filter: blur(14px);
 }
 
-.mobile-conversion-bar a,
 .mobile-conversion-bar button {
   min-height: 46px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 7px;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 0 16px;
   border: 0;
   border-radius: 13px;
-  background: #fff;
-  color: #171717;
-  cursor: pointer;
-  font-size: 0.83rem;
-  font-weight: 800;
-  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08);
-}
-
-.mobile-conversion-bar a:first-child {
-  background: #16a34a;
-  color: #fff;
-}
-
-.mobile-conversion-bar a:nth-child(2),
-.mobile-conversion-bar button {
   background: var(--red);
   color: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgba(216, 26, 26, 0.22);
+}
+
+.mobile-conversion-bar button img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 @media (max-width: 900px) {
