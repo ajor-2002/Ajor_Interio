@@ -241,8 +241,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (email === savedUser.email) {
         const user = {
-          ...savedUser,
-          password: undefined,
+          name: savedUser.name,
+          email: savedUser.email,
           loggedIn: true,
           loginAt: new Date().toISOString(),
         };
