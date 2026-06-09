@@ -323,7 +323,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  const onlinePill = document.querySelector('.online-pill');
+  let onlinePill = document.querySelector('.online-pill');
+  if (!onlinePill) {
+    onlinePill = document.createElement('div');
+    onlinePill.className = 'online-pill';
+    onlinePill.setAttribute('aria-label', 'We are online');
+    onlinePill.innerHTML = `
+      <span>We're Online!</span>
+      <a href="contact.html">Connect</a>
+    `;
+    document.body.appendChild(onlinePill);
+  }
+
   if (onlinePill) {
     const supportLogoPath = window.location.pathname.includes('/pages/') ? '../images/logo.png' : 'images/logo.png';
     const supportCard = document.createElement('div');
@@ -341,11 +352,11 @@ document.addEventListener('DOMContentLoaded', function () {
           <p>We are here to help you! Call or chat to connect with us right away.</p>
           <div class="online-support-actions">
             <a href="tel:+9844443388" aria-label="Call Ajor Interio">
-              <span class="online-support-action-icon">☎</span>
+              <span class="online-support-action-icon">&#9742;</span>
               <strong>Call</strong>
             </a>
             <a href="https://wa.me/919844443388" target="_blank" rel="noopener" aria-label="Chat with Ajor Interio on WhatsApp">
-              <span class="online-support-action-icon">▣</span>
+              <span class="online-support-action-icon">&#9635;</span>
               <strong>Chat</strong>
             </a>
           </div>
