@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (topbarInner) {
     const authStorageKey = 'ajorInterioAuthUser';
-    const accountIconPath = inPagesFolder ? '../images/user.png' : 'images/user.png';
+    const accountIconPath = inPagesFolder ? '../images/login and register .jpg' : 'images/login and register .jpg';
     const referPath = inPagesFolder ? 'refer-and-earn.html' : 'pages/refer-and-earn.html';
     const topLinks = topbarInner.querySelector('.top-links');
     const existingActions = topbarInner.querySelector('.top-actions');
