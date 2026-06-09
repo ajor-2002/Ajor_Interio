@@ -1055,13 +1055,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const bhk = getActiveOptionText('.home-calc-options.bhk');
       const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || 'Luxe';
       const bhkValue = Number((bhk.match(/\d+/) || ['2'])[0]);
-      const packageMultiplier = {
-        Standard: 4,
-        Premium: 6,
-        Luxe: 9,
-      }[selectedPackage] || 9;
-      const lower = Math.max(4, bhkValue * packageMultiplier);
-      const upper = lower + Math.max(3, bhkValue * 2);
+      const calcConfig = window.AJOR_HOME_CALCULATOR_CONFIG || {};
+      const packageRates = calcConfig.packageRatePerBhk || {};
+      const packageMultiplier = packageRates[selectedPackage] || packageRates.Luxe || 9;
+      const minimumLowerAmount = Number(calcConfig.minimumLowerAmount) || 4;
+      const minimumRangeGap = Number(calcConfig.minimumRangeGap) || 3;
+      const rangeGapPerBhk = Number(calcConfig.rangeGapPerBhk) || 2;
+      const lower = Math.max(minimumLowerAmount, bhkValue * packageMultiplier);
+      const upper = lower + Math.max(minimumRangeGap, bhkValue * rangeGapPerBhk);
       return `₹${lower}L - ₹${upper}L`;
     };
 
