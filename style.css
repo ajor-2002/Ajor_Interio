@@ -15240,3 +15240,183 @@ svg {
     bottom: 92px;
   }
 }
+
+/* Ajor Luxe large sticky overlapping step cards */
+.ajor-luxe-page .ajor-luxe-journey-section {
+  min-height: auto;
+  padding: 120px 20px 160px;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-wrap {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 0;
+  display: block;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-title-panel {
+  width: 100%;
+  height: auto;
+  margin-bottom: 54px;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-title-box {
+  position: relative;
+  top: auto;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-title {
+  text-align: center;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-cta {
+  margin-top: 44px;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-stack {
+  width: 100%;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card {
+  position: sticky;
+  top: 100px;
+  z-index: 1;
+  width: 100%;
+  min-height: 500px;
+  margin: 0 0 120px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 40px;
+  color: #fff;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.22);
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(1) {
+  z-index: 1;
+  background: #111;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(2) {
+  z-index: 2;
+  margin-top: -180px;
+  background: #2b2b2b;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(3) {
+  z-index: 3;
+  margin-top: -180px;
+  background: #444;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(4) {
+  z-index: 4;
+  margin-top: -180px;
+  background: #1a1a1a;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(5) {
+  z-index: 5;
+  margin-top: -180px;
+  background: #35302a;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(6) {
+  z-index: 6;
+  margin-top: -180px;
+  background: #4a4034;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card:nth-child(7) {
+  z-index: 7;
+  margin-top: -180px;
+  background: #161616;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 86% 20%, rgba(214, 185, 140, 0.22), transparent 28%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 38%);
+}
+
+.ajor-luxe-page .ajor-luxe-journey-header,
+.ajor-luxe-page .ajor-luxe-journey-heading,
+.ajor-luxe-page .ajor-luxe-journey-description {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-header {
+  display: block;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-icon {
+  display: none;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-step {
+  display: block;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-heading {
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(38px, 4.3vw, 52px);
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.ajor-luxe-page .ajor-luxe-journey-description {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .ajor-luxe-page .ajor-luxe-journey-section {
+    padding: 76px 16px 110px;
+  }
+
+  .ajor-luxe-page .ajor-luxe-journey-card {
+    top: 84px;
+    min-height: 0;
+    height: auto;
+    margin-bottom: 90px;
+    padding: 50px 30px;
+    border-radius: 30px;
+  }
+
+  .ajor-luxe-page .ajor-luxe-journey-card:nth-child(n + 2) {
+    margin-top: -100px;
+  }
+
+  .ajor-luxe-page .ajor-luxe-journey-step {
+    font-size: 50px;
+  }
+
+  .ajor-luxe-page .ajor-luxe-journey-heading {
+    font-size: 36px;
+  }
+
+  .ajor-luxe-page .ajor-luxe-journey-description {
+    font-size: 16px;
+  }
+}
