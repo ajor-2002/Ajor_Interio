@@ -15278,6 +15278,8 @@ svg {
 
 .ajor-luxe-page .ajor-luxe-journey-stack {
   width: 100%;
+  display: grid;
+  padding-bottom: 120px;
 }
 
 .ajor-luxe-page .ajor-luxe-journey-card {
@@ -15286,7 +15288,7 @@ svg {
   z-index: 1;
   width: 100%;
   min-height: 500px;
-  margin: 0 0 120px;
+  margin: 0;
   padding: 60px;
   display: flex;
   flex-direction: column;
@@ -15399,7 +15401,7 @@ svg {
     top: 84px;
     min-height: 0;
     height: auto;
-    margin-bottom: 90px;
+    margin-bottom: 0;
     padding: 50px 30px;
     border-radius: 30px;
   }
