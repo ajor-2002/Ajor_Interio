@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (topbarInner) {
     const authStorageKey = 'ajorInterioAuthUser';
-    const accountIconPath = inPagesFolder ? '../images/login and register .jpg' : 'images/login and register .jpg';
     const referPath = inPagesFolder ? 'refer-and-earn.html' : 'pages/refer-and-earn.html';
     const topLinks = topbarInner.querySelector('.top-links');
     const existingActions = topbarInner.querySelector('.top-actions');
@@ -91,11 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
       </button>
       <div class="ajor-profile-wrap" id="userProfile" hidden>
         <button class="ajor-profile-button" id="profileMenuBtn" type="button" aria-label="Open profile menu" aria-expanded="false">
-          <img src="${accountIconPath}" alt="" />
+          <span>Login</span>
         </button>
         <div class="ajor-profile-menu" id="profileMenu" hidden>
           <div class="ajor-profile-menu-head">
-            <img src="${accountIconPath}" alt="" />
             <div>
               <strong id="profileName">User</strong>
               <span id="profileEmail"></span>
