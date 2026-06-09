@@ -14232,6 +14232,8 @@ svg {
 }
 
 .ajor-auth-actions {
+  display: inline-flex;
+  align-items: center;
   gap: 0.55rem;
 }
 
