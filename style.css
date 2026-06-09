@@ -15463,9 +15463,9 @@ svg {
 
 .hero h1 {
   max-width: 860px;
-  font-size: clamp(3.2rem, 6.8vw, 6.9rem);
+  font-size: clamp(2.7rem, 5.2vw, 5.2rem);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 0.98;
   letter-spacing: 0;
 }
 
@@ -15614,7 +15614,7 @@ svg {
   }
 
   .hero h1 {
-    font-size: clamp(2.75rem, 14vw, 4.2rem);
+    font-size: clamp(2.25rem, 11vw, 3.2rem);
   }
 
   .premium-trust-bar {
