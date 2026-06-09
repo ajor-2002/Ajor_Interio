@@ -14737,6 +14737,106 @@ svg {
   }
 }
 
+/* Cleaner FAQ accordion open state */
+.faq-list,
+.interior-faq-list,
+.ajor-offering-faq-list,
+.kitchen-calc-faq-list {
+  gap: 14px;
+}
+
+.faq-item,
+.ajor-offering-faq-item,
+.kitchen-calc-faq-list details {
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(17, 24, 39, 0.06);
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.faq-item[open],
+.ajor-offering-faq-item[open],
+.kitchen-calc-faq-list details[open] {
+  border-color: rgba(216, 26, 26, 0.26);
+  box-shadow: 0 18px 44px rgba(216, 26, 26, 0.12);
+}
+
+.faq-item summary,
+.ajor-offering-faq-item summary,
+.kitchen-calc-faq-list summary {
+  min-height: 62px;
+  padding: 18px 22px;
+  gap: 18px;
+  outline: none;
+}
+
+.faq-item summary:focus-visible,
+.ajor-offering-faq-item summary:focus-visible,
+.kitchen-calc-faq-list summary:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(216, 26, 26, 0.28);
+}
+
+.faq-item summary::after,
+.ajor-offering-faq-item summary::after,
+.kitchen-calc-faq-list summary::after {
+  width: 12px;
+  height: 12px;
+  margin-right: 2px;
+}
+
+.faq-item[open] summary,
+.ajor-offering-faq-item[open] summary,
+.kitchen-calc-faq-list details[open] summary {
+  color: var(--red);
+  background: linear-gradient(90deg, rgba(216, 26, 26, 0.07), rgba(216, 26, 26, 0));
+}
+
+.faq-content,
+.ajor-offering-faq-item p,
+.kitchen-calc-faq-list p {
+  padding: 0 22px 22px;
+  max-width: 920px;
+}
+
+.faq-step {
+  border-radius: 14px;
+  background: #fffafa;
+}
+
+.faq-bullets li::before {
+  content: "\2022";
+}
+
+@media (max-width: 640px) {
+  .faq-list,
+  .interior-faq-list,
+  .ajor-offering-faq-list,
+  .kitchen-calc-faq-list {
+    gap: 12px;
+  }
+
+  .faq-item summary,
+  .ajor-offering-faq-item summary,
+  .kitchen-calc-faq-list summary {
+    min-height: 56px;
+    padding: 16px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .faq-content,
+  .ajor-offering-faq-item p,
+  .kitchen-calc-faq-list p {
+    padding: 0 16px 18px;
+  }
+}
+
 
 /* Premium design refresh */
 :root {

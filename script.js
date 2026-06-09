@@ -400,6 +400,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  document
+    .querySelectorAll('.faq-list details, .interior-faq-list details, .ajor-offering-faq-list details, .kitchen-calc-faq-list details')
+    .forEach((faqItem) => {
+      faqItem.addEventListener('toggle', () => {
+        if (!faqItem.open) return;
+
+        const faqGroup = faqItem.closest('.faq-list, .interior-faq-list, .ajor-offering-faq-list, .kitchen-calc-faq-list');
+        faqGroup?.querySelectorAll('details[open]').forEach((openItem) => {
+          if (openItem !== faqItem) {
+            openItem.open = false;
+          }
+        });
+      });
+    });
+
   let onlinePill = document.querySelector('.online-pill');
   if (!onlinePill) {
     onlinePill = document.createElement('div');
