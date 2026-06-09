@@ -325,6 +325,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const copyrightConsentKey = 'ajorCopyrightAccepted';
   if (localStorage.getItem(copyrightConsentKey) !== 'true') {
+    document.body.classList.add('has-copyright-consent');
     const copyrightConsent = document.createElement('div');
     copyrightConsent.className = 'copyright-consent';
     copyrightConsent.innerHTML = `
@@ -335,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     copyrightConsent.querySelector('button')?.addEventListener('click', () => {
       localStorage.setItem(copyrightConsentKey, 'true');
+      document.body.classList.remove('has-copyright-consent');
       copyrightConsent.remove();
     });
   }

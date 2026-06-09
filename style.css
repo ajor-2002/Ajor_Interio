@@ -5455,7 +5455,7 @@ body.lightbox-open {
   position: fixed;
   right: 22px;
   bottom: 18px;
-  z-index: 1300;
+  z-index: 1500;
   display: none;
   width: min(350px, calc(100vw - 32px));
 }
@@ -5769,6 +5769,10 @@ body.lightbox-open {
     justify-content: space-between;
   }
 
+  body.has-copyright-consent .online-pill {
+    bottom: 154px;
+  }
+
   .online-pill span,
   .online-pill a {
     padding-inline: 1rem;
@@ -5779,6 +5783,7 @@ body.lightbox-open {
     left: 12px;
     bottom: 14px;
     width: auto;
+    max-height: calc(100vh - 88px);
   }
 
   .online-support-close {
@@ -5789,6 +5794,12 @@ body.lightbox-open {
   .online-support-body {
     min-height: 370px;
     padding-inline: 24px;
+  }
+
+  .online-support-panel,
+  .online-call-panel {
+    max-height: calc(100vh - 88px);
+    overflow-y: auto;
   }
 
   .online-support-actions {
