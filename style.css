@@ -14389,8 +14389,7 @@ svg {
   width: 100%;
 }
 
-.ajor-auth-field::before,
-.ajor-auth-field-password::after {
+.ajor-auth-field::before {
   position: absolute;
   top: 50%;
   z-index: 1;
@@ -14408,20 +14407,9 @@ svg {
   content: "@";
 }
 
-.ajor-auth-field-password::before {
-  content: "\1F512";
-  font-size: 0.72rem;
-}
-
 .ajor-auth-field-user::before {
   content: "\25CF";
   font-size: 0.62rem;
-}
-
-.ajor-auth-field-password::after {
-  content: "\1F512";
-  right: 16px;
-  color: var(--red);
 }
 
 .ajor-auth-popup-box input {

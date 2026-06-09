@@ -71,9 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <label class="ajor-auth-field ajor-auth-field-email">
               <input type="email" id="loginEmail" placeholder="Enter your email address" autocomplete="email" required />
             </label>
-            <label class="ajor-auth-field ajor-auth-field-password">
-              <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required />
-            </label>
             <button type="submit">Log in</button>
             <div class="ajor-auth-socials" aria-label="Social login options">
               <button type="button">Facebook</button>
@@ -97,9 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </label>
             <label class="ajor-auth-field ajor-auth-field-email">
               <input type="email" id="signupEmail" name="email" placeholder="Email Address" autocomplete="email" required />
-            </label>
-            <label class="ajor-auth-field ajor-auth-field-password">
-              <input type="password" id="signupPassword" name="password" placeholder="Create Password" autocomplete="new-password" required />
             </label>
             <button type="submit">Signup</button>
             <p class="ajor-auth-switch">Already have an account? <button type="button" data-auth-open="login">Log in</button></p>
@@ -147,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const setLoggedInState = (user) => {
-      const isLoggedIn = Boolean(user?.loggedIn || (user?.email && user?.password));
+      const isLoggedIn = Boolean(user?.loggedIn || user?.email);
       accountBtn.hidden = isLoggedIn;
       userProfile.hidden = !isLoggedIn;
       if (isLoggedIn) {
@@ -194,10 +188,9 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault();
       const name = document.getElementById('signupName').value.trim();
       const email = document.getElementById('signupEmail').value.trim();
-      const password = document.getElementById('signupPassword').value;
       const submitButton = signupForm.querySelector('button[type="submit"]');
 
-      if (!name || !email || !password) {
+      if (!name || !email) {
         setAuthStatus('signup', 'Please fill all fields.');
         return;
       }
@@ -217,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const user = {
           name,
           email,
-          password,
           loggedIn: true,
           signupAt: new Date().toISOString(),
         };
@@ -236,7 +228,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loginForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value;
       const savedUser = getSavedAuthUser();
 
       if (!savedUser?.email) {
@@ -248,9 +239,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      if (email === savedUser.email && password === savedUser.password) {
+      if (email === savedUser.email) {
         const user = {
           ...savedUser,
+          password: undefined,
           loggedIn: true,
           loginAt: new Date().toISOString(),
         };
@@ -259,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setAuthStatus('login', 'Login successful.', 'success');
         window.setTimeout(closeAllAuthPopups, 500);
       } else {
-        setAuthStatus('login', 'Wrong Email or Password.');
+        setAuthStatus('login', 'Email does not match your saved profile.');
       }
     });
 
