@@ -40,16 +40,28 @@ document.addEventListener('DOMContentLoaded', function () {
   const topbarInner = document.querySelector('.topbar-inner');
   if (topbarInner) {
     const authStorageKey = 'ajorInterioAuthUser';
+    const accountIconPath = window.location.pathname.includes('/pages/') ? '../images/user.png' : 'images/user.png';
     const existingActions = topbarInner.querySelector('.top-actions');
     const authActions = document.createElement('div');
     authActions.className = 'top-actions ajor-auth-actions';
     authActions.innerHTML = `
       <button class="ajor-account-button" id="accountBtn" type="button" aria-label="Open login">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
+        <img src="${accountIconPath}" alt="" />
       </button>
-      <div class="ajor-user-profile" id="userProfile" hidden>
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
-        <span id="profileName"></span>
+      <div class="ajor-profile-wrap" id="userProfile" hidden>
+        <button class="ajor-profile-button" id="profileMenuBtn" type="button" aria-label="Open profile menu" aria-expanded="false">
+          <img src="${accountIconPath}" alt="" />
+        </button>
+        <div class="ajor-profile-menu" id="profileMenu" hidden>
+          <div class="ajor-profile-menu-head">
+            <img src="${accountIconPath}" alt="" />
+            <div>
+              <strong id="profileName">User</strong>
+              <span id="profileEmail"></span>
+            </div>
+          </div>
+          <button type="button" id="logoutBtn">Log out</button>
+        </div>
       </div>
     `;
 
@@ -106,7 +118,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const accountBtn = document.getElementById('accountBtn');
     const userProfile = document.getElementById('userProfile');
+    const profileMenuBtn = document.getElementById('profileMenuBtn');
+    const profileMenu = document.getElementById('profileMenu');
     const profileName = document.getElementById('profileName');
+    const profileEmail = document.getElementById('profileEmail');
+    const logoutBtn = document.getElementById('logoutBtn');
     const loginPopup = document.getElementById('loginPopup');
     const signupPopup = document.getElementById('signupPopup');
     const loginForm = document.getElementById('loginForm');
@@ -146,6 +162,10 @@ document.addEventListener('DOMContentLoaded', function () {
       userProfile.hidden = !isLoggedIn;
       if (isLoggedIn) {
         profileName.textContent = user.name || user.email || 'User';
+        profileEmail.textContent = user.email || '';
+      } else {
+        profileMenu.hidden = true;
+        profileMenuBtn.setAttribute('aria-expanded', 'false');
       }
     };
 
@@ -169,6 +189,17 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     accountBtn.addEventListener('click', () => openPopup(loginPopup));
+    profileMenuBtn.addEventListener('click', () => {
+      const isOpen = profileMenu.hidden;
+      profileMenu.hidden = !isOpen;
+      profileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem(authStorageKey);
+      profileMenu.hidden = true;
+      profileMenuBtn.setAttribute('aria-expanded', 'false');
+      setLoggedInState(null);
+    });
     document.getElementById('closeLogin')?.addEventListener('click', () => closePopup(loginPopup));
     document.getElementById('closeSignup')?.addEventListener('click', () => closePopup(signupPopup));
     document.querySelectorAll('[data-auth-open]').forEach((button) => {
@@ -182,6 +213,13 @@ document.addEventListener('DOMContentLoaded', function () {
       popup.addEventListener('click', (event) => {
         if (event.target === popup) closePopup(popup);
       });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!userProfile.hidden && !userProfile.contains(event.target)) {
+        profileMenu.hidden = true;
+        profileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
     });
 
     signupForm.addEventListener('submit', async (event) => {
