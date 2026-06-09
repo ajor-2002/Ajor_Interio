@@ -37,6 +37,218 @@ document.addEventListener('DOMContentLoaded', function () {
     return data;
   };
 
+  const topbarInner = document.querySelector('.topbar-inner');
+  if (topbarInner) {
+    const authStorageKey = 'ajorInterioAuthUser';
+    const existingActions = topbarInner.querySelector('.top-actions');
+    const authActions = document.createElement('div');
+    authActions.className = 'top-actions ajor-auth-actions';
+    authActions.innerHTML = `
+      <button class="top-link ajor-auth-button" id="loginBtn" type="button">Login</button>
+      <button class="top-link ajor-auth-button ajor-auth-button-outline" id="signupBtn" type="button">Signup</button>
+      <div class="ajor-user-profile" id="userProfile" hidden>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
+        <span id="profileName"></span>
+      </div>
+    `;
+
+    if (existingActions) {
+      existingActions.insertAdjacentElement('afterbegin', authActions);
+    } else {
+      topbarInner.appendChild(authActions);
+    }
+
+    const authPopup = document.createElement('div');
+    authPopup.className = 'ajor-auth-popups';
+    authPopup.innerHTML = `
+      <div class="ajor-auth-popup" id="loginPopup" aria-hidden="true">
+        <div class="ajor-auth-popup-box login-box" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+          <button class="ajor-auth-close" id="closeLogin" type="button" aria-label="Close login form">&times;</button>
+          <h2 id="loginTitle">Log In</h2>
+          <p>Welcome Back</p>
+          <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Enter Email" autocomplete="email" required />
+            <input type="password" id="loginPassword" placeholder="Enter Password" autocomplete="current-password" required />
+            <button type="submit">Login</button>
+            <span class="ajor-auth-status" data-auth-status="login" hidden></span>
+          </form>
+        </div>
+      </div>
+
+      <div class="ajor-auth-popup" id="signupPopup" aria-hidden="true">
+        <div class="ajor-auth-popup-box signup-box" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+          <button class="ajor-auth-close" id="closeSignup" type="button" aria-label="Close signup form">&times;</button>
+          <h2 id="signupTitle">Create Account</h2>
+          <p>Create Your Account</p>
+          <form id="signupForm">
+            <input type="text" id="signupName" name="name" placeholder="Full Name" autocomplete="name" required />
+            <input type="email" id="signupEmail" name="email" placeholder="Email Address" autocomplete="email" required />
+            <input type="password" id="signupPassword" name="password" placeholder="Create Password" autocomplete="new-password" required />
+            <button type="submit">Signup</button>
+            <span class="ajor-auth-status" data-auth-status="signup" hidden></span>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(authPopup);
+
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const userProfile = document.getElementById('userProfile');
+    const profileName = document.getElementById('profileName');
+    const loginPopup = document.getElementById('loginPopup');
+    const signupPopup = document.getElementById('signupPopup');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    const getSavedAuthUser = () => {
+      try {
+        return JSON.parse(localStorage.getItem(authStorageKey) || 'null');
+      } catch (error) {
+        return null;
+      }
+    };
+
+    const saveAuthUser = (user) => {
+      localStorage.setItem(authStorageKey, JSON.stringify(user));
+    };
+
+    const setAuthStatus = (mode, message, type = 'error') => {
+      const status = document.querySelector(`[data-auth-status="${mode}"]`);
+      if (!status) return;
+      status.textContent = message;
+      status.classList.toggle('is-success', type === 'success');
+      status.hidden = false;
+    };
+
+    const clearAuthStatus = () => {
+      document.querySelectorAll('.ajor-auth-status').forEach((status) => {
+        status.textContent = '';
+        status.classList.remove('is-success');
+        status.hidden = true;
+      });
+    };
+
+    const setLoggedInState = (user) => {
+      const isLoggedIn = Boolean(user?.loggedIn || (user?.email && user?.password));
+      loginBtn.hidden = isLoggedIn;
+      signupBtn.hidden = isLoggedIn;
+      userProfile.hidden = !isLoggedIn;
+      if (isLoggedIn) {
+        profileName.textContent = user.name || user.email || 'User';
+      }
+    };
+
+    const openPopup = (popup) => {
+      clearAuthStatus();
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('auth-modal-open');
+      window.setTimeout(() => popup.querySelector('input')?.focus(), 0);
+    };
+
+    const closePopup = (popup) => {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('auth-modal-open');
+    };
+
+    const closeAllAuthPopups = () => {
+      closePopup(loginPopup);
+      closePopup(signupPopup);
+    };
+
+    loginBtn.addEventListener('click', () => openPopup(loginPopup));
+    signupBtn.addEventListener('click', () => openPopup(signupPopup));
+    document.getElementById('closeLogin')?.addEventListener('click', () => closePopup(loginPopup));
+    document.getElementById('closeSignup')?.addEventListener('click', () => closePopup(signupPopup));
+
+    document.querySelectorAll('.ajor-auth-popup').forEach((popup) => {
+      popup.addEventListener('click', (event) => {
+        if (event.target === popup) closePopup(popup);
+      });
+    });
+
+    signupForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const submitButton = signupForm.querySelector('button[type="submit"]');
+
+      if (!name || !email || !password) {
+        setAuthStatus('signup', 'Please fill all fields.');
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Signing up...';
+
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: 'User Signup',
+            Name: name,
+            Email: email,
+          },
+          'New Ajor Interio User Signup'
+        );
+        const user = {
+          name,
+          email,
+          password,
+          loggedIn: true,
+          signupAt: new Date().toISOString(),
+        };
+        saveAuthUser(user);
+        setLoggedInState(user);
+        setAuthStatus('signup', 'Signup successful.', 'success');
+        window.setTimeout(closeAllAuthPopups, 500);
+      } catch (error) {
+        setAuthStatus('signup', error.message || 'Signup failed. Please try again.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Signup';
+      }
+    });
+
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const savedUser = getSavedAuthUser();
+
+      if (!savedUser?.email) {
+        setAuthStatus('login', 'Please signup first.');
+        window.setTimeout(() => {
+          closePopup(loginPopup);
+          openPopup(signupPopup);
+        }, 500);
+        return;
+      }
+
+      if (email === savedUser.email && password === savedUser.password) {
+        const user = {
+          ...savedUser,
+          loggedIn: true,
+          loginAt: new Date().toISOString(),
+        };
+        saveAuthUser(user);
+        setLoggedInState(user);
+        setAuthStatus('login', 'Login successful.', 'success');
+        window.setTimeout(closeAllAuthPopups, 500);
+      } else {
+        setAuthStatus('login', 'Wrong Email or Password.');
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeAllAuthPopups();
+    });
+
+    setLoggedInState(getSavedAuthUser());
+  }
+
   const leadForm = document.querySelector('.lead-form');
   if (leadForm) {
     const formStatus = leadForm.querySelector('.form-status');
