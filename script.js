@@ -64,12 +64,22 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="ajor-auth-popup" id="loginPopup" aria-hidden="true">
         <div class="ajor-auth-popup-box login-box" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
           <button class="ajor-auth-close" id="closeLogin" type="button" aria-label="Close login form">&times;</button>
-          <h2 id="loginTitle">Log In</h2>
-          <p>Welcome Back</p>
+          <h2 id="loginTitle">Log in</h2>
+          <p>Log in to your account and seamlessly continue managing your projects, ideas, and progress just where you left off.</p>
           <form id="loginForm">
-            <input type="email" id="loginEmail" placeholder="Enter Email" autocomplete="email" required />
-            <input type="password" id="loginPassword" placeholder="Enter Password" autocomplete="current-password" required />
-            <button type="submit">Login</button>
+            <label class="ajor-auth-field ajor-auth-field-email">
+              <input type="email" id="loginEmail" placeholder="Enter your email address" autocomplete="email" required />
+            </label>
+            <label class="ajor-auth-field ajor-auth-field-password">
+              <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required />
+            </label>
+            <button type="submit">Log in</button>
+            <div class="ajor-auth-socials" aria-label="Social login options">
+              <button type="button">Facebook</button>
+              <button type="button">Google</button>
+              <button type="button">Apple</button>
+            </div>
+            <p class="ajor-auth-switch">Didn't have an account? <button type="button" data-auth-open="signup">Sign up</button></p>
             <span class="ajor-auth-status" data-auth-status="login" hidden></span>
           </form>
         </div>
@@ -79,12 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="ajor-auth-popup-box signup-box" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
           <button class="ajor-auth-close" id="closeSignup" type="button" aria-label="Close signup form">&times;</button>
           <h2 id="signupTitle">Create Account</h2>
-          <p>Create Your Account</p>
+          <p>Create your account to save your projects and continue from any visit.</p>
           <form id="signupForm">
-            <input type="text" id="signupName" name="name" placeholder="Full Name" autocomplete="name" required />
-            <input type="email" id="signupEmail" name="email" placeholder="Email Address" autocomplete="email" required />
-            <input type="password" id="signupPassword" name="password" placeholder="Create Password" autocomplete="new-password" required />
+            <label class="ajor-auth-field ajor-auth-field-user">
+              <input type="text" id="signupName" name="name" placeholder="Full Name" autocomplete="name" required />
+            </label>
+            <label class="ajor-auth-field ajor-auth-field-email">
+              <input type="email" id="signupEmail" name="email" placeholder="Email Address" autocomplete="email" required />
+            </label>
+            <label class="ajor-auth-field ajor-auth-field-password">
+              <input type="password" id="signupPassword" name="password" placeholder="Create Password" autocomplete="new-password" required />
+            </label>
             <button type="submit">Signup</button>
+            <p class="ajor-auth-switch">Already have an account? <button type="button" data-auth-open="login">Log in</button></p>
             <span class="ajor-auth-status" data-auth-status="signup" hidden></span>
           </form>
         </div>
@@ -162,6 +179,12 @@ document.addEventListener('DOMContentLoaded', function () {
     signupBtn.addEventListener('click', () => openPopup(signupPopup));
     document.getElementById('closeLogin')?.addEventListener('click', () => closePopup(loginPopup));
     document.getElementById('closeSignup')?.addEventListener('click', () => closePopup(signupPopup));
+    document.querySelectorAll('[data-auth-open]').forEach((button) => {
+      button.addEventListener('click', () => {
+        closeAllAuthPopups();
+        openPopup(button.dataset.authOpen === 'signup' ? signupPopup : loginPopup);
+      });
+    });
 
     document.querySelectorAll('.ajor-auth-popup').forEach((popup) => {
       popup.addEventListener('click', (event) => {

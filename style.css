@@ -13947,9 +13947,12 @@ svg {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background: rgba(0, 0, 0, 0.62);
-  backdrop-filter: blur(8px);
+  padding: 32px;
+  background:
+    radial-gradient(circle at 48% 100%, rgba(255, 255, 255, 0.06), transparent 24%),
+    radial-gradient(circle at 24% 50%, rgba(28, 91, 205, 0.16), transparent 20%),
+    rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(12px);
 }
 
 .ajor-auth-popup.is-open {
@@ -13958,99 +13961,249 @@ svg {
 
 .ajor-auth-popup-box {
   position: relative;
-  width: min(420px, 100%);
-  padding: 36px;
-  border-radius: 24px;
+  width: min(430px, 100%);
+  min-height: 492px;
+  padding: 62px 23px 38px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 23px;
+  background:
+    radial-gradient(circle at 6% 52%, rgba(37, 99, 235, 0.22), transparent 24%),
+    linear-gradient(180deg, rgba(42, 45, 50, 0.92), rgba(15, 15, 16, 0.98) 42%, rgba(13, 13, 13, 0.99));
   color: #fff;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.18),
+    0 34px 90px rgba(0, 0, 0, 0.68),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 14px 0 28px rgba(37, 99, 235, 0.12),
+    inset -1px 0 0 rgba(37, 99, 235, 0.55);
+  overflow: hidden;
 }
 
-.ajor-auth-popup-box.login-box {
-  border: 1px solid rgba(216, 26, 26, 0.42);
-  background: #151515;
-}
-
-.ajor-auth-popup-box.signup-box {
-  border: 1px solid rgba(216, 26, 26, 0.42);
-  background: #231716;
+.ajor-auth-popup-box::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(37, 99, 235, 0.55), transparent 14%, transparent 86%, rgba(37, 99, 235, 0.65)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 22%);
+  opacity: 0.62;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  padding: 1px;
 }
 
 .ajor-auth-close {
   position: absolute;
-  top: 14px;
-  right: 18px;
+  top: 18px;
+  right: 20px;
   width: 32px;
   height: 32px;
   border: 0;
   background: transparent;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.48);
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   line-height: 1;
 }
 
 .ajor-auth-popup-box h2 {
-  margin: 0 0 8px;
+  margin: 0 0 14px;
   text-align: center;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: clamp(2.35rem, 7vw, 2.72rem);
+  font-weight: 400;
+  line-height: 1;
 }
 
 .ajor-auth-popup-box p {
-  margin: 0 0 26px;
+  max-width: 318px;
+  margin: 0 auto 42px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .ajor-auth-popup-box form {
   display: grid;
-  gap: 16px;
+  gap: 10px;
+}
+
+.ajor-auth-field {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ajor-auth-field::before,
+.ajor-auth-field-password::after {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.ajor-auth-field::before {
+  left: 18px;
+}
+
+.ajor-auth-field-email::before {
+  content: "@";
+}
+
+.ajor-auth-field-password::before {
+  content: "\1F512";
+  font-size: 0.72rem;
+}
+
+.ajor-auth-field-user::before {
+  content: "\25CF";
+  font-size: 0.62rem;
+}
+
+.ajor-auth-field-password::after {
+  content: "\1F512";
+  right: 16px;
+  color: #2f80ff;
 }
 
 .ajor-auth-popup-box input {
   width: 100%;
-  min-height: 52px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  height: 39px;
+  min-height: 39px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
   border-radius: 999px;
-  padding: 0 18px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  padding: 0 44px;
+  background: rgba(15, 15, 16, 0.78);
+  color: rgba(255, 255, 255, 0.86);
   outline: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 99, 235, 0.14),
+    0 0 0 1px rgba(37, 99, 235, 0.12);
+  font-size: 0.74rem;
 }
 
 .ajor-auth-popup-box input::placeholder {
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.34);
 }
 
 .ajor-auth-popup-box input:focus {
-  border-color: rgba(216, 26, 26, 0.8);
+  border-color: rgba(47, 128, 255, 0.78);
+  box-shadow:
+    inset 0 0 0 1px rgba(47, 128, 255, 0.2),
+    0 0 0 1px rgba(47, 128, 255, 0.6),
+    0 0 24px rgba(47, 128, 255, 0.16);
 }
 
 .ajor-auth-popup-box form button {
-  min-height: 52px;
+  min-height: 44px;
   border: 0;
   border-radius: 999px;
-  background: var(--red);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.095);
+  color: rgba(255, 255, 255, 0.88);
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.ajor-auth-popup-box form > button[type="submit"] {
+  margin-top: 34px;
+}
+
+.signup-box form > button[type="submit"] {
+  margin-top: 10px;
+}
+
+.ajor-auth-popup-box form button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
 }
 
 .ajor-auth-popup-box form button:disabled {
   cursor: wait;
   opacity: 0.72;
+  transform: none;
+}
+
+.ajor-auth-socials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.ajor-auth-socials button {
+  min-height: 31px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.045) !important;
+  background: rgba(18, 18, 19, 0.58) !important;
+  color: rgba(255, 255, 255, 0.48) !important;
+  font-size: 0.7rem;
+  font-weight: 600 !important;
+}
+
+.ajor-auth-socials button::before {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.ajor-auth-socials button:nth-child(1)::before {
+  content: "f";
+}
+
+.ajor-auth-socials button:nth-child(2)::before {
+  content: "G";
+}
+
+.ajor-auth-socials button:nth-child(3)::before {
+  content: "\2666";
+}
+
+.ajor-auth-switch {
+  margin: 8px auto 0 !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 0.7rem !important;
+}
+
+.ajor-auth-switch button {
+  min-height: 0 !important;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  color: #2f80ff !important;
+  font-size: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  box-shadow: none;
+}
+
+.ajor-auth-switch button:hover {
+  transform: none;
 }
 
 .ajor-auth-status {
   display: block;
-  min-height: 18px;
+  min-height: 16px;
+  margin-top: 2px;
   text-align: center;
   color: #ffb4b4;
-  font-size: 0.86rem;
+  font-size: 0.72rem;
 }
 
 .ajor-auth-status.is-success {
-  color: #b7f7c8;
+  color: #8deca8;
 }
 
 @media (max-width: 760px) {
@@ -14068,11 +14221,23 @@ svg {
   }
 
   .ajor-auth-popup {
-    padding: 16px;
+    align-items: flex-start;
+    padding: 18px;
+    overflow-y: auto;
   }
 
   .ajor-auth-popup-box {
-    padding: 32px 20px 24px;
-    border-radius: 18px;
+    min-height: 0;
+    padding: 54px 20px 28px;
+    border-radius: 22px;
+  }
+
+  .ajor-auth-popup-box p {
+    margin-bottom: 32px;
+  }
+
+  .ajor-auth-socials {
+    grid-template-columns: 1fr;
+    gap: 7px;
   }
 }
