@@ -15476,6 +15476,31 @@ svg {
   color: rgba(255, 255, 255, 0.84);
 }
 
+/* Final hero typography scale */
+.eyebrow {
+  font-size: clamp(14px, 1vw, 16px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.hero-text {
+  max-width: 650px;
+  font-size: clamp(16px, 1.5vw, 22px);
+  line-height: 1.6;
+}
+
+.hero-actions .btn {
+  min-height: 50px;
+  padding: 0 24px;
+  font-size: clamp(15px, 1vw, 17px);
+}
+
 .hero-card {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.86);
