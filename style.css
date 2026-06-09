@@ -15664,12 +15664,28 @@ svg {
 
 .refer-link-actions button {
   min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: 0;
   border-radius: 999px;
   background: var(--red);
   color: #fff;
   cursor: pointer;
   font-weight: 800;
+}
+
+.refer-link-actions button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.refer-link-actions button span {
+  font-size: 0.88rem;
+  line-height: 1;
 }
 
 .refer-link-actions .refer-native-share {

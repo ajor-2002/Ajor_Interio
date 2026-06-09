@@ -801,9 +801,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
       try {
         await navigator.clipboard.writeText(currentReferralUrl);
-        copyButton.textContent = 'Copied';
+        const copyLabel = copyButton.querySelector('span');
+        if (copyLabel) {
+          copyLabel.textContent = 'Copied';
+        }
         setTimeout(() => {
-          copyButton.textContent = 'Copy Link';
+          if (copyLabel) {
+            copyLabel.textContent = 'Copy Link';
+          }
         }, 1800);
       } catch {
         if (result) {
