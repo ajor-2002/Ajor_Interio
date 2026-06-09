@@ -5557,7 +5557,7 @@ body.lightbox-open {
 
 .online-support-body p {
   max-width: 250px;
-  margin: 0 auto;
+  margin: 16px auto 0;
   color: #444;
   font-size: 1rem;
   line-height: 1.42;

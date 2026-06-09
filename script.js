@@ -407,7 +407,6 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="online-support-logo">
             <img src="${supportLogoPath}" alt="" />
           </div>
-          <h3>Ajor Interio</h3>
           <p>We are here to help you! Call or chat to connect with us right away.</p>
           <div class="online-support-actions">
             <a href="tel:+9844443388" data-online-call-open aria-label="Call Ajor Interio">
