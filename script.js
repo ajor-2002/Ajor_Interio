@@ -323,6 +323,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  const copyrightConsentKey = 'ajorCopyrightAccepted';
+  if (localStorage.getItem(copyrightConsentKey) !== 'true') {
+    const copyrightConsent = document.createElement('div');
+    copyrightConsent.className = 'copyright-consent';
+    copyrightConsent.innerHTML = `
+      <p>Copyright &copy; Ajor Interio. All rights reserved. By continuing, you accept our site terms.</p>
+      <button type="button">Accept</button>
+    `;
+    document.body.appendChild(copyrightConsent);
+
+    copyrightConsent.querySelector('button')?.addEventListener('click', () => {
+      localStorage.setItem(copyrightConsentKey, 'true');
+      copyrightConsent.remove();
+    });
+  }
+
   let onlinePill = document.querySelector('.online-pill');
   if (!onlinePill) {
     onlinePill = document.createElement('div');
