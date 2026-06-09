@@ -15663,13 +15663,13 @@ svg {
 }
 
 .refer-link-actions button {
-  min-height: 42px;
+  min-height: 46px;
+  width: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 50%;
   background: var(--red);
   color: #fff;
   cursor: pointer;
@@ -15677,15 +15677,22 @@ svg {
 }
 
 .refer-link-actions button img {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
 
 .refer-link-actions button span {
-  font-size: 0.88rem;
-  line-height: 1;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .refer-link-actions .refer-native-share {
