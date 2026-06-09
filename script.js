@@ -41,9 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (topbarInner) {
     const authStorageKey = 'ajorInterioAuthUser';
     const accountIconPath = window.location.pathname.includes('/pages/') ? '../images/user.png' : 'images/user.png';
+    const topLinks = topbarInner.querySelector('.top-links');
     const existingActions = topbarInner.querySelector('.top-actions');
     const authActions = document.createElement('div');
-    authActions.className = 'top-actions ajor-auth-actions';
+    authActions.className = 'ajor-auth-actions';
     authActions.innerHTML = `
       <button class="ajor-account-button" id="accountBtn" type="button" aria-label="Open login">
         <img src="${accountIconPath}" alt="" />
@@ -65,7 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     `;
 
-    if (existingActions) {
+    if (topLinks) {
+      topLinks.appendChild(authActions);
+    } else if (existingActions) {
       existingActions.insertAdjacentElement('afterbegin', authActions);
     } else {
       topbarInner.appendChild(authActions);
