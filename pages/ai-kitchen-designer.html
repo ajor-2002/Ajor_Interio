@@ -620,6 +620,7 @@
     const kitchenResultClose = document.getElementById('kitchenResultClose');
     const kitchenToast = document.getElementById('kitchenToast');
     let uploadedKitchenData = '';
+    let uploadedKitchenFile = null;
     let toastTimer;
 
     window.dataLayer = window.dataLayer || [];
@@ -662,6 +663,7 @@
 
     function resetKitchenUpload() {
       uploadedKitchenData = '';
+      uploadedKitchenFile = null;
       kitchenUpload.value = '';
       kitchenPreviewImage.removeAttribute('src');
       kitchenPreview.classList.remove('has-image');
@@ -703,6 +705,7 @@
 
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
+        uploadedKitchenFile = file;
         uploadedKitchenData = readerEvent.target.result;
         kitchenPreviewImage.src = uploadedKitchenData;
         kitchenPreview.classList.add('has-image');
@@ -718,7 +721,7 @@
       reader.readAsDataURL(file);
     });
 
-    kitchenDesignBtn.addEventListener('click', () => {
+    async function generateKitchenDesign() {
       if (!uploadedKitchenData) {
         showToast('Upload a kitchen image first.');
         trackKitchenEvent('kitchen_generate_blocked', { reason: 'missing_image' });
@@ -730,16 +733,47 @@
       kitchenPreviewBadge.textContent = 'Generating ' + style + ' kitchen preview...';
       trackKitchenEvent('kitchen_generate_started');
 
-      window.setTimeout(() => {
+      try {
+        const formData = new FormData();
+        if (uploadedKitchenFile) {
+          formData.append('roomImage', uploadedKitchenFile);
+        }
+        formData.append('roomType', 'kitchen');
+        formData.append('style', style);
+        formData.append('material', 'modular laminate');
+        formData.append('color', 'warm neutral');
+
+        const response = await fetch('/generate-room', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.image) {
+          throw new Error(payload.error || 'AI image generation failed');
+        }
+
         applyStyleToPreview(style + ' kitchen design applied.');
-        kitchenResultImage.src = uploadedKitchenData;
+        kitchenResultImage.src = payload.image;
         kitchenResultCaption.textContent = style + ' kitchen design generated.';
         kitchenResultOverlay.classList.add('open');
         kitchenResultOverlay.setAttribute('aria-hidden', 'false');
-        setGenerating(false);
         trackKitchenEvent('kitchen_generate_completed');
-      }, 900);
-    });
+      } catch (error) {
+        console.error(error);
+        applyStyleToPreview(style + ' local preview applied.');
+        kitchenResultImage.src = uploadedKitchenData;
+        kitchenResultCaption.textContent = style + ' local preview shown. Start the AI server and set OPENAI_API_KEY for generated output.';
+        kitchenResultOverlay.classList.add('open');
+        kitchenResultOverlay.setAttribute('aria-hidden', 'false');
+        showToast(error.message || 'AI generation failed. Showing local preview.');
+        trackKitchenEvent('kitchen_generate_failed', { reason: error.message || 'unknown' });
+      } finally {
+        setGenerating(false);
+      }
+    }
+
+    kitchenDesignBtn.addEventListener('click', generateKitchenDesign);
 
     kitchenClearPreview.addEventListener('click', resetKitchenUpload);
 
