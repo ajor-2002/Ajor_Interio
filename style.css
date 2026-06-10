@@ -12044,19 +12044,16 @@ body.no-scroll {
 
 .user-design-meta span::before {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 16px;
+  height: 16px;
   display: inline-block;
-  margin-right: 7px;
-  border-radius: 50%;
-  background: #7b95d1;
-  box-shadow: 0 0 0 3px rgba(123, 149, 209, 0.18);
-  vertical-align: 1px;
+  margin-right: 6px;
+  background: url("images/theme icon.png") center / contain no-repeat;
+  vertical-align: -3px;
 }
 
 .user-design-meta span:last-child::before {
-  border-radius: 2px;
-  background: #94a3b8;
+  background-image: url("images/home-icon-silhouette.png");
 }
 
 .user-design-date {
@@ -12071,16 +12068,12 @@ body.no-scroll {
 
 .user-design-date span::before {
   content: "";
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   display: inline-block;
-  margin-right: 8px;
-  border-radius: 3px;
-  background:
-    linear-gradient(#7b95d1 0 0) 0 0 / 100% 4px no-repeat,
-    repeating-linear-gradient(90deg, #7b95d1 0 2px, transparent 2px 5px),
-    #dbe6ff;
-  vertical-align: -2px;
+  margin-right: 7px;
+  background: url("images/calendar.png") center / contain no-repeat;
+  vertical-align: -3px;
 }
 
 .user-design-date time {
@@ -12129,21 +12122,30 @@ body.no-scroll {
 }
 
 .user-design-comparison-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
   margin: 10px 0 0;
   color: #2f3642;
   font-size: 1rem;
 }
 
-.user-design-comparison-meta::before {
+.user-design-comparison-meta:empty {
+  display: none;
+}
+
+.user-design-comparison-meta span::before {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   display: inline-block;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: #7b95d1;
-  box-shadow: 0 0 0 3px rgba(123, 149, 209, 0.18);
-  vertical-align: 1px;
+  margin-right: 6px;
+  background: url("images/theme icon.png") center / contain no-repeat;
+  vertical-align: -3px;
+}
+
+.user-design-comparison-meta span:last-child::before {
+  background-image: url("images/home-icon-silhouette.png");
 }
 
 .user-design-comparison-close {

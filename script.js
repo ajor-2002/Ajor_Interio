@@ -2310,17 +2310,14 @@ document.addEventListener('DOMContentLoaded', function () {
       if (images.length < 2) return;
 
       const modal = getUserDesignComparisonModal();
-      const metadata = Array.from(card.querySelectorAll('.user-design-meta span'))
-        .map((item) => item.textContent.trim())
-        .filter(Boolean)
-        .join(' | ');
+      const metadata = Array.from(card.querySelectorAll('.user-design-meta span'));
 
       lastUserDesignTrigger = card;
       modal.beforeImage.src = images[0].currentSrc || images[0].src;
       modal.beforeImage.alt = images[0].alt || 'Before design image';
       modal.afterImage.src = images[1].currentSrc || images[1].src;
       modal.afterImage.alt = images[1].alt || 'After design image';
-      modal.meta.textContent = metadata;
+      modal.meta.replaceChildren(...metadata.map((item) => item.cloneNode(true)));
       modal.root.classList.add('is-open');
       document.body.classList.add('lightbox-open');
       setComparisonPosition(50);
