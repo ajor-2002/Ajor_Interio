@@ -230,6 +230,10 @@
       min-height: 690px;
       overflow: hidden;
       border-radius: 8px;
+      --accent: #f7f3ea;
+      --accent-rgb: 247, 243, 234;
+      --material-opacity: 0.62;
+      --material-gloss: rgba(255, 255, 255, 0.16);
     }
 
     .result-box img {
@@ -246,9 +250,130 @@
       opacity: 1;
     }
 
+    .result-design-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, rgba(var(--accent-rgb), 0.22), rgba(var(--accent-rgb), 0.05) 42%, rgba(0, 0, 0, 0.08));
+      mix-blend-mode: color;
+      opacity: var(--material-opacity);
+      transition: background 220ms ease, opacity 220ms ease;
+    }
+
+    .result-design-layer::before,
+    .result-design-layer::after {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      background:
+        linear-gradient(135deg, var(--material-gloss), transparent 36%),
+        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.88) 0 18%, rgba(255, 255, 255, 0.08) 18% 18.6%, rgba(var(--accent-rgb), 0.76) 18.6% 33%);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+      mix-blend-mode: overlay;
+      opacity: 0.74;
+      transition: background 220ms ease, opacity 220ms ease, transform 220ms ease;
+    }
+
+    .result-design-layer::before {
+      top: 14%;
+      height: 17%;
+    }
+
+    .result-design-layer::after {
+      bottom: 16%;
+      height: 22%;
+    }
+
+    .result-box[data-room="bedroom"] .result-design-layer::before {
+      left: 12%;
+      right: 12%;
+      top: 18%;
+      height: 12%;
+    }
+
+    .result-box[data-room="bedroom"] .result-design-layer::after {
+      left: 10%;
+      right: 10%;
+      bottom: 12%;
+      height: 28%;
+      border-radius: 8px 8px 4px 4px;
+    }
+
+    .result-box[data-room="living room"] .result-design-layer::before {
+      top: auto;
+      bottom: 42%;
+      left: 15%;
+      right: 15%;
+      height: 10%;
+    }
+
+    .result-box[data-room="living room"] .result-design-layer::after {
+      bottom: 16%;
+      left: 9%;
+      right: 9%;
+      height: 16%;
+    }
+
+    .result-box[data-room="wardrobe"] .result-design-layer::before {
+      top: 13%;
+      bottom: 14%;
+      left: 13%;
+      right: 13%;
+      height: auto;
+      background:
+        linear-gradient(135deg, var(--material-gloss), transparent 36%),
+        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.9) 0 23%, rgba(255, 255, 255, 0.16) 23% 23.8%, rgba(var(--accent-rgb), 0.74) 23.8% 47%);
+    }
+
+    .result-box[data-room="wardrobe"] .result-design-layer::after {
+      display: none;
+    }
+
+    .result-box[data-material="acrylic"] {
+      --material-opacity: 0.76;
+      --material-gloss: rgba(255, 255, 255, 0.36);
+    }
+
+    .result-box[data-material="acrylic"] .result-design-layer::before,
+    .result-box[data-material="acrylic"] .result-design-layer::after {
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.44), transparent 24%, rgba(255, 255, 255, 0.18) 48%, transparent 70%),
+        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.94) 0 20%, rgba(255, 255, 255, 0.2) 20% 20.7%, rgba(var(--accent-rgb), 0.76) 20.7% 40%);
+    }
+
+    .result-box[data-material="pu finish"] {
+      --material-opacity: 0.7;
+      --material-gloss: rgba(255, 255, 255, 0.24);
+    }
+
+    .result-box[data-material="pu finish"] .result-design-layer::before,
+    .result-box[data-material="pu finish"] .result-design-layer::after {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 28%),
+        linear-gradient(135deg, rgba(var(--accent-rgb), 0.92), rgba(var(--accent-rgb), 0.68));
+    }
+
+    .result-box[data-material="veneer"] {
+      --material-opacity: 0.84;
+      --material-gloss: rgba(255, 255, 255, 0.12);
+    }
+
+    .result-box[data-material="veneer"] .result-design-layer::before,
+    .result-box[data-material="veneer"] .result-design-layer::after {
+      background:
+        linear-gradient(135deg, var(--material-gloss), transparent 36%),
+        repeating-linear-gradient(100deg, rgba(var(--accent-rgb), 0.92) 0 14px, rgba(88, 55, 31, 0.22) 14px 18px, rgba(var(--accent-rgb), 0.74) 18px 34px);
+    }
+
     .result-overlay {
       position: absolute;
       inset: 0;
+      z-index: 2;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.05));
     }
 
@@ -257,7 +382,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 1;
+      z-index: 3;
       padding: clamp(24px, 5vw, 46px);
     }
 
@@ -273,6 +398,35 @@
       margin: 0;
       color: rgba(255, 255, 255, 0.78);
       line-height: 1.75;
+    }
+
+    .preview-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .preview-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .preview-tags .preview-color-chip::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1px solid rgba(255, 255, 255, 0.45);
     }
 
     @keyframes aiBounce {
@@ -344,30 +498,30 @@
 
             <h2 class="section-title">Choose Room Type</h2>
             <div class="option-grid room-types">
-              <button class="option-card active" type="button">Kitchen</button>
-              <button class="option-card" type="button">Bedroom</button>
-              <button class="option-card" type="button">Living Room</button>
-              <button class="option-card" type="button">Wardrobe</button>
+              <button class="option-card active" type="button" data-value="kitchen">Kitchen</button>
+              <button class="option-card" type="button" data-value="bedroom">Bedroom</button>
+              <button class="option-card" type="button" data-value="living room">Living Room</button>
+              <button class="option-card" type="button" data-value="wardrobe">Wardrobe</button>
             </div>
 
             <h2 class="section-title">Select Material</h2>
             <div class="option-grid materials">
-              <button class="option-card active" type="button">Laminate</button>
-              <button class="option-card" type="button">Acrylic</button>
-              <button class="option-card" type="button">PU Finish</button>
-              <button class="option-card" type="button">Veneer</button>
+              <button class="option-card active" type="button" data-value="laminate">Laminate</button>
+              <button class="option-card" type="button" data-value="acrylic">Acrylic</button>
+              <button class="option-card" type="button" data-value="pu finish">PU Finish</button>
+              <button class="option-card" type="button" data-value="veneer">Veneer</button>
             </div>
 
             <h2 class="section-title">Choose Color Theme</h2>
             <div class="color-options" aria-label="Choose color theme">
-              <button class="color-box active" type="button" style="background:#f7f3ea;" aria-label="Warm white"></button>
-              <button class="color-box" type="button" style="background:#d8c3a5;" aria-label="Sand beige"></button>
-              <button class="color-box" type="button" style="background:#8b5e3c;" aria-label="Walnut brown"></button>
-              <button class="color-box" type="button" style="background:#4f5f55;" aria-label="Sage grey"></button>
-              <button class="color-box" type="button" style="background:#1d1d1d;" aria-label="Graphite black"></button>
+              <button class="color-box active" type="button" style="background:#f7f3ea;" data-color="#f7f3ea" data-rgb="247, 243, 234" data-name="Warm White" aria-label="Warm white"></button>
+              <button class="color-box" type="button" style="background:#d8c3a5;" data-color="#d8c3a5" data-rgb="216, 195, 165" data-name="Sand Beige" aria-label="Sand beige"></button>
+              <button class="color-box" type="button" style="background:#8b5e3c;" data-color="#8b5e3c" data-rgb="139, 94, 60" data-name="Walnut Brown" aria-label="Walnut brown"></button>
+              <button class="color-box" type="button" style="background:#4f5f55;" data-color="#4f5f55" data-rgb="79, 95, 85" data-name="Sage Grey" aria-label="Sage grey"></button>
+              <button class="color-box" type="button" style="background:#1d1d1d;" data-color="#1d1d1d" data-rgb="29, 29, 29" data-name="Graphite Black" aria-label="Graphite black"></button>
             </div>
 
-            <button class="generate-btn" id="generateBtn" type="button">Generate AI Design</button>
+            <button class="generate-btn" id="generateBtn" type="button">Apply Selected Design</button>
             <div class="loading" id="loading" aria-hidden="true">
               <span></span>
               <span></span>
@@ -375,12 +529,18 @@
             </div>
           </div>
 
-          <div class="result-box">
+          <div class="result-box" id="resultBox" data-room="kitchen" data-material="laminate">
             <img src="../images/living room design/Modern Oasis Living Room Design.jpg" class="active" id="resultImage" alt="AI interior preview" />
+            <div class="result-design-layer" id="designLayer"></div>
             <div class="result-overlay"></div>
             <div class="result-content">
-              <h2>Your AI Interior Preview</h2>
-              <p>Your transformed interior visualization will appear here after generating the AI design. This demo swaps curated Ajor-style room previews.</p>
+              <div class="preview-tags">
+                <span id="roomTag">Kitchen</span>
+                <span id="materialTag">Laminate</span>
+                <span class="preview-color-chip" id="colorTag">Warm White</span>
+              </div>
+              <h2 id="previewTitle">Live Interior Preview</h2>
+              <p id="previewCopy">Upload your room photo to see it here. Material and color selections update this preview instantly.</p>
             </div>
           </div>
         </div>
@@ -395,6 +555,44 @@
     const generateBtn = document.getElementById('generateBtn');
     const loading = document.getElementById('loading');
     const resultImage = document.getElementById('resultImage');
+    const resultBox = document.getElementById('resultBox');
+    const roomTag = document.getElementById('roomTag');
+    const materialTag = document.getElementById('materialTag');
+    const colorTag = document.getElementById('colorTag');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewCopy = document.getElementById('previewCopy');
+    let hasUploadedImage = false;
+
+    function getActiveText(selector) {
+      return document.querySelector(selector + ' .option-card.active')?.textContent.trim() || '';
+    }
+
+    function getActiveValue(selector) {
+      const active = document.querySelector(selector + ' .option-card.active');
+      return active?.dataset.value || active?.textContent.trim().toLowerCase() || '';
+    }
+
+    function updateLivePreview() {
+      const room = getActiveValue('.room-types');
+      const roomLabel = getActiveText('.room-types');
+      const material = getActiveValue('.materials');
+      const materialLabel = getActiveText('.materials');
+      const activeColor = document.querySelector('.color-box.active');
+      const colorName = activeColor?.dataset.name || 'Warm White';
+
+      resultBox.dataset.room = room;
+      resultBox.dataset.material = material;
+      resultBox.style.setProperty('--accent', activeColor?.dataset.color || '#f7f3ea');
+      resultBox.style.setProperty('--accent-rgb', activeColor?.dataset.rgb || '247, 243, 234');
+
+      roomTag.textContent = roomLabel;
+      materialTag.textContent = materialLabel;
+      colorTag.textContent = colorName;
+      previewTitle.textContent = hasUploadedImage ? 'Your Room With Live Finish' : 'Live Interior Preview';
+      previewCopy.textContent = hasUploadedImage
+        ? roomLabel + ' preview with ' + materialLabel + ' in ' + colorName + '. Change material or color to update it live.'
+        : 'Upload your room photo to see it here. Material and color selections update this preview instantly.';
+    }
 
     uploadInput.addEventListener('change', (event) => {
       const file = event.target.files[0];
@@ -403,7 +601,10 @@
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
         previewImg.src = readerEvent.target.result;
+        resultImage.src = readerEvent.target.result;
+        hasUploadedImage = true;
         previewImage.style.display = 'block';
+        updateLivePreview();
       };
       reader.readAsDataURL(file);
     });
@@ -414,6 +615,7 @@
         item.addEventListener('click', () => {
           items.forEach((candidate) => candidate.classList.remove('active'));
           item.classList.add('active');
+          updateLivePreview();
         });
       });
     }
@@ -425,28 +627,33 @@
       color.addEventListener('click', () => {
         document.querySelectorAll('.color-box').forEach((candidate) => candidate.classList.remove('active'));
         color.classList.add('active');
+        updateLivePreview();
       });
     });
 
     generateBtn.addEventListener('click', () => {
       loading.style.display = 'block';
-      generateBtn.textContent = 'Generating...';
+      generateBtn.textContent = 'Applying...';
       generateBtn.disabled = true;
 
       setTimeout(() => {
-        const aiImages = [
-          '../images/modular kitchen design/Sleek Serenity Modern Kitchen Design.jpg',
-          '../images/bedroom design/Simply Contemporary Master Bedroom.jpg',
-          '../images/living room design/Pastel Paradise Open-Plan Living Room Design.jpg',
-          '../images/wardrob design/Green Meadow Master Bedroom  Sliding Door Wardrobe Design.jpg'
-        ];
-
-        resultImage.src = aiImages[Math.floor(Math.random() * aiImages.length)];
+        if (!hasUploadedImage) {
+          const roomSamples = {
+            kitchen: '../images/modular kitchen design/Sleek Serenity Modern Kitchen Design.jpg',
+            bedroom: '../images/bedroom design/Simply Contemporary Master Bedroom.jpg',
+            'living room': '../images/living room design/Pastel Paradise Open-Plan Living Room Design.jpg',
+            wardrobe: '../images/wardrob design/Green Meadow Master Bedroom  Sliding Door Wardrobe Design.jpg'
+          };
+          resultImage.src = roomSamples[getActiveValue('.room-types')] || roomSamples.kitchen;
+        }
+        updateLivePreview();
         loading.style.display = 'none';
-        generateBtn.textContent = 'Generate AI Design';
+        generateBtn.textContent = 'Apply Selected Design';
         generateBtn.disabled = false;
-      }, 1600);
+      }, 700);
     });
+
+    updateLivePreview();
   </script>
 </body>
 
