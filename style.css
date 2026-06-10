@@ -12103,7 +12103,7 @@ body.no-scroll {
 }
 
 .user-design-comparison-panel {
-  width: min(100%, 1650px);
+  width: min(92vw, 1180px);
   max-height: calc(100vh - 48px);
   overflow: hidden;
   border-radius: 24px;
@@ -12116,7 +12116,7 @@ body.no-scroll {
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 24px 26px;
+  padding: 20px 22px 22px;
   border-bottom: 1px solid #a8b9f5;
 }
 
@@ -12160,14 +12160,14 @@ body.no-scroll {
 }
 
 .user-design-comparison-body {
-  padding: 20px 24px 16px;
+  padding: 18px 22px 14px;
 }
 
 .user-design-comparison-stage {
   --compare-position: 50%;
   position: relative;
   width: 100%;
-  height: min(72vh, 688px);
+  height: min(62vh, 520px);
   overflow: hidden;
   border-radius: 22px;
   background: #eef4ff;
@@ -12195,8 +12195,7 @@ body.no-scroll {
 }
 
 .user-design-comparison-after {
-  width: calc(100vw - 48px);
-  max-width: calc(min(100vw - 48px, 1650px) - 48px);
+  width: 100%;
 }
 
 .user-design-comparison-label {
