@@ -743,7 +743,7 @@
         formData.append('material', 'modular laminate');
         formData.append('color', 'warm neutral');
 
-        const response = await fetch('/generate-room', {
+        const response = await fetch('http://localhost:5000/generate-room', {
           method: 'POST',
           body: formData,
         });
