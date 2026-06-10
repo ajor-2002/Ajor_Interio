@@ -211,6 +211,11 @@
       opacity: 0.58;
     }
 
+    .kitchen-design-btn.loading {
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
     .kitchen-preview {
       position: relative;
       min-height: 670px;
@@ -326,6 +331,11 @@
 
     .kitchen-preview.has-image .kitchen-preview-badge {
       display: block;
+    }
+
+    .kitchen-preview.generating .kitchen-preview-badge {
+      display: block;
+      background: rgba(216, 26, 26, 0.72);
     }
 
     .kitchen-clear-preview {
@@ -612,6 +622,18 @@
     let uploadedKitchenData = '';
     let toastTimer;
 
+    window.dataLayer = window.dataLayer || [];
+
+    function trackKitchenEvent(eventName, details) {
+      window.dataLayer.push({
+        event: eventName,
+        tool: 'ai-kitchen-designer',
+        style: selectedStyle(),
+        hasImage: Boolean(uploadedKitchenData),
+        ...details
+      });
+    }
+
     function selectedStyle() {
       return document.querySelector('.kitchen-style.active')?.dataset.style || 'Modern';
     }
@@ -620,6 +642,13 @@
       const style = selectedStyle();
       kitchenPreview.dataset.style = style.toLowerCase();
       kitchenPreviewBadge.textContent = message || style + ' kitchen preview ready.';
+    }
+
+    function setGenerating(isGenerating) {
+      kitchenPreview.classList.toggle('generating', isGenerating);
+      kitchenDesignBtn.classList.toggle('loading', isGenerating);
+      kitchenDesignBtn.disabled = isGenerating || !uploadedKitchenData;
+      kitchenDesignBtn.textContent = isGenerating ? 'Generating Preview...' : 'Design My Kitchen ->';
     }
 
     function showToast(message) {
@@ -636,8 +665,12 @@
       kitchenUpload.value = '';
       kitchenPreviewImage.removeAttribute('src');
       kitchenPreview.classList.remove('has-image');
+      kitchenPreview.classList.remove('generating');
       kitchenDesignBtn.disabled = true;
+      kitchenDesignBtn.classList.remove('loading');
+      kitchenDesignBtn.textContent = 'Design My Kitchen ->';
       kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen preview ready.';
+      trackKitchenEvent('kitchen_preview_cleared');
     }
 
     document.querySelectorAll('.kitchen-style').forEach((button) => {
@@ -645,6 +678,7 @@
         document.querySelectorAll('.kitchen-style').forEach((item) => item.classList.remove('active'));
         button.classList.add('active');
         applyStyleToPreview();
+        trackKitchenEvent('kitchen_style_selected', { selected: selectedStyle() });
       });
     });
 
@@ -656,12 +690,14 @@
       if (!validTypes.includes(file.type)) {
         resetKitchenUpload();
         showToast('Please upload a PNG, JPG or WebP kitchen image.');
+        trackKitchenEvent('kitchen_upload_error', { reason: 'invalid_type', fileType: file.type });
         return;
       }
 
       if (file.size > 10 * 1024 * 1024) {
         resetKitchenUpload();
         showToast('Image must be 10 MB or smaller.');
+        trackKitchenEvent('kitchen_upload_error', { reason: 'too_large', fileSize: file.size });
         return;
       }
 
@@ -673,6 +709,11 @@
         kitchenDesignBtn.disabled = false;
         applyStyleToPreview();
         showToast('Kitchen image uploaded. Choose a style and generate.');
+        trackKitchenEvent('kitchen_image_uploaded', {
+          fileName: file.name,
+          fileType: file.type,
+          fileSize: file.size
+        });
       };
       reader.readAsDataURL(file);
     });
@@ -680,15 +721,24 @@
     kitchenDesignBtn.addEventListener('click', () => {
       if (!uploadedKitchenData) {
         showToast('Upload a kitchen image first.');
+        trackKitchenEvent('kitchen_generate_blocked', { reason: 'missing_image' });
         return;
       }
 
       const style = selectedStyle();
-      applyStyleToPreview(style + ' kitchen design applied.');
-      kitchenResultImage.src = uploadedKitchenData;
-      kitchenResultCaption.textContent = style + ' kitchen design generated.';
-      kitchenResultOverlay.classList.add('open');
-      kitchenResultOverlay.setAttribute('aria-hidden', 'false');
+      setGenerating(true);
+      kitchenPreviewBadge.textContent = 'Generating ' + style + ' kitchen preview...';
+      trackKitchenEvent('kitchen_generate_started');
+
+      window.setTimeout(() => {
+        applyStyleToPreview(style + ' kitchen design applied.');
+        kitchenResultImage.src = uploadedKitchenData;
+        kitchenResultCaption.textContent = style + ' kitchen design generated.';
+        kitchenResultOverlay.classList.add('open');
+        kitchenResultOverlay.setAttribute('aria-hidden', 'false');
+        setGenerating(false);
+        trackKitchenEvent('kitchen_generate_completed');
+      }, 900);
     });
 
     kitchenClearPreview.addEventListener('click', resetKitchenUpload);
@@ -696,12 +746,14 @@
     kitchenResultClose.addEventListener('click', () => {
       kitchenResultOverlay.classList.remove('open');
       kitchenResultOverlay.setAttribute('aria-hidden', 'true');
+      trackKitchenEvent('kitchen_result_closed');
     });
 
     kitchenResultOverlay.addEventListener('click', (event) => {
       if (event.target === kitchenResultOverlay) {
         kitchenResultOverlay.classList.remove('open');
         kitchenResultOverlay.setAttribute('aria-hidden', 'true');
+        trackKitchenEvent('kitchen_result_closed');
       }
     });
 
