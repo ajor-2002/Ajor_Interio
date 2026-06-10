@@ -211,6 +211,7 @@
       border: 1.5px dashed rgba(91, 133, 220, 0.72);
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.48);
+      --style-accent: rgba(216, 26, 26, 0.18);
     }
 
     .kitchen-preview img {
@@ -225,6 +226,58 @@
 
     .kitchen-preview.has-image img {
       opacity: 1;
+    }
+
+    .kitchen-preview.has-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(125deg, var(--style-accent), transparent 46%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.16), transparent 42%);
+      mix-blend-mode: soft-light;
+    }
+
+    .kitchen-preview.has-image::after {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 13%;
+      height: 18%;
+      z-index: 1;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.24);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(2px);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .kitchen-preview[data-style="traditional"] {
+      --style-accent: rgba(139, 94, 60, 0.26);
+    }
+
+    .kitchen-preview[data-style="minimalist"] {
+      --style-accent: rgba(255, 255, 255, 0.3);
+    }
+
+    .kitchen-preview[data-style="luxury"] {
+      --style-accent: rgba(20, 20, 20, 0.3);
+    }
+
+    .kitchen-preview[data-style="luxury"].has-image::after {
+      background: linear-gradient(135deg, rgba(17, 17, 17, 0.42), rgba(255, 255, 255, 0.12));
+    }
+
+    .kitchen-preview[data-style="traditional"].has-image::after {
+      background: linear-gradient(135deg, rgba(139, 94, 60, 0.28), rgba(255, 255, 255, 0.2));
+    }
+
+    .kitchen-preview[data-style="minimalist"].has-image::after {
+      background: rgba(255, 255, 255, 0.34);
     }
 
     .kitchen-preview-empty {
@@ -404,7 +457,7 @@
 
       <div>
         <h2 class="kitchen-column-title">Your Kitchen Design Preview</h2>
-        <section class="kitchen-preview" id="kitchenPreview">
+        <section class="kitchen-preview" id="kitchenPreview" data-style="modern">
           <img id="kitchenPreviewImage" alt="Uploaded kitchen preview" />
           <div class="kitchen-preview-empty">
             <span class="kitchen-preview-icon" aria-hidden="true">
@@ -437,11 +490,17 @@
       return document.querySelector('.kitchen-style.active')?.dataset.style || 'Modern';
     }
 
+    function applyStyleToPreview(message) {
+      const style = selectedStyle();
+      kitchenPreview.dataset.style = style.toLowerCase();
+      kitchenPreviewBadge.textContent = message || style + ' kitchen preview ready.';
+    }
+
     document.querySelectorAll('.kitchen-style').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('.kitchen-style').forEach((item) => item.classList.remove('active'));
         button.classList.add('active');
-        kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen preview ready.';
+        applyStyleToPreview();
       });
     });
 
@@ -453,14 +512,16 @@
       reader.onload = (readerEvent) => {
         kitchenPreviewImage.src = readerEvent.target.result;
         kitchenPreview.classList.add('has-image');
-        kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen preview ready.';
+        applyStyleToPreview();
       };
       reader.readAsDataURL(file);
     });
 
     kitchenDesignBtn.addEventListener('click', () => {
-      kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen design applied.';
+      applyStyleToPreview(selectedStyle() + ' kitchen design applied.');
     });
+
+    applyStyleToPreview();
   </script>
 </body>
 
