@@ -2189,12 +2189,6 @@ document.addEventListener('DOMContentLoaded', function () {
       userDesignComparisonModal.handle.setAttribute('aria-valuenow', String(Math.round(safePosition)));
     };
 
-    const syncComparisonImageSize = () => {
-      if (!userDesignComparisonModal?.root.classList.contains('is-open')) return;
-
-      userDesignComparisonModal.afterImage.style.width = `${userDesignComparisonModal.stage.clientWidth}px`;
-    };
-
     const updateComparisonFromPointer = (event) => {
       if (!userDesignComparisonModal) return;
 
@@ -2330,7 +2324,6 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.root.classList.add('is-open');
       document.body.classList.add('lightbox-open');
       setComparisonPosition(50);
-      syncComparisonImageSize();
       modal.closeButton.focus({ preventScroll: true });
     };
 
@@ -2387,7 +2380,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    window.addEventListener('resize', syncComparisonImageSize, { passive: true });
   }
 
   document.addEventListener('click', (event) => {
