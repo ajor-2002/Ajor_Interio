@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Room Designer | Ajor Interio</title>
+  <link rel="icon" href="../images/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      background: #101010;
+      color: #fff;
+    }
+
+    .ai-room-section {
+      min-height: 100vh;
+      padding: 72px 0;
+      background:
+        linear-gradient(115deg, rgba(8, 8, 8, 0.92), rgba(8, 8, 8, 0.72)),
+        url("../images/home intrior hero.jpg") center/cover;
+    }
+
+    .ai-room-header {
+      max-width: 760px;
+      margin-bottom: 44px;
+    }
+
+    .ai-room-header p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .ai-room-header h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.35rem, 7vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .ai-room-header span {
+      color: #f0bd69;
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .ai-card,
+    .result-box {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(18, 18, 18, 0.78);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(18px);
+    }
+
+    .ai-card {
+      border-radius: 8px;
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 800;
+    }
+
+    .upload-box {
+      position: relative;
+      display: grid;
+      gap: 10px;
+      place-items: center;
+      min-height: 205px;
+      padding: 28px;
+      border: 2px dashed rgba(240, 189, 105, 0.42);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .upload-box:hover {
+      border-color: #f0bd69;
+      background: rgba(240, 189, 105, 0.08);
+    }
+
+    .upload-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #f0bd69;
+      color: #111;
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+
+    .upload-box h3,
+    .upload-box p {
+      margin: 0;
+    }
+
+    .upload-box p {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.92rem;
+    }
+
+    .upload-box input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .preview-image {
+      display: none;
+      margin: 20px 0 26px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .preview-image img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 26px;
+    }
+
+    .option-card,
+    .generate-btn {
+      min-height: 52px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .option-card {
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      color: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.055);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .option-card:hover,
+    .option-card.active {
+      transform: translateY(-1px);
+      border-color: #f0bd69;
+      color: #fff;
+      background: rgba(240, 189, 105, 0.14);
+    }
+
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0 0 28px;
+    }
+
+    .color-box {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .color-box.active {
+      transform: scale(1.08);
+      border-color: #f0bd69;
+    }
+
+    .generate-btn {
+      width: 100%;
+      border: none;
+      background: #f0bd69;
+      color: #111;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-1px);
+      background: #ffd58d;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .loading span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: #f0bd69;
+      animation: aiBounce 620ms infinite alternate;
+    }
+
+    .loading span:nth-child(2) {
+      animation-delay: 160ms;
+    }
+
+    .loading span:nth-child(3) {
+      animation-delay: 320ms;
+    }
+
+    .result-box {
+      position: relative;
+      min-height: 690px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .result-box img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 600ms ease;
+    }
+
+    .result-box img.active {
+      opacity: 1;
+    }
+
+    .result-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.05));
+    }
+
+    .result-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      padding: clamp(24px, 5vw, 46px);
+    }
+
+    .result-content h2 {
+      max-width: 560px;
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+    }
+
+    .result-content p {
+      max-width: 560px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.75;
+    }
+
+    @keyframes aiBounce {
+      to {
+        transform: translateY(-8px);
+        opacity: 0.55;
+      }
+    }
+
+    @media (max-width: 940px) {
+      .ai-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-box {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .ai-room-section {
+        padding: 46px 0;
+      }
+
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-box {
+        min-height: 430px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-main">
+      <div class="container nav-inner">
+        <a href="../index.html" class="brand-logo">
+          <img src="../images/logo.png" alt="Ajor logo" />
+        </a>
+        <a href="../index.html" class="btn btn-primary nav-cta">Back to Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="ai-room-section">
+      <div class="container">
+        <div class="ai-room-header">
+          <h1>Create Your Dream <span>AI Interior</span></h1>
+          <p>Upload a room photo, choose the room type, finish and color palette, then preview a transformed interior concept.</p>
+        </div>
+
+        <div class="ai-grid">
+          <div class="ai-card">
+            <h2 class="section-title">Upload Your Room</h2>
+            <label class="upload-box">
+              <span class="upload-icon" aria-hidden="true">+</span>
+              <h3>Upload Room Photo</h3>
+              <p>Kitchen, bedroom, living room or wardrobe</p>
+              <input type="file" id="roomUpload" accept="image/*" />
+            </label>
+
+            <div class="preview-image" id="previewImage">
+              <img id="previewImg" alt="Uploaded room preview" />
+            </div>
+
+            <h2 class="section-title">Choose Room Type</h2>
+            <div class="option-grid room-types">
+              <button class="option-card active" type="button">Kitchen</button>
+              <button class="option-card" type="button">Bedroom</button>
+              <button class="option-card" type="button">Living Room</button>
+              <button class="option-card" type="button">Wardrobe</button>
+            </div>
+
+            <h2 class="section-title">Select Material</h2>
+            <div class="option-grid materials">
+              <button class="option-card active" type="button">Laminate</button>
+              <button class="option-card" type="button">Acrylic</button>
+              <button class="option-card" type="button">PU Finish</button>
+              <button class="option-card" type="button">Veneer</button>
+            </div>
+
+            <h2 class="section-title">Choose Color Theme</h2>
+            <div class="color-options" aria-label="Choose color theme">
+              <button class="color-box active" type="button" style="background:#f7f3ea;" aria-label="Warm white"></button>
+              <button class="color-box" type="button" style="background:#d8c3a5;" aria-label="Sand beige"></button>
+              <button class="color-box" type="button" style="background:#8b5e3c;" aria-label="Walnut brown"></button>
+              <button class="color-box" type="button" style="background:#4f5f55;" aria-label="Sage grey"></button>
+              <button class="color-box" type="button" style="background:#1d1d1d;" aria-label="Graphite black"></button>
+            </div>
+
+            <button class="generate-btn" id="generateBtn" type="button">Generate AI Design</button>
+            <div class="loading" id="loading" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="result-box">
+            <img src="../images/living room design/Modern Oasis Living Room Design.jpg" class="active" id="resultImage" alt="AI interior preview" />
+            <div class="result-overlay"></div>
+            <div class="result-content">
+              <h2>Your AI Interior Preview</h2>
+              <p>Your transformed interior visualization will appear here after generating the AI design. This demo swaps curated Ajor-style room previews.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const uploadInput = document.getElementById('roomUpload');
+    const previewImage = document.getElementById('previewImage');
+    const previewImg = document.getElementById('previewImg');
+    const generateBtn = document.getElementById('generateBtn');
+    const loading = document.getElementById('loading');
+    const resultImage = document.getElementById('resultImage');
+
+    uploadInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        previewImg.src = readerEvent.target.result;
+        previewImage.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function bindSelection(selector) {
+      const items = document.querySelectorAll(selector + ' .option-card');
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          items.forEach((candidate) => candidate.classList.remove('active'));
+          item.classList.add('active');
+        });
+      });
+    }
+
+    bindSelection('.room-types');
+    bindSelection('.materials');
+
+    document.querySelectorAll('.color-box').forEach((color) => {
+      color.addEventListener('click', () => {
+        document.querySelectorAll('.color-box').forEach((candidate) => candidate.classList.remove('active'));
+        color.classList.add('active');
+      });
+    });
+
+    generateBtn.addEventListener('click', () => {
+      loading.style.display = 'block';
+      generateBtn.textContent = 'Generating...';
+      generateBtn.disabled = true;
+
+      setTimeout(() => {
+        const aiImages = [
+          '../images/modular kitchen design/Sleek Serenity Modern Kitchen Design.jpg',
+          '../images/bedroom design/Simply Contemporary Master Bedroom.jpg',
+          '../images/living room design/Pastel Paradise Open-Plan Living Room Design.jpg',
+          '../images/wardrob design/Green Meadow Master Bedroom  Sliding Door Wardrobe Design.jpg'
+        ];
+
+        resultImage.src = aiImages[Math.floor(Math.random() * aiImages.length)];
+        loading.style.display = 'none';
+        generateBtn.textContent = 'Generate AI Design';
+        generateBtn.disabled = false;
+      }, 1600);
+    });
+  </script>
+</body>
+
+</html>
