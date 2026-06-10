@@ -4,458 +4,482 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Room Designer | Ajor Interio</title>
+  <title>AI Interior Design Generator | Ajor Interio</title>
   <link rel="icon" href="../images/logo.png" type="image/png" />
   <link rel="stylesheet" href="../style.css" />
   <style>
+    :root {
+      --ai-navy: #182b58;
+      --ai-pink: #ef4f76;
+      --ai-blue: #208fc8;
+      --ai-soft: #eef5ff;
+      --ai-line: rgba(108, 154, 225, 0.2);
+    }
+
     body {
-      background: #101010;
-      color: #fff;
+      background: #f8fbff;
+      color: var(--ai-navy);
     }
 
-    .ai-room-section {
-      min-height: 100vh;
-      padding: 72px 0;
+    .ai-page {
+      overflow: hidden;
+    }
+
+    .ai-hero {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      padding: 72px 20px 110px;
       background:
-        linear-gradient(115deg, rgba(8, 8, 8, 0.92), rgba(8, 8, 8, 0.72)),
-        url("../images/home intrior hero.jpg") center/cover;
+        radial-gradient(circle at 50% 100%, rgba(239, 79, 118, 0.16), transparent 28%),
+        linear-gradient(180deg, #f3f8ff 0%, #eef5ff 100%);
+      text-align: center;
+      isolation: isolate;
     }
 
-    .ai-room-header {
-      max-width: 760px;
-      margin-bottom: 44px;
+    .ai-hero::before,
+    .ai-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
 
-    .ai-room-header p {
+    .ai-hero::before {
+      opacity: 0.95;
+      background-image:
+        repeating-radial-gradient(ellipse 460px 120px at 8% 78%, transparent 0 16px, var(--ai-line) 17px 18px),
+        repeating-radial-gradient(ellipse 520px 150px at 38% 82%, transparent 0 16px, rgba(117, 156, 225, 0.18) 17px 18px),
+        repeating-radial-gradient(ellipse 720px 120px at 78% 86%, transparent 0 17px, rgba(117, 156, 225, 0.17) 18px 19px);
+      transform: scaleX(1.1);
+    }
+
+    .ai-hero::after {
+      opacity: 0.72;
+      background-image:
+        repeating-radial-gradient(ellipse 720px 140px at 90% 68%, transparent 0 15px, rgba(117, 156, 225, 0.18) 16px 17px),
+        repeating-radial-gradient(ellipse 560px 120px at -4% 67%, transparent 0 16px, rgba(117, 156, 225, 0.16) 17px 18px);
+    }
+
+    .ai-hero-inner {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+    }
+
+    .ai-hero h1 {
       margin: 0;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .ai-room-header h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2.35rem, 7vw, 5.2rem);
-      line-height: 0.98;
+      color: var(--ai-navy);
+      font-size: clamp(3rem, 7.2vw, 6.6rem);
+      font-weight: 800;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
-    .ai-room-header span {
-      color: #f0bd69;
+    .ai-hero h1 span {
+      background: linear-gradient(135deg, #a84def 5%, #ff2f83 54%, #ff7d45 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .ai-grid {
+    .ai-hero p {
+      margin: 34px auto 32px;
+      max-width: 1080px;
+      color: #4d5668;
+      font-size: clamp(1rem, 1.55vw, 1.55rem);
+      line-height: 1.5;
+    }
+
+    .ai-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-height: 54px;
+      padding: 0 30px;
+      border-radius: 12px;
+      background: var(--ai-pink);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      box-shadow: 0 16px 34px rgba(239, 79, 118, 0.3);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .ai-hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(239, 79, 118, 0.36);
+    }
+
+    .ai-ginie {
+      position: absolute;
+      right: 0;
+      bottom: 120px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ai-ginie-close {
+      position: absolute;
+      top: -8px;
+      left: -12px;
+      width: 19px;
+      height: 19px;
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #1b1b1b;
+      font-size: 13px;
+      line-height: 1;
+      box-shadow: 0 5px 14px rgba(23, 36, 71, 0.12);
+    }
+
+    .ai-ginie-label {
+      padding: 9px 12px;
+      border-radius: 5px;
+      background: #fff;
+      color: #2d2d2d;
+      font-weight: 800;
+      box-shadow: 0 9px 20px rgba(23, 36, 71, 0.12);
+    }
+
+    .ai-ginie-icon {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px 0 0 14px;
+      background: linear-gradient(135deg, #a852e7 0%, #229bd2 100%);
+      color: #fff;
+      font-size: 31px;
+      font-weight: 900;
+      box-shadow: 0 16px 28px rgba(32, 143, 200, 0.32);
+    }
+
+    .ai-designer {
+      padding: 70px 0 90px;
+      background: #fff;
+    }
+
+    .ai-designer-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .ai-designer-head h2 {
+      margin: 0 0 12px;
+      color: var(--ai-navy);
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .ai-designer-head p {
+      margin: 0;
+      color: #606b7d;
+      font-size: 1.06rem;
+      line-height: 1.7;
+    }
+
+    .ai-tool-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 430px) minmax(0, 1fr);
       gap: 28px;
       align-items: stretch;
     }
 
-    .ai-card,
-    .result-box {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(18, 18, 18, 0.78);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
-      backdrop-filter: blur(18px);
+    .ai-panel,
+    .ai-preview {
+      border: 1px solid #e4ebf7;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(24, 43, 88, 0.08);
     }
 
-    .ai-card {
-      border-radius: 8px;
-      padding: clamp(22px, 4vw, 34px);
+    .ai-panel {
+      padding: 24px;
     }
 
-    .section-title {
-      margin: 0 0 16px;
-      color: #fff;
-      font-size: 1.08rem;
+    .ai-panel-title {
+      margin: 0 0 14px;
+      color: var(--ai-navy);
+      font-size: 1rem;
       font-weight: 800;
     }
 
-    .upload-box {
+    .ai-upload {
       position: relative;
+      min-height: 178px;
       display: grid;
-      gap: 10px;
       place-items: center;
-      min-height: 205px;
-      padding: 28px;
-      border: 2px dashed rgba(240, 189, 105, 0.42);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.055);
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 24px;
+      border: 2px dashed #c7d6ee;
+      border-radius: 16px;
+      background: #f8fbff;
       text-align: center;
       cursor: pointer;
       transition: border-color 180ms ease, background 180ms ease;
     }
 
-    .upload-box:hover {
-      border-color: #f0bd69;
-      background: rgba(240, 189, 105, 0.08);
+    .ai-upload:hover {
+      border-color: var(--ai-pink);
+      background: #fff6f9;
     }
 
-    .upload-icon {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #f0bd69;
-      color: #111;
-      font-size: 1.6rem;
-      font-weight: 900;
+    .ai-upload strong {
+      color: var(--ai-navy);
+      font-size: 1.05rem;
     }
 
-    .upload-box h3,
-    .upload-box p {
-      margin: 0;
-    }
-
-    .upload-box p {
-      color: rgba(255, 255, 255, 0.65);
+    .ai-upload span {
+      color: #6b7486;
       font-size: 0.92rem;
     }
 
-    .upload-box input {
+    .ai-upload input {
       position: absolute;
       inset: 0;
       opacity: 0;
       cursor: pointer;
     }
 
-    .preview-image {
-      display: none;
-      margin: 20px 0 26px;
-      overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .preview-image img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-    }
-
-    .option-grid {
+    .ai-options {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin: 0 0 26px;
+      gap: 10px;
+      margin-bottom: 22px;
     }
 
-    .option-card,
-    .generate-btn {
-      min-height: 52px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .ai-option {
+      min-height: 48px;
+      border: 1px solid #e3eaf6;
+      border-radius: 12px;
+      background: #fbfdff;
+      color: #233865;
       font-weight: 800;
       cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
     }
 
-    .option-card {
-      display: grid;
-      place-items: center;
-      padding: 14px;
-      color: rgba(255, 255, 255, 0.78);
-      background: rgba(255, 255, 255, 0.055);
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    .ai-option:hover,
+    .ai-option.active {
+      border-color: var(--ai-pink);
+      background: #fff0f4;
+      color: var(--ai-pink);
     }
 
-    .option-card:hover,
-    .option-card.active {
-      transform: translateY(-1px);
-      border-color: #f0bd69;
-      color: #fff;
-      background: rgba(240, 189, 105, 0.14);
-    }
-
-    .color-options {
+    .ai-colors {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 0 0 28px;
+      margin-bottom: 22px;
     }
 
-    .color-box {
-      width: 48px;
-      height: 48px;
-      border: 3px solid rgba(255, 255, 255, 0.22);
+    .ai-color {
+      width: 44px;
+      height: 44px;
+      border: 3px solid #fff;
       border-radius: 50%;
+      box-shadow: 0 0 0 1px #d7e1ef, 0 8px 18px rgba(24, 43, 88, 0.12);
       cursor: pointer;
-      transition: transform 180ms ease, border-color 180ms ease;
     }
 
-    .color-box.active {
-      transform: scale(1.08);
-      border-color: #f0bd69;
+    .ai-color.active {
+      box-shadow: 0 0 0 3px var(--ai-pink), 0 10px 20px rgba(239, 79, 118, 0.22);
     }
 
-    .generate-btn {
-      width: 100%;
-      border: none;
-      background: #f0bd69;
-      color: #111;
-      transition: transform 180ms ease, background 180ms ease;
-    }
-
-    .generate-btn:hover {
-      transform: translateY(-1px);
-      background: #ffd58d;
-    }
-
-    .loading {
-      display: none;
-      margin-top: 18px;
-      text-align: center;
-    }
-
-    .loading span {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      margin: 0 4px;
-      border-radius: 50%;
-      background: #f0bd69;
-      animation: aiBounce 620ms infinite alternate;
-    }
-
-    .loading span:nth-child(2) {
-      animation-delay: 160ms;
-    }
-
-    .loading span:nth-child(3) {
-      animation-delay: 320ms;
-    }
-
-    .result-box {
+    .ai-preview {
       position: relative;
-      min-height: 690px;
+      min-height: 650px;
       overflow: hidden;
-      border-radius: 8px;
       --accent: #f7f3ea;
       --accent-rgb: 247, 243, 234;
-      --material-opacity: 0.62;
-      --material-gloss: rgba(255, 255, 255, 0.16);
     }
 
-    .result-box img {
+    .ai-preview img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 600ms ease;
     }
 
-    .result-box img.active {
-      opacity: 1;
-    }
-
-    .result-design-layer {
+    .ai-preview-design {
       position: absolute;
       inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background:
-        linear-gradient(115deg, rgba(var(--accent-rgb), 0.22), rgba(var(--accent-rgb), 0.05) 42%, rgba(0, 0, 0, 0.08));
+      background: linear-gradient(120deg, rgba(var(--accent-rgb), 0.32), rgba(var(--accent-rgb), 0.08));
       mix-blend-mode: color;
-      opacity: var(--material-opacity);
-      transition: background 220ms ease, opacity 220ms ease;
+      pointer-events: none;
     }
 
-    .result-design-layer::before,
-    .result-design-layer::after {
+    .ai-preview-design::before,
+    .ai-preview-design::after {
       content: "";
       position: absolute;
-      left: 7%;
-      right: 7%;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 6px;
+      left: 9%;
+      right: 9%;
+      border-radius: 12px;
       background:
-        linear-gradient(135deg, var(--material-gloss), transparent 36%),
-        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.88) 0 18%, rgba(255, 255, 255, 0.08) 18% 18.6%, rgba(var(--accent-rgb), 0.76) 18.6% 33%);
-      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.26), transparent 34%),
+        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.9) 0 19%, rgba(255, 255, 255, 0.16) 19% 19.8%, rgba(var(--accent-rgb), 0.72) 19.8% 38%);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
       mix-blend-mode: overlay;
-      opacity: 0.74;
-      transition: background 220ms ease, opacity 220ms ease, transform 220ms ease;
+      opacity: 0.76;
     }
 
-    .result-design-layer::before {
-      top: 14%;
-      height: 17%;
+    .ai-preview-design::before {
+      top: 12%;
+      height: 18%;
     }
 
-    .result-design-layer::after {
-      bottom: 16%;
-      height: 22%;
+    .ai-preview-design::after {
+      bottom: 15%;
+      height: 23%;
     }
 
-    .result-box[data-room="bedroom"] .result-design-layer::before {
-      left: 12%;
-      right: 12%;
-      top: 18%;
+    .ai-preview[data-room="bedroom"] .ai-preview-design::before {
+      top: 17%;
+      left: 14%;
+      right: 14%;
       height: 12%;
     }
 
-    .result-box[data-room="bedroom"] .result-design-layer::after {
-      left: 10%;
-      right: 10%;
-      bottom: 12%;
-      height: 28%;
-      border-radius: 8px 8px 4px 4px;
+    .ai-preview[data-room="bedroom"] .ai-preview-design::after {
+      bottom: 11%;
+      height: 30%;
     }
 
-    .result-box[data-room="living room"] .result-design-layer::before {
+    .ai-preview[data-room="living room"] .ai-preview-design::before {
       top: auto;
       bottom: 42%;
-      left: 15%;
-      right: 15%;
       height: 10%;
+      left: 16%;
+      right: 16%;
     }
 
-    .result-box[data-room="living room"] .result-design-layer::after {
+    .ai-preview[data-room="living room"] .ai-preview-design::after {
       bottom: 16%;
-      left: 9%;
-      right: 9%;
-      height: 16%;
+      height: 15%;
     }
 
-    .result-box[data-room="wardrobe"] .result-design-layer::before {
+    .ai-preview[data-room="wardrobe"] .ai-preview-design::before {
       top: 13%;
-      bottom: 14%;
+      bottom: 13%;
+      height: auto;
       left: 13%;
       right: 13%;
-      height: auto;
-      background:
-        linear-gradient(135deg, var(--material-gloss), transparent 36%),
-        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.9) 0 23%, rgba(255, 255, 255, 0.16) 23% 23.8%, rgba(var(--accent-rgb), 0.74) 23.8% 47%);
     }
 
-    .result-box[data-room="wardrobe"] .result-design-layer::after {
+    .ai-preview[data-room="wardrobe"] .ai-preview-design::after {
       display: none;
     }
 
-    .result-box[data-material="acrylic"] {
-      --material-opacity: 0.76;
-      --material-gloss: rgba(255, 255, 255, 0.36);
-    }
-
-    .result-box[data-material="acrylic"] .result-design-layer::before,
-    .result-box[data-material="acrylic"] .result-design-layer::after {
+    .ai-preview[data-material="acrylic"] .ai-preview-design::before,
+    .ai-preview[data-material="acrylic"] .ai-preview-design::after {
       background:
-        linear-gradient(120deg, rgba(255, 255, 255, 0.44), transparent 24%, rgba(255, 255, 255, 0.18) 48%, transparent 70%),
-        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.94) 0 20%, rgba(255, 255, 255, 0.2) 20% 20.7%, rgba(var(--accent-rgb), 0.76) 20.7% 40%);
+        linear-gradient(120deg, rgba(255, 255, 255, 0.5), transparent 26%, rgba(255, 255, 255, 0.18) 52%, transparent 76%),
+        repeating-linear-gradient(90deg, rgba(var(--accent-rgb), 0.94) 0 20%, rgba(255, 255, 255, 0.2) 20% 20.8%, rgba(var(--accent-rgb), 0.78) 20.8% 40%);
     }
 
-    .result-box[data-material="pu finish"] {
-      --material-opacity: 0.7;
-      --material-gloss: rgba(255, 255, 255, 0.24);
+    .ai-preview[data-material="pu finish"] .ai-preview-design::before,
+    .ai-preview[data-material="pu finish"] .ai-preview-design::after {
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.94), rgba(var(--accent-rgb), 0.62));
     }
 
-    .result-box[data-material="pu finish"] .result-design-layer::before,
-    .result-box[data-material="pu finish"] .result-design-layer::after {
+    .ai-preview[data-material="veneer"] .ai-preview-design::before,
+    .ai-preview[data-material="veneer"] .ai-preview-design::after {
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 28%),
-        linear-gradient(135deg, rgba(var(--accent-rgb), 0.92), rgba(var(--accent-rgb), 0.68));
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 34%),
+        repeating-linear-gradient(100deg, rgba(var(--accent-rgb), 0.9) 0 14px, rgba(82, 53, 30, 0.22) 14px 18px, rgba(var(--accent-rgb), 0.7) 18px 34px);
     }
 
-    .result-box[data-material="veneer"] {
-      --material-opacity: 0.84;
-      --material-gloss: rgba(255, 255, 255, 0.12);
-    }
-
-    .result-box[data-material="veneer"] .result-design-layer::before,
-    .result-box[data-material="veneer"] .result-design-layer::after {
-      background:
-        linear-gradient(135deg, var(--material-gloss), transparent 36%),
-        repeating-linear-gradient(100deg, rgba(var(--accent-rgb), 0.92) 0 14px, rgba(88, 55, 31, 0.22) 14px 18px, rgba(var(--accent-rgb), 0.74) 18px 34px);
-    }
-
-    .result-overlay {
+    .ai-preview-copy {
       position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.05));
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--ai-navy);
+      box-shadow: 0 18px 46px rgba(24, 43, 88, 0.16);
+      backdrop-filter: blur(14px);
     }
 
-    .result-content {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      padding: clamp(24px, 5vw, 46px);
-    }
-
-    .result-content h2 {
-      max-width: 560px;
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1;
-    }
-
-    .result-content p {
-      max-width: 560px;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.75;
-    }
-
-    .preview-tags {
+    .ai-preview-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
 
-    .preview-tags span {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 7px 11px;
+    .ai-preview-tags span {
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.13);
-      color: #fff;
+      background: #eef4ff;
+      color: #233865;
       font-size: 0.82rem;
       font-weight: 800;
     }
 
-    .preview-tags .preview-color-chip::before {
-      content: "";
-      width: 12px;
-      height: 12px;
-      margin-right: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 1px solid rgba(255, 255, 255, 0.45);
+    .ai-preview-copy h3 {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
     }
 
-    @keyframes aiBounce {
-      to {
-        transform: translateY(-8px);
-        opacity: 0.55;
+    .ai-preview-copy p {
+      margin: 0;
+      color: #536075;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      .ai-hero {
+        min-height: 460px;
+        padding-top: 58px;
       }
-    }
 
-    @media (max-width: 940px) {
-      .ai-grid {
+      .ai-ginie {
+        display: none;
+      }
+
+      .ai-tool-grid {
         grid-template-columns: 1fr;
       }
 
-      .result-box {
+      .ai-preview {
         min-height: 520px;
       }
     }
 
-    @media (max-width: 620px) {
-      .ai-room-section {
-        padding: 46px 0;
+    @media (max-width: 640px) {
+      .ai-hero {
+        min-height: 420px;
+        padding: 56px 16px 82px;
       }
 
-      .option-grid {
+      .ai-hero p {
+        margin-top: 22px;
+      }
+
+      .ai-hero-cta {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .ai-options {
         grid-template-columns: 1fr;
       }
 
-      .result-box {
+      .ai-preview {
         min-height: 430px;
       }
     }
@@ -474,186 +498,147 @@
     </div>
   </header>
 
-  <main>
-    <section class="ai-room-section">
+  <main class="ai-page">
+    <section class="ai-hero">
+      <div class="ai-hero-inner">
+        <h1><span>AI</span> Interior Design Generator</h1>
+        <p>Upload a photo of your room and watch it transform into your dream space with our AI-powered interior design tools</p>
+        <a class="ai-hero-cta" href="#designer">Design My Home <span aria-hidden="true">-&gt;</span></a>
+      </div>
+
+      <div class="ai-ginie" aria-label="Ask Ginie assistant">
+        <span class="ai-ginie-close">x</span>
+        <span class="ai-ginie-label">Ask Ginie</span>
+        <span class="ai-ginie-icon" aria-hidden="true">*</span>
+      </div>
+    </section>
+
+    <section class="ai-designer" id="designer">
       <div class="container">
-        <div class="ai-room-header">
-          <h1>Create Your Dream <span>AI Interior</span></h1>
-          <p>Upload a room photo, choose the room type, finish and color palette, then preview a transformed interior concept.</p>
+        <div class="ai-designer-head">
+          <h2>Design Your Room Live</h2>
+          <p>Upload your room image, select room type, material and color. The preview updates instantly on the right side.</p>
         </div>
 
-        <div class="ai-grid">
-          <div class="ai-card">
-            <h2 class="section-title">Upload Your Room</h2>
-            <label class="upload-box">
-              <span class="upload-icon" aria-hidden="true">+</span>
-              <h3>Upload Room Photo</h3>
-              <p>Kitchen, bedroom, living room or wardrobe</p>
+        <div class="ai-tool-grid">
+          <aside class="ai-panel">
+            <h2 class="ai-panel-title">Upload Room Photo</h2>
+            <label class="ai-upload">
+              <strong>Choose Image</strong>
+              <span>JPG, PNG or WebP room photo</span>
               <input type="file" id="roomUpload" accept="image/*" />
             </label>
 
-            <div class="preview-image" id="previewImage">
-              <img id="previewImg" alt="Uploaded room preview" />
+            <h2 class="ai-panel-title">Room Type</h2>
+            <div class="ai-options room-types">
+              <button class="ai-option active" type="button" data-value="kitchen">Kitchen</button>
+              <button class="ai-option" type="button" data-value="bedroom">Bedroom</button>
+              <button class="ai-option" type="button" data-value="living room">Living Room</button>
+              <button class="ai-option" type="button" data-value="wardrobe">Wardrobe</button>
             </div>
 
-            <h2 class="section-title">Choose Room Type</h2>
-            <div class="option-grid room-types">
-              <button class="option-card active" type="button" data-value="kitchen">Kitchen</button>
-              <button class="option-card" type="button" data-value="bedroom">Bedroom</button>
-              <button class="option-card" type="button" data-value="living room">Living Room</button>
-              <button class="option-card" type="button" data-value="wardrobe">Wardrobe</button>
+            <h2 class="ai-panel-title">Material</h2>
+            <div class="ai-options materials">
+              <button class="ai-option active" type="button" data-value="laminate">Laminate</button>
+              <button class="ai-option" type="button" data-value="acrylic">Acrylic</button>
+              <button class="ai-option" type="button" data-value="pu finish">PU Finish</button>
+              <button class="ai-option" type="button" data-value="veneer">Veneer</button>
             </div>
 
-            <h2 class="section-title">Select Material</h2>
-            <div class="option-grid materials">
-              <button class="option-card active" type="button" data-value="laminate">Laminate</button>
-              <button class="option-card" type="button" data-value="acrylic">Acrylic</button>
-              <button class="option-card" type="button" data-value="pu finish">PU Finish</button>
-              <button class="option-card" type="button" data-value="veneer">Veneer</button>
+            <h2 class="ai-panel-title">Color</h2>
+            <div class="ai-colors" aria-label="Choose color theme">
+              <button class="ai-color active" type="button" style="background:#f7f3ea;" data-color="#f7f3ea" data-rgb="247, 243, 234" data-name="Warm White" aria-label="Warm white"></button>
+              <button class="ai-color" type="button" style="background:#d8c3a5;" data-color="#d8c3a5" data-rgb="216, 195, 165" data-name="Sand Beige" aria-label="Sand beige"></button>
+              <button class="ai-color" type="button" style="background:#8b5e3c;" data-color="#8b5e3c" data-rgb="139, 94, 60" data-name="Walnut Brown" aria-label="Walnut brown"></button>
+              <button class="ai-color" type="button" style="background:#4f5f55;" data-color="#4f5f55" data-rgb="79, 95, 85" data-name="Sage Grey" aria-label="Sage grey"></button>
+              <button class="ai-color" type="button" style="background:#1d1d1d;" data-color="#1d1d1d" data-rgb="29, 29, 29" data-name="Graphite Black" aria-label="Graphite black"></button>
             </div>
+          </aside>
 
-            <h2 class="section-title">Choose Color Theme</h2>
-            <div class="color-options" aria-label="Choose color theme">
-              <button class="color-box active" type="button" style="background:#f7f3ea;" data-color="#f7f3ea" data-rgb="247, 243, 234" data-name="Warm White" aria-label="Warm white"></button>
-              <button class="color-box" type="button" style="background:#d8c3a5;" data-color="#d8c3a5" data-rgb="216, 195, 165" data-name="Sand Beige" aria-label="Sand beige"></button>
-              <button class="color-box" type="button" style="background:#8b5e3c;" data-color="#8b5e3c" data-rgb="139, 94, 60" data-name="Walnut Brown" aria-label="Walnut brown"></button>
-              <button class="color-box" type="button" style="background:#4f5f55;" data-color="#4f5f55" data-rgb="79, 95, 85" data-name="Sage Grey" aria-label="Sage grey"></button>
-              <button class="color-box" type="button" style="background:#1d1d1d;" data-color="#1d1d1d" data-rgb="29, 29, 29" data-name="Graphite Black" aria-label="Graphite black"></button>
-            </div>
-
-            <button class="generate-btn" id="generateBtn" type="button">Apply Selected Design</button>
-            <div class="loading" id="loading" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-
-          <div class="result-box" id="resultBox" data-room="kitchen" data-material="laminate">
-            <img src="../images/living room design/Modern Oasis Living Room Design.jpg" class="active" id="resultImage" alt="AI interior preview" />
-            <div class="result-design-layer" id="designLayer"></div>
-            <div class="result-overlay"></div>
-            <div class="result-content">
-              <div class="preview-tags">
+          <section class="ai-preview" id="previewBox" data-room="kitchen" data-material="laminate">
+            <img src="../images/living room design/Modern Oasis Living Room Design.jpg" id="previewImage" alt="AI room design preview" />
+            <div class="ai-preview-design"></div>
+            <div class="ai-preview-copy">
+              <div class="ai-preview-tags">
                 <span id="roomTag">Kitchen</span>
                 <span id="materialTag">Laminate</span>
-                <span class="preview-color-chip" id="colorTag">Warm White</span>
+                <span id="colorTag">Warm White</span>
               </div>
-              <h2 id="previewTitle">Live Interior Preview</h2>
-              <p id="previewCopy">Upload your room photo to see it here. Material and color selections update this preview instantly.</p>
+              <h3 id="previewTitle">Live Interior Preview</h3>
+              <p id="previewText">Upload your room photo to show it here, then change material or color to update the preview.</p>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </section>
   </main>
 
   <script>
-    const uploadInput = document.getElementById('roomUpload');
+    const roomUpload = document.getElementById('roomUpload');
+    const previewBox = document.getElementById('previewBox');
     const previewImage = document.getElementById('previewImage');
-    const previewImg = document.getElementById('previewImg');
-    const generateBtn = document.getElementById('generateBtn');
-    const loading = document.getElementById('loading');
-    const resultImage = document.getElementById('resultImage');
-    const resultBox = document.getElementById('resultBox');
     const roomTag = document.getElementById('roomTag');
     const materialTag = document.getElementById('materialTag');
     const colorTag = document.getElementById('colorTag');
     const previewTitle = document.getElementById('previewTitle');
-    const previewCopy = document.getElementById('previewCopy');
-    let hasUploadedImage = false;
+    const previewText = document.getElementById('previewText');
+    let uploaded = false;
 
-    function getActiveText(selector) {
-      return document.querySelector(selector + ' .option-card.active')?.textContent.trim() || '';
+    function activeOption(group) {
+      return document.querySelector(group + ' .ai-option.active');
     }
 
-    function getActiveValue(selector) {
-      const active = document.querySelector(selector + ' .option-card.active');
-      return active?.dataset.value || active?.textContent.trim().toLowerCase() || '';
+    function updatePreview() {
+      const room = activeOption('.room-types');
+      const material = activeOption('.materials');
+      const color = document.querySelector('.ai-color.active');
+
+      previewBox.dataset.room = room.dataset.value;
+      previewBox.dataset.material = material.dataset.value;
+      previewBox.style.setProperty('--accent', color.dataset.color);
+      previewBox.style.setProperty('--accent-rgb', color.dataset.rgb);
+
+      roomTag.textContent = room.textContent.trim();
+      materialTag.textContent = material.textContent.trim();
+      colorTag.textContent = color.dataset.name;
+      previewTitle.textContent = uploaded ? 'Your Room Preview' : 'Live Interior Preview';
+      previewText.textContent = uploaded
+        ? room.textContent.trim() + ' preview with ' + material.textContent.trim() + ' in ' + color.dataset.name + '.'
+        : 'Upload your room photo to show it here, then change material or color to update the preview.';
     }
 
-    function updateLivePreview() {
-      const room = getActiveValue('.room-types');
-      const roomLabel = getActiveText('.room-types');
-      const material = getActiveValue('.materials');
-      const materialLabel = getActiveText('.materials');
-      const activeColor = document.querySelector('.color-box.active');
-      const colorName = activeColor?.dataset.name || 'Warm White';
+    document.querySelectorAll('.ai-options').forEach((group) => {
+      group.querySelectorAll('.ai-option').forEach((button) => {
+        button.addEventListener('click', () => {
+          group.querySelectorAll('.ai-option').forEach((item) => item.classList.remove('active'));
+          button.classList.add('active');
+          updatePreview();
+        });
+      });
+    });
 
-      resultBox.dataset.room = room;
-      resultBox.dataset.material = material;
-      resultBox.style.setProperty('--accent', activeColor?.dataset.color || '#f7f3ea');
-      resultBox.style.setProperty('--accent-rgb', activeColor?.dataset.rgb || '247, 243, 234');
+    document.querySelectorAll('.ai-color').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.ai-color').forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        updatePreview();
+      });
+    });
 
-      roomTag.textContent = roomLabel;
-      materialTag.textContent = materialLabel;
-      colorTag.textContent = colorName;
-      previewTitle.textContent = hasUploadedImage ? 'Your Room With Live Finish' : 'Live Interior Preview';
-      previewCopy.textContent = hasUploadedImage
-        ? roomLabel + ' preview with ' + materialLabel + ' in ' + colorName + '. Change material or color to update it live.'
-        : 'Upload your room photo to see it here. Material and color selections update this preview instantly.';
-    }
-
-    uploadInput.addEventListener('change', (event) => {
+    roomUpload.addEventListener('change', (event) => {
       const file = event.target.files[0];
       if (!file) return;
 
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
-        previewImg.src = readerEvent.target.result;
-        resultImage.src = readerEvent.target.result;
-        hasUploadedImage = true;
-        previewImage.style.display = 'block';
-        updateLivePreview();
+        uploaded = true;
+        previewImage.src = readerEvent.target.result;
+        updatePreview();
       };
       reader.readAsDataURL(file);
     });
 
-    function bindSelection(selector) {
-      const items = document.querySelectorAll(selector + ' .option-card');
-      items.forEach((item) => {
-        item.addEventListener('click', () => {
-          items.forEach((candidate) => candidate.classList.remove('active'));
-          item.classList.add('active');
-          updateLivePreview();
-        });
-      });
-    }
-
-    bindSelection('.room-types');
-    bindSelection('.materials');
-
-    document.querySelectorAll('.color-box').forEach((color) => {
-      color.addEventListener('click', () => {
-        document.querySelectorAll('.color-box').forEach((candidate) => candidate.classList.remove('active'));
-        color.classList.add('active');
-        updateLivePreview();
-      });
-    });
-
-    generateBtn.addEventListener('click', () => {
-      loading.style.display = 'block';
-      generateBtn.textContent = 'Applying...';
-      generateBtn.disabled = true;
-
-      setTimeout(() => {
-        if (!hasUploadedImage) {
-          const roomSamples = {
-            kitchen: '../images/modular kitchen design/Sleek Serenity Modern Kitchen Design.jpg',
-            bedroom: '../images/bedroom design/Simply Contemporary Master Bedroom.jpg',
-            'living room': '../images/living room design/Pastel Paradise Open-Plan Living Room Design.jpg',
-            wardrobe: '../images/wardrob design/Green Meadow Master Bedroom  Sliding Door Wardrobe Design.jpg'
-          };
-          resultImage.src = roomSamples[getActiveValue('.room-types')] || roomSamples.kitchen;
-        }
-        updateLivePreview();
-        loading.style.display = 'none';
-        generateBtn.textContent = 'Apply Selected Design';
-        generateBtn.disabled = false;
-      }, 700);
-    });
-
-    updateLivePreview();
+    updatePreview();
   </script>
 </body>
 
