@@ -279,6 +279,102 @@
       letter-spacing: 0;
     }
 
+    .ai-output {
+      position: relative;
+      padding: 54px 20px 82px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216, 26, 26, 0.1), transparent 34%),
+        linear-gradient(180deg, var(--ai-cream) 0%, #fff 100%);
+    }
+
+    .ai-output-inner {
+      width: min(100%, 1660px);
+      margin: 0 auto;
+    }
+
+    .ai-output h2 {
+      margin: 0 0 48px;
+      color: var(--ai-text);
+      text-align: center;
+      font-size: clamp(2.15rem, 3.6vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .ai-output-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .ai-output-card {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 34px;
+      box-shadow: 0 24px 72px rgba(17, 17, 17, 0.12);
+      background: #111;
+    }
+
+    .ai-output-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      transition: transform 360ms ease;
+    }
+
+    .ai-output-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .ai-output-content {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 24px;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      padding: 22px 24px 24px;
+      border-radius: 26px;
+      background: rgba(17, 17, 17, 0.54);
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(16px);
+    }
+
+    .ai-output-content h3 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(1.2rem, 1.6vw, 1.65rem);
+      line-height: 1.15;
+    }
+
+    .ai-output-content p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(0.95rem, 1.2vw, 1.25rem);
+      line-height: 1.35;
+    }
+
+    .ai-output-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      margin-top: 4px;
+      padding: 0 28px;
+      border-radius: 10px;
+      background: var(--ai-red);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      box-shadow: 0 14px 28px rgba(216, 26, 26, 0.28);
+    }
+
     @media (max-width: 980px) {
       .ai-hero {
         min-height: 460px;
@@ -297,6 +393,17 @@
         grid-template-columns: 1fr;
         max-width: 680px;
         margin: 0 auto;
+      }
+
+      .ai-output-grid {
+        grid-template-columns: 1fr;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .ai-output-card,
+      .ai-output-card img {
+        min-height: 430px;
       }
     }
 
@@ -322,6 +429,27 @@
       .ai-step {
         min-height: 205px;
         padding: 28px 20px;
+      }
+
+      .ai-output {
+        padding: 42px 16px 62px;
+      }
+
+      .ai-output h2 {
+        margin-bottom: 28px;
+      }
+
+      .ai-output-card,
+      .ai-output-card img {
+        min-height: 360px;
+      }
+
+      .ai-output-content {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 18px 16px 20px;
+        border-radius: 20px;
       }
     }
   </style>
@@ -396,6 +524,68 @@
               <p>Watch your home transform instantly with AI-generated designs.</p>
             </div>
             <span class="ai-step-number">3</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-output">
+      <div class="ai-output-inner">
+        <h2>Outputs That Inspire, Results You Can Achieve.</h2>
+
+        <div class="ai-output-grid">
+          <article class="ai-output-card">
+            <img src="../images/ai/kitchen.webp" alt="AI kitchen designer output" />
+            <div class="ai-output-content">
+              <h3>AI Kitchen Designer</h3>
+              <p>Design a stunning kitchen with AI-powered layouts in seconds.</p>
+              <a class="ai-output-btn" href="../index.html#lead-form">Design My Kitchen <span aria-hidden="true">-&gt;</span></a>
+            </div>
+          </article>
+
+          <article class="ai-output-card">
+            <img src="../images/ai/livingRoom.webp" alt="AI living room designer output" />
+            <div class="ai-output-content">
+              <h3>AI Living Room Designer</h3>
+              <p>Create a stylish living space tailored to your taste using AI.</p>
+              <a class="ai-output-btn" href="../index.html#lead-form">Design My Living Room <span aria-hidden="true">-&gt;</span></a>
+            </div>
+          </article>
+
+          <article class="ai-output-card">
+            <img src="../images/ai/bedroom.webp" alt="AI bedroom designer output" />
+            <div class="ai-output-content">
+              <h3>AI Bedroom Designer</h3>
+              <p>Turn your bedroom into a calm, personalized retreat.</p>
+              <a class="ai-output-btn" href="../index.html#lead-form">Design My Bedroom <span aria-hidden="true">-&gt;</span></a>
+            </div>
+          </article>
+
+          <article class="ai-output-card">
+            <img src="../images/ai/kidsRoom.webp" alt="AI kids room designer output" />
+            <div class="ai-output-content">
+              <h3>AI Kids Room Designer</h3>
+              <p>Plan a fun, practical kids room with smart design ideas.</p>
+              <a class="ai-output-btn" href="../index.html#lead-form">Design Kids Room <span aria-hidden="true">-&gt;</span></a>
+            </div>
+          </article>
+
+          <article class="ai-output-card">
+            <img src="../images/ai/tvUnit.webp" alt="AI TV unit designer output" />
+            <div class="ai-output-content">
+              <h3>AI TV Unit Designer</h3>
+              <p>Visualize modern entertainment walls and storage units.</p>
+              <a class="ai-output-btn" href="../index.html#lead-form">Design My TV Unit <span aria-hidden="true">-&gt;</span></a>
+            </div>
+          </article>
+
+          <article class="ai-output-card">
+            <img src="../images/ai/ceiling.webp" alt="AI ceiling designer output" />
+            <div class="ai-output-content">
+              <h3>AI Ceiling Designer</h3>
+              <p>Explore false ceiling concepts, lighting moods and finishes.</p>
+              <a class="ai-output-btn" href="../index.html#lead-form">Design My Ceiling <span aria-hidden="true">-&gt;</span></a>
+            </div>
           </article>
         </div>
       </div>
