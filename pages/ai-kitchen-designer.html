@@ -199,6 +199,16 @@
       font-size: 1.18rem;
       font-weight: 800;
       cursor: pointer;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .kitchen-design-btn:not(:disabled):hover {
+      transform: translateY(-1px);
+    }
+
+    .kitchen-design-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.58;
     }
 
     .kitchen-preview {
@@ -318,6 +328,103 @@
       display: block;
     }
 
+    .kitchen-clear-preview {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 3;
+      display: none;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.16);
+    }
+
+    .kitchen-preview.has-image .kitchen-clear-preview {
+      display: grid;
+      place-items: center;
+    }
+
+    .kitchen-result-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(17, 17, 17, 0.72);
+    }
+
+    .kitchen-result-overlay.open {
+      display: grid;
+    }
+
+    .kitchen-result-modal {
+      position: relative;
+      width: min(100%, 980px);
+      overflow: hidden;
+      border-radius: 18px;
+      background: #111;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+    }
+
+    .kitchen-result-modal img {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      background: #111;
+    }
+
+    .kitchen-result-caption {
+      padding: 16px 20px;
+      background: #fff;
+      color: #111;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .kitchen-result-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .kitchen-toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 3100;
+      max-width: 320px;
+      display: none;
+      padding: 13px 16px;
+      border-radius: 12px;
+      background: #111;
+      color: #fff;
+      box-shadow: 0 18px 44px rgba(17, 17, 17, 0.22);
+      font-size: 0.94rem;
+      line-height: 1.4;
+    }
+
+    .kitchen-toast.show {
+      display: block;
+    }
+
     .ai-ginie {
       position: fixed;
       right: 0;
@@ -420,7 +527,7 @@
       <div>
         <h2 class="kitchen-column-title">Upload Your Kitchen</h2>
         <label class="kitchen-upload">
-          <input type="file" id="kitchenUpload" accept="image/*" />
+          <input type="file" id="kitchenUpload" accept="image/jpeg,image/jpg,image/png,image/webp" />
           <span class="kitchen-upload-content">
             <span class="kitchen-upload-icon" aria-hidden="true">
               <svg viewBox="0 0 64 64">
@@ -452,12 +559,13 @@
           </button>
         </div>
 
-        <button class="kitchen-design-btn" id="kitchenDesignBtn" type="button">Design My Kitchen -></button>
+        <button class="kitchen-design-btn" id="kitchenDesignBtn" type="button" disabled>Design My Kitchen -></button>
       </div>
 
       <div>
         <h2 class="kitchen-column-title">Your Kitchen Design Preview</h2>
         <section class="kitchen-preview" id="kitchenPreview" data-style="modern">
+          <button class="kitchen-clear-preview" id="kitchenClearPreview" type="button" aria-label="Remove uploaded image">x</button>
           <img id="kitchenPreviewImage" alt="Uploaded kitchen preview" />
           <div class="kitchen-preview-empty">
             <span class="kitchen-preview-icon" aria-hidden="true">
@@ -479,12 +587,30 @@
     <span class="ai-ginie-icon" aria-hidden="true">*</span>
   </div>
 
+  <div class="kitchen-result-overlay" id="kitchenResultOverlay" aria-hidden="true">
+    <div class="kitchen-result-modal" role="dialog" aria-modal="true" aria-label="Generated kitchen design">
+      <button class="kitchen-result-close" id="kitchenResultClose" type="button" aria-label="Close generated preview">x</button>
+      <img id="kitchenResultImage" alt="Generated kitchen design" />
+      <div class="kitchen-result-caption" id="kitchenResultCaption">Kitchen design generated.</div>
+    </div>
+  </div>
+
+  <div class="kitchen-toast" id="kitchenToast" role="status" aria-live="polite"></div>
+
   <script>
     const kitchenUpload = document.getElementById('kitchenUpload');
     const kitchenPreview = document.getElementById('kitchenPreview');
     const kitchenPreviewImage = document.getElementById('kitchenPreviewImage');
     const kitchenPreviewBadge = document.getElementById('kitchenPreviewBadge');
     const kitchenDesignBtn = document.getElementById('kitchenDesignBtn');
+    const kitchenClearPreview = document.getElementById('kitchenClearPreview');
+    const kitchenResultOverlay = document.getElementById('kitchenResultOverlay');
+    const kitchenResultImage = document.getElementById('kitchenResultImage');
+    const kitchenResultCaption = document.getElementById('kitchenResultCaption');
+    const kitchenResultClose = document.getElementById('kitchenResultClose');
+    const kitchenToast = document.getElementById('kitchenToast');
+    let uploadedKitchenData = '';
+    let toastTimer;
 
     function selectedStyle() {
       return document.querySelector('.kitchen-style.active')?.dataset.style || 'Modern';
@@ -494,6 +620,24 @@
       const style = selectedStyle();
       kitchenPreview.dataset.style = style.toLowerCase();
       kitchenPreviewBadge.textContent = message || style + ' kitchen preview ready.';
+    }
+
+    function showToast(message) {
+      window.clearTimeout(toastTimer);
+      kitchenToast.textContent = message;
+      kitchenToast.classList.add('show');
+      toastTimer = window.setTimeout(() => {
+        kitchenToast.classList.remove('show');
+      }, 2600);
+    }
+
+    function resetKitchenUpload() {
+      uploadedKitchenData = '';
+      kitchenUpload.value = '';
+      kitchenPreviewImage.removeAttribute('src');
+      kitchenPreview.classList.remove('has-image');
+      kitchenDesignBtn.disabled = true;
+      kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen preview ready.';
     }
 
     document.querySelectorAll('.kitchen-style').forEach((button) => {
@@ -508,17 +652,57 @@
       const file = event.target.files[0];
       if (!file) return;
 
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!validTypes.includes(file.type)) {
+        resetKitchenUpload();
+        showToast('Please upload a PNG, JPG or WebP kitchen image.');
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        resetKitchenUpload();
+        showToast('Image must be 10 MB or smaller.');
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
-        kitchenPreviewImage.src = readerEvent.target.result;
+        uploadedKitchenData = readerEvent.target.result;
+        kitchenPreviewImage.src = uploadedKitchenData;
         kitchenPreview.classList.add('has-image');
+        kitchenDesignBtn.disabled = false;
         applyStyleToPreview();
+        showToast('Kitchen image uploaded. Choose a style and generate.');
       };
       reader.readAsDataURL(file);
     });
 
     kitchenDesignBtn.addEventListener('click', () => {
-      applyStyleToPreview(selectedStyle() + ' kitchen design applied.');
+      if (!uploadedKitchenData) {
+        showToast('Upload a kitchen image first.');
+        return;
+      }
+
+      const style = selectedStyle();
+      applyStyleToPreview(style + ' kitchen design applied.');
+      kitchenResultImage.src = uploadedKitchenData;
+      kitchenResultCaption.textContent = style + ' kitchen design generated.';
+      kitchenResultOverlay.classList.add('open');
+      kitchenResultOverlay.setAttribute('aria-hidden', 'false');
+    });
+
+    kitchenClearPreview.addEventListener('click', resetKitchenUpload);
+
+    kitchenResultClose.addEventListener('click', () => {
+      kitchenResultOverlay.classList.remove('open');
+      kitchenResultOverlay.setAttribute('aria-hidden', 'true');
+    });
+
+    kitchenResultOverlay.addEventListener('click', (event) => {
+      if (event.target === kitchenResultOverlay) {
+        kitchenResultOverlay.classList.remove('open');
+        kitchenResultOverlay.setAttribute('aria-hidden', 'true');
+      }
     });
 
     applyStyleToPreview();
