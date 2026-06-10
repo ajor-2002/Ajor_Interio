@@ -2289,4 +2289,124 @@ document.addEventListener('DOMContentLoaded', function () {
 
   scrollToHashTarget();
 
+  const aiPreviewForm = document.querySelector('[data-ai-preview-form]');
+  if (aiPreviewForm) {
+    const state = {
+      room: 'kitchen',
+      style: 'modern',
+      laminate: 'wood',
+      color: '#9d5a36',
+      colorName: 'Walnut'
+    };
+
+    const rooms = {
+      kitchen: {
+        label: 'Kitchen',
+        image: '../images/modular kitchen design/Sleek Serenity Modern Kitchen Design.jpg',
+        reference: '../images/modular kitchen design/Dark Elegance Kitchen Design.jpg'
+      },
+      living: {
+        label: 'Living Room',
+        image: '../images/living room design/Modern Oasis Living Room Design.jpg',
+        reference: '../images/living room design/Teal Treasures Living Room Design.jpg'
+      },
+      bedroom: {
+        label: 'Bedroom',
+        image: '../images/bedroom design/Simply Contemporary Master Bedroom.jpg',
+        reference: '../images/bedroom design/Spectacularly Beige Master Bedroom.jpg'
+      }
+    };
+
+    const styleLabels = {
+      modern: 'Modern',
+      luxury: 'Luxury',
+      minimal: 'Minimal',
+      warm: 'Warm'
+    };
+
+    const laminateLabels = {
+      wood: 'Walnut Wood',
+      matte: 'Matte Finish',
+      gloss: 'High Gloss',
+      marble: 'Marble Look'
+    };
+
+    const uploadInput = document.querySelector('[data-ai-upload]');
+    const uploadedImage = document.querySelector('[data-ai-upload-preview]');
+    const roomImage = document.querySelector('[data-ai-room-image]');
+    const referenceImage = document.querySelector('[data-ai-reference]');
+    const colorLayer = document.querySelector('[data-ai-color-layer]');
+    const laminateLayer = document.querySelector('[data-ai-laminate-layer]');
+    const captionTitle = document.querySelector('[data-ai-caption-title]');
+    const captionMeta = document.querySelector('[data-ai-caption-meta]');
+    const referenceText = document.querySelector('[data-ai-reference-text]');
+    let uploadedUrl = '';
+
+    const setActive = (selector, activeElement) => {
+      document.querySelectorAll(selector).forEach((button) => {
+        button.classList.toggle('is-active', button === activeElement);
+      });
+    };
+
+    const renderAiPreview = () => {
+      const room = rooms[state.room];
+      roomImage.src = room.image;
+      referenceImage.src = room.reference;
+      colorLayer.style.setProperty('--ai-preview-color', state.color);
+      laminateLayer.dataset.finish = state.laminate;
+      captionTitle.textContent = `${styleLabels[state.style]} ${room.label} Preview`;
+      captionMeta.textContent = `${laminateLabels[state.laminate]} laminate with ${state.colorName} palette`;
+      referenceText.textContent = `${room.label} style inspiration from your gallery.`;
+    };
+
+    document.querySelectorAll('[data-ai-room]').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.room = button.dataset.aiRoom;
+        setActive('[data-ai-room]', button);
+        renderAiPreview();
+      });
+    });
+
+    document.querySelectorAll('[data-ai-style]').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.style = button.dataset.aiStyle;
+        setActive('[data-ai-style]', button);
+        renderAiPreview();
+      });
+    });
+
+    document.querySelectorAll('[data-ai-laminate]').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.laminate = button.dataset.aiLaminate;
+        setActive('[data-ai-laminate]', button);
+        renderAiPreview();
+      });
+    });
+
+    document.querySelectorAll('[data-ai-color]').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.color = button.dataset.aiColor;
+        state.colorName = button.textContent.trim();
+        setActive('[data-ai-color]', button);
+        renderAiPreview();
+      });
+    });
+
+    uploadInput.addEventListener('change', () => {
+      const file = uploadInput.files && uploadInput.files[0];
+      if (!file) return;
+
+      if (uploadedUrl) {
+        URL.revokeObjectURL(uploadedUrl);
+      }
+
+      uploadedUrl = URL.createObjectURL(file);
+      uploadedImage.src = uploadedUrl;
+      uploadedImage.hidden = false;
+      renderAiPreview();
+    });
+
+    renderAiPreview();
+  }
+
 });
