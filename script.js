@@ -410,24 +410,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  if (!document.querySelector('.mobile-conversion-bar')) {
-    const connectIconPath = inPagesFolder ? '../images/whatsapp.png' : 'images/whatsapp.png';
-    const mobileConversionBar = document.createElement('div');
-    mobileConversionBar.className = 'mobile-conversion-bar';
-    mobileConversionBar.setAttribute('aria-label', 'Quick connect action');
-    mobileConversionBar.innerHTML = `
-      <button type="button" data-mobile-connect aria-label="Open connect options">
-        <img src="${connectIconPath}" alt="" />
-        <span>Connect</span>
-      </button>
-    `;
-    document.body.appendChild(mobileConversionBar);
-
-    mobileConversionBar.querySelector('[data-mobile-connect]')?.addEventListener('click', () => {
-      document.querySelector('.online-pill')?.click();
-    });
-  }
-
   document
     .querySelectorAll('.faq-list details, .interior-faq-list details, .ajor-offering-faq-list details, .kitchen-calc-faq-list details')
     .forEach((faqItem) => {
