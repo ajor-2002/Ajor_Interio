@@ -164,6 +164,121 @@
       box-shadow: 0 16px 28px rgba(216, 26, 26, 0.24);
     }
 
+    .ai-how {
+      position: relative;
+      padding: 76px 20px 120px;
+      background:
+        radial-gradient(circle at 52% 92%, rgba(216, 26, 26, 0.14), transparent 34%),
+        linear-gradient(180deg, var(--ai-warm) 0%, var(--ai-cream) 100%);
+      isolation: isolate;
+    }
+
+    .ai-how::before,
+    .ai-how::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .ai-how::before {
+      opacity: 0.95;
+      background-image:
+        repeating-radial-gradient(ellipse 590px 140px at 3% 15%, transparent 0 16px, rgba(216, 26, 26, 0.1) 17px 18px),
+        repeating-radial-gradient(ellipse 650px 150px at 54% -4%, transparent 0 16px, rgba(111, 111, 111, 0.1) 17px 18px),
+        repeating-radial-gradient(ellipse 720px 150px at 99% 18%, transparent 0 16px, rgba(216, 26, 26, 0.1) 17px 18px);
+    }
+
+    .ai-how::after {
+      opacity: 0.68;
+      background-image:
+        repeating-radial-gradient(ellipse 440px 120px at 3% 64%, transparent 0 16px, rgba(216, 26, 26, 0.11) 17px 18px),
+        repeating-radial-gradient(ellipse 560px 140px at 91% 2%, transparent 0 16px, rgba(111, 111, 111, 0.09) 17px 18px);
+    }
+
+    .ai-how-inner {
+      width: min(100%, 1650px);
+      margin: 0 auto;
+    }
+
+    .ai-how h2 {
+      margin: 0 0 52px;
+      color: var(--ai-text);
+      text-align: center;
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .ai-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .ai-step {
+      position: relative;
+      min-height: 285px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 44px 34px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 28px 80px rgba(17, 17, 17, 0.08);
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .ai-step-icon {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 24px;
+      color: var(--ai-red);
+    }
+
+    .ai-step-icon svg {
+      width: 64px;
+      height: 64px;
+      fill: currentColor;
+      filter: drop-shadow(0 10px 18px rgba(216, 26, 26, 0.16));
+    }
+
+    .ai-step h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 16px;
+      color: var(--ai-text);
+      font-size: clamp(1.3rem, 1.6vw, 1.7rem);
+      line-height: 1.2;
+    }
+
+    .ai-step p {
+      position: relative;
+      z-index: 1;
+      max-width: 380px;
+      margin: 0 auto;
+      color: #657097;
+      font-size: clamp(1rem, 1.25vw, 1.25rem);
+      line-height: 1.35;
+    }
+
+    .ai-step-number {
+      position: absolute;
+      right: -6px;
+      bottom: -34px;
+      color: rgba(216, 26, 26, 0.09);
+      font-size: clamp(7rem, 10vw, 12rem);
+      font-weight: 900;
+      line-height: 0.8;
+      letter-spacing: 0;
+    }
+
     @media (max-width: 980px) {
       .ai-hero {
         min-height: 460px;
@@ -172,6 +287,16 @@
 
       .ai-ginie {
         display: none;
+      }
+
+      .ai-how {
+        padding: 64px 20px 80px;
+      }
+
+      .ai-steps {
+        grid-template-columns: 1fr;
+        max-width: 680px;
+        margin: 0 auto;
       }
     }
 
@@ -188,6 +313,15 @@
       .ai-hero-cta {
         width: 100%;
         max-width: 280px;
+      }
+
+      .ai-how h2 {
+        margin-bottom: 32px;
+      }
+
+      .ai-step {
+        min-height: 245px;
+        padding: 36px 22px;
       }
     }
   </style>
@@ -213,7 +347,58 @@
         <a class="ai-hero-cta" href="../index.html#lead-form">Design My Home <span aria-hidden="true">-&gt;</span></a>
       </div>
 
-   
+      <div class="ai-ginie" aria-label="Ask Ginie assistant">
+        <span class="ai-ginie-close">x</span>
+        <span class="ai-ginie-label">Ask Ginie</span>
+        <span class="ai-ginie-icon" aria-hidden="true">*</span>
+      </div>
+    </section>
+
+    <section class="ai-how">
+      <div class="ai-how-inner">
+        <h2>How It Works?</h2>
+
+        <div class="ai-steps">
+          <article class="ai-step">
+            <div>
+              <span class="ai-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img">
+                  <path d="M10 12h36a6 6 0 0 1 6 6v18.1a15.9 15.9 0 0 0-8-2.1c-8.8 0-16 7.2-16 16H10a6 6 0 0 1-6-6V18a6 6 0 0 1 6-6Zm5 31h16.8L23 31.2a2 2 0 0 0-3.1-.1L15 37.3l-2.2-2.8a2 2 0 0 0-3.2.1L6.5 39v5a3.5 3.5 0 0 0 3.5 3.5h18.3A16 16 0 0 1 31.1 43H15Zm21-18a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm8 13a12 12 0 1 1 0 24 12 12 0 0 1 0-24Zm1.5 5h-3v5h-5v3h5v5h3v-5h5v-3h-5v-5Z" />
+                </svg>
+              </span>
+              <h3>Upload Image</h3>
+              <p>Upload a photo of your existing Interior image or a reference image.</p>
+            </div>
+            <span class="ai-step-number">1</span>
+          </article>
+
+          <article class="ai-step">
+            <div>
+              <span class="ai-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img">
+                  <path d="M10 8h18a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Zm26 4a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4V12ZM10 36h14a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V40a4 4 0 0 1 4-4Zm30 0h14a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4V40a4 4 0 0 1 4-4Z" />
+                </svg>
+              </span>
+              <h3>Choose Your Style</h3>
+              <p>Choose from curated styles, colours, and finishes.</p>
+            </div>
+            <span class="ai-step-number">2</span>
+          </article>
+
+          <article class="ai-step">
+            <div>
+              <span class="ai-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img">
+                  <path d="m46.4 5.6 12 12-31 31-12-12 31-31Zm-34.8 35 12 12-6.9 2.4-7.5-7.5 2.4-6.9ZM14 8l2.3 5.7L22 16l-5.7 2.3L14 24l-2.3-5.7L6 16l5.7-2.3L14 8Zm36 30 1.9 4.6L56 44l-4.1 1.4L50 50l-1.9-4.6L44 44l4.1-1.4L50 38Zm-11-8 1.5 3.5L44 35l-3.5 1.5L39 40l-1.5-3.5L34 35l3.5-1.5L39 30Z" />
+                </svg>
+              </span>
+              <h3>See Your New Home</h3>
+              <p>Watch your home transform instantly with AI-generated designs.</p>
+            </div>
+            <span class="ai-step-number">3</span>
+          </article>
+        </div>
+      </div>
     </section>
   </main>
 
