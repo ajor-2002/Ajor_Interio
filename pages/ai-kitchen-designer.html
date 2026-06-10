@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Kitchen Design Generator | Ajor Interio</title>
+  <link rel="icon" href="../images/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root {
+      --kitchen-text: #111111;
+      --kitchen-muted: #4f4f4f;
+      --kitchen-red: #d81a1a;
+      --kitchen-soft: #faf7f4;
+      --kitchen-line: rgba(216, 26, 26, 0.35);
+      --kitchen-blue-line: rgba(91, 133, 220, 0.55);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 94%, rgba(216, 26, 26, 0.12), transparent 26%),
+        linear-gradient(180deg, #f7fbff 0%, var(--kitchen-soft) 100%);
+      color: var(--kitchen-text);
+    }
+
+    .kitchen-ai-page {
+      min-height: 100vh;
+      padding: 28px clamp(18px, 3.5vw, 60px) 48px;
+    }
+
+    .kitchen-ai-top {
+      display: grid;
+      grid-template-columns: 120px 1fr 120px;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    .kitchen-back {
+      color: var(--kitchen-text);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .kitchen-ai-title {
+      margin: 0;
+      color: var(--kitchen-text);
+      text-align: center;
+      font-size: clamp(1.8rem, 3vw, 2.55rem);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .kitchen-ai-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.6fr);
+      gap: 30px;
+      align-items: start;
+    }
+
+    .kitchen-column-title {
+      margin: 0 0 26px;
+      color: var(--kitchen-text);
+      text-align: center;
+      font-size: 1.28rem;
+      line-height: 1.2;
+    }
+
+    .kitchen-upload {
+      position: relative;
+      min-height: 325px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 36px;
+      padding: 28px;
+      border: 1.5px dashed rgba(91, 133, 220, 0.72);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.48);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .kitchen-upload input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .kitchen-upload-content {
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+    }
+
+    .kitchen-upload-icon,
+    .kitchen-preview-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      color: #4f6fae;
+    }
+
+    .kitchen-upload-icon svg,
+    .kitchen-preview-icon svg {
+      width: 54px;
+      height: 54px;
+      fill: currentColor;
+    }
+
+    .kitchen-upload strong {
+      color: var(--kitchen-text);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .kitchen-upload small {
+      color: var(--kitchen-text);
+      font-size: 0.88rem;
+    }
+
+    .kitchen-style-title {
+      margin: 0 0 24px;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
+    .kitchen-style-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .kitchen-style {
+      position: relative;
+      min-height: 82px;
+      padding: 18px 16px;
+      border: 1.5px solid rgba(91, 133, 220, 0.72);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.45);
+      color: var(--kitchen-text);
+      cursor: pointer;
+    }
+
+    .kitchen-style.active {
+      border-color: #ef5277;
+      background: rgba(239, 82, 119, 0.12);
+    }
+
+    .kitchen-style.active::before {
+      content: "";
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ef5277;
+      transform: translateX(-50%);
+    }
+
+    .kitchen-style.active::after {
+      content: "✓";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      transform: translateX(-50%);
+    }
+
+    .kitchen-style strong,
+    .kitchen-style span {
+      display: block;
+      text-align: center;
+    }
+
+    .kitchen-style strong {
+      font-size: 1.18rem;
+      line-height: 1.2;
+    }
+
+    .kitchen-style span {
+      margin-top: 3px;
+      font-size: 0.9rem;
+    }
+
+    .kitchen-design-btn {
+      width: 100%;
+      min-height: 58px;
+      border: 0;
+      border-radius: 10px;
+      background: #e98da5;
+      color: #fff;
+      font-size: 1.18rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .kitchen-preview {
+      position: relative;
+      min-height: 670px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 32px;
+      border: 1.5px dashed rgba(91, 133, 220, 0.72);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.48);
+    }
+
+    .kitchen-preview img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 220ms ease;
+    }
+
+    .kitchen-preview.has-image img {
+      opacity: 1;
+    }
+
+    .kitchen-preview-empty {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .kitchen-preview.has-image .kitchen-preview-empty {
+      display: none;
+    }
+
+    .kitchen-preview-empty p {
+      margin: 0;
+      color: var(--kitchen-text);
+      font-size: 0.98rem;
+    }
+
+    .kitchen-preview-badge {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      display: none;
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: rgba(17, 17, 17, 0.62);
+      color: #fff;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      z-index: 2;
+    }
+
+    .kitchen-preview.has-image .kitchen-preview-badge {
+      display: block;
+    }
+
+    .ai-ginie {
+      position: fixed;
+      right: 0;
+      top: 42%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .ai-ginie-close {
+      position: absolute;
+      top: -14px;
+      left: -10px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #111;
+      font-size: 12px;
+    }
+
+    .ai-ginie-label {
+      padding: 8px 10px;
+      border-radius: 5px;
+      background: #fff;
+      color: #2d2d2d;
+      font-size: 0.86rem;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(17, 17, 17, 0.12);
+    }
+
+    .ai-ginie-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px 0 0 14px;
+      background: linear-gradient(135deg, var(--kitchen-red), #111);
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 980px) {
+      .kitchen-ai-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .kitchen-back {
+        justify-self: start;
+      }
+
+      .kitchen-ai-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kitchen-preview {
+        min-height: 480px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .kitchen-ai-page {
+        padding: 22px 16px 38px;
+      }
+
+      .kitchen-style-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .kitchen-upload {
+        min-height: 250px;
+      }
+
+      .kitchen-preview {
+        min-height: 360px;
+      }
+
+      .ai-ginie {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="kitchen-ai-page">
+    <div class="kitchen-ai-top">
+      <a class="kitchen-back" href="ai-room-designer.html">Back</a>
+      <h1 class="kitchen-ai-title">Free AI Kitchen Design Generator</h1>
+      <span></span>
+    </div>
+
+    <section class="kitchen-ai-grid">
+      <div>
+        <h2 class="kitchen-column-title">Upload Your Kitchen</h2>
+        <label class="kitchen-upload">
+          <input type="file" id="kitchenUpload" accept="image/*" />
+          <span class="kitchen-upload-content">
+            <span class="kitchen-upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <path d="M10 12h36a6 6 0 0 1 6 6v18.1a15.9 15.9 0 0 0-8-2.1c-8.8 0-16 7.2-16 16H10a6 6 0 0 1-6-6V18a6 6 0 0 1 6-6Zm5 31h16.8L23 31.2a2 2 0 0 0-3.1-.1L15 37.3l-2.2-2.8a2 2 0 0 0-3.2.1L6.5 39v5a3.5 3.5 0 0 0 3.5 3.5h18.3A16 16 0 0 1 31.1 43H15Zm21-18a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm8 13a12 12 0 1 1 0 24 12 12 0 0 1 0-24Zm1.5 5h-3v5h-5v3h5v5h3v-5h5v-3h-5v-5Z" />
+              </svg>
+            </span>
+            <strong>Upload a Kitchen Photo</strong>
+            <small>Works best with a clear kitchen image PNG, JPG • Max 10 MB</small>
+          </span>
+        </label>
+
+        <h2 class="kitchen-style-title">Choose Style</h2>
+        <div class="kitchen-style-grid">
+          <button class="kitchen-style active" type="button" data-style="Modern">
+            <strong>Modern</strong>
+            <span>Clean lines, sleek finishes</span>
+          </button>
+          <button class="kitchen-style" type="button" data-style="Traditional">
+            <strong>Traditional</strong>
+            <span>Warm, classic, timeless</span>
+          </button>
+          <button class="kitchen-style" type="button" data-style="Minimalist">
+            <strong>Minimalist</strong>
+            <span>Simple, clutter-free design</span>
+          </button>
+          <button class="kitchen-style" type="button" data-style="Luxury">
+            <strong>Luxury</strong>
+            <span>Premium materials, high-end feel</span>
+          </button>
+        </div>
+
+        <button class="kitchen-design-btn" id="kitchenDesignBtn" type="button">Design My Kitchen -></button>
+      </div>
+
+      <div>
+        <h2 class="kitchen-column-title">Your Kitchen Design Preview</h2>
+        <section class="kitchen-preview" id="kitchenPreview">
+          <img id="kitchenPreviewImage" alt="Uploaded kitchen preview" />
+          <div class="kitchen-preview-empty">
+            <span class="kitchen-preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <path d="M10 12h44a6 6 0 0 1 6 6v28a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V18a6 6 0 0 1 6-6Zm6 31h36L39.5 27.8a2 2 0 0 0-3.1-.1L27 39.4l-5.2-6.8a2 2 0 0 0-3.2.1L10.8 43H16Zm30-19a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" />
+              </svg>
+            </span>
+            <p>Upload an image and choose a style to see your kitchen transformed.</p>
+          </div>
+          <div class="kitchen-preview-badge" id="kitchenPreviewBadge">Modern kitchen preview ready.</div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div class="ai-ginie" aria-label="Ask Ginie assistant">
+    <span class="ai-ginie-close">x</span>
+    <span class="ai-ginie-label">Ask Ginie</span>
+    <span class="ai-ginie-icon" aria-hidden="true">*</span>
+  </div>
+
+  <script>
+    const kitchenUpload = document.getElementById('kitchenUpload');
+    const kitchenPreview = document.getElementById('kitchenPreview');
+    const kitchenPreviewImage = document.getElementById('kitchenPreviewImage');
+    const kitchenPreviewBadge = document.getElementById('kitchenPreviewBadge');
+    const kitchenDesignBtn = document.getElementById('kitchenDesignBtn');
+
+    function selectedStyle() {
+      return document.querySelector('.kitchen-style.active')?.dataset.style || 'Modern';
+    }
+
+    document.querySelectorAll('.kitchen-style').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.kitchen-style').forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen preview ready.';
+      });
+    });
+
+    kitchenUpload.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        kitchenPreviewImage.src = readerEvent.target.result;
+        kitchenPreview.classList.add('has-image');
+        kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen preview ready.';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    kitchenDesignBtn.addEventListener('click', () => {
+      kitchenPreviewBadge.textContent = selectedStyle() + ' kitchen design applied.';
+    });
+  </script>
+</body>
+
+</html>
