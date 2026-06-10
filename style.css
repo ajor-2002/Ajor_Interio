@@ -11973,6 +11973,16 @@ body.no-scroll {
   border: 1px solid #9bbcff;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.58);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.user-design-card:hover,
+.user-design-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: #e94f77;
+  box-shadow: 0 18px 38px rgba(23, 35, 59, 0.12);
+  outline: none;
 }
 
 .user-design-card[hidden] {
@@ -12075,6 +12085,174 @@ body.no-scroll {
 
 .user-design-date time {
   color: #5872b0;
+}
+
+.user-design-comparison-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.62);
+}
+
+.user-design-comparison-modal.is-open {
+  display: flex;
+}
+
+.user-design-comparison-panel {
+  width: min(100%, 1650px);
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 30px 90px rgba(15, 23, 42, 0.34);
+}
+
+.user-design-comparison-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 24px 26px;
+  border-bottom: 1px solid #a8b9f5;
+}
+
+.user-design-comparison-header h2 {
+  margin: 0;
+  color: #202124;
+  font-size: clamp(1.6rem, 2.3vw, 2.25rem);
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.user-design-comparison-meta {
+  margin: 10px 0 0;
+  color: #2f3642;
+  font-size: 1rem;
+}
+
+.user-design-comparison-meta::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #7b95d1;
+  box-shadow: 0 0 0 3px rgba(123, 149, 209, 0.18);
+  vertical-align: 1px;
+}
+
+.user-design-comparison-close {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  background: #fff;
+  color: #111827;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.user-design-comparison-body {
+  padding: 20px 24px 16px;
+}
+
+.user-design-comparison-stage {
+  --compare-position: 50%;
+  position: relative;
+  width: 100%;
+  height: min(72vh, 688px);
+  overflow: hidden;
+  border-radius: 22px;
+  background: #eef4ff;
+  touch-action: none;
+  user-select: none;
+  cursor: ew-resize;
+}
+
+.user-design-comparison-before,
+.user-design-comparison-after {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+}
+
+.user-design-comparison-after-wrap {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--compare-position);
+  overflow: hidden;
+  border-right: 3px solid rgba(255, 255, 255, 0.96);
+}
+
+.user-design-comparison-after {
+  width: calc(100vw - 48px);
+  max-width: calc(min(100vw - 48px, 1650px) - 48px);
+}
+
+.user-design-comparison-label {
+  position: absolute;
+  bottom: 20px;
+  min-height: 31px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.user-design-comparison-label-before {
+  left: 20px;
+  background: #1f2933;
+}
+
+.user-design-comparison-label-after {
+  right: 20px;
+  background: #e94f77;
+}
+
+.user-design-comparison-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--compare-position);
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #5872b0;
+  font-size: 1.15rem;
+  font-weight: 900;
+  box-shadow: 0 12px 28px rgba(23, 35, 59, 0.18);
+  transform: translate(-50%, -50%);
+  cursor: ew-resize;
+}
+
+.user-design-comparison-handle:focus-visible {
+  outline: 3px solid #e94f77;
+  outline-offset: 4px;
+}
+
+.user-design-comparison-help {
+  margin: 12px 0 0;
+  color: #5872b0;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
 .customer-stories-gallery {
@@ -12481,6 +12659,63 @@ body.no-scroll {
   .user-design-meta,
   .user-design-date {
     font-size: 0.9rem;
+  }
+
+  .user-design-comparison-modal {
+    padding: 10px;
+  }
+
+  .user-design-comparison-panel {
+    max-height: calc(100vh - 20px);
+    border-radius: 18px;
+  }
+
+  .user-design-comparison-header {
+    gap: 14px;
+    padding: 18px 16px;
+  }
+
+  .user-design-comparison-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .user-design-comparison-meta {
+    font-size: 0.88rem;
+  }
+
+  .user-design-comparison-body {
+    padding: 14px 14px 12px;
+  }
+
+  .user-design-comparison-stage {
+    height: min(62vh, 520px);
+    border-radius: 14px;
+  }
+
+  .user-design-comparison-label {
+    bottom: 12px;
+    min-height: 28px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+  }
+
+  .user-design-comparison-label-before {
+    left: 12px;
+  }
+
+  .user-design-comparison-label-after {
+    right: 12px;
+  }
+
+  .user-design-comparison-handle {
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .user-design-comparison-help {
+    font-size: 0.82rem;
   }
 
   .customer-stats {

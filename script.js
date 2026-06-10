@@ -2178,6 +2178,161 @@ document.addEventListener('DOMContentLoaded', function () {
   if (userDesignsSection) {
     const filterButtons = Array.from(userDesignsSection.querySelectorAll('[data-user-design-filter]'));
     const designCards = Array.from(userDesignsSection.querySelectorAll('[data-user-design-card]'));
+    let userDesignComparisonModal = null;
+    let lastUserDesignTrigger = null;
+
+    const setComparisonPosition = (position) => {
+      if (!userDesignComparisonModal) return;
+
+      const safePosition = Math.max(0, Math.min(100, position));
+      userDesignComparisonModal.stage.style.setProperty('--compare-position', `${safePosition}%`);
+      userDesignComparisonModal.handle.setAttribute('aria-valuenow', String(Math.round(safePosition)));
+    };
+
+    const syncComparisonImageSize = () => {
+      if (!userDesignComparisonModal?.root.classList.contains('is-open')) return;
+
+      userDesignComparisonModal.afterImage.style.width = `${userDesignComparisonModal.stage.clientWidth}px`;
+    };
+
+    const updateComparisonFromPointer = (event) => {
+      if (!userDesignComparisonModal) return;
+
+      const rect = userDesignComparisonModal.stage.getBoundingClientRect();
+      const position = ((event.clientX - rect.left) / rect.width) * 100;
+      setComparisonPosition(position);
+    };
+
+    const closeUserDesignComparison = () => {
+      if (!userDesignComparisonModal) return;
+
+      userDesignComparisonModal.root.classList.remove('is-open');
+      document.body.classList.remove('lightbox-open');
+
+      if (lastUserDesignTrigger && typeof lastUserDesignTrigger.focus === 'function') {
+        lastUserDesignTrigger.focus({ preventScroll: true });
+      }
+    };
+
+    const getUserDesignComparisonModal = () => {
+      if (userDesignComparisonModal) return userDesignComparisonModal;
+
+      const modal = document.createElement('div');
+      modal.className = 'user-design-comparison-modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-labelledby', 'user-design-comparison-title');
+      modal.innerHTML = `
+        <div class="user-design-comparison-panel">
+          <header class="user-design-comparison-header">
+            <div>
+              <h2 id="user-design-comparison-title">Before and After Comparison</h2>
+              <p class="user-design-comparison-meta"></p>
+            </div>
+            <button class="user-design-comparison-close" type="button" aria-label="Close comparison">x</button>
+          </header>
+          <div class="user-design-comparison-body">
+            <div class="user-design-comparison-stage" style="--compare-position: 50%;">
+              <img class="user-design-comparison-before" src="" alt="" />
+              <div class="user-design-comparison-after-wrap">
+                <img class="user-design-comparison-after" src="" alt="" />
+              </div>
+              <span class="user-design-comparison-label user-design-comparison-label-before">Before</span>
+              <span class="user-design-comparison-label user-design-comparison-label-after">After</span>
+              <button class="user-design-comparison-handle" type="button" aria-label="Move comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                <span>||</span>
+              </button>
+            </div>
+            <p class="user-design-comparison-help">Drag the slider to compare before and after &bull; Click outside to close</p>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      userDesignComparisonModal = {
+        root: modal,
+        panel: modal.querySelector('.user-design-comparison-panel'),
+        meta: modal.querySelector('.user-design-comparison-meta'),
+        beforeImage: modal.querySelector('.user-design-comparison-before'),
+        afterImage: modal.querySelector('.user-design-comparison-after'),
+        stage: modal.querySelector('.user-design-comparison-stage'),
+        handle: modal.querySelector('.user-design-comparison-handle'),
+        closeButton: modal.querySelector('.user-design-comparison-close'),
+      };
+
+      let isDraggingComparison = false;
+
+      userDesignComparisonModal.closeButton.addEventListener('click', closeUserDesignComparison);
+
+      userDesignComparisonModal.root.addEventListener('pointerdown', (event) => {
+        if (event.target === userDesignComparisonModal.root) {
+          closeUserDesignComparison();
+        }
+      });
+
+      userDesignComparisonModal.stage.addEventListener('pointerdown', (event) => {
+        isDraggingComparison = true;
+        userDesignComparisonModal.stage.setPointerCapture?.(event.pointerId);
+        updateComparisonFromPointer(event);
+      });
+
+      userDesignComparisonModal.stage.addEventListener('pointermove', (event) => {
+        if (!isDraggingComparison) return;
+        updateComparisonFromPointer(event);
+      });
+
+      userDesignComparisonModal.stage.addEventListener('pointerup', () => {
+        isDraggingComparison = false;
+      });
+
+      userDesignComparisonModal.stage.addEventListener('pointercancel', () => {
+        isDraggingComparison = false;
+      });
+
+      userDesignComparisonModal.handle.addEventListener('keydown', (event) => {
+        const currentValue = Number(userDesignComparisonModal.handle.getAttribute('aria-valuenow')) || 50;
+
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          setComparisonPosition(currentValue - 5);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          setComparisonPosition(currentValue + 5);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          setComparisonPosition(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          setComparisonPosition(100);
+        }
+      });
+
+      return userDesignComparisonModal;
+    };
+
+    const openUserDesignComparison = (card) => {
+      const images = Array.from(card.querySelectorAll('.user-design-card-media img'));
+      if (images.length < 2) return;
+
+      const modal = getUserDesignComparisonModal();
+      const metadata = Array.from(card.querySelectorAll('.user-design-meta span'))
+        .map((item) => item.textContent.trim())
+        .filter(Boolean)
+        .join(' | ');
+
+      lastUserDesignTrigger = card;
+      modal.beforeImage.src = images[0].currentSrc || images[0].src;
+      modal.beforeImage.alt = images[0].alt || 'Before design image';
+      modal.afterImage.src = images[1].currentSrc || images[1].src;
+      modal.afterImage.alt = images[1].alt || 'After design image';
+      modal.meta.textContent = metadata;
+      modal.root.classList.add('is-open');
+      document.body.classList.add('lightbox-open');
+      setComparisonPosition(50);
+      syncComparisonImageSize();
+      modal.closeButton.focus({ preventScroll: true });
+    };
 
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -2208,6 +2363,31 @@ document.addEventListener('DOMContentLoaded', function () {
         card.hidden = !categories.includes(initialCategory);
       });
     }
+
+    designCards.forEach((card) => {
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', 'Open before and after comparison');
+
+      card.addEventListener('click', () => {
+        openUserDesignComparison(card);
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+
+        event.preventDefault();
+        openUserDesignComparison(card);
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && userDesignComparisonModal?.root.classList.contains('is-open')) {
+        closeUserDesignComparison();
+      }
+    });
+
+    window.addEventListener('resize', syncComparisonImageSize, { passive: true });
   }
 
   document.addEventListener('click', (event) => {
