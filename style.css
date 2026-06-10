@@ -15949,3 +15949,107 @@ svg {
     grid-template-columns: 1fr;
   }
 }
+
+/* Last-pass mobile safeguards for all pages */
+@media (max-width: 768px) {
+  main,
+  section,
+  article,
+  aside,
+  header,
+  footer,
+  .container,
+  .nav-inner,
+  .topbar-inner,
+  .hero-grid,
+  .offerings-grid,
+  .estimate-grid,
+  .reviews-grid,
+  .design-services-grid,
+  .inspiration-grid,
+  .trust-detail-grid,
+  .assurance-grid,
+  .interior-showcase-grid,
+  .mk-gallery-grid,
+  .ajor-luxe-journey-grid,
+  .ajor-luxe-offerings-grid,
+  .ajor-luxe-spaces-grid,
+  .ajor-collection-grid,
+  .refer-terms-grid,
+  .refer-designer-grid,
+  .blog-discover-layout,
+  .customer-story-feature,
+  .user-designs-wrap,
+  .blogs-footer-main {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  .user-designs-section {
+    overflow: hidden;
+  }
+
+  .user-designs-filters {
+    max-width: 100%;
+    overscroll-behavior-inline: contain;
+  }
+
+  .user-design-card,
+  .user-design-card figure {
+    min-width: 0;
+  }
+
+  .user-design-card-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .user-design-card figure {
+    aspect-ratio: 1 / 1;
+  }
+
+  .user-design-card img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .user-design-comparison-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .user-designs-section h2 {
+    font-size: clamp(1.8rem, 10vw, 2.35rem);
+  }
+
+  .user-design-card {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .user-design-card-media {
+    gap: 8px;
+  }
+
+  .user-design-meta,
+  .user-design-date {
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+
+  .user-design-comparison-stage {
+    height: min(56vh, 430px);
+  }
+
+  .user-design-comparison-header h2 {
+    font-size: 1.18rem;
+  }
+}
