@@ -2174,6 +2174,42 @@ document.addEventListener('DOMContentLoaded', function () {
     openImageLightbox(galleryImage);
   });
 
+  const userDesignsSection = document.querySelector('.user-designs-section');
+  if (userDesignsSection) {
+    const filterButtons = Array.from(userDesignsSection.querySelectorAll('[data-user-design-filter]'));
+    const designCards = Array.from(userDesignsSection.querySelectorAll('[data-user-design-card]'));
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedCategory = button.dataset.userDesignFilter;
+
+        filterButtons.forEach((filterButton) => {
+          const isActive = filterButton === button;
+          filterButton.classList.toggle('is-active', isActive);
+          filterButton.setAttribute('aria-pressed', String(isActive));
+        });
+
+        designCards.forEach((card) => {
+          const categories = (card.dataset.category || '').split(/\s+/);
+          card.hidden = !categories.includes(selectedCategory);
+        });
+      });
+    });
+
+    filterButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.classList.contains('is-active')));
+    });
+
+    const activeFilter = filterButtons.find((button) => button.classList.contains('is-active')) || filterButtons[0];
+    if (activeFilter) {
+      const initialCategory = activeFilter.dataset.userDesignFilter;
+      designCards.forEach((card) => {
+        const categories = (card.dataset.category || '').split(/\s+/);
+        card.hidden = !categories.includes(initialCategory);
+      });
+    }
+  }
+
   document.addEventListener('click', (event) => {
     if (!imageLightbox || !imageLightbox.root.classList.contains('is-open')) return;
 
