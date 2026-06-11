@@ -4204,6 +4204,8 @@ body.lightbox-open {
   right: 4px;
   width: 46px;
   height: 46px;
+  display: grid;
+  place-items: center;
   border: 0;
   border-radius: 50%;
   background: #f12a33;
@@ -4218,19 +4220,19 @@ body.lightbox-open {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 12px;
-  height: 2px;
+  width: 18px;
+  height: 3px;
   border-radius: 999px;
   background: #fff;
   transform-origin: center;
 }
 
 .online-support-close::before {
-  transform: translate(calc(-50% - 4px), -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .online-support-close::after {
-  transform: translate(calc(-50% + 4px), -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .online-support-panel {
