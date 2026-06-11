@@ -38,7 +38,7 @@
           </div>
           <h2>You're almost there!</h2>
           <p>You are one step away from designing your Dream Home</p>
-          <a href="contact.html">Continue Booking Your Session</a>
+          <a href="contact.html" data-design-session-open>Continue Booking Your Session</a>
         </aside>
       </div>
     </section>
@@ -107,7 +107,7 @@
             <h2 id="ajor-luxe-journey-title" class="ajor-luxe-journey-title">
               <span class="ajor-luxe-journey-standard">Ajor Luxe</span>
               <em class="ajor-luxe-journey-stylish">journey</em>
-              <a href="contact.html" class="ajor-luxe-journey-cta">Meet a Designer</a>
+              <a href="contact.html" class="ajor-luxe-journey-cta" data-design-session-open>Meet a Designer</a>
             </h2>
           </div>
         </div>
@@ -484,6 +484,32 @@
       </div>
     </section>
   </main>
+
+  <div class="design-session-modal" data-design-session-modal hidden>
+    <form class="design-session-dialog" action="https://formsubmit.co/ajorinterio@gmail.com" method="POST" aria-labelledby="design-session-title" data-design-session-form>
+      <button class="design-session-close" type="button" aria-label="Close design session form" data-design-session-close>&times;</button>
+      <h2 id="design-session-title">Book 3D Design Session</h2>
+      <p>Share your details and our designer will contact you shortly.</p>
+
+      <input type="hidden" name="_subject" value="New 3D Design Session Request" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="Page URL" data-design-session-page-url />
+
+      <input name="name" type="text" placeholder="Your Name" autocomplete="name" required />
+      <input name="phone" type="tel" placeholder="Phone Number" autocomplete="tel" required />
+      <input name="city" type="text" placeholder="City" autocomplete="address-level2" required />
+      <select name="timeSlot" aria-label="Select Preferred Time Slot">
+        <option value="">Select Preferred Time Slot</option>
+        <option value="Morning: 9 AM - 12 PM">Morning: 9 AM - 12 PM</option>
+        <option value="Afternoon: 12 PM - 4 PM">Afternoon: 12 PM - 4 PM</option>
+        <option value="Evening: 4 PM - 8 PM">Evening: 4 PM - 8 PM</option>
+      </select>
+
+      <p class="design-session-status" aria-live="polite"></p>
+      <button class="design-session-submit" type="submit">Submit</button>
+    </form>
+  </div>
 
   <footer class="blogs-footer">
     <div class="blogs-footer-main">

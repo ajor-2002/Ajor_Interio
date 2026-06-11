@@ -664,8 +664,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  const designSessionOpenButtons = document.querySelectorAll('[data-design-session-open]');
-  const designSessionModal = document.querySelector('[data-design-session-modal]');
+  const explicitDesignSessionButtons = Array.from(document.querySelectorAll('[data-design-session-open]'));
+  const meetDesignerButtons = Array.from(document.querySelectorAll('a, button')).filter((element) => {
+    return element.textContent?.trim().toLowerCase() === 'meet a designer';
+  });
+  const designSessionOpenButtons = Array.from(new Set([...explicitDesignSessionButtons, ...meetDesignerButtons]));
+  let designSessionModal = document.querySelector('[data-design-session-modal]');
+  if (designSessionOpenButtons.length && !designSessionModal) {
+    designSessionModal = document.createElement('div');
+    designSessionModal.className = 'design-session-modal';
+    designSessionModal.setAttribute('data-design-session-modal', '');
+    designSessionModal.hidden = true;
+    designSessionModal.innerHTML = `
+      <form class="design-session-dialog" action="https://formsubmit.co/ajorinterio@gmail.com" method="POST" aria-labelledby="design-session-title" data-design-session-form>
+        <button class="design-session-close" type="button" aria-label="Close design session form" data-design-session-close>&times;</button>
+        <h2 id="design-session-title">Book 3D Design Session</h2>
+        <p>Share your details and our designer will contact you shortly.</p>
+
+        <input type="hidden" name="_subject" value="New 3D Design Session Request" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="Page URL" data-design-session-page-url />
+
+        <input name="name" type="text" placeholder="Your Name" autocomplete="name" required />
+        <input name="phone" type="tel" placeholder="Phone Number" autocomplete="tel" required />
+        <input name="city" type="text" placeholder="City" autocomplete="address-level2" required />
+        <select name="timeSlot" aria-label="Select Preferred Time Slot">
+          <option value="">Select Preferred Time Slot</option>
+          <option value="Morning: 9 AM - 12 PM">Morning: 9 AM - 12 PM</option>
+          <option value="Afternoon: 12 PM - 4 PM">Afternoon: 12 PM - 4 PM</option>
+          <option value="Evening: 4 PM - 8 PM">Evening: 4 PM - 8 PM</option>
+        </select>
+
+        <p class="design-session-status" aria-live="polite"></p>
+        <button class="design-session-submit" type="submit">Submit</button>
+      </form>
+    `;
+    document.body.appendChild(designSessionModal);
+  }
   const designSessionForm = document.querySelector('[data-design-session-form]');
   if (designSessionOpenButtons.length && designSessionModal && designSessionForm) {
     const designSessionCloseButton = document.querySelector('[data-design-session-close]');
