@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const formSubmitEndpoint = 'https://formsubmit.co/ajax/ajorinterio@gmail.com';
+  const authStorageKey = 'ajorInterioAuthUser';
 
   const sendFormSubmitEmail = async (fields, subject) => {
     const payload = {
@@ -58,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (topbarInner) {
-    const authStorageKey = 'ajorInterioAuthUser';
     const referPath = inPagesFolder ? 'refer-and-earn.html' : 'pages/refer-and-earn.html';
     const topLinks = topbarInner.querySelector('.top-links');
     const existingActions = topbarInner.querySelector('.top-actions');
@@ -293,6 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         saveAuthUser(user);
         setLoggedInState(user);
         setAuthStatus('signup', 'Signup successful.', 'success');
+        document.dispatchEvent(new CustomEvent('ajor:signup-success', { detail: user }));
         window.setTimeout(closeAllAuthPopups, 500);
       } catch (error) {
         setAuthStatus('signup', error.message || 'Signup failed. Please try again.');
@@ -337,6 +338,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     setLoggedInState(getSavedAuthUser());
+
+    window.ajorInterioAuth = {
+      getUser: getSavedAuthUser,
+      openSignup: () => openPopup(signupPopup),
+      openLogin: () => openPopup(loginPopup),
+    };
   }
 
   document.querySelectorAll('.blogs-footer-newsletter, .blog-newsletter-card form').forEach((newsletterForm) => {
@@ -1154,7 +1161,42 @@ document.addEventListener('DOMContentLoaded', function () {
     kitchenEstimateButton?.focus();
   };
 
-  kitchenEstimateButton?.addEventListener('click', openKitchenEstimateModal);
+  let shouldOpenKitchenEstimateAfterSignup = false;
+
+  const getAuthenticatedUser = () => {
+    if (window.ajorInterioAuth?.getUser) {
+      return window.ajorInterioAuth.getUser();
+    }
+
+    try {
+      return JSON.parse(localStorage.getItem(authStorageKey) || 'null');
+    } catch (error) {
+      return null;
+    }
+  };
+
+  kitchenEstimateButton?.addEventListener('click', () => {
+    const user = getAuthenticatedUser();
+
+    if (user?.loggedIn || user?.email) {
+      openKitchenEstimateModal();
+      return;
+    }
+
+    shouldOpenKitchenEstimateAfterSignup = true;
+    if (window.ajorInterioAuth?.openSignup) {
+      window.ajorInterioAuth.openSignup();
+    } else {
+      document.getElementById('accountBtn')?.click();
+    }
+  });
+
+  document.addEventListener('ajor:signup-success', () => {
+    if (!shouldOpenKitchenEstimateAfterSignup) return;
+    shouldOpenKitchenEstimateAfterSignup = false;
+    window.setTimeout(openKitchenEstimateModal, 550);
+  });
+
   kitchenPriceClose?.addEventListener('click', closeKitchenEstimateModal);
   kitchenPriceModal?.addEventListener('click', (event) => {
     if (event.target === kitchenPriceModal) closeKitchenEstimateModal();
