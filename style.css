@@ -4174,6 +4174,12 @@ body.lightbox-open {
   display: none;
 }
 
+@media (max-width: 768px) {
+  .online-pill {
+    display: none;
+  }
+}
+
 .online-support-card {
   position: fixed;
   right: 22px;
