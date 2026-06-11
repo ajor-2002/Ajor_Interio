@@ -7422,19 +7422,7 @@ body.lightbox-open {
   }
 
   .online-pill {
-    right: 66px;
-    bottom: 12px;
-    left: 12px;
-  }
-
-  .online-pill span {
     display: none;
-  }
-
-  .online-pill a {
-    width: 100%;
-    padding: 12px 14px;
-    text-align: center;
   }
 }
 
