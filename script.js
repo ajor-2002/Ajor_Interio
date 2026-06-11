@@ -4,7 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
   const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
   document.querySelectorAll('main img').forEach((img) => {
-    if (img.classList.contains('hero-image')) return;
+    if (
+      img.classList.contains('hero-image') ||
+      img.classList.contains('interior-hero-image') ||
+      img.classList.contains('refer-hero-image') ||
+      img.closest('main > section:first-child')
+    ) {
+      return;
+    }
     img.loading = 'lazy';
     img.decoding = 'async';
   });
