@@ -15930,6 +15930,7 @@ svg {
   .trust-detail-grid,
   .assurance-grid,
   .interior-showcase-grid,
+  .mk-design-grid,
   .mk-gallery-grid,
   .ajor-luxe-journey-grid,
   .ajor-luxe-offerings-grid,
@@ -15981,6 +15982,179 @@ svg {
   }
 
   .user-design-comparison-panel {
+    width: 100%;
+  }
+}
+
+/* Modular kitchen mobile polish */
+@media (max-width: 768px) {
+  .mk-simple-hero {
+    min-height: min(560px, 66vh);
+  }
+
+  .mk-simple-hero-bg {
+    object-position: center;
+  }
+
+  .mk-simple-hero-overlay {
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.34) 58%, rgba(0, 0, 0, 0.18) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.08));
+  }
+
+  .mk-simple-hero-content {
+    min-height: min(560px, 66vh);
+    justify-content: flex-end;
+    padding: 5rem 18px 28px;
+  }
+
+  .mk-simple-hero h1 {
+    max-width: 330px;
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: 0;
+  }
+
+  .mk-simple-hero-btn {
+    width: auto;
+    min-width: min(100%, 270px);
+    min-height: 50px;
+    padding: 0 1rem;
+    font-size: 0.95rem;
+  }
+
+  .mk-intro-section {
+    padding: 22px 0 34px;
+  }
+
+  .mk-intro-wrap,
+  .mk-gallery-wrap {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .mk-intro-breadcrumb {
+    justify-content: flex-start;
+    margin-bottom: 1.2rem;
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .mk-intro-text {
+    text-align: left;
+  }
+
+  .mk-intro-text p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .mk-intro-text p + p {
+    margin-top: 0.7rem;
+  }
+
+  .mk-gallery-section {
+    padding: 28px 0 48px;
+    overflow: hidden;
+  }
+
+  .mk-gallery-title {
+    margin-bottom: 1.15rem;
+    text-align: left;
+    font-size: clamp(1.55rem, 7vw, 2rem);
+    line-height: 1.18;
+  }
+
+  .mk-filter-bar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    margin: 0 -18px 1.45rem;
+    padding: 0 18px 0.25rem;
+    overflow-x: auto;
+    scroll-padding-inline: 18px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mk-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mk-filter {
+    min-height: 40px;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .mk-design-grid {
+    grid-template-columns: 1fr;
+    gap: 1.65rem;
+  }
+
+  .mk-design-card {
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 1.25rem;
+  }
+
+  .mk-design-image-wrap {
+    border-radius: 8px;
+  }
+
+  .mk-design-image-wrap img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .mk-design-info {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    padding-top: 0.8rem;
+  }
+
+  .mk-design-info h3 {
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+
+  .mk-quote-btn {
+    width: auto;
+    min-height: 40px;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+  }
+
+  .mk-load-more-wrap {
+    margin-top: 1.8rem;
+  }
+
+  .mk-load-more {
+    min-height: 48px;
+    border-radius: 999px;
+    font-size: 0.98rem;
+  }
+
+  .mk-filter-drawer-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .mk-simple-hero {
+    min-height: 520px;
+  }
+
+  .mk-simple-hero-content {
+    min-height: 520px;
+  }
+
+  .mk-design-info {
+    grid-template-columns: 1fr;
+  }
+
+  .mk-quote-btn {
     width: 100%;
   }
 }
