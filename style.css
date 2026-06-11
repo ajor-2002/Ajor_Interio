@@ -4474,19 +4474,7 @@ body.lightbox-open {
   }
 
   .online-pill {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    justify-content: space-between;
-  }
-
-  body.has-copyright-consent .online-pill {
-    bottom: 154px;
-  }
-
-  .online-pill span,
-  .online-pill a {
-    padding-inline: 1rem;
+    display: none;
   }
 
   .online-support-card {
