@@ -12546,7 +12546,8 @@ body.no-scroll {
   font-weight: 800;
 }
 
-.home-calc-consultation-modal {
+.home-calc-consultation-modal,
+.design-session-modal {
   position: fixed;
   inset: 0;
   z-index: 1001;
@@ -12556,11 +12557,13 @@ body.no-scroll {
   background: rgba(0, 0, 0, 0.48);
 }
 
-.home-calc-consultation-modal[hidden] {
+.home-calc-consultation-modal[hidden],
+.design-session-modal[hidden] {
   display: none;
 }
 
-.home-calc-consultation-dialog {
+.home-calc-consultation-dialog,
+.design-session-dialog {
   position: relative;
   width: min(100%, 460px);
   max-height: calc(100vh - 48px);
@@ -12572,7 +12575,8 @@ body.no-scroll {
   box-shadow: 0 26px 54px rgba(0, 0, 0, 0.24);
 }
 
-.home-calc-consultation-close {
+.home-calc-consultation-close,
+.design-session-close {
   position: absolute;
   top: 12px;
   right: 14px;
@@ -12587,7 +12591,8 @@ body.no-scroll {
   cursor: pointer;
 }
 
-.home-calc-consultation-dialog h2 {
+.home-calc-consultation-dialog h2,
+.design-session-dialog h2 {
   margin: 0 0 6px;
   color: #1e3358;
   font-size: 1.55rem;
@@ -12595,19 +12600,23 @@ body.no-scroll {
   text-align: center;
 }
 
-.home-calc-consultation-dialog > p {
+.home-calc-consultation-dialog > p,
+.design-session-dialog > p {
   margin: 0 0 16px;
   color: #477ca5;
   font-size: 0.92rem;
   text-align: center;
 }
 
-.home-calc-consultation-dialog > p strong {
+.home-calc-consultation-dialog > p strong,
+.design-session-dialog > p strong {
   font-weight: 800;
 }
 
 .home-calc-consultation-dialog input,
-.home-calc-consultation-dialog select {
+.home-calc-consultation-dialog select,
+.design-session-dialog input,
+.design-session-dialog select {
   width: 100%;
   min-height: 40px;
   margin-bottom: 10px;
@@ -12621,11 +12630,13 @@ body.no-scroll {
   outline: none;
 }
 
-.home-calc-consultation-dialog input::placeholder {
+.home-calc-consultation-dialog input::placeholder,
+.design-session-dialog input::placeholder {
   color: #8b96aa;
 }
 
-.home-calc-consultation-dialog select {
+.home-calc-consultation-dialog select,
+.design-session-dialog select {
   border-color: #cfd5df;
   cursor: pointer;
 }
@@ -12649,18 +12660,21 @@ body.no-scroll {
   border-radius: 3px;
 }
 
-.home-calc-consultation-status {
+.home-calc-consultation-status,
+.design-session-status {
   min-height: 18px;
   margin: 0 0 6px;
   color: #526078;
   font-size: 0.82rem;
 }
 
-.home-calc-consultation-status.is-error {
+.home-calc-consultation-status.is-error,
+.design-session-status.is-error {
   color: #c82236;
 }
 
-.home-calc-consultation-status.is-success {
+.home-calc-consultation-status.is-success,
+.design-session-status.is-success {
   color: #00813d;
 }
 
@@ -12671,7 +12685,8 @@ body.no-scroll {
   gap: 10px;
 }
 
-.home-calc-consultation-submit {
+.home-calc-consultation-submit,
+.design-session-submit {
   min-width: 92px;
   min-height: 38px;
   border: 0;

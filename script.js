@@ -664,6 +664,115 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const designSessionOpenButtons = document.querySelectorAll('[data-design-session-open]');
+  const designSessionModal = document.querySelector('[data-design-session-modal]');
+  const designSessionForm = document.querySelector('[data-design-session-form]');
+  if (designSessionOpenButtons.length && designSessionModal && designSessionForm) {
+    const designSessionCloseButton = document.querySelector('[data-design-session-close]');
+    const designSessionStatus = designSessionForm.querySelector('.design-session-status');
+    const designSessionPageUrl = designSessionForm.querySelector('[data-design-session-page-url]');
+    const designSessionName = designSessionForm.querySelector('input[name="name"]');
+    const designSessionPhone = designSessionForm.querySelector('input[name="phone"]');
+    const designSessionCity = designSessionForm.querySelector('input[name="city"]');
+
+    const setDesignSessionStatus = (message, type = '') => {
+      if (!designSessionStatus) return;
+      designSessionStatus.textContent = message;
+      designSessionStatus.classList.toggle('is-error', type === 'error');
+      designSessionStatus.classList.toggle('is-success', type === 'success');
+    };
+
+    const openDesignSessionModal = () => {
+      if (designSessionPageUrl) designSessionPageUrl.value = window.location.href;
+      designSessionModal.hidden = false;
+      document.body.classList.add('lightbox-open');
+      setDesignSessionStatus('');
+      window.setTimeout(() => designSessionName?.focus(), 0);
+    };
+
+    const closeDesignSessionModal = () => {
+      designSessionModal.hidden = true;
+      document.body.classList.remove('lightbox-open');
+    };
+
+    designSessionOpenButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        openDesignSessionModal();
+      });
+    });
+
+    designSessionCloseButton?.addEventListener('click', closeDesignSessionModal);
+    designSessionModal.addEventListener('click', (event) => {
+      if (event.target === designSessionModal) closeDesignSessionModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !designSessionModal.hidden) {
+        closeDesignSessionModal();
+      }
+    });
+
+    designSessionForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(designSessionForm);
+      const name = (formData.get('name') || '').toString().trim();
+      const phone = (formData.get('phone') || '').toString().trim();
+      const city = (formData.get('city') || '').toString().trim();
+      const timeSlot = (formData.get('timeSlot') || '').toString().trim();
+      const phoneDigits = (phone.match(/\d/g) || []).length;
+
+      if (!name) {
+        designSessionName?.focus();
+        setDesignSessionStatus('Please enter your name.', 'error');
+        return;
+      }
+
+      if (phoneDigits < 10) {
+        designSessionPhone?.focus();
+        setDesignSessionStatus('Phone number must contain at least 10 digits.', 'error');
+        return;
+      }
+
+      if (!/^[A-Za-z][A-Za-z\s.'-]{1,}$/.test(city)) {
+        designSessionCity?.focus();
+        setDesignSessionStatus('Please enter a valid city name.', 'error');
+        return;
+      }
+
+      const submitButton = designSessionForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton?.textContent || '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+      setDesignSessionStatus('Sending your request...', 'success');
+
+      try {
+        await sendFormSubmitEmail(
+          {
+            Form_Type: '3D Design Session Request',
+            Name: name,
+            Phone: phone,
+            City: city,
+            Preferred_Time_Slot: timeSlot || 'Not selected',
+          },
+          'New 3D Design Session Request'
+        );
+        designSessionForm.reset();
+        setDesignSessionStatus('Thank you. We will contact you shortly.', 'success');
+      } catch (error) {
+        setDesignSessionStatus(error.message || 'Could not send request. Please try again.', 'error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
+    });
+  }
+
   const referCard = document.querySelector('.refer-card');
   if (referCard) {
     const phoneInput = referCard.querySelector('#refer-phone');
