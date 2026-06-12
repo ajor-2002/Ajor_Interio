@@ -12852,7 +12852,7 @@ body.no-scroll {
 }
 
 .blogs-footer-logo img {
-  width: 200px;
+  width: 250px;
   max-width: 100%;
   height: auto;
   display: block;
@@ -12861,7 +12861,7 @@ body.no-scroll {
 
 @media (max-width: 768px) {
   .blogs-footer-logo img {
-    width: 118px;
+    width: 120px;
   }
 }
 
