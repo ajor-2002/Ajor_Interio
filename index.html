@@ -8,6 +8,82 @@
   <link rel="icon" href="images/logo.png" type="image/png" />
   <link rel="preload" href="images/optimized/hero-image-1600.webp" as="image" fetchpriority="high" />
   <link rel="stylesheet" href="style.min.css" />
+  <style>
+    .gift-wrap {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .voucher {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #fff;
+      color: #222;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      white-space: nowrap;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .voucher-1 {
+      transform: translate(-50%, -50%) rotate(-8deg) scale(0.9);
+    }
+
+    .voucher-2 {
+      transform: translate(-50%, -50%) rotate(8deg) scale(0.9);
+    }
+
+    .voucher-3 {
+      transform: translate(-50%, -50%) rotate(-4deg) scale(0.9);
+    }
+
+    .gift-wrap.active .voucher-1 {
+      opacity: 1;
+      transform: translate(-180px, -120px) rotate(-12deg);
+    }
+
+    .gift-wrap.active .voucher-2 {
+      opacity: 1;
+      transform: translate(90px, -140px) rotate(10deg);
+    }
+
+    .gift-wrap.active .voucher-3 {
+      opacity: 1;
+      transform: translate(-40px, 90px) rotate(-5deg);
+    }
+
+    .gift-wrap.active .gift-box {
+      animation: shakeGift 0.6s ease;
+    }
+
+    @keyframes shakeGift {
+      0% {
+        transform: rotate(0);
+      }
+
+      25% {
+        transform: rotate(-8deg);
+      }
+
+      50% {
+        transform: rotate(8deg);
+      }
+
+      75% {
+        transform: rotate(-5deg);
+      }
+
+      100% {
+        transform: rotate(0);
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -460,11 +536,14 @@
         <div class="referral-art" aria-hidden="true">
           <div class="gift-scene">
             <div class="gift-glow"></div>
-            <div class="gift-wrap">
+            <div class="gift-wrap" id="giftWrap">
               <div class="gift-bow"></div>
               <div class="gift-box"></div>
               <div class="gift-ribbon gift-ribbon--vertical"></div>
               <div class="gift-ribbon gift-ribbon--horizontal"></div>
+              <div class="voucher voucher-1">₹10,000 Reward</div>
+              <div class="voucher voucher-2">Free Consultation</div>
+              <div class="voucher voucher-3">Premium Upgrade</div>
               <div class="gift-spark gift-spark--one"></div>
               <div class="gift-spark gift-spark--two"></div>
               <div class="gift-spark gift-spark--three"></div>
@@ -880,6 +959,15 @@
   </footer>
 
   <script defer src="script.min.js"></script>
+  <script>
+    const giftWrap = document.getElementById('giftWrap');
+
+    if (giftWrap) {
+      giftWrap.addEventListener('click', () => {
+        giftWrap.classList.toggle('active');
+      });
+    }
+  </script>
 </body>
 
 </html>
