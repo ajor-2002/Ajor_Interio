@@ -13467,6 +13467,7 @@ svg {
   margin-top: 15px;
 }
 
+.ajor-auth-socials a,
 .ajor-auth-socials button {
   width: auto;
   min-height: 0 !important;
@@ -13483,33 +13484,40 @@ svg {
   transition: transform 0.18s ease;
 }
 
+.ajor-auth-socials a:focus-visible,
 .ajor-auth-socials button:focus-visible {
   outline: none;
   transform: translateY(-2px);
 }
 
+.ajor-auth-socials a:nth-child(1),
 .ajor-auth-socials button:nth-child(1) {
   color: #1877f2 !important;
 }
 
+.ajor-auth-socials a:nth-child(2),
 .ajor-auth-socials button:nth-child(2) {
   color: #4285f4 !important;
 }
 
+.ajor-auth-socials a:nth-child(3),
 .ajor-auth-socials button:nth-child(3) {
   color: #111 !important;
 }
 
+.ajor-auth-socials a::before,
 .ajor-auth-socials button::before {
   content: none !important;
 }
 
+.ajor-auth-socials a svg,
 .ajor-auth-socials button svg {
   width: 26px;
   height: 26px;
   display: block;
 }
 
+.ajor-auth-socials a:hover,
 .ajor-auth-socials button:hover {
   transform: translateY(-2px);
 }
