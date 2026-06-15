@@ -13469,46 +13469,25 @@ svg {
 
 .ajor-auth-socials a,
 .ajor-auth-socials button {
-  width: 100%;
-  min-height: 42px !important;
+  width: auto;
+  min-height: 0 !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 0 14px;
-  background: #f8f8f8 !important;
-  border: 1px solid #ddd !important;
-  border-radius: 8px !important;
+  gap: 0;
+  padding: 0;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
   cursor: pointer;
-  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition: transform 0.18s ease;
 }
 
 .ajor-auth-socials a:focus-visible,
 .ajor-auth-socials button:focus-visible {
   outline: none;
   transform: translateY(-2px);
-}
-
-.ajor-auth-socials a:nth-child(1),
-.ajor-auth-socials button:nth-child(1) {
-  background: #1877f2 !important;
-  border-color: #1877f2 !important;
-  color: #fff !important;
-}
-
-.ajor-auth-socials a:nth-child(2),
-.ajor-auth-socials button:nth-child(2) {
-  background: #fff !important;
-  border-color: #dadce0 !important;
-  color: #1f1f1f !important;
-}
-
-.ajor-auth-socials a:nth-child(3),
-.ajor-auth-socials button:nth-child(3) {
-  background: #111 !important;
-  border-color: #111 !important;
-  color: #fff !important;
 }
 
 .ajor-auth-socials a::before,
@@ -13518,8 +13497,8 @@ svg {
 
 .ajor-auth-socials a img,
 .ajor-auth-socials button img {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: block;
   object-fit: contain;
 }
@@ -13527,24 +13506,6 @@ svg {
 .ajor-auth-socials a:hover,
 .ajor-auth-socials button:hover {
   transform: translateY(-2px);
-}
-
-.ajor-auth-socials a:nth-child(1):hover,
-.ajor-auth-socials button:nth-child(1):hover {
-  background: #1668d4 !important;
-  border-color: #1668d4 !important;
-}
-
-.ajor-auth-socials a:nth-child(2):hover,
-.ajor-auth-socials button:nth-child(2):hover {
-  background: #f8f9fa !important;
-  border-color: #c9ccd1 !important;
-}
-
-.ajor-auth-socials a:nth-child(3):hover,
-.ajor-auth-socials button:nth-child(3):hover {
-  background: #000 !important;
-  border-color: #000 !important;
 }
 
 .ajor-auth-switch {
