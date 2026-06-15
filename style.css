@@ -13468,18 +13468,36 @@ svg {
 }
 
 .ajor-auth-socials button {
-  min-height: 42px !important;
+  width: auto;
+  min-height: 0 !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: #f8f8f8 !important;
-  border: 1px solid #ddd !important;
-  color: #333 !important;
-  font-size: 0.8rem;
-  font-weight: 600 !important;
-  border-radius: 8px !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: inherit !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.ajor-auth-socials button:focus-visible {
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.ajor-auth-socials button:nth-child(1) {
+  color: #1877f2 !important;
+}
+
+.ajor-auth-socials button:nth-child(2) {
+  color: #4285f4 !important;
+}
+
+.ajor-auth-socials button:nth-child(3) {
+  color: #111 !important;
 }
 
 .ajor-auth-socials button::before {
@@ -13487,13 +13505,12 @@ svg {
 }
 
 .ajor-auth-socials button svg {
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   display: block;
 }
 
 .ajor-auth-socials button:hover {
-  background-color: #eee !important;
   transform: translateY(-2px);
 }
 
