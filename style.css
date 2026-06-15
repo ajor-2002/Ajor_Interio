@@ -8379,22 +8379,30 @@ body.no-scroll {
 }
 
 .refer-share a {
-  width: 38px;
-  height: 38px;
+  width: auto;
+  height: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: #f5f5f5;
-  color: #e11b22;
-  font-size: 1.08rem;
-  font-weight: 700;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
   text-decoration: none;
+  box-shadow: none;
+  transition: transform 0.18s ease;
 }
 
 .refer-share a:hover {
-  background: #e11b22;
-  color: #fff;
+  transform: translateY(-2px);
+  background: transparent;
+}
+
+.refer-share a img {
+  width: 26px;
+  height: 26px;
+  display: block;
+  object-fit: contain;
 }
 
 .refer-terms-section {

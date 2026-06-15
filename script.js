@@ -946,16 +946,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (shareLinks[0]) {
-        shareLinks[0].href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralUrl)}`;
+        shareLinks[0].href = 'https://www.facebook.com/ajorinterio';
       }
       if (shareLinks[1]) {
-        shareLinks[1].href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+        shareLinks[1].href = 'https://www.instagram.com/ajorinterio/?hl=en';
       }
       if (shareLinks[2]) {
         shareLinks[2].href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
-      }
-      if (shareLinks[3]) {
-        shareLinks[3].href = `mailto:?subject=${encodeURIComponent('Ajor Interio referral')}&body=${encodeURIComponent(shareText)}`;
       }
     });
 
