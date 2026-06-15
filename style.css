@@ -13510,11 +13510,12 @@ svg {
   content: none !important;
 }
 
-.ajor-auth-socials a svg,
-.ajor-auth-socials button svg {
+.ajor-auth-socials a img,
+.ajor-auth-socials button img {
   width: 26px;
   height: 26px;
   display: block;
+  object-fit: contain;
 }
 
 .ajor-auth-socials a:hover,

@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
       topbarInner.appendChild(authActions);
     }
 
+    const socialIconBase = inPagesFolder ? '../images/' : 'images/';
     const authPopup = document.createElement('div');
     authPopup.className = 'ajor-auth-popups';
     authPopup.innerHTML = `
@@ -132,19 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <button type="submit">Log in</button>
             <div class="ajor-auth-socials" aria-label="Social login options">
               <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" aria-label="Open Facebook login">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-                  <path d="M24 12.07c0-6.63-5.37-12-12-12S0 5.44 0 12.07c0 5.99 4.39 10.95 10.13 11.85v-8.39H7.08v-3.46h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.92-1.96 1.87v2.25h3.33l-.53 3.46h-2.8v8.39C19.61 23.03 24 18.06 24 12.07z"/>
-                </svg>
+                <img loading="lazy" decoding="async" src="${socialIconBase}facebook.png" alt="" aria-hidden="true" />
               </a>
               <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" aria-label="Open Google login">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-                  <path d="M21.35 11.1H12v3.92h5.36c-.23 1.26-.95 2.33-2.02 3.05v2.53h3.27c1.91-1.76 3.02-4.36 3.02-7.45 0-.72-.06-1.41-.28-2.05zM12 22c2.7 0 4.96-.9 6.62-2.44l-3.27-2.53c-.9.6-2.06.95-3.35.95-2.58 0-4.77-1.74-5.56-4.08H2.51v2.59A10 10 0 0 0 12 22zM6.44 13.9A5.97 5.97 0 0 1 6.13 12c0-.66.11-1.3.31-1.9V7.52H2.51A10 10 0 0 0 2 12c0 1.61.39 3.13 1.07 4.48l3.37-2.58zM12 5.99c1.47 0 2.79.51 3.83 1.51l2.87-2.87A9.72 9.72 0 0 0 12 2C8.19 2 4.88 4.18 2.51 7.52l3.93 3.02C7.22 7.73 9.38 5.99 12 5.99z"/>
-                </svg>
+                <img loading="lazy" decoding="async" src="${socialIconBase}google.png" alt="" aria-hidden="true" />
               </a>
               <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram login">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-                  <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.75A4 4 0 0 0 3.75 7.75v8.5a4 4 0 0 0 4 4h8.5a4 4 0 0 0 4-4v-8.5a4 4 0 0 0-4-4h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.75A3.25 3.25 0 1 0 12 15.25 3.25 3.25 0 0 0 12 8.75zM17.4 6.6a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0z"/>
-                </svg>
+                <img loading="lazy" decoding="async" src="${socialIconBase}instagram.png" alt="" aria-hidden="true" />
               </a>
             </div>
             <p class="ajor-auth-switch">Didn't have an account? <button type="button" data-auth-open="signup">Sign up</button></p>
