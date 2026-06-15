@@ -83,6 +83,41 @@
         transform: rotate(0);
       }
     }
+
+    /* Enhanced Auth Popup Styling */
+    @keyframes authPopIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .ajor-auth-popup.is-open .ajor-auth-popup-box {
+      animation: authPopIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      border-top: 5px solid #e31f27; /* Brand red accent */
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+
+    .ajor-auth-popup-box h2 {
+      font-size: 1.75rem;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .ajor-auth-socials button {
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ajor-auth-socials button:hover {
+      transform: translateY(-2px);
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
   </style>
 </head>
 
