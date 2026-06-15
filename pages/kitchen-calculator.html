@@ -215,12 +215,13 @@
           </article>
 
           <article class="kitchen-step-card">
-            <header><strong>Step 2 :</strong> Home Configuration</header>
-            <div class="kitchen-step-body kitchen-radio-row">
-              <label><input type="radio" name="kitchen-bhk" checked /> <span>1 BHK</span></label>
-              <label><input type="radio" name="kitchen-bhk" /> <span>2 BHK</span></label>
-              <label><input type="radio" name="kitchen-bhk" /> <span>3 BHK</span></label>
-              <label><input type="radio" name="kitchen-bhk" /> <span>4 BHK</span></label>
+            <header><strong>Step 2 :</strong> Kitchen Package</header>
+            <div class="kitchen-step-body">
+              <select aria-label="Kitchen package">
+                <option>Standard</option>
+                <option selected>Premium</option>
+                <option>Luxury</option>
+              </select>
             </div>
           </article>
 
@@ -279,7 +280,18 @@
           </article>
 
           <article class="kitchen-step-card">
-            <header><strong>Step 6 :</strong> Accessories</header>
+            <header><strong>Step 6 :</strong> Countertop Selection</header>
+            <div class="kitchen-step-body">
+              <select aria-label="Countertop material">
+                <option value="granite">Granite</option>
+                <option value="quartz" selected>Quartz</option>
+                <option value="italianMarble">Italian Marble</option>
+              </select>
+            </div>
+          </article>
+
+          <article class="kitchen-step-card">
+            <header><strong>Step 7 :</strong> Accessories</header>
             <div class="kitchen-step-body">
               <div class="kitchen-accessory-slider" data-kitchen-accessory-slider>
                 <button class="kitchen-accessory-arrow" type="button" aria-label="Previous accessories" data-kitchen-accessory-prev>&lsaquo;</button>
@@ -476,7 +488,7 @@
         </details>
         <details>
           <summary>How does the Modular Kitchen Cost Calculator work?</summary>
-          <p>It uses your selected city, home configuration, kitchen shape, wall measurements, cabinet material, shutter finish and accessories to prepare an estimated price range.</p>
+          <p>It uses your selected city, kitchen package, kitchen shape, wall measurements, cabinet material, shutter finish, countertop and accessories to prepare an estimated price range.</p>
         </details>
         <details>
           <summary>What is the next step after using the Modular Kitchen Cost Calculator?</summary>
@@ -484,11 +496,11 @@
         </details>
         <details>
           <summary>Can I customise the cost calculator inputs for an accurate modular kitchen cost ?</summary>
-          <p>Yes. You can change kitchen shape, dimensions, material, finish and accessories to see how the estimate changes.</p>
+          <p>Yes. You can change kitchen package, shape, dimensions, material, finish, countertop and accessories to see how the estimate changes.</p>
         </details>
         <details>
           <summary>What factors influence the modular kitchen cost ?</summary>
-          <p>Kitchen size, layout complexity, cabinet material, shutter finish, countertop choice, hardware, accessories and installation requirements affect the final cost.</p>
+          <p>Kitchen layout, package level, cabinet material, shutter finish, countertop choice, hardware, accessories and installation requirements affect the final cost.</p>
         </details>
         <details>
           <summary>How accurate is the cost calculator for estimating modular kitchen price ?</summary>
@@ -496,7 +508,7 @@
         </details>
         <details>
           <summary>How does the modular kitchen cost calculator help determine the price for a home?</summary>
-          <p>It gives a quick starting budget for your kitchen, helping you compare options before meeting a designer for a detailed plan.</p>
+          <p>It gives a quick starting budget for your kitchen, helping you compare package, material and countertop options before meeting a designer for a detailed plan.</p>
         </details>
         <details>
           <summary>How much does a modular kitchen cost ?</summary>
@@ -508,7 +520,7 @@
         </details>
         <details>
           <summary>Can I adjust the cost estimate if I decide to change the kitchen shape or home configuration?</summary>
-          <p>Yes. Update the kitchen shape, BHK type or dimensions and the calculator can reflect a revised estimate.</p>
+          <p>Yes. Update the kitchen shape, package, countertop or dimensions and the calculator can reflect a revised estimate.</p>
         </details>
       </div>
     </section>
@@ -557,7 +569,8 @@
   </footer>
 
 
-  <script defer src="../script.min.js"></script>
+  <script defer src="../js/kitchen-calculator-config.js"></script>
+  <script defer src="../script.js"></script>
 </body>
 
 </html>
