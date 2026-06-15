@@ -351,6 +351,23 @@ document.addEventListener('DOMContentLoaded', function () {
       openSignup: () => openPopup(signupPopup),
       openLogin: () => openPopup(loginPopup),
     };
+
+    // Automatically show login popup after 5 seconds on the home screen
+    const isHomePage = !inPagesFolder && (
+      window.location.pathname === '/' || 
+      window.location.pathname.endsWith('index.html') || 
+      window.location.pathname === ''
+    );
+
+    if (isHomePage) {
+      window.setTimeout(() => {
+        const user = getSavedAuthUser();
+        const isLoggedIn = Boolean(user?.loggedIn || user?.email);
+        if (!isLoggedIn) {
+          openPopup(loginPopup);
+        }
+      }, 5000);
+    }
   }
 
   document.querySelectorAll('.blogs-footer-newsletter, .blog-newsletter-card form').forEach((newsletterForm) => {
