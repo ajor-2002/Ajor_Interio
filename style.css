@@ -13297,12 +13297,6 @@ svg {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 32px;
-  background:
-    radial-gradient(circle at 48% 100%, rgba(255, 255, 255, 0.06), transparent 24%),
-    radial-gradient(circle at 24% 50%, rgba(28, 91, 205, 0.16), transparent 20%),
-    rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(12px);
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
@@ -13325,21 +13319,6 @@ svg {
 
 .ajor-auth-popup-box {
   position: relative;
-  width: min(430px, 100%);
-  min-height: 492px;
-  padding: 62px 23px 38px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 23px;
-  background:
-    radial-gradient(circle at 6% 52%, rgba(216, 26, 26, 0.22), transparent 24%),
-    linear-gradient(180deg, rgba(42, 45, 50, 0.92), rgba(15, 15, 16, 0.98) 42%, rgba(13, 13, 13, 0.99));
-  color: #fff;
-  box-shadow:
-    0 0 0 1px rgba(216, 26, 26, 0.18),
-    0 34px 90px rgba(0, 0, 0, 0.68),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    inset 14px 0 28px rgba(216, 26, 26, 0.12),
-    inset -1px 0 0 rgba(216, 26, 26, 0.55);
   width: min(420px, 100%);
   padding: 40px 30px;
   background: #fff;
@@ -13368,51 +13347,38 @@ svg {
 
 .ajor-auth-close {
   position: absolute;
-  top: 18px;
-  right: 20px;
   top: 15px;
   right: 15px;
   width: 32px;
   height: 32px;
   border: 0;
   background: transparent;
-  color: rgba(255, 255, 255, 0.48);
   color: #999;
   cursor: pointer;
-  font-size: 1.4rem;
   font-size: 1.5rem;
   line-height: 1;
 }
 
 .ajor-auth-popup-box h2 {
-  margin: 0 0 14px;
+  margin: 0 0 0.5rem;
   text-align: center;
-  color: rgba(255, 255, 255, 0.94);
-  font-size: clamp(2.35rem, 7vw, 2.72rem);
-  font-weight: 400;
-  line-height: 1;
-  margin-bottom: 0.5rem;
   color: #1a1a1a;
   font-size: 1.75rem;
   font-weight: 700;
+  line-height: 1;
 }
 
 .ajor-auth-popup-box p {
   max-width: 318px;
-  margin: 0 auto 42px;
+  margin: 0 auto 1.5rem;
   text-align: center;
-  color: rgba(255, 255, 255, 0.52);
-  font-size: 0.78rem;
-  line-height: 1.35;
   color: #666;
   font-size: 0.9rem;
-  margin-bottom: 1.5rem;
   line-height: 1.6;
 }
 
 .ajor-auth-popup-box form {
   display: grid;
-  gap: 10px;
   gap: 15px;
 }
 
@@ -13427,13 +13393,10 @@ svg {
   top: 50%;
   z-index: 1;
   transform: translateY(-50%);
+  left: 18px;
   color: rgba(255, 255, 255, 0.36);
   font-size: 0.78rem;
   line-height: 1;
-}
-
-.ajor-auth-field::before {
-  left: 18px;
 }
 
 .ajor-auth-field-email::before {
@@ -13447,61 +13410,38 @@ svg {
 
 .ajor-auth-popup-box input {
   width: 100%;
-  height: 39px;
-  min-height: 39px;
-  border: 1px solid rgba(255, 255, 255, 0.055);
-  border-radius: 999px;
-  padding: 0 44px;
-  background: rgba(15, 15, 16, 0.78);
-  color: rgba(255, 255, 255, 0.86);
-  outline: none;
-  box-shadow:
-    inset 0 0 0 1px rgba(216, 26, 26, 0.14),
-    0 0 0 1px rgba(216, 26, 26, 0.12);
-  font-size: 0.74rem;
   padding: 12px 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 1rem;
   background: #fff;
   color: #333;
+  outline: none;
+  font-size: 1rem;
 }
 
 .ajor-auth-popup-box input::placeholder {
-  color: rgba(255, 255, 255, 0.34);
+  color: #888;
 }
 
 .ajor-auth-popup-box input:focus {
-  border-color: rgba(216, 26, 26, 0.78);
-  box-shadow:
-    inset 0 0 0 1px rgba(216, 26, 26, 0.2),
-    0 0 0 1px rgba(216, 26, 26, 0.6),
-    0 0 24px rgba(216, 26, 26, 0.16);
   border-color: #e31f27;
   outline: none;
   box-shadow: 0 0 0 3px rgba(227, 31, 39, 0.1);
 }
 
 .ajor-auth-popup-box form button {
-  min-height: 44px;
   min-height: 48px;
   border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.095);
-  color: rgba(255, 255, 255, 0.88);
   border-radius: 8px;
   background: #e31f27;
   color: #fff;
   cursor: pointer;
   font-weight: 700;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  transition: background 0.18s ease, transform 0.18s ease;
   font-size: 1rem;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .ajor-auth-popup-box form > button[type="submit"] {
-  margin-top: 34px;
   margin-top: 10px;
 }
 
@@ -13510,7 +13450,6 @@ svg {
 }
 
 .ajor-auth-popup-box form button:hover {
-  background: rgba(255, 255, 255, 0.14);
   background: #c81520;
   transform: translateY(-1px);
 }
@@ -13559,10 +13498,7 @@ svg {
 }
 
 .ajor-auth-switch {
-  margin: 8px auto 0 !important;
-  color: rgba(255, 255, 255, 0.45) !important;
-  font-size: 0.7rem !important;
-  margin-top: 20px !important;
+  margin: 20px auto 0 !important;
   text-align: center;
   color: #666 !important;
   font-size: 0.9rem !important;
@@ -13574,10 +13510,8 @@ svg {
   border: 0;
   border-radius: 0;
   background: transparent !important;
-  color: var(--red) !important;
   color: #e31f27 !important;
   font-size: inherit;
-  font-weight: 700;
   font-weight: 600;
   text-decoration: underline;
   box-shadow: none;
@@ -13590,10 +13524,8 @@ svg {
 .ajor-auth-status {
   display: block;
   min-height: 16px;
-  margin-top: 2px;
   margin-top: 8px;
   text-align: center;
-  color: #ffb4b4;
   color: #d81a1a;
   font-size: 0.72rem;
 }
