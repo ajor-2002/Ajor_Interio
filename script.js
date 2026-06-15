@@ -131,9 +131,21 @@ document.addEventListener('DOMContentLoaded', function () {
             </label>
             <button type="submit">Log in</button>
             <div class="ajor-auth-socials" aria-label="Social login options">
-              <button type="button">Facebook</button>
-              <button type="button">Google</button>
-              <button type="button">Apple</button>
+              <button type="button" aria-label="Log in with Facebook">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                  <path d="M24 12.07c0-6.63-5.37-12-12-12S0 5.44 0 12.07c0 5.99 4.39 10.95 10.13 11.85v-8.39H7.08v-3.46h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.92-1.96 1.87v2.25h3.33l-.53 3.46h-2.8v8.39C19.61 23.03 24 18.06 24 12.07z"/>
+                </svg>
+              </button>
+              <button type="button" aria-label="Log in with Google">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                  <path d="M21.35 11.1H12v3.92h5.36c-.23 1.26-.95 2.33-2.02 3.05v2.53h3.27c1.91-1.76 3.02-4.36 3.02-7.45 0-.72-.06-1.41-.28-2.05zM12 22c2.7 0 4.96-.9 6.62-2.44l-3.27-2.53c-.9.6-2.06.95-3.35.95-2.58 0-4.77-1.74-5.56-4.08H2.51v2.59A10 10 0 0 0 12 22zM6.44 13.9A5.97 5.97 0 0 1 6.13 12c0-.66.11-1.3.31-1.9V7.52H2.51A10 10 0 0 0 2 12c0 1.61.39 3.13 1.07 4.48l3.37-2.58zM12 5.99c1.47 0 2.79.51 3.83 1.51l2.87-2.87A9.72 9.72 0 0 0 12 2C8.19 2 4.88 4.18 2.51 7.52l3.93 3.02C7.22 7.73 9.38 5.99 12 5.99z"/>
+                </svg>
+              </button>
+              <button type="button" aria-label="Log in with Apple">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                  <path d="M16.36 1.5c.02 1.1-.4 2.17-1.08 2.96-.73.85-1.93 1.49-3.11 1.39-.16-1.06.39-2.18 1.08-2.98.72-.86 1.99-1.49 3.11-1.37zM20.9 17.28c-.53 1.23-.79 1.77-1.47 2.81-.94 1.43-2.26 3.21-3.91 3.22-1.47.01-1.85-.96-3.85-.95-2 .01-2.43.97-3.9.96-1.65-.01-2.91-1.61-3.85-3.03C1.26 16.64.25 10.4 2.75 7.31c1.55-1.9 3.64-3.01 5.61-3.01 2.03 0 3.31 1.11 4.97 1.11 1.62 0 2.61-1.11 4.95-1.11 1.77 0 3.64.96 5.09 2.62-4.7 2.58-3.93 9.3-2.47 11.36z"/>
+                </svg>
+              </button>
             </div>
             <p class="ajor-auth-switch">Didn't have an account? <button type="button" data-auth-open="signup">Sign up</button></p>
             <span class="ajor-auth-status" data-auth-status="login" hidden></span>

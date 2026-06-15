@@ -13524,25 +13524,16 @@ svg {
 .ajor-auth-socials {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 4px;
-  margin-top: 6px;
-  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-top: 15px;
 }
 
 .ajor-auth-socials button {
-  min-height: 31px !important;
   min-height: 42px !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 0 10px;
-  border: 1px solid rgba(255, 255, 255, 0.045) !important;
-  background: rgba(18, 18, 19, 0.58) !important;
-  color: rgba(255, 255, 255, 0.48) !important;
-  font-size: 0.7rem;
+  padding: 0;
   background: #f8f8f8 !important;
   border: 1px solid #ddd !important;
   color: #333 !important;
@@ -13553,24 +13544,18 @@ svg {
 }
 
 .ajor-auth-socials button::before {
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 0.85rem;
-  font-weight: 800;
+  content: none !important;
+}
+
+.ajor-auth-socials button svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 .ajor-auth-socials button:hover {
   background-color: #eee !important;
   transform: translateY(-2px);
-}
-
-.ajor-auth-socials button:nth-child(1)::before {
-  content: "f";
-}
-
-.ajor-auth-socials button:nth-child(2)::before {
-  content: "G";
-}
-
-.ajor-auth-socials button:nth-child(3)::before {
-  content: "\2666";
 }
 
 .ajor-auth-switch {
