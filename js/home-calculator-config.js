@@ -52,6 +52,8 @@
   upperAmount = adjustedAmount + (adjustedAmount x rangePercent)
 
   Step 7: Round numbers and display
+  lowerAmount = adjustedAmount
+  upperAmount = lowerAmount + (lowerAmount x rangePercent)
   Result = Rs. lowerAmount L - Rs. upperAmount L
 
 
@@ -97,6 +99,7 @@
   baseCostByBhkAndPackage:
   - Core pricing by BHK and package.
   - Keep the labels aligned with the buttons in calculator page.
+  - "Luxe" is kept as an alias for older UI labels.
 
   roomRateInLakhs:
   - Extra cost for each selected room count.
@@ -104,6 +107,7 @@
   propertyTypeMultiplier:
   - Apartment can be normal rate.
   - Villa and Independent House can be slightly higher.
+  - "Independent House/Villa" is kept as an alias for older UI labels.
 
   projectTypeMultiplier:
   - Renovation often costs more because of removal/rework.
@@ -121,21 +125,25 @@ window.AJOR_HOME_CALCULATOR_CONFIG = {
       Standard: 4,
       Premium: 6,
       Luxury: 8,
+      Luxe: 8,
     },
     2: {
       Standard: 6,
       Premium: 9,
       Luxury: 12,
+      Luxe: 12,
     },
     3: {
       Standard: 8,
       Premium: 12,
       Luxury: 16,
+      Luxe: 16,
     },
     4: {
       Standard: 10,
       Premium: 15,
       Luxury: 20,
+      Luxe: 20,
     },
   },
 
@@ -151,6 +159,7 @@ window.AJOR_HOME_CALCULATOR_CONFIG = {
     Apartment: 1,
     Villa: 1.15,
     'Independent House': 1.1,
+    'Independent House/Villa': 1.1,
   },
 
   projectTypeMultiplier: {
