@@ -47,23 +47,19 @@
           <legend>Property Type</legend>
           <div class="home-calc-options">
             <button class="active" type="button" data-home-calc-option>Apartment</button>
-            <button type="button" data-home-calc-option>Independent House/Villa</button>
+            <button type="button" data-home-calc-option>Villa</button>
+            <button type="button" data-home-calc-option>Independent House</button>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>BHK Type / Size</legend>
+          <legend>BHK Type</legend>
           <div class="home-calc-options bhk">
             <button class="active" type="button" data-home-calc-option>1 BHK</button>
             <button type="button" data-home-calc-option>2 BHK</button>
             <button type="button" data-home-calc-option>3 BHK</button>
             <button type="button" data-home-calc-option>4 BHK</button>
           </div>
-        </fieldset>
-
-        <fieldset class="home-calc-size-fieldset" data-home-calc-size-fieldset hidden>
-          <legend data-home-calc-size-title>Select Size</legend>
-          <div class="home-calc-options home-calc-size-options" data-home-calc-size-options></div>
         </fieldset>
 
         <fieldset>
@@ -85,35 +81,35 @@
       <p class="home-calc-helper">To know more about this, <a href="offerings.html">click here</a></p>
 
       <div class="home-calc-room-list">
-        <div class="home-calc-room" data-room-count>
+        <div class="home-calc-room" data-room-count data-room-key="livingRoom">
           <strong>Living Room</strong>
           <button type="button" data-room-minus aria-label="Decrease living room">-</button>
           <span>1</span>
           <button type="button" data-room-plus aria-label="Increase living room">+</button>
         </div>
 
-        <div class="home-calc-room" data-room-count>
+        <div class="home-calc-room" data-room-count data-room-key="kitchen">
           <strong>Kitchen</strong>
           <button type="button" data-room-minus aria-label="Decrease kitchen">-</button>
           <span>1</span>
           <button type="button" data-room-plus aria-label="Increase kitchen">+</button>
         </div>
 
-        <div class="home-calc-room" data-room-count>
+        <div class="home-calc-room" data-room-count data-room-key="bedroom">
           <strong>Bedroom</strong>
           <button type="button" data-room-minus aria-label="Decrease bedroom">-</button>
           <span>2</span>
           <button type="button" data-room-plus aria-label="Increase bedroom">+</button>
         </div>
 
-        <div class="home-calc-room" data-room-count>
+        <div class="home-calc-room" data-room-count data-room-key="bathroom">
           <strong>Bathroom</strong>
           <button type="button" data-room-minus aria-label="Decrease bathroom">-</button>
           <span>1</span>
           <button type="button" data-room-plus aria-label="Increase bathroom">+</button>
         </div>
 
-        <div class="home-calc-room" data-room-count>
+        <div class="home-calc-room" data-room-count data-room-key="dining">
           <strong>Dining</strong>
           <button type="button" data-room-minus aria-label="Decrease dining">-</button>
           <span>1</span>
@@ -152,8 +148,8 @@
         </button>
 
         <button class="home-calc-package-option active" type="button" data-home-calc-package>
-          <strong>Luxe</strong>
-          <img loading="lazy" decoding="async" src="../images/ajor luxe.jpg" alt="Luxe interior package" />
+          <strong>Luxury</strong>
+          <img loading="lazy" decoding="async" src="../images/ajor luxe.jpg" alt="Luxury interior package" />
           <ul>
             <li>Elite pricing</li>
             <li>Lavish design</li>
@@ -252,7 +248,6 @@
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="Calculator Property Type" data-home-calc-consultation-hidden="propertyType" />
       <input type="hidden" name="Calculator BHK Type" data-home-calc-consultation-hidden="bhkType" />
-      <input type="hidden" name="Calculator BHK Size" data-home-calc-consultation-hidden="bhkSize" />
       <input type="hidden" name="Calculator Project Category" data-home-calc-consultation-hidden="projectCategory" />
       <input type="hidden" name="Calculator Package" data-home-calc-consultation-hidden="package" />
       <input type="hidden" name="Calculator Estimated Cost" data-home-calc-consultation-hidden="budget" />
@@ -316,7 +311,7 @@
   </footer>
 
   <script defer src="../js/home-calculator-config.js"></script>
-  <script defer src="../script.min.js"></script>
+  <script defer src="../script.js"></script>
 </body>
 
 </html>

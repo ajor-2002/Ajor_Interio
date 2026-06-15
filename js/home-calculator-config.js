@@ -12,31 +12,18 @@
 
   Step 1: Read user selections
   - BHK type: 1 BHK, 2 BHK, 3 BHK, 4 BHK
-  - BHK size: Below / Above sq.ft option
   - Project type: New Home / Renovation
-  - Property type: Apartment / Independent House/Villa
-  - Package: Standard / Premium / Luxe
+  - Property type: Apartment / Villa / Independent House
+  - Package: Standard / Premium / Luxury
   - Room counts: Living Room, Kitchen, Bedroom, Bathroom, Dining
 
-  Step 2: Get estimated sq.ft
-  - 1 BHK always uses bhkSizeReference[1].defaultSqft.
-  - 2/3/4 BHK uses the selected BHK size label.
+  Step 2: Get base cost for BHK and package
+  baseCost = baseCostByBhkAndPackage[bhk][package]
 
   Example:
-  2 BHK + "Above 800 sq.ft" = 950 sq.ft
+  2 BHK + Premium = 9L
 
-  Step 3: Get package rate per sq.ft
-  Example:
-  Premium = Rs. 1550 per sq.ft
-
-  Step 4: Calculate area amount
-  areaAmountInLakhs = (estimatedSqft x packageRatePerSqft) / 100000
-
-  Example:
-  950 sq.ft x Rs. 1550 = Rs. 14,72,500
-  Rs. 14,72,500 / 100000 = 14.725L
-
-  Step 5: Calculate selected room amount
+  Step 3: Calculate room amount
   roomAmountInLakhs =
     Living Room count x livingRoom rate
     + Kitchen count x kitchen rate
@@ -45,31 +32,26 @@
     + Dining count x dining rate
 
   Example:
-  1 Living Room x 1.2L = 1.2L
-  1 Kitchen x 2.5L     = 2.5L
-  2 Bedrooms x 1.4L    = 2.8L
-  1 Bathroom x 0.6L    = 0.6L
+  1 Living Room x 1.0L = 1.0L
+  1 Kitchen x 2.0L     = 2.0L
+  2 Bedrooms x 1.2L    = 2.4L
+  1 Bathroom x 0.5L    = 0.5L
   1 Dining x 0.8L      = 0.8L
-  Room amount          = 7.9L
+  Room amount          = 6.7L
 
-  Step 6: Add area amount + room amount
-  baseAmount = areaAmountInLakhs + roomAmountInLakhs
+  Step 4: Add base cost + room amount
+  subtotal = baseCost + roomAmountInLakhs
 
-  Step 7: Apply multipliers
+  Step 5: Apply multipliers
   adjustedAmount =
-    baseAmount
+    subtotal
     x propertyTypeMultiplier
     x projectTypeMultiplier
-    x packageMultiplier
 
-  Step 8: Apply minimum lower amount
-  lowerAmount = max(minimumLowerAmount, adjustedAmount)
+  Step 6: Calculate upper estimate
+  upperAmount = adjustedAmount + (adjustedAmount x rangePercent)
 
-  Step 9: Calculate upper estimate
-  rangeGap = max(minimumRangeGap, lowerAmount x rangePercent)
-  upperAmount = lowerAmount + rangeGap
-
-  Step 10: Round numbers and display
+  Step 7: Round numbers and display
   Result = Rs. lowerAmount L - Rs. upperAmount L
 
 
@@ -77,10 +59,9 @@
   ------------------------------------------------
   User selects:
   - 2 BHK
-  - Above 800 sq.ft
+  - Premium
   - Apartment
   - Renovation
-  - Premium
   - Living Room: 1
   - Kitchen: 1
   - Bedroom: 2
@@ -88,118 +69,92 @@
   - Dining: 1
 
   Calculation:
-  estimatedSqft = 950
-  packageRatePerSqft = Rs. 1550
-  areaAmount = 950 x 1550 / 100000 = 14.725L
+  baseCost = 9L
 
   roomAmount =
-    1 x 1.2
-    + 1 x 2.5
-    + 2 x 1.4
-    + 1 x 0.6
+    1 x 1.0
+    + 1 x 2.0
+    + 2 x 1.2
+    + 1 x 0.5
     + 1 x 0.8
-    = 7.9L
+    = 6.7L
 
-  baseAmount = 14.725 + 7.9 = 22.625L
+  subtotal = 9 + 6.7 = 15.7L
 
   multipliers:
   Apartment = 1
-  Renovation = 1.08
-  Premium = 1.1
+  Renovation = 1.1
 
-  adjustedAmount = 22.625 x 1 x 1.08 x 1.1 = 26.8785L
-  lowerAmount = max(4, 26.8785) = 26.8785L
-  rangeGap = max(3, 26.8785 x 0.15) = 4.031775L
-  upperAmount = 26.8785 + 4.031775 = 30.910275L
+  adjustedAmount = 15.7 x 1 x 1.1 = 17.27L
+  upperAmount = 17.27 + (17.27 x 0.15) = 19.8605L
 
   Rounded result:
-  Rs. 27L - Rs. 31L
+  Rs. 17L - Rs. 20L
 
 
   EDITABLE PRICING REFERENCE
   ------------------------------------------------
-  packageRatePerSqft:
-  - Main area pricing by package.
-  - Increase these if overall project pricing should go up.
-
-  bhkSizeReference:
-  - Estimated sq.ft used for each BHK/size option.
-  - Labels must match the buttons shown in calculator page.
+  baseCostByBhkAndPackage:
+  - Core pricing by BHK and package.
+  - Keep the labels aligned with the buttons in calculator page.
 
   roomRateInLakhs:
   - Extra cost for each selected room count.
 
   propertyTypeMultiplier:
   - Apartment can be normal rate.
-  - Villa/Independent House can be higher.
+  - Villa and Independent House can be slightly higher.
 
   projectTypeMultiplier:
   - Renovation often costs more because of removal/rework.
 
-  packageMultiplier:
-  - Extra package quality multiplier after base sq.ft pricing.
-
-  minimumLowerAmount:
-  - Lowest starting estimate.
-
-  minimumRangeGap:
-  - Minimum difference between lower and upper estimate.
-
   rangePercent:
   - Upper range buffer.
-  - 0.15 means 15% extra over lower estimate.
+  - 0.15 means 15% extra over the adjusted estimate.
 */
 
 window.AJOR_HOME_CALCULATOR_CONFIG = {
-  minimumLowerAmount: 4,
-  minimumRangeGap: 3,
   rangePercent: 0.15,
 
-  packageRatePerSqft: {
-    Standard: 1200,
-    Premium: 1550,
-    Luxe: 2200,
-  },
-
-  packageMultiplier: {
-    Standard: 1,
-    Premium: 1.1,
-    Luxe: 1.25,
-  },
-
-  bhkSizeReference: {
+  baseCostByBhkAndPackage: {
     1: {
-      defaultSqft: 550,
+      Standard: 4,
+      Premium: 6,
+      Luxury: 8,
     },
     2: {
-      'Below 800 sq.ft': 700,
-      'Above 800 sq.ft': 950,
+      Standard: 6,
+      Premium: 9,
+      Luxury: 12,
     },
     3: {
-      'Below 1200 sq.ft': 1050,
-      'Above 1200 sq.ft': 1450,
+      Standard: 8,
+      Premium: 12,
+      Luxury: 16,
     },
     4: {
-      'Below 1800 sq.ft': 1650,
-      'Above 1800 sq.ft': 2200,
+      Standard: 10,
+      Premium: 15,
+      Luxury: 20,
     },
   },
 
   roomRateInLakhs: {
-    'Living Room': 1.2,
-    Kitchen: 2.5,
-    Bedroom: 1.4,
-    Bathroom: 0.6,
-    Dining: 0.8,
+    livingRoom: 1.0,
+    kitchen: 2.0,
+    bedroom: 1.2,
+    bathroom: 0.5,
+    dining: 0.8,
   },
 
   propertyTypeMultiplier: {
     Apartment: 1,
-    'Independent House/Villa': 1.12,
+    Villa: 1.15,
+    'Independent House': 1.1,
   },
 
   projectTypeMultiplier: {
     'New Home': 1,
-    Renovation: 1.08,
+    Renovation: 1.1,
   },
 };

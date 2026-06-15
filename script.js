@@ -1249,9 +1249,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const estimateStatus = document.querySelector('.home-calc-estimate-status');
     const budgetOutput = document.querySelector('[data-home-calc-budget]');
     const packageButtons = Array.from(document.querySelectorAll('[data-home-calc-package]'));
-    const sizeFieldset = document.querySelector('[data-home-calc-size-fieldset]');
-    const sizeTitle = document.querySelector('[data-home-calc-size-title]');
-    const sizeOptions = document.querySelector('[data-home-calc-size-options]');
     const summaryButton = document.querySelector('[data-home-calc-summary]');
     const summaryModal = document.querySelector('[data-home-calc-summary-modal]');
     const summaryDetails = document.querySelector('[data-home-calc-summary-details]');
@@ -1268,11 +1265,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const calcToastClose = document.querySelector('[data-home-calc-toast-close]');
     let calcToastTimer = null;
     const panelByStep = ['space', 'scope', 'package', 'estimate', 'result'];
-    const bhkSizeOptions = {
-      2: ['Below 800 sq.ft', 'Above 800 sq.ft'],
-      3: ['Below 1200 sq.ft', 'Above 1200 sq.ft'],
-      4: ['Below 1800 sq.ft', 'Above 1800 sq.ft'],
-    };
 
     const showHomeCalcStep = (stepIndex) => {
       panels.forEach((panel) => {
@@ -1323,69 +1315,27 @@ document.addEventListener('DOMContentLoaded', function () {
       calcToast.hidden = true;
     };
 
-    const updateBhkSizeOptions = () => {
-      if (!sizeFieldset || !sizeTitle || !sizeOptions) return;
-
-      const bhk = getActiveOptionText('.home-calc-options.bhk');
-      const bhkValue = Number((bhk.match(/\d+/) || ['1'])[0]);
-      const options = bhkSizeOptions[bhkValue] || [];
-
-      sizeOptions.replaceChildren();
-      sizeFieldset.hidden = options.length === 0;
-
-      if (!options.length) return;
-
-      sizeTitle.textContent = `Select Size for ${bhkValue} BHK`;
-      options.forEach((optionText) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.dataset.homeCalcOption = '';
-        button.textContent = optionText;
-        sizeOptions.append(button);
-      });
-    };
-
-    const validateSpaceStep = () => {
-      const bhk = getActiveOptionText('.home-calc-options.bhk');
-      const bhkValue = Number((bhk.match(/\d+/) || ['1'])[0]);
-
-      if (bhkSizeOptions[bhkValue] && !getActiveOptionText('.home-calc-size-options')) {
-        showCalcToast('BHK size is missing', 'Please select the size for your BHK type.');
-        sizeOptions?.querySelector('button')?.focus();
-        return false;
-      }
-
-      return true;
-    };
-
     const getBudgetRange = () => {
       const bhk = getActiveOptionText('.home-calc-options.bhk');
-      const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || 'Luxe';
+      const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || 'Luxury';
       const bhkValue = Number((bhk.match(/\d+/) || ['2'])[0]);
       const calcConfig = window.AJOR_HOME_CALCULATOR_CONFIG || {};
-      const bhkSize = getActiveOptionText('.home-calc-size-options');
       const propertyType = getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options') || 'Apartment';
-      const projectType = getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options') || 'Renovation';
-      const sizeReference = calcConfig.bhkSizeReference?.[bhkValue] || {};
-      const estimatedSqft = Number(sizeReference[bhkSize] || sizeReference.defaultSqft || 550);
-      const packageRatePerSqft = Number(calcConfig.packageRatePerSqft?.[selectedPackage] || calcConfig.packageRatePerSqft?.Luxe || 2200);
-      const areaAmount = (estimatedSqft * packageRatePerSqft) / 100000;
+      const projectType = getActiveOptionText('.home-calc-form fieldset:nth-of-type(3) .home-calc-options') || 'Renovation';
+      const baseCost = Number(calcConfig.baseCostByBhkAndPackage?.[bhkValue]?.[selectedPackage] || 0);
       const roomRates = calcConfig.roomRateInLakhs || {};
       const roomAmount = Array.from(document.querySelectorAll('[data-room-count]')).reduce((total, room) => {
-        const roomName = room.querySelector('strong')?.textContent?.trim() || '';
+        const roomKey = room.dataset.roomKey || '';
         const roomCount = Number(room.querySelector('span')?.textContent || 0);
-        const roomRate = Number(roomRates[roomName] || 0);
+        const roomRate = Number(roomRates[roomKey] || 0);
         return total + roomCount * roomRate;
       }, 0);
       const propertyMultiplier = Number(calcConfig.propertyTypeMultiplier?.[propertyType] || 1);
       const projectMultiplier = Number(calcConfig.projectTypeMultiplier?.[projectType] || 1);
-      const packageMultiplier = Number(calcConfig.packageMultiplier?.[selectedPackage] || 1);
-      const minimumLowerAmount = Number(calcConfig.minimumLowerAmount) || 4;
-      const minimumRangeGap = Number(calcConfig.minimumRangeGap) || 3;
       const rangePercent = Number(calcConfig.rangePercent) || 0.15;
-      const adjustedAmount = (areaAmount + roomAmount) * propertyMultiplier * projectMultiplier * packageMultiplier;
-      const lower = Math.max(minimumLowerAmount, adjustedAmount);
-      const upper = lower + Math.max(minimumRangeGap, lower * rangePercent);
+      const adjustedAmount = (baseCost + roomAmount) * propertyMultiplier * projectMultiplier;
+      const lower = adjustedAmount;
+      const upper = lower + lower * rangePercent;
       return `Rs. ${Math.round(lower)}L - Rs. ${Math.round(upper)}L`;
     };
 
@@ -1402,15 +1352,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const selectedPackage = document.querySelector('[data-home-calc-package].active strong')?.textContent?.trim() || '-';
       const budget = budgetOutput?.textContent?.trim() || getBudgetRange();
-      const bhkSize = getActiveOptionText('.home-calc-size-options');
       const rows = [
         ['Name', getEstimateFormValue('name')],
         ['Email', getEstimateFormValue('email')],
         ['Mobile', getEstimateFormValue('phone')],
         ['Property Type', getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options')],
         ['BHK Type', getActiveOptionText('.home-calc-options.bhk')],
-        ['BHK Size', bhkSize || 'Not required for 1 BHK'],
-        ['Project Type', getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options')],
+        ['Project Type', getActiveOptionText('.home-calc-form fieldset:nth-of-type(3) .home-calc-options')],
         ['Package', selectedPackage],
         ['Visit Date', getEstimateFormValue('visitDate')],
       ];
@@ -1523,8 +1471,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const hiddenFields = {
         propertyType: getActiveOptionText('.home-calc-form fieldset:nth-of-type(1) .home-calc-options'),
         bhkType: getActiveOptionText('.home-calc-options.bhk'),
-        bhkSize: getActiveOptionText('.home-calc-size-options') || 'Not required for 1 BHK',
-        projectCategory: getActiveOptionText('.home-calc-form fieldset:nth-of-type(4) .home-calc-options'),
+        projectCategory: getActiveOptionText('.home-calc-form fieldset:nth-of-type(3) .home-calc-options'),
         package: selectedPackage,
         budget,
         visitDate: getEstimateFormValue('visitDate'),
@@ -1556,7 +1503,6 @@ document.addEventListener('DOMContentLoaded', function () {
             Preferred_Time_Slot: timeSlot,
             Calculator_Property_Type: hiddenFields.propertyType,
             Calculator_BHK_Type: hiddenFields.bhkType,
-            Calculator_BHK_Size: hiddenFields.bhkSize,
             Calculator_Project_Category: hiddenFields.projectCategory,
             Calculator_Package: hiddenFields.package,
             Calculator_Estimated_Cost: hiddenFields.budget,
@@ -1587,28 +1533,12 @@ document.addEventListener('DOMContentLoaded', function () {
           optionButtons.forEach((optionButton) => {
             optionButton.classList.toggle('active', optionButton === button);
           });
-
-          if (fieldset.querySelector('.home-calc-options.bhk')) {
-            updateBhkSizeOptions();
-          }
         });
       });
     });
 
-    sizeOptions?.addEventListener('click', (event) => {
-      const selectedButton = event.target.closest('[data-home-calc-option]');
-      if (!selectedButton || !sizeOptions.contains(selectedButton)) return;
-
-      Array.from(sizeOptions.querySelectorAll('[data-home-calc-option]')).forEach((button) => {
-        button.classList.toggle('active', button === selectedButton);
-      });
-    });
-
-    updateBhkSizeOptions();
-
     homeCalcForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      if (!validateSpaceStep()) return;
       showHomeCalcStep(1);
     });
 
