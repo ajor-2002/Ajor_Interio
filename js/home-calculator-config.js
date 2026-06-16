@@ -122,28 +122,28 @@ window.AJOR_HOME_CALCULATOR_CONFIG = {
 
   baseCostByBhkAndPackage: {
     1: {
-      Standard: 2.5,
-      Premium: 4.5,
-      Luxury: 7,
-      Luxe: 7,
+      Standard: 1.5,
+      Premium: 3.5,
+      Luxury: 5,
+      Luxe: 5,
     },
     2: {
-      Standard: 4.2,
-      Premium: 7.5,
-      Luxury: 11,
-      Luxe: 11,
+      Standard: 3.2,
+      Premium: 6.5,
+      Luxury: 9,
+      Luxe: 9,
     },
     3: {
+      Standard: 5.5,
+      Premium: 9,
+      Luxury: 12,
+      Luxe: 12,
+    },
+    4: {
       Standard: 6.5,
       Premium: 10,
       Luxury: 15,
       Luxe: 15,
-    },
-    4: {
-      Standard: 8.5,
-      Premium: 13,
-      Luxury: 19,
-      Luxe: 19,
     },
   },
 
