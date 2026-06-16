@@ -22,24 +22,24 @@ window.AJOR_KITCHEN_CALCULATOR_CONFIG = {
 
   shapeRatePerRunningFoot: {
     Straight: {
-      Standard: 9000,
+      Standard: 7200,
+      Premium: 9500,
+      Luxury: 12500,
+    },
+    Parallel: {
+      Standard: 8200,
       Premium: 11000,
       Luxury: 14000,
     },
-    Parallel: {
-      Standard: 10000,
-      Premium: 12500,
+    'L-Shape': {
+      Standard: 9200,
+      Premium: 12000,
       Luxury: 15500,
     },
-    'L-Shape': {
-      Standard: 11000,
-      Premium: 13500,
-      Luxury: 17000,
-    },
     'U-Shape': {
-      Standard: 12000,
-      Premium: 15000,
-      Luxury: 18500,
+      Standard: 10200,
+      Premium: 13500,
+      Luxury: 17500,
     },
   },
 

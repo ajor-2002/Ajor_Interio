@@ -122,37 +122,37 @@ window.AJOR_HOME_CALCULATOR_CONFIG = {
 
   baseCostByBhkAndPackage: {
     1: {
-      Standard: 4,
-      Premium: 6,
-      Luxury: 8,
-      Luxe: 8,
+      Standard: 2.5,
+      Premium: 4.5,
+      Luxury: 7,
+      Luxe: 7,
     },
     2: {
-      Standard: 6,
-      Premium: 9,
-      Luxury: 12,
-      Luxe: 12,
+      Standard: 4.2,
+      Premium: 7.5,
+      Luxury: 11,
+      Luxe: 11,
     },
     3: {
-      Standard: 8,
-      Premium: 12,
-      Luxury: 16,
-      Luxe: 16,
+      Standard: 6.5,
+      Premium: 10,
+      Luxury: 15,
+      Luxe: 15,
     },
     4: {
-      Standard: 10,
-      Premium: 15,
-      Luxury: 20,
-      Luxe: 20,
+      Standard: 8.5,
+      Premium: 13,
+      Luxury: 19,
+      Luxe: 19,
     },
   },
 
   roomRateInLakhs: {
-    livingRoom: 1.0,
-    kitchen: 2.0,
-    bedroom: 1.2,
-    bathroom: 0.5,
-    dining: 0.8,
+    livingRoom: 0.7,
+    kitchen: 1.5,
+    bedroom: 0.9,
+    bathroom: 0.35,
+    dining: 0.55,
   },
 
   propertyTypeMultiplier: {
