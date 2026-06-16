@@ -361,8 +361,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Automatically show login popup after 5 seconds on the home screen
     const isHomePage = !inPagesFolder && (
-      window.location.pathname === '/' || 
-      window.location.pathname.endsWith('index.html') || 
+      window.location.pathname === '/' ||
+      window.location.pathname.endsWith('index.html') ||
       window.location.pathname === ''
     );
 
@@ -1308,31 +1308,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 4200);
     };
 
-    const initStartingPriceBanner = () => {
-      const banner = document.querySelector('[data-calc-starting-price-banner]');
-      const priceSpan = document.querySelector('[data-calc-starting-price]');
-      const config = window.AJOR_HOME_CALCULATOR_CONFIG;
-
-      if (!banner || !priceSpan || !config?.baseCostByBhkAndPackage) return;
-
-      let minPrice = Infinity;
-      // Iterate through BHK types and packages to find the lowest base cost
-      Object.values(config.baseCostByBhkAndPackage).forEach((bhkGroup) => {
-        Object.values(bhkGroup).forEach((price) => {
-          const numericPrice = Number(price);
-          if (!isNaN(numericPrice) && numericPrice > 0 && numericPrice < minPrice) {
-            minPrice = numericPrice;
-          }
-        });
-      });
-
-      if (minPrice !== Infinity) {
-        priceSpan.textContent = minPrice.toString();
-        banner.hidden = false;
-      }
-    };
-
-    initStartingPriceBanner();
 
     const hideCalcToast = () => {
       if (!calcToast) return;
