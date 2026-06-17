@@ -1165,8 +1165,29 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .filter((item) => item.quantity > 0);
     const accessoryNames = selectedAccessories.map((item) => item.quantity > 1 ? `${item.name} x ${item.quantity}` : item.name).join(', ');
-    const materialCost = 155590;
-    const accessoryCost = selectedAccessories.reduce((sum, item) => sum + item.quantity * 18500, 0);
+
+    // Get configuration and calculate actual costs
+    const config = window.AJOR_KITCHEN_CALCULATOR_CONFIG || {};
+    const packageType = 'Premium'; // Default package assumed for base calculation
+
+    // Calculate Running Feet from wall selects
+    const runningFeet = Array.from(document.querySelectorAll('.kitchen-wall-controls label')).reduce((sum, label) => {
+      const selects = label.querySelectorAll('select');
+      const ft = parseFloat(selects[0]?.value) || 0;
+      const inch = parseFloat(selects[1]?.value) || 0;
+      return sum + ft + (inch / 12);
+    }, 0);
+
+    const shapeRate = config.shapeRatePerRunningFoot?.[shape]?.[packageType] || 0;
+    const cabinetMultiplier = config.cabinetMaterialMultiplier?.[cabinetMaterial] || 1;
+    const shutterMultiplier = config.shutterFinishMultiplier?.[shutterMaterial] || 1;
+
+    const materialCost = runningFeet * shapeRate * cabinetMultiplier * shutterMultiplier;
+    const accessoryCost = selectedAccessories.reduce((sum, item) => {
+      const rate = config.accessoryRate?.[item.name] || 0;
+      return sum + (item.quantity * rate);
+    }, 0);
+
     const subtotal = materialCost + accessoryCost;
 
     kitchenPriceSummary.replaceChildren(
