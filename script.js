@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
       topbarInner.appendChild(authActions);
     }
 
-    const socialIconBase = inPagesFolder ? '../images/' : 'images/';
+    const socialIconBase = '/images/';
     const authPopup = document.createElement('div');
     authPopup.className = 'ajor-auth-popups';
     authPopup.innerHTML = `
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (onlinePill) {
-    const supportLogoPath = window.location.pathname.includes('/pages/') ? '../images/logo.png' : 'images/logo.png';
+    const supportLogoPath = '/images/logo.png';
     const supportCard = document.createElement('div');
     supportCard.className = 'online-support-card';
     supportCard.setAttribute('aria-hidden', 'true');

@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# 1. Remove .html from visible URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# 2. Hide /pages/ folder from the URL (maps domain.com/home-interior to /pages/home-interior.html)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/pages/$1.html -f
+RewriteRule ^(.+)$ pages/$1.html [L]
