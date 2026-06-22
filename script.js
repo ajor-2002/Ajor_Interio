@@ -171,25 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
           </form>
         </div>
       </div>
-
-      <div class="ajor-auth-popup" id="otpPopup" aria-hidden="true">
-        <div class="ajor-auth-popup-box otp-box" role="dialog" aria-modal="true" aria-labelledby="otpTitle">
-          <button class="ajor-auth-close" id="closeOtp" type="button" aria-label="Close OTP verification">&times;</button>
-          <h2 id="otpTitle">Verify OTP</h2>
-          <p data-otp-helper>Choose how you want to receive the OTP, then enter the 6-digit code to continue.</p>
-          <div class="ajor-otp-methods" role="group" aria-label="OTP delivery method">
-            <button type="button" data-otp-send="email">Email OTP</button>
-            <button type="button" data-otp-send="whatsapp">WhatsApp OTP</button>
-          </div>
-          <form id="otpForm">
-            <label class="ajor-auth-field ajor-auth-field-otp">
-              <input type="text" id="otpCode" name="otp" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code" required />
-            </label>
-            <button type="submit">Verify &amp; Get Estimate</button>
-            <span class="ajor-auth-status" data-auth-status="otp" hidden></span>
-          </form>
-        </div>
-      </div>
     `;
     document.body.appendChild(authPopup);
 
@@ -202,14 +183,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const logoutBtn = document.getElementById('logoutBtn');
     const loginPopup = document.getElementById('loginPopup');
     const signupPopup = document.getElementById('signupPopup');
-    const otpPopup = document.getElementById('otpPopup');
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
-    const otpForm = document.getElementById('otpForm');
-    const otpCodeInput = document.getElementById('otpCode');
-    const otpHelper = document.querySelector('[data-otp-helper]');
-    const otpSendButtons = Array.from(document.querySelectorAll('[data-otp-send]'));
-    let otpState = null;
 
     const getSavedAuthUser = () => {
       try {
@@ -266,129 +241,9 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('auth-modal-open');
     };
 
-    const cancelOtpVerification = () => {
-      if (otpState?.reject) otpState.reject(new Error('OTP verification cancelled.'));
-      otpState = null;
-      closePopup(otpPopup);
-    };
-
     const closeAllAuthPopups = () => {
       closePopup(loginPopup);
       closePopup(signupPopup);
-      cancelOtpVerification();
-    };
-
-    const generateOtp = () => String(Math.floor(100000 + Math.random() * 900000));
-
-    const formatOtpPhone = (phone) => {
-      const digits = (phone || '').replace(/\D/g, '');
-      if (digits.length === 10) return `91${digits}`;
-      return digits;
-    };
-
-    const setOtpLoading = (isLoading) => {
-      otpSendButtons.forEach((button) => {
-        button.disabled = isLoading;
-      });
-    };
-
-    const deliverOtp = async (channel) => {
-      if (!otpState) return;
-      const { user, context } = otpState;
-      const otp = generateOtp();
-      otpState.code = otp;
-      otpState.channel = channel;
-      setOtpLoading(true);
-      setAuthStatus('otp', `Sending OTP by ${channel === 'email' ? 'email' : 'WhatsApp'}...`, 'success');
-
-      try {
-        if (channel === 'email') {
-          if (window.location.protocol === 'file:') {
-            throw new Error('Open this page through http://127.0.0.1:8000 or your live website before sending Email OTP.');
-          }
-
-          await sendFormSubmitEmail(
-            {
-              Form_Type: 'Estimate OTP',
-              Name: user.name,
-              email: user.email,
-              Email: user.email,
-              _replyto: user.email,
-              Phone: user.phone,
-              OTP: otp,
-              Estimate_Type: context || 'Calculator Estimate',
-              _autoresponse: `Your Ajor Interio OTP is ${otp}. Enter this code to view your estimate.`,
-            },
-            'Ajor Interio Estimate OTP'
-          );
-          setAuthStatus('otp', `OTP sent to ${user.email}.`, 'success');
-        } else {
-          const whatsappPhone = formatOtpPhone(user.phone);
-          if (!whatsappPhone) {
-            setAuthStatus('otp', 'Please enter a valid phone number for WhatsApp OTP.');
-            return;
-          }
-          const whatsappText = encodeURIComponent(`Your Ajor Interio OTP is ${otp}. Enter this code to view your estimate.`);
-          window.open(`https://wa.me/${whatsappPhone}?text=${whatsappText}`, '_blank', 'noopener');
-          setAuthStatus('otp', 'WhatsApp opened with your OTP. Enter the code here to continue.', 'success');
-        }
-        otpCodeInput?.focus();
-      } catch (error) {
-        setAuthStatus('otp', error.message || 'Could not send OTP. Please try again.');
-      } finally {
-        setOtpLoading(false);
-      }
-    };
-
-    const openOtpVerification = (user, context = 'Calculator Estimate') => {
-      return new Promise((resolve, reject) => {
-        otpState = {
-          user,
-          context,
-          code: '',
-          channel: '',
-          resolve,
-          reject,
-        };
-        if (otpForm) otpForm.reset();
-        if (otpHelper) {
-          otpHelper.textContent = `Send an OTP to ${user.email || 'your email'} or WhatsApp number ${user.phone || ''}, then enter it to view your estimate.`;
-        }
-        openPopup(otpPopup);
-        setAuthStatus('otp', 'Choose Email OTP or WhatsApp OTP.');
-      });
-    };
-
-    const completeOtpVerification = () => {
-      if (!otpState) return;
-      const enteredOtp = otpCodeInput?.value.trim() || '';
-
-      if (!otpState.code) {
-        setAuthStatus('otp', 'Please send an OTP first.');
-        return;
-      }
-
-      if (enteredOtp !== otpState.code) {
-        setAuthStatus('otp', 'Incorrect OTP. Please check the code and try again.');
-        otpCodeInput?.focus();
-        return;
-      }
-
-      const user = {
-        name: otpState.user.name,
-        email: otpState.user.email,
-        phone: otpState.user.phone,
-        loggedIn: true,
-        verifiedAt: new Date().toISOString(),
-        verifiedBy: otpState.channel,
-      };
-      saveAuthUser(user);
-      setLoggedInState(user);
-      setAuthStatus('otp', 'OTP verified. Opening your estimate...', 'success');
-      document.dispatchEvent(new CustomEvent('ajor:otp-verified', { detail: user }));
-      otpState.resolve(user);
-      otpState = null;
-      window.setTimeout(() => closePopup(otpPopup), 450);
     };
 
     accountBtn.addEventListener('click', () => openPopup(loginPopup));
@@ -405,14 +260,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.getElementById('closeLogin')?.addEventListener('click', () => closePopup(loginPopup));
     document.getElementById('closeSignup')?.addEventListener('click', () => closePopup(signupPopup));
-    document.getElementById('closeOtp')?.addEventListener('click', cancelOtpVerification);
-    otpSendButtons.forEach((button) => {
-      button.addEventListener('click', () => deliverOtp(button.dataset.otpSend));
-    });
-    otpForm?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      completeOtpVerification();
-    });
     document.querySelectorAll('[data-auth-open]').forEach((button) => {
       button.addEventListener('click', () => {
         closeAllAuthPopups();
@@ -423,10 +270,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.ajor-auth-popup').forEach((popup) => {
       popup.addEventListener('click', (event) => {
         if (event.target !== popup) return;
-        if (popup === otpPopup) {
-          cancelOtpVerification();
-          return;
-        }
         closePopup(popup);
       });
     });
@@ -520,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function () {
       getUser: getSavedAuthUser,
       openSignup: () => openPopup(signupPopup),
       openLogin: () => openPopup(loginPopup),
-      verifyContact: openOtpVerification,
     };
 
     // Automatically show login popup after 5 seconds on the home screen
@@ -1387,11 +1229,12 @@ document.addEventListener('DOMContentLoaded', function () {
     kitchenEstimateStatus.classList.toggle('is-success', type === 'success');
   };
 
-  const verifyKitchenLead = async () => {
+  const verifyKitchenLead = () => {
     if (!kitchenLeadForm) return null;
     const name = getKitchenLeadValue('name');
     const phone = getKitchenLeadValue('phone');
     const email = getKitchenLeadValue('email');
+    const consent = Boolean(kitchenLeadForm.elements?.consent?.checked);
     const phoneDigits = (phone.match(/\d/g) || []).length;
 
     if (!name) {
@@ -1412,32 +1255,29 @@ document.addEventListener('DOMContentLoaded', function () {
       return null;
     }
 
-    setKitchenEstimateStatus('Verify OTP to view your estimate.', 'success');
+    if (!consent) {
+      kitchenLeadForm.elements?.consent?.focus();
+      setKitchenEstimateStatus('Please accept the checkbox to view your estimate.');
+      return null;
+    }
 
-    const user = {
+    setKitchenEstimateStatus('Opening your estimate...', 'success');
+
+    return {
       name,
       phone,
       email,
       possession: getKitchenLeadValue('possession'),
       city: getKitchenLeadValue('city'),
+      consentAccepted: true,
     };
-
-    if (window.ajorInterioAuth?.verifyContact) {
-      return window.ajorInterioAuth.verifyContact(user, 'Kitchen Calculator Estimate');
-    }
-
-    return user;
   };
 
-  kitchenEstimateButton?.addEventListener('click', async () => {
-    try {
-      const verifiedUser = await verifyKitchenLead();
-      if (verifiedUser) {
-        setKitchenEstimateStatus('');
-        openKitchenEstimateModal();
-      }
-    } catch (error) {
-      setKitchenEstimateStatus('OTP verification is required to view the estimate.');
+  kitchenEstimateButton?.addEventListener('click', () => {
+    const verifiedUser = verifyKitchenLead();
+    if (verifiedUser) {
+      setKitchenEstimateStatus('');
+      openKitchenEstimateModal();
     }
   });
 
@@ -1795,6 +1635,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const phone = (formData.get('phone') || '').toString().trim();
       const email = (formData.get('email') || '').toString().trim();
       const visitDate = (formData.get('visitDate') || '').toString().trim();
+      const consent = Boolean(formData.get('consent'));
 
       if (!name) {
         showCalcToast('Name is missing', 'Please fill out the name field.');
@@ -1820,35 +1661,22 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+      if (!consent) {
+        showCalcToast('Permission is missing', 'Please accept the checkbox to view your estimate.');
+        estimateForm.elements?.consent?.focus();
+        return;
+      }
+
       if (estimateStatus) {
-        estimateStatus.textContent = 'Verify OTP to view your estimate.';
+        estimateStatus.textContent = '';
         estimateStatus.classList.add('is-success');
       }
 
-      try {
-        if (window.ajorInterioAuth?.verifyContact) {
-          await window.ajorInterioAuth.verifyContact(
-            {
-              name,
-              phone,
-              email,
-              visitDate,
-            },
-            'Home Interior Calculator Estimate'
-          );
-        }
-
-        if (budgetOutput) {
-          budgetOutput.textContent = getBudgetRange();
-        }
-
-        showHomeCalcStep(4);
-      } catch (error) {
-        if (estimateStatus) {
-          estimateStatus.textContent = 'OTP verification is required to view the estimate.';
-          estimateStatus.classList.remove('is-success');
-        }
+      if (budgetOutput) {
+        budgetOutput.textContent = getBudgetRange();
       }
+
+      showHomeCalcStep(4);
     });
 
     summaryButton?.addEventListener('click', openQuoteSummary);
