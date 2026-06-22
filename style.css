@@ -10018,6 +10018,18 @@ body.no-scroll {
   line-height: 1.35;
 }
 
+.kitchen-estimate-status {
+  min-height: 18px;
+  margin: -4px 0 0;
+  color: #d81a1a;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.kitchen-estimate-status.is-success {
+  color: #15803d;
+}
+
 .kitchen-price-modal {
   position: fixed;
   inset: 0;
@@ -13434,6 +13446,10 @@ svg {
   font-size: 0.62rem;
 }
 
+.ajor-auth-field-otp::before {
+  content: "#";
+}
+
 .ajor-auth-popup-box input {
   width: 100%;
   padding: 12px 16px;
@@ -13484,6 +13500,39 @@ svg {
   cursor: wait;
   opacity: 0.72;
   transform: none;
+}
+
+.ajor-otp-methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 15px;
+}
+
+.ajor-otp-methods button {
+  min-height: 44px;
+  border: 1px solid rgba(227, 31, 39, 0.22);
+  border-radius: 8px;
+  background: #fff5f5;
+  color: #b90f18;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.ajor-otp-methods button:hover,
+.ajor-otp-methods button:focus-visible {
+  border-color: #e31f27;
+  background: #ffe8e9;
+  outline: none;
+}
+
+.ajor-otp-methods button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.otp-box .ajor-auth-status.is-success {
+  color: #15803d;
 }
 
 .ajor-auth-socials {
