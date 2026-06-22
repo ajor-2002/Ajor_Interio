@@ -36,7 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       body: JSON.stringify(payload),
     });
-    const data = await response.json();
+    let data = {};
+    try {
+      data = await response.json();
+    } catch (error) {
+      data = {};
+    }
 
     if (!response.ok || !(data.success === 'true' || data.success === true)) {
       throw new Error(data.message || 'Form submission failed. Please try again.');
@@ -298,11 +303,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
       try {
         if (channel === 'email') {
+          if (window.location.protocol === 'file:') {
+            throw new Error('Open this page through http://127.0.0.1:8000 or your live website before sending Email OTP.');
+          }
+
           await sendFormSubmitEmail(
             {
               Form_Type: 'Estimate OTP',
               Name: user.name,
+              email: user.email,
               Email: user.email,
+              _replyto: user.email,
               Phone: user.phone,
               OTP: otp,
               Estimate_Type: context || 'Calculator Estimate',
